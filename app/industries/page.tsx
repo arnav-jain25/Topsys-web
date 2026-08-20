@@ -5,11 +5,12 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { IndustryIndexGrid } from "./_components/IndustryIndexGrid";
+import { ClientShowcase } from "./_components/ClientShowcase";
 
 export const metadata: Metadata = {
   title: "Industries | TOPSYS IT",
   description:
-    "TOPSYS IT delivers technology programs across financial services, telecommunications, healthcare, state government, and technology companies.",
+    "TOPSYS IT delivers technology programs across financial services, telecommunications, healthcare, state government, technology, retail, and insurance.",
 };
 
 const INDUSTRIES = [
@@ -41,6 +42,20 @@ const INDUSTRIES = [
       "Engineering delivery, internal developer platforms, data and AI infrastructure, and CI/CD for technology companies building at scale.",
     tags: ["Kubernetes", "Terraform", "GitHub Actions", "Python", "React", "GCP"],
   },
+  {
+    slug: "retail",
+    label: "Retail",
+    body:
+      "Omnichannel commerce platforms, inventory and supply chain data, and PCI-DSS-scoped payment integration across store, web, and marketplace channels.",
+    tags: ["Node.js", "GraphQL", "Kafka", "Snowflake", "PCI-DSS", "AWS"],
+  },
+  {
+    slug: "insurance",
+    label: "Insurance",
+    body:
+      "Claims processing systems, underwriting and actuarial data platforms, and policy administration modernization under NAIC and state reporting requirements.",
+    tags: ["Java", "Spring Boot", "Kafka", "Snowflake", "NAIC", "SQL"],
+  },
 ];
 
 export default function IndustriesPage() {
@@ -65,7 +80,7 @@ export default function IndustriesPage() {
             The sectors we work in.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across four verticals where we&rsquo;ve built programs that run in production.
+            Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across six verticals where we&rsquo;ve built programs that run in production.
           </p>
         </div>
       </section>
@@ -88,6 +103,11 @@ export default function IndustriesPage() {
           </div>
         </div>
       </section>
+
+      {/* ================================================================
+          CLIENT SHOWCASE — inverted
+          ================================================================ */}
+      <ClientShowcase />
 
       {/* ================================================================
           CROSS-LINKS

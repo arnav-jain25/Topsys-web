@@ -188,7 +188,7 @@ const CASE_STUDIES: CaseStudy[] = [
     href: "/work/revenue-intelligence",
   },
   {
-    tag: "Financial services · Cybersecurity",
+    tag: "Conversational AI · Financial services",
     title: "A conversational AI platform for security incident response",
     body: "Investigation, evidence and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval.",
     diagram: <ConversationalDiagram />,

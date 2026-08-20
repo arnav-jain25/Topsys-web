@@ -23,7 +23,7 @@ export default function HomePage() {
           ================================================================ */}
       <section
         className="relative flex flex-col justify-center overflow-hidden"
-        style={{ minHeight: "90vh", padding: "6rem 0 4rem" }}
+        style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem" }}
         aria-label="Hero"
       >
         {/* Particle canvas — fills the section, pointer-events none */}
@@ -32,8 +32,17 @@ export default function HomePage() {
           <span
             className="absolute z-0 pointer-events-none"
             style={{
-              left: "44%", top: "6%", width: "60%", height: "88%",
-              background: "radial-gradient(circle,rgba(14,90,102,.10),rgba(141,198,62,.07) 40%,transparent 66%)",
+              left: "40%", top: "0%", width: "68%", height: "100%",
+              background: "radial-gradient(circle,rgba(14,90,102,.12),rgba(141,198,62,.08) 42%,transparent 68%)",
+            }}
+            aria-hidden="true"
+          />
+          {/* Secondary glow, low-left, balances the composition without added WebGL cost */}
+          <span
+            className="absolute z-0 pointer-events-none"
+            style={{
+              left: "-8%", bottom: "-15%", width: "38%", height: "60%",
+              background: "radial-gradient(circle,rgba(14,90,102,.06),transparent 70%)",
             }}
             aria-hidden="true"
           />
@@ -52,7 +61,7 @@ export default function HomePage() {
                 <span className="text-signature">has to work.</span>
               </span>
             </h1>
-            <p className="text-lede text-ink-2 max-w-[52ch] mb-12">
+            <p className="text-lede text-ink-2 max-w-[52ch] mb-10">
               Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
             </p>
             <div className="flex gap-3 flex-wrap max-[600px]:[&>a]:w-full">
@@ -61,6 +70,12 @@ export default function HomePage() {
                 Explore services
               </Button>
             </div>
+            <div className="mt-10 pt-6 border-t border-hairline flex flex-wrap gap-x-6 gap-y-2 font-mono text-mono-sm text-ink-muted uppercase tracking-[.06em]">
+              <span>20+ years</span>
+              <span>49 states served</span>
+              <span>4 countries</span>
+              <span>MBE certified</span>
+            </div>
           </div>
         </div>
       </section>
@@ -68,7 +83,7 @@ export default function HomePage() {
       {/* ================================================================
           PROOF BAR — stats + client grid
           ================================================================ */}
-      <section className="border-t border-hairline" style={{ padding: "4rem 0" }}>
+      <section className="border-t border-hairline" style={{ padding: "4rem 0 3rem" }}>
         <div className="wrap">
           <StatBar />
           <ServicesShowcase />
@@ -78,7 +93,7 @@ export default function HomePage() {
       {/* ================================================================
           DUAL MODEL — build the solution / build the team
           ================================================================ */}
-      <section style={{ padding: "8rem 0" }}>
+      <section style={{ padding: "4rem 0 8rem" }}>
         <div className="wrap">
           <Eyebrow>The model</Eyebrow>
           <h2
@@ -179,7 +194,7 @@ export default function HomePage() {
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
                   States served
                 </dt>
-                <dd className="text-body-sm text-ink-2 mt-1">30+</dd>
+                <dd className="text-body-sm text-ink-2 mt-1">49</dd>
               </dl>
               <div className="mt-8 flex gap-3 flex-wrap">
                 <Button href="/contact">Request a capability briefing</Button>

@@ -77,11 +77,11 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "conversational-incident-response",
-    tag: "Financial services · Cybersecurity",
+    tag: "Conversational AI · Financial services",
     title: "A conversational AI platform for security incident response",
-    lede: "Investigation, evidence, and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval.",
+    lede: "Investigation, evidence, and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval. Security operations was the first deployment, not the limit of the pattern.",
     client: "A financial services security operations team",
-    capabilities: ["AI & data", "Cybersecurity", "Applications & modernization"],
+    capabilities: ["AI & data", "Applications & modernization", "Cybersecurity"],
     problem: [
       "Incident response ran across a patchwork of dashboards, chat threads, and ticketing tools. The investigation an analyst performed, the evidence that supported it, and the reasoning behind a recommended action were rarely captured in one place. Reconstructing why a decision was made meant piecing it back together after the fact.",
       "Analysts needed a system that could investigate at machine speed without removing the human from the loop. Automating containment actions outright was a non-starter for a regulated environment; the requirement was a system that proposed, explained, and waited to be told yes.",

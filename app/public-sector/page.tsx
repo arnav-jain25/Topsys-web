@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { USMap } from "@/components/sections/USMap";
 import { CTASection } from "@/components/sections/CTASection";
@@ -103,9 +102,7 @@ export default function PublicSectorPage() {
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted">
                   States served
                 </dt>
-                <dd className="font-mono text-stat text-ink mt-2">
-                  <ContentToken id="STAT-01" />
-                </dd>
+                <dd className="font-mono text-stat text-ink mt-2">49</dd>
               </div>
               <div className="border-t border-hairline pt-5 mt-6">
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted">

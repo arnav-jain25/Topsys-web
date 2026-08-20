@@ -3,44 +3,62 @@
 import { useState } from "react";
 import { US_STATES } from "@/lib/us-states-geometry";
 
-/* States with direct state engagements */
+/* States with direct state engagements (30) */
 const SERVED: Record<string, string> = {
-  TX: "Statewide technology services",
-  PA: "Corrections and enterprise systems",
-  GA: "Health and human services",
-  MI: "Enterprise technology programs",
-  OH: "Transportation",
-  FL: "Health",
-  LA: "Modernization program",
-  AZ: "Enterprise systems",
-  MA: "Public health",
-  CT: "Enterprise technology",
-  RI: "State agency delivery",
-  CA: "Enterprise modernization",
-  NY: "Agency data platforms",
-  IL: "State government technology",
-  WA: "Cloud and platform engineering",
-  CO: "Digital services",
-  MD: "Enterprise systems",
-  VA: "Cybersecurity and modernization",
-  NC: "Health and human services",
-  NJ: "Application modernization",
-  TN: "Enterprise technology",
-  MN: "Data platforms",
-  WI: "State agency technology",
-  MO: "Enterprise systems",
-  OR: "Digital modernization",
-  SC: "Health and human services",
-  IN: "Government technology",
   AL: "State agency modernization",
-  KY: "Enterprise systems",
-  NM: "Government technology",
+  AZ: "Enterprise systems",
+  AR: "Direct state engagement",
+  CA: "Enterprise modernization",
+  CO: "Digital services",
+  CT: "Enterprise technology",
+  FL: "Health",
+  GA: "Health and human services",
+  ID: "Direct state engagement",
+  IL: "State government technology",
+  IA: "Direct state engagement",
+  KS: "Direct state engagement",
+  MD: "Enterprise systems",
+  MA: "Public health",
+  MI: "Enterprise technology programs",
+  MN: "Data platforms",
+  MS: "Direct state engagement",
+  MO: "Enterprise systems",
+  NY: "Agency data platforms",
+  OH: "Transportation",
+  OK: "Direct state engagement",
+  OR: "Digital modernization",
+  PA: "Corrections and enterprise systems",
+  RI: "State agency delivery",
+  TN: "Enterprise technology",
+  TX: "Statewide technology services",
+  UT: "Direct state engagement",
+  VT: "Direct state engagement",
+  VA: "Cybersecurity and modernization",
+  WI: "State agency technology",
 };
 
-/* Additional (lighter fill) */
-const ADDITIONAL = new Set([
-  "NV", "UT", "KS", "OK", "AR", "MS", "IA", "NE", "SD", "ND", "MT", "ID", "WY",
-]);
+/* States with extended state engagements (19, lighter fill) */
+const EXTENDED: Record<string, string> = {
+  DE: "Extended state engagement",
+  HI: "Extended state engagement",
+  IN: "Extended state engagement",
+  KY: "Extended state engagement",
+  LA: "Extended state engagement",
+  ME: "Extended state engagement",
+  MT: "Extended state engagement",
+  NE: "Extended state engagement",
+  NV: "Extended state engagement",
+  NH: "Extended state engagement",
+  NJ: "Extended state engagement",
+  NM: "Extended state engagement",
+  NC: "Extended state engagement",
+  ND: "Extended state engagement",
+  SC: "Extended state engagement",
+  SD: "Extended state engagement",
+  WA: "Extended state engagement",
+  WV: "Extended state engagement",
+  WY: "Extended state engagement",
+};
 
 /* O-mark pin path — droplet pointing DOWN, circle at top, hole punched through.
    Used in exactly one place per CLAUDE.md. */
@@ -52,16 +70,18 @@ function pinPath(cx: number, cy: number, R: number): string {
 }
 
 export function USMap() {
-  const [tooltip, setTooltip] = useState<{ name: string; desc: string; x: number; y: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{ name: string; desc: string; direct: boolean; x: number; y: number } | null>(null);
 
   const servedStates = US_STATES.filter(([abbr]) => abbr in SERVED);
+  const extendedStates = US_STATES.filter(([abbr]) => abbr in EXTENDED);
 
   return (
     <div className="relative">
       {/* SR-only list precedes the map */}
       <p className="sr-only-text">
-        TOPSYS IT serves state government agencies. Direct state engagements include:{" "}
-        {servedStates.map(([, name]) => name).join(", ")}.
+        TOPSYS IT serves state government agencies across 49 states. Direct state engagements include:{" "}
+        {servedStates.map(([, name]) => name).join(", ")}. Extended state engagements include:{" "}
+        {extendedStates.map(([, name]) => name).join(", ")}.
       </p>
 
       <div className="relative mapwrap">
@@ -73,9 +93,9 @@ export function USMap() {
         >
           {/* Base state fills */}
           <g>
-            {US_STATES.map(([abbr,, d]) => {
+            {US_STATES.map(([abbr, name, d, lx, ly]) => {
               const isServed = abbr in SERVED;
-              const isAdditional = ADDITIONAL.has(abbr);
+              const isExtended = abbr in EXTENDED;
               return (
                 <path
                   key={abbr}
@@ -84,23 +104,17 @@ export function USMap() {
                   className={`transition-colors duration-base ease-standard ${
                     isServed
                       ? "fill-field hover:fill-teal cursor-default"
-                      : isAdditional
-                      ? "fill-[#CFD8D3]"
+                      : isExtended
+                      ? "fill-[#CFD8D3] hover:fill-[#B9C4BC] cursor-default"
                       : "fill-[#E8E5DC]"
                   }`}
                   stroke={isServed ? "var(--color-field-deep)" : "#C9C4B4"}
                   strokeWidth="0.9"
-                  onMouseEnter={(e) => {
+                  onMouseEnter={() => {
                     if (isServed) {
-                      const svgEl = e.currentTarget.closest("svg") as SVGSVGElement;
-                      const rect = svgEl.getBoundingClientRect();
-                      const state = US_STATES.find((s) => s[0] === abbr)!;
-                      setTooltip({
-                        name: state[1],
-                        desc: SERVED[abbr],
-                        x: state[3],
-                        y: state[4],
-                      });
+                      setTooltip({ name, desc: SERVED[abbr], direct: true, x: lx, y: ly });
+                    } else if (isExtended) {
+                      setTooltip({ name, desc: EXTENDED[abbr], direct: false, x: lx, y: ly });
                     }
                   }}
                   onMouseLeave={() => setTooltip(null)}
@@ -168,7 +182,12 @@ export function USMap() {
               top: `${(tooltip.y / 600) * 100}%`,
             }}
           >
-            <b className="text-signal font-normal">{tooltip.name}</b>
+            <b className={`font-normal ${tooltip.direct ? "text-signal" : "text-on-field-2"}`}>
+              {tooltip.name}
+            </b>
+            <span className="block font-mono text-mono-xs uppercase tracking-[.06em] text-on-field-2 mt-0.5">
+              {tooltip.direct ? "Direct engagement" : "Extended engagement"}
+            </span>
           </div>
         )}
       </div>

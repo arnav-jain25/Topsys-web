@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Button, TextLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ContentToken } from "@/components/ui/ContentToken";
@@ -33,34 +34,125 @@ const STALLS = [
   },
 ];
 
+/* ---- Capability icons — thin monoline, 20x20, mirrors the icon set already
+   established in SiteHeader and ServicesShowcase ---- */
+const IconAgentic = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="3" cy="9" r="2" stroke="currentColor" strokeWidth="1.3" />
+    <circle cx="15" cy="4.5" r="2" stroke="currentColor" strokeWidth="1.3" />
+    <circle cx="15" cy="13.5" r="2" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M5 9h4M11.2 6.2L9 8M11.2 11.8L9 10" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+  </svg>
+);
+const IconConversational = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M2.5 4.5h13v8h-8L4 15v-2.5H2.5v-8z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    <path d="M5.5 7.5h7M5.5 10h4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+const IconMultimodal = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <rect x="2" y="2" width="8" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M2 13.5h6M2 16h9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    <circle cx="14" cy="6" r="3.2" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M11.5 13.5l1.4-2.4 1.3 1.6 1.8-2.7 1.5 3.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconAdvisory = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M11.5 6.5L8 8l-1.5 3.5L10 10l1.5-3.5z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+  </svg>
+);
+const IconGenerative = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 2v4M9 12v4M2 9h4M12 9h4M4.3 4.3l2.8 2.8M10.9 10.9l2.8 2.8M13.7 4.3l-2.8 2.8M7.1 10.9l-2.8 2.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+const IconAutomation = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="2.4" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M9 1.8v2M9 14.2v2M16.2 9h-2M3.8 9h-2M14.1 3.9l-1.4 1.4M5.3 12.7l-1.4 1.4M14.1 14.1l-1.4-1.4M5.3 5.3L3.9 3.9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+const IconML = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M2 15V3M2 15h14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    <path d="M3.5 12l3.5-4 2.5 2.5 4.5-6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconDataPlatforms = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <ellipse cx="9" cy="4" rx="6" ry="2" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M3 4v4c0 1.1 2.7 2 6 2s6-.9 6-2V4M3 8v4c0 1.1 2.7 2 6 2s6-.9 6-2V8" stroke="currentColor" strokeWidth="1.2" />
+  </svg>
+);
+const IconAnalytics = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M2 15V3M2 15h14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    <rect x="4.5" y="9" width="2.2" height="4" stroke="currentColor" strokeWidth="1.1" />
+    <rect x="8.2" y="6" width="2.2" height="7" stroke="currentColor" strokeWidth="1.1" />
+    <rect x="11.9" y="3.5" width="2.2" height="9.5" stroke="currentColor" strokeWidth="1.1" />
+  </svg>
+);
+const IconGovernance = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 1.5L2 4.5V9c0 3.5 3 6.5 7 7 4-1 7-3.5 7-7V4.5L9 1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    <path d="M6 9l2.5 2.5L13 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const CAPS = [
+  {
+    title: "Agentic AI",
+    body: "Multi-step systems that plan, call tools, and act toward a goal instead of answering a single prompt. Built with explicit guardrails: scoped permissions, deterministic steps where the task demands them, and a human checkpoint before anything irreversible happens.",
+    Icon: IconAgentic,
+  },
+  {
+    title: "Conversational AI",
+    body: "State-driven workspaces where the conversation carries the work: a system asks clarifying questions, proposes a plan, tracks evidence as it gathers it, and routes every action through a human approval checkpoint before it executes.",
+    Icon: IconConversational,
+    href: "/work/conversational-incident-response",
+  },
+  {
+    title: "Multi-modal AI",
+    body: "Systems that reason across text, documents, images, and audio in a single workflow instead of treating each input type as a separate pipeline. Built for the inputs that aren't a clean text field: scanned forms, call recordings, photos, PDFs with tables and signatures.",
+    Icon: IconMultimodal,
+  },
   {
     title: "AI advisory",
     body: "Strategy before architecture. We map the workflows where AI changes the economics, name the ones that don't, and size what it takes to get the data ready.",
+    Icon: IconAdvisory,
   },
   {
     title: "Generative AI",
-    body: "Document processing, retrieval-augmented generation, conversational interfaces, and multi-step agents, built on the models and orchestration layers that match the use case.",
+    body: "Document processing, retrieval-augmented generation, and content generation, built on the models and orchestration layers that match the use case.",
+    Icon: IconGenerative,
   },
   {
     title: "Intelligent automation",
     body: "Document-heavy, rule-heavy, or judgment-heavy workflows where AI reduces the human cost of reading, classifying, or routing work at volume.",
+    Icon: IconAutomation,
   },
   {
     title: "Machine learning",
     body: "Forecasting, anomaly detection, scoring, and recommendation systems built for production: latency budgets, retraining pipelines, monitoring, and drift detection included.",
+    Icon: IconML,
   },
   {
     title: "Data platforms",
     body: "The foundation the models run on. Data modeling, pipeline architecture, quality frameworks, governance, and the contracts between producers and consumers.",
+    Icon: IconDataPlatforms,
   },
   {
     title: "Analytics",
     body: "From operational reporting to self-serve analytics and executive dashboards. Metrics that connect to decisions, not metrics that cover a wall.",
+    Icon: IconAnalytics,
   },
   {
     title: "AI governance",
     body: "Scoped permissions, replayable action logs, human checkpoints, and the compliance frameworks that let production AI survive an audit.",
+    Icon: IconGovernance,
   },
 ];
 
@@ -192,82 +284,52 @@ export default function AIAndDataPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            Seven capabilities, one engineering standard
+            Ten capabilities, one engineering standard
           </h2>
 
           <StaggerReveal
             className="grid grid-cols-3 gap-4 mt-10 max-[1023px]:grid-cols-2 max-[599px]:grid-cols-1"
-            itemDelay={80}
+            itemDelay={70}
           >
-            {CAPS.map(({ title, body }, i) => (
-              <div
-                key={title}
-                className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
-              >
-                {/* Gradient top edge on hover — one of the four permitted uses */}
-                <span
-                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
-                  aria-hidden="true"
-                />
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="font-display font-medium text-heading-3 text-ink mt-3 mb-2">
-                  {title}
-                </h3>
-                <p className="text-body-xs text-ink-2">{body}</p>
-              </div>
-            ))}
-          </StaggerReveal>
-        </ScrollReveal>
-      </section>
-
-      {/* ================================================================
-          CONVERSATIONAL & MULTI-MODEL AI — surface
-          ================================================================ */}
-      <section className="bg-surface" style={{ padding: "7rem 0" }}>
-        <ScrollReveal className="wrap">
-          <Eyebrow>Patterns we build on</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Two architectures that show up in most AI programs
-          </h2>
-
-          <StaggerReveal
-            className="grid grid-cols-2 gap-5 mt-10 max-[767px]:grid-cols-1"
-            itemDelay={90}
-          >
-            <div className="group relative rounded-panel px-8 py-8 overflow-hidden border-0 shadow-e1 transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-field bg-gradient-to-br from-field to-field-deep">
-              <span
-                className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
-                aria-hidden="true"
-              />
-              <span className="font-mono text-mono-xs uppercase tracking-[.08em] text-signal">01</span>
-              <h3 className="font-display font-medium text-heading-2 text-on-field mt-3 mb-2.5">
-                Conversational AI
-              </h3>
-              <p className="text-body-sm text-on-field-2">
-                State-driven workspaces where the conversation carries the work: a system asks clarifying questions, proposes a plan, tracks evidence as it gathers it, and routes every action through a human approval checkpoint before it executes. Built for domains where the reasoning trail matters as much as the outcome: investigation, triage, and case handling.
-              </p>
-            </div>
-            <div className="group relative rounded-card px-8 py-8 border border-hairline bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent overflow-hidden">
-              <span
-                className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
-                aria-hidden="true"
-              />
-              <span className="font-mono text-mono-xs uppercase tracking-[.08em] text-ink-muted">02</span>
-              <h3 className="font-display font-medium text-heading-2 text-ink mt-3 mb-2.5">
-                Multi-model AI
-              </h3>
-              <p className="text-body-sm text-ink-2">
-                Orchestration layers that route each step of a workflow to the model suited to it, rather than forcing one model to do everything. A fast, cheap model handles classification and routing; a stronger model handles reasoning and synthesis; deterministic logic handles anything that shouldn't be probabilistic at all.
-              </p>
-            </div>
+            {CAPS.map(({ title, body, Icon, href }, i) => {
+              const cardInner = (
+                <>
+                  {/* Gradient top edge on hover — one of the four permitted uses */}
+                  <span
+                    className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                    aria-hidden="true"
+                  />
+                  <div className="flex items-start justify-between">
+                    <span className="text-teal transition-colors duration-fast ease-standard">
+                      <Icon />
+                    </span>
+                    <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="font-display font-medium text-heading-3 text-ink mt-4 mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-body-xs text-ink-2">{body}</p>
+                  {href && (
+                    <p className="mt-4 font-mono text-mono-xs uppercase tracking-[.06em] text-teal group-hover:underline underline-offset-4">
+                      See it in production →
+                    </p>
+                  )}
+                </>
+              );
+              const cardClass =
+                "group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden block";
+              return href ? (
+                <Link key={title} href={href} className={cardClass}>
+                  {cardInner}
+                </Link>
+              ) : (
+                <div key={title} className={cardClass}>
+                  {cardInner}
+                </div>
+              );
+            })}
           </StaggerReveal>
         </ScrollReveal>
       </section>
@@ -399,23 +461,20 @@ export default function AIAndDataPage() {
               style={{ background: "linear-gradient(160deg,#123F4A,#0B2F38)" }}
             >
               <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-signal mb-4">
-                Financial services · Active
+                Financial services · Conversational AI
               </p>
               <h3 className="font-display font-medium text-heading-3 text-on-field mb-3">
-                A single source of truth for cross-processor payment intelligence
+                A conversational AI platform for security incident response
               </h3>
               <p className="text-body-xs text-on-field-2 flex-1">
-                Payment, interchange, fee, settlement and dispute data living in separate formats across two merchant processors. We designed a canonical architecture on Snowflake with automated pipelines, source-to-target mappings, and a data quality framework that eliminated reconciliation gaps.
+                Investigation, evidence and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval.
               </p>
               <div className="mt-5 pt-4 border-t border-field-hairline flex gap-5 flex-wrap font-mono text-mono-sm text-on-field-2">
-                <span>Snowflake</span>
-                <span>Power BI</span>
-                <b className="text-signal font-normal">
-                  <ContentToken id="METRIC-01" />
-                </b>
+                <span>React</span>
+                <span>LLM orchestration</span>
               </div>
               <div className="mt-5">
-                <TextLink href="/work/payments-data">Read the case</TextLink>
+                <TextLink href="/work/conversational-incident-response">Read the case</TextLink>
               </div>
             </div>
             <div
