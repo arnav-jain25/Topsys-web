@@ -2,62 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-
-/* ---- Service icons (inline SVG, decorative) — mirrors SiteHeader's set ---- */
-const IconAI = () => (
-  <svg width="26" height="26" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="1.3" />
-    <circle cx="2.5" cy="9" r="1.5" stroke="currentColor" strokeWidth="1.3" />
-    <circle cx="15.5" cy="9" r="1.5" stroke="currentColor" strokeWidth="1.3" />
-    <circle cx="9" cy="2.5" r="1.5" stroke="currentColor" strokeWidth="1.3" />
-    <circle cx="9" cy="15.5" r="1.5" stroke="currentColor" strokeWidth="1.3" />
-    <path d="M4 9H7M11 9H14M9 4V7M9 11V14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-  </svg>
-);
-
-const IconApps = () => (
-  <svg width="26" height="26" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <path d="M6 4L2 9l4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M12 4l4 5-4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M10.5 3L7.5 15" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-  </svg>
-);
-
-const IconCloud = () => (
-  <svg width="26" height="26" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <path d="M13.5 12a3 3 0 000-6 3.5 3.5 0 00-6.8-.5A2.5 2.5 0 104 12" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-    <path d="M9 12v4M7 14.5L9 16l2-1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const IconSecurity = () => (
-  <svg width="26" height="26" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <path d="M9 1.5L2 4.5V9c0 3.5 3 6.5 7 7 4-1 7-3.5 7-7V4.5L9 1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
-    <path d="M6 9l2.5 2.5L13 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const IconTalent = () => (
-  <svg width="26" height="26" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <circle cx="7" cy="6" r="2.5" stroke="currentColor" strokeWidth="1.3" />
-    <path d="M2 16c0-3 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-    <circle cx="13" cy="5.5" r="1.8" stroke="currentColor" strokeWidth="1.2" />
-    <path d="M11 16c0-2 .9-3.5 2.5-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-  </svg>
-);
-
-/* Each service gets its own bold, saturated fill so the row pops against
-   the warm beige page background instead of blending into it — a light
-   pastel tint sat too close to paper's own lightness to read as distinct.
-   Values are inline (not Tailwind classes) since the palette here is
-   intentionally broader than the core brand tokens. */
-const SERVICES = [
-  { ord: "01", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#0E5A66", hoverBg: "#0A454E" },
-  { ord: "02", href: "/capabilities/applications-and-modernization", title: "Applications & modernization", Icon: IconApps, bg: "#B5790C", hoverBg: "#96650F" },
-  { ord: "03", href: "/capabilities/cloud-and-platform-engineering", title: "Cloud & platform", Icon: IconCloud, bg: "#1E6FA8", hoverBg: "#185A87" },
-  { ord: "04", href: "/capabilities/cybersecurity", title: "Cybersecurity", Icon: IconSecurity, bg: "#9C3159", hoverBg: "#812748" },
-  { ord: "05", href: "/capabilities/technology-talent", title: "Technology talent", Icon: IconTalent, bg: "#5F7A2E", hoverBg: "#4C6224" },
-];
+import { SERVICES } from "@/components/ui/ServiceIcons";
 
 export function ServicesShowcase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -91,7 +36,7 @@ export function ServicesShowcase() {
           style={{ top: "40px", height: "1px", background: "var(--color-hairline)" }}
           aria-hidden="true"
         />
-        {SERVICES.map(({ ord, href, title, Icon, bg, hoverBg }, i) => (
+        {SERVICES.map(({ href, title, Icon, bg, hoverBg }, i) => (
           <Link
             key={href}
             href={href}
@@ -113,7 +58,7 @@ export function ServicesShowcase() {
               <Icon />
             </span>
             <span className="mt-4 font-mono text-mono-xs text-ink-muted tracking-[.08em]">
-              {ord}
+              {String(i + 1).padStart(2, "0")}
             </span>
             <span className="mt-2 font-display font-semibold uppercase tracking-[.01em] text-heading-5 min-[1440px]:text-heading-4 text-ink transition-colors duration-fast ease-standard">
               {title}

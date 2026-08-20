@@ -7,6 +7,7 @@ import { HowWeWork } from "@/components/sections/HowWeWork";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -136,6 +137,9 @@ export default function CapabilitiesPage() {
                 className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-base ease-standard"
                 aria-hidden="true"
               />
+              <div className="relative mb-5">
+                <ServiceIconBadge slug="ai-and-data" size={56} />
+              </div>
               <span className="font-mono text-mono-xs text-signal uppercase tracking-[.08em]">
                 {CAPS[0].ord} / AI & DATA
               </span>
@@ -175,10 +179,11 @@ export default function CapabilitiesPage() {
                     className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-base ease-standard"
                     aria-hidden="true"
                   />
-                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                  <ServiceIconBadge slug={href.split("/").pop()!} size={48} />
+                  <span className="block font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em] mt-4">
                     {ord}
                   </span>
-                  <h2 className="font-display font-medium text-heading-2 text-ink mt-4 mb-2">
+                  <h2 className="font-display font-medium text-heading-2 text-ink mt-2 mb-2">
                     {title}
                   </h2>
                   <p className="text-body-xs text-ink-2">{body}</p>

@@ -8,6 +8,7 @@ import { AIArc } from "@/components/sections/AIArc";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 
 export const metadata: Metadata = {
   title: "AI & Data",
@@ -212,7 +213,10 @@ export default function AIAndDataPage() {
               { label: "AI & data" },
             ]}
           />
-          <Eyebrow className="mt-6">AI & data</Eyebrow>
+          <div className="mt-6">
+            <ServiceIconBadge slug="ai-and-data" />
+          </div>
+          <Eyebrow className="mt-5">AI & data</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{

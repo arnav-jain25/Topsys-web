@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 
 export const metadata: Metadata = {
   title: "Applications & modernization",
@@ -128,7 +129,10 @@ export default function ApplicationsAndModernizationPage() {
               { label: "Applications & modernization" },
             ]}
           />
-          <Eyebrow className="mt-6">Applications &amp; modernization</Eyebrow>
+          <div className="mt-6">
+            <ServiceIconBadge slug="applications-and-modernization" />
+          </div>
+          <Eyebrow className="mt-5">Applications &amp; modernization</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{

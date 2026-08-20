@@ -5,6 +5,7 @@ import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
@@ -139,7 +140,10 @@ export default function TechnologyTalentPage() {
               { label: "Technology talent" },
             ]}
           />
-          <Eyebrow className="mt-6">Technology talent</Eyebrow>
+          <div className="mt-6">
+            <ServiceIconBadge slug="technology-talent" />
+          </div>
+          <Eyebrow className="mt-5">Technology talent</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{

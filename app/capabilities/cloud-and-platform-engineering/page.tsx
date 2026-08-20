@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
@@ -127,7 +128,10 @@ export default function CloudAndPlatformEngineeringPage() {
               { label: "Cloud & platform engineering" },
             ]}
           />
-          <Eyebrow className="mt-6">Cloud &amp; platform engineering</Eyebrow>
+          <div className="mt-6">
+            <ServiceIconBadge slug="cloud-and-platform-engineering" />
+          </div>
+          <Eyebrow className="mt-5">Cloud &amp; platform engineering</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{
