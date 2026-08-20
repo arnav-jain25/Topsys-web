@@ -42,7 +42,17 @@ const CREDENTIALS = [
 
 export function HowWeWork() {
   const [active, setActive] = useState(0);
+  const [panelVisible, setPanelVisible] = useState(true);
   const panel = PANELS[active];
+
+  const handleSelect = (i: number) => {
+    if (i === active) return;
+    setPanelVisible(false);
+    setTimeout(() => {
+      setActive(i);
+      setPanelVisible(true);
+    }, 160);
+  };
 
   return (
     <div>
@@ -53,7 +63,7 @@ export function HowWeWork() {
             {PANELS.map(({ label }, i) => (
               <li key={label}>
                 <button
-                  onClick={() => setActive(i)}
+                  onClick={() => handleSelect(i)}
                   aria-pressed={active === i}
                   className={`relative block w-full text-left py-5 border-b border-hairline font-display font-medium text-heading-3 transition-all duration-base ease-standard
                     before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-0.5 before:bg-signature before:transition-all before:duration-base before:ease-standard before:rounded-sm
@@ -75,13 +85,20 @@ export function HowWeWork() {
           className="rounded-panel border border-hairline p-12 shadow-e1 min-h-[250px]"
           style={{ background: "linear-gradient(140deg,#fff,#F2F0E9)" }}
         >
-          <span className="font-mono text-mono-sm text-teal tracking-[.1em]">
-            {panel.n} / {String(PANELS.length).padStart(2, "0")}
-          </span>
-          <h3 className="font-display font-medium text-heading-1 text-ink mt-4 mb-4">
-            {panel.title}
-          </h3>
-          <p className="text-body text-ink-2 max-w-[52ch]">{panel.body}</p>
+          <div
+            style={{
+              opacity: panelVisible ? 1 : 0,
+              transition: "opacity 160ms cubic-bezier(.2,0,0,1)",
+            }}
+          >
+            <span className="font-mono text-mono-sm text-teal tracking-[.1em]">
+              {panel.n} / {String(PANELS.length).padStart(2, "0")}
+            </span>
+            <h3 className="font-display font-medium text-heading-1 text-ink mt-4 mb-4">
+              {panel.title}
+            </h3>
+            <p className="text-body text-ink-2 max-w-[52ch]">{panel.body}</p>
+          </div>
         </div>
       </div>
 

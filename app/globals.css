@@ -337,6 +337,32 @@
 }
 
 /* ============================================================================
+   Motion — shared keyframes
+   Approved vocabulary: lines extend, rules unfold, content registers, values
+   count up. Nothing bounces, parallaxes, or fades up from below.
+   ========================================================================= */
+
+@keyframes topsys-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes topsys-rule-extend {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Sibling-dim on dual model hover — CSS-only, no JS hover state needed.
+   Only the non-hovered card dims; the hovered card stays at full opacity. */
+.dual-model-grid:has(.dual-card:hover) .dual-card {
+  opacity: 0.72;
+  transition: opacity 280ms cubic-bezier(.2,0,0,1), transform 280ms cubic-bezier(.2,0,0,1), box-shadow 280ms cubic-bezier(.2,0,0,1);
+}
+.dual-model-grid:has(.dual-card:hover) .dual-card:hover {
+  opacity: 1;
+}
+
+/* ============================================================================
    Base layer
    ========================================================================= */
 

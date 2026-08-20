@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 interface CapCard {
   ordinal: string;
@@ -45,9 +48,27 @@ const CAPS: CapCard[] = [
 ];
 
 export function CapabilityGrid() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); io.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className="grid grid-cols-2 gap-4 mt-12 max-[1023px]:grid-cols-1">
-      {CAPS.map((cap) =>
+    <div ref={ref} className="grid grid-cols-2 gap-4 mt-12 max-[1023px]:grid-cols-1">
+      {CAPS.map((cap, idx) =>
         cap.lead ? (
           /* Lead card — full width, inverted */
           <Link
@@ -56,6 +77,9 @@ export function CapabilityGrid() {
             className="group col-span-2 relative rounded-panel px-16 py-16 overflow-hidden border-0 shadow-e2 hover:-translate-y-[3px] transition-all duration-base ease-standard hover:shadow-field max-[1023px]:col-span-1"
             style={{
               background: "linear-gradient(135deg,#0B2F38 0%,#06232A 60%,#0E3A44 100%)",
+              ...(visible
+                ? { animation: `topsys-fade-in 500ms cubic-bezier(.2,0,0,1) ${idx * 90}ms both` }
+                : { opacity: 0 }),
             }}
           >
             {/* Subtle radial highlight */}
@@ -100,6 +124,11 @@ export function CapabilityGrid() {
             key={cap.href}
             href={cap.href}
             className="group relative rounded-panel px-8 py-8 bg-white border border-hairline overflow-hidden hover:border-transparent hover:shadow-e2 hover:-translate-y-[3px] transition-all duration-base ease-standard"
+            style={
+              visible
+                ? { animation: `topsys-fade-in 500ms cubic-bezier(.2,0,0,1) ${idx * 90}ms both` }
+                : { opacity: 0 }
+            }
           >
             {/* Top-edge gradient on hover — one of the four permitted uses */}
             <span
