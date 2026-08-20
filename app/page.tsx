@@ -40,7 +40,7 @@ export default function HomePage() {
           <HeroSceneLoader />
         </div>
 
-        <div className="wrap relative z-[2] hero-copy-grid">
+        <div className="wrap relative z-[2] hero-copy-grid w-full">
           <div className="hero-copy">
             <h1
               className="font-display font-medium text-ink mb-6"
