@@ -240,7 +240,7 @@ export function CaseStudyGrid({ limit }: { limit?: number }) {
             {cs.metric && <b className="text-signal font-normal">{cs.metric}</b>}
           </div>
 
-          <TextLink href={cs.href}>Read the case</TextLink>
+          <TextLink href={cs.href} className="!text-signal">Read the case</TextLink>
         </article>
       ))}
     </div>

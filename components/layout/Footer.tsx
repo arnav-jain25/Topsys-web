@@ -88,7 +88,7 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterCol heading="Capabilities" links={caps} />
+          <FooterCol heading="Services" links={caps} />
           <FooterCol heading="Sectors" links={sectors} />
           <FooterCol heading="Company" links={company} />
           <FooterCol heading="Connect" links={connect} />

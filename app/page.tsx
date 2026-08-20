@@ -58,7 +58,7 @@ export default function HomePage() {
             <div className="flex gap-3 flex-wrap max-[600px]:[&>a]:w-full">
               <Button href="/contact">Talk to us</Button>
               <Button href="/capabilities" variant="secondary">
-                Explore capabilities
+                Explore services
               </Button>
             </div>
           </div>
@@ -97,9 +97,9 @@ export default function HomePage() {
       {/* ================================================================
           CAPABILITIES
           ================================================================ */}
-      <section id="capabilities" style={{ paddingBottom: "8rem" }}>
+      <section id="services" style={{ paddingBottom: "8rem" }}>
         <div className="wrap">
-          <Eyebrow>Capabilities</Eyebrow>
+          <Eyebrow>Services</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
             style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
@@ -206,7 +206,7 @@ export default function HomePage() {
           </h2>
           <CaseStudyGrid limit={3} />
           <div className="mt-10 flex justify-end">
-            <Button href="/work" variant="secondary">View all case studies →</Button>
+            <Button href="/work" variant="secondary" className="!border-on-field-2/40 !text-on-field hover:!border-signal hover:!text-signal">View all case studies →</Button>
           </div>
         </div>
       </section>
@@ -241,7 +241,7 @@ export default function HomePage() {
           </h2>
           <InsightsAccordion limit={3} />
           <div className="mt-10 flex justify-end">
-            <Button href="/insights" variant="secondary">View all insights →</Button>
+            <Button href="/insights" variant="secondary" className="!border-on-field-2/40 !text-on-field hover:!border-signal hover:!text-signal">View all insights →</Button>
           </div>
         </div>
       </section>

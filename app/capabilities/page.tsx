@@ -7,7 +7,7 @@ import { HowWeWork } from "@/components/sections/HowWeWork";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Capabilities — TOPSYS IT",
+  title: "Services — TOPSYS IT",
   description:
     "Data and AI, application modernization, cloud and platform engineering, cybersecurity, and technology talent. TOPSYS IT delivers across the full technology stack for enterprise and government clients.",
 };
@@ -83,8 +83,8 @@ export default function CapabilitiesPage() {
           ================================================================ */}
       <section style={{ padding: "6rem 0 5rem" }}>
         <div className="wrap">
-          <Breadcrumb items={[{ label: "Capabilities" }]} />
-          <Eyebrow className="mt-6">Capabilities</Eyebrow>
+          <Breadcrumb items={[{ label: "Services" }]} />
+          <Eyebrow className="mt-6">Services</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{
@@ -94,7 +94,7 @@ export default function CapabilitiesPage() {
               maxWidth: "22ch",
             }}
           >
-            Five capabilities. One engineering standard across all of them.
+            Five services. One engineering standard across all of them.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
             We build and run critical technology for enterprise and government clients — across data and AI, modernization, cloud, security, and the specialized teams these programs need.

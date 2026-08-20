@@ -5,6 +5,49 @@ import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 /* ---- Capabilities panel data ---- */
+/* ---- Service icons (inline SVG, decorative, aria-hidden) ---- */
+const IconAI = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
+    <circle cx="9" cy="9" r="2" stroke="currentColor" strokeWidth="1.3"/>
+    <circle cx="2.5" cy="9" r="1.5" stroke="currentColor" strokeWidth="1.3"/>
+    <circle cx="15.5" cy="9" r="1.5" stroke="currentColor" strokeWidth="1.3"/>
+    <circle cx="9" cy="2.5" r="1.5" stroke="currentColor" strokeWidth="1.3"/>
+    <circle cx="9" cy="15.5" r="1.5" stroke="currentColor" strokeWidth="1.3"/>
+    <path d="M4 9H7M11 9H14M9 4V7M9 11V14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+  </svg>
+);
+
+const IconApps = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
+    <path d="M6 4L2 9l4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M12 4l4 5-4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M10.5 3L7.5 15" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+  </svg>
+);
+
+const IconCloud = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
+    <path d="M13.5 12a3 3 0 000-6 3.5 3.5 0 00-6.8-.5A2.5 2.5 0 104 12" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+    <path d="M9 12v4M7 14.5L9 16l2-1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const IconSecurity = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
+    <path d="M9 1.5L2 4.5V9c0 3.5 3 6.5 7 7 4-1 7-3.5 7-7V4.5L9 1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+    <path d="M6 9l2.5 2.5L13 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const IconTalent = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
+    <circle cx="7" cy="6" r="2.5" stroke="currentColor" strokeWidth="1.3"/>
+    <path d="M2 16c0-3 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+    <circle cx="13" cy="5.5" r="1.8" stroke="currentColor" strokeWidth="1.2"/>
+    <path d="M11 16c0-2 .9-3.5 2.5-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+  </svg>
+);
+
 const CAP_CARDS = [
   {
     href: "/capabilities/ai-and-data",
@@ -12,26 +55,31 @@ const CAP_CARDS = [
     desc: "Data foundations, applied AI, and analytics that change what people decide.",
     sub: "Advisory · Generative AI · Automation · ML · Data platforms · Analytics · Governance",
     lead: true,
+    Icon: IconAI,
   },
   {
     href: "/capabilities/applications-and-modernization",
     title: "Applications & modernization",
     desc: "Legacy systems modernized in production",
+    Icon: IconApps,
   },
   {
     href: "/capabilities/cloud-and-platform-engineering",
     title: "Cloud & platform engineering",
     desc: "Migration, DevSecOps, platform teams",
+    Icon: IconCloud,
   },
   {
     href: "/capabilities/cybersecurity",
     title: "Cybersecurity",
     desc: "Identity, compliance, risk",
+    Icon: IconSecurity,
   },
   {
     href: "/capabilities/technology-talent",
     title: "Technology talent",
     desc: "Specialists and full delivery pods",
+    Icon: IconTalent,
   },
 ];
 
@@ -53,7 +101,7 @@ const NAV_LINKS = [
 /* ---- Command bar search data ---- */
 const SEARCH_GROUPS = [
   {
-    label: "Capabilities",
+    label: "Services",
     items: [
       { label: "AI & data", href: "/capabilities/ai-and-data" },
       { label: "Legacy & mainframe modernization", href: "/capabilities/applications-and-modernization" },
@@ -164,7 +212,7 @@ export function SiteHeader() {
             className="flex-1 flex items-end relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-hairline max-[1023px]:hidden"
             aria-label="Primary"
           >
-            {/* Capabilities — has panel */}
+            {/* Services — has panel */}
             <button
               ref={capBtnRef}
               className="nav-item group"
@@ -172,7 +220,7 @@ export function SiteHeader() {
               aria-controls="cap-panel"
               onClick={() => setPanelOpen((v) => !v)}
             >
-              Capabilities
+              Services
               {/* Gradient tick — one of the four permitted uses */}
               <span
                 className={`absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${panelOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
@@ -230,7 +278,7 @@ export function SiteHeader() {
               id="cap-panel"
               ref={panelRef}
               role="region"
-              aria-label="Capabilities"
+              aria-label="Services"
               className="absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 borderTopColor: "transparent",
@@ -241,7 +289,7 @@ export function SiteHeader() {
               <div>
                 <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-4">
                   <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
-                  Capability map
+                  Service map
                 </p>
                 <div className="grid grid-cols-2 gap-3 mt-4">
                   {CAP_CARDS.map((c) =>
@@ -252,6 +300,10 @@ export function SiteHeader() {
                         onClick={() => setPanelOpen(false)}
                         className="col-span-2 bg-gradient-to-r from-field to-field-raised border-0 rounded-card p-6 shadow-e1 hover:-translate-y-0.5 hover:shadow-field transition-all duration-fast ease-standard"
                       >
+                        <div className="flex items-center gap-2.5 text-signal mb-2">
+                          <c.Icon />
+                          <span className="font-mono text-mono-xs uppercase tracking-[.08em] text-signal">01</span>
+                        </div>
                         <h4 className="text-heading-5 font-display font-medium text-on-field mb-1">
                           {c.title}
                         </h4>
@@ -267,8 +319,11 @@ export function SiteHeader() {
                         key={c.href}
                         href={c.href}
                         onClick={() => setPanelOpen(false)}
-                        className="border border-hairline rounded-card p-4 bg-white hover:border-teal hover:shadow-e1 hover:-translate-y-0.5 transition-all duration-fast ease-standard"
+                        className="group/card border border-hairline rounded-card p-4 bg-white hover:border-teal hover:shadow-e1 hover:-translate-y-0.5 transition-all duration-fast ease-standard"
                       >
+                        <div className="text-ink-muted group-hover/card:text-teal transition-colors duration-fast ease-standard mb-2">
+                          <c.Icon />
+                        </div>
                         <h4 className="text-heading-5 font-display font-medium text-ink mb-0.5">
                           {c.title}
                         </h4>
@@ -314,7 +369,7 @@ export function SiteHeader() {
               onClick={() => { setPanelOpen((v) => !v); }}
               aria-expanded={panelOpen}
             >
-              Capabilities
+              Services
             </button>
             {NAV_LINKS.map(({ label, href }) => (
               <Link
