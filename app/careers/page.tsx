@@ -3,25 +3,97 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Careers — TOPSYS IT",
+  title: "Careers - TOPSYS IT",
   description:
-    "Open roles at TOPSYS IT Solutions. Engineering and delivery positions across enterprise technology programs.",
+    "Open roles at TOPSYS IT Solutions LLC. Engineering and delivery positions across enterprise and government technology programs.",
 };
 
-const WHAT_IT_MEANS = [
+/* Source: https://topsysit.com/careers/ - "Growth / Culture / Opportunity / Impact" cards,
+   lightly tightened for house voice (no hype adjectives, no exclamation marks). Facts unchanged. */
+const WHAT_WE_OFFER = [
   {
-    title: "You work on real programs",
-    body: "Not internal tooling or a proof of concept that never ships. Systems under production load with actual SLAs, real stakeholders, and consequences when something breaks.",
+    title: "Growth",
+    body: "Continuous learning and career advancement through real client work and technical challenges.",
   },
   {
-    title: "Technical bar, not recruiter bar",
-    body: "Interviews run by engineers who have done the work. No generic HR scorecards. You talk to the people you would work with — before we make any decision.",
+    title: "Culture",
+    body: "A workplace built on collaboration, respect, and the freedom to raise ideas.",
   },
   {
-    title: "Delivery accountability",
-    body: "You own the outcome, not just the ticket. We don&rsquo;t measure by story points or hours billed. We measure by whether the program moved forward.",
+    title: "Opportunity",
+    body: "Diverse projects and global exposure across engineering and delivery teams.",
+  },
+  {
+    title: "Impact",
+    body: "Work on client technology programs across enterprise and government sectors.",
+  },
+];
+
+/* Source: https://topsysit.com/careers/ accordion listings, retrieved verbatim and lightly
+   copyedited for grammar/consistency only (no facts added or removed). The apply mechanism
+   (email + mailing address, repeated identically on every listing on the source page) is
+   consolidated once in the "How to apply" section below instead of per card. The source page
+   lists two near-identical "Software developer" postings and two "DevOps engineer" postings
+   as separate entries; both are preserved here as they appear on the source page. */
+const ROLES = [
+  {
+    title: "Software developer",
+    jd: "Design, develop, implement, maintain and test business functions and web applications using a variety of languages, tools, methodologies and technologies. Develop, create and modify general computer applications software or specialized utility programs. Analyze user needs and develop software solutions. Design software or customize software for client use with the aim of optimizing operational efficiency.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, or a related field, or an acceptable combination of education, training, and experience. Requires travel and work from various client sites throughout the USA. Hours are M&ndash;F, 9am&ndash;5pm.",
+  },
+  {
+    title: "DevOps systems engineer",
+    jd: "Design system solutions and provide technical input across all aspects of a project, including design and system integration, to facilitate delivery within time and maintain customer satisfaction. Develop and automate CI/CD pipelines using Jenkins and GitLab. Develop action plans for resolving system architecture issues.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, or a related field, or an acceptable combination of education, training, and experience. Requires travel and work from various client sites throughout the USA. Hours are M&ndash;F, 9am&ndash;5pm.",
+    note: "Relocation is not required. Assignments are at client sites for a limited, short-term duration, typically two weeks to three to six months, with the possibility of extension, after which staff are reassigned to a new project.",
+  },
+  {
+    title: ".NET developer",
+    jd: "Develop, create and modify general computer applications software or specialized utility programs. Analyze user needs and develop software solutions. Develop a reusable framework for the application using the ASP.NET MVC framework. Work across the full project life cycle, from requirements gathering through analysis and UI design. Design and develop REST- and SOAP-based services consumed by web applications.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, or a related field, and one year of experience as a .NET developer or in a related IT occupation, or an acceptable combination of education, training, and experience. Requires travel and work from various client worksites throughout the USA. Hours are M&ndash;F, 9am&ndash;5pm.",
+  },
+  {
+    title: "Business analyst",
+    jd: "Work closely with the team to identify and analyze core business processes and workflows. Track and publish the status of new projects to stakeholders. Conduct business process improvement reviews and identify gaps in the current structure. Use JIRA for documentation and visualization of KPIs, burnup/burndown charts, and Kanban boards. Work with the product owner on product refinement, re-prioritizing user stories against the INVEST criteria. Manage UAT testing; develop and review QA test strategies and test plans for appropriate coverage.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, information systems/security, or a related field, and one year of experience in the offered position or a related position.",
+  },
+  {
+    title: "DevOps engineer",
+    jd: "Design, develop and maintain infrastructure and application deployments across multiple environments. Configure scripts to automate build and release procedures. Develop CI/CD pipelines using tools such as Jenkins and Docker, integrated with the AWS cloud platform. Monitor, report, and troubleshoot environment failures. Perform security and quality scan analysis on infrastructure and applications. Identify and remediate network and compliance issues.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, information systems/security, or a related field, and one year of experience in the offered position or a related position.",
+  },
+  {
+    title: "Senior software developer",
+    jd: "Design, develop, implement, maintain, and test business functions and web applications using a variety of languages, tools, methodologies, and technologies. Develop, create, and modify general computer applications software or specialized utility programs. Analyze user needs and develop software solutions. Manage scrum ceremonies and facilitate scrum adherence. Contribute to end-to-end automation across testing, deployment, and ticket creation. Create business models, logical specifications, and user requirements for the application environment.",
+    requirements:
+      "Bachelor&rsquo;s degree in computer science, engineering, technology, management information systems/security, or a related field, and 5 years of experience designing, developing, implementing, maintaining, and testing business functions and web applications. Work location is Alpharetta, GA, with required travel to client worksites throughout the USA.",
+  },
+  {
+    title: "Software developer / MuleSoft",
+    jd: "Analyze requirements to design, document, and develop technical implementations of business requirements. Implement REST APIs that consume data from external SOAP services. Transform data into JSON and XML formats while developing REST web services. Design and develop integrations and APIs using enterprise integration patterns and frameworks with MuleSoft. Develop interfaces between Salesforce, databases, and REST/SOAP web services in Mule ESB, using connectors including Salesforce, SAP, AJAX, FTP, HTTP, File, SMTP, and SFTP. Create JDBC providers, data sources, and JAAS authentication aliases for connectivity to a backend Oracle database.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, information systems/security, or a related field, and one year of experience in the offered position or a related position.",
+  },
+  {
+    title: "Software developer",
+    jd: "Design, develop, implement, maintain, and test business functions and web applications using a variety of languages, tools, methodologies, and technologies. Develop, create, and modify general computer applications software or specialized utility programs. Analyze user needs and develop software solutions. Design software or customize software for client use with the aim of optimizing operational efficiency.",
+    requirements:
+      "Master&rsquo;s degree or equivalent in computer science, engineering, technology, information systems/security, or a related field, and one year of experience in the offered position or a related position.",
+  },
+  {
+    title: "DevOps engineer",
+    jd: "Design, develop and maintain infrastructure and application deployments across multiple environments. Configure scripts to automate build and release procedures. Develop CI/CD pipelines using tools such as Jenkins and Docker, integrated with the AWS cloud platform. Monitor, report, and troubleshoot environment failures. Perform security and quality scan analysis on infrastructure and applications. Identify and remediate network and compliance issues.",
+    requirements:
+      "Master&rsquo;s degree in computer science, engineering, technology, or a related field, and one year of experience. Work location is Alpharetta, GA, which may also require travel to client locations throughout the USA.",
   },
 ];
 
@@ -44,31 +116,40 @@ export default function CareersPage() {
               maxWidth: "22ch",
             }}
           >
-            Build things that run in production.
+            Careers at TOPSYS IT
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            We hire engineers who&rsquo;ve done it, not engineers who&rsquo;ve described it. Technical screens are run by practitioners. Roles are embedded in real programs — not staffing benches.
+            We hire for real client programs across enterprise and government technology work, not a standing bench. Roles span software development, DevOps, cloud, data, and business analysis, with mentorship and continuous learning built into how we work.
           </p>
+          <div className="flex gap-3 flex-wrap mt-8">
+            <Button href="#open-roles">View open roles</Button>
+            <Button href="mailto:hr@topsysit.com" variant="secondary">
+              Email your resume
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* ================================================================
-          WHAT WORKING HERE MEANS — inverted, 3 columns
+          WHAT WE OFFER - inverted, 4 columns
+          Source: topsysit.com/careers/ - Growth / Culture / Opportunity / Impact
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <div className="wrap">
-          <Eyebrow>What to expect</Eyebrow>
-          <h2
-            className="font-display font-medium text-on-field mt-4"
-            style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            What working here means
-          </h2>
-          <div className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1">
-            {WHAT_IT_MEANS.map(({ title, body }) => (
+          <ScrollReveal>
+            <Eyebrow>Why work here</Eyebrow>
+            <h2
+              className="font-display font-medium text-on-field mt-4"
+              style={{
+                fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
+                letterSpacing: "-0.025em",
+              }}
+            >
+              What TOPSYS IT offers
+            </h2>
+          </ScrollReveal>
+          <StaggerReveal className="grid grid-cols-4 gap-6 mt-10 max-[900px]:grid-cols-2 max-[520px]:grid-cols-1">
+            {WHAT_WE_OFFER.map(({ title, body }) => (
               <div key={title} className="border-t border-field-hairline pt-5">
                 <h3 className="font-display font-medium text-heading-4 text-on-field mb-2">
                   {title}
@@ -76,62 +157,112 @@ export default function CareersPage() {
                 <p className="text-body-xs text-on-field-2">{body}</p>
               </div>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
       {/* ================================================================
-          CURRENT OPENINGS — paper
+          CURRENT OPENINGS - paper
+          Source: topsysit.com/careers/ - accordion job listings
           ================================================================ */}
-      <section style={{ padding: "7rem 0" }}>
+      <section id="open-roles" style={{ padding: "7rem 0" }}>
         <div className="wrap">
-          <Eyebrow>Open roles</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Current openings
-          </h2>
-          <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-            Roles are posted as programs open. There is no standing bench. If there&rsquo;s no open role below that fits, submit a general application — when a matching program starts, we review the pipeline first.
-          </p>
-
-          <div className="mt-10 border border-hairline rounded-card px-7 py-8 bg-white">
-            <p className="text-body text-ink-2">
-              No open roles posted at this time. Submit your resume for future consideration — we&rsquo;ll reach out when a relevant program opens.
+          <ScrollReveal>
+            <Eyebrow>Open roles</Eyebrow>
+            <h2
+              className="font-display font-medium text-ink mt-4"
+              style={{
+                fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
+                letterSpacing: "-0.025em",
+              }}
+            >
+              Current openings
+            </h2>
+            <p className="text-body text-ink-2 max-w-[62ch] mt-4">
+              All positions run Monday through Friday, 9am to 5pm, and require travel and work from client sites throughout the United States.
             </p>
-            <div className="flex gap-3 flex-wrap mt-6">
-              <Button href="/contact?re=careers">Submit your resume</Button>
-              <Button
-                href="https://linkedin.com/company/topsys-it"
-                variant="secondary"
+          </ScrollReveal>
+
+          <StaggerReveal className="grid grid-cols-2 gap-4 mt-10 max-[900px]:grid-cols-1">
+            {ROLES.map((role, idx) => (
+              <article
+                key={`${role.title}-${idx}`}
+                className="group relative flex flex-col rounded-panel px-8 py-8 bg-white border border-hairline overflow-hidden hover:border-transparent hover:shadow-e2 hover:-translate-y-[3px] transition-all duration-base ease-standard"
               >
-                Follow us on LinkedIn
-              </Button>
-            </div>
-          </div>
+                {/* Top-edge gradient on hover - one of the four permitted uses */}
+                <span
+                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature scale-x-0 origin-left transition-transform duration-base ease-standard group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+                <span className="font-mono text-mono-sm uppercase tracking-[.08em] text-ink-muted">
+                  {String(idx + 1).padStart(2, "0")} / {String(ROLES.length).padStart(2, "0")}
+                </span>
+                <h3 className="font-display font-medium text-heading-3 text-ink mt-4 mb-3">
+                  {role.title}
+                </h3>
+
+                <p className="font-mono text-mono-xs uppercase tracking-[.08em] text-ink-muted mb-1.5">
+                  Job description
+                </p>
+                <p className="text-body-sm text-ink-2">{role.jd}</p>
+
+                <p className="font-mono text-mono-xs uppercase tracking-[.08em] text-ink-muted mt-5 mb-1.5">
+                  Position requirements
+                </p>
+                <p
+                  className="text-body-xs text-ink-muted"
+                  dangerouslySetInnerHTML={{ __html: role.requirements }}
+                />
+
+                {role.note && (
+                  <p
+                    className="text-body-xs text-ink-muted mt-3 border-t border-hairline pt-3"
+                    dangerouslySetInnerHTML={{ __html: role.note }}
+                  />
+                )}
+
+                <div className="mt-6">
+                  <Button
+                    href={`mailto:hr@topsysit.com?subject=${encodeURIComponent(
+                      `Application: ${role.title}`
+                    )}`}
+                    variant="secondary"
+                    className="!h-11"
+                  >
+                    Apply
+                  </Button>
+                </div>
+              </article>
+            ))}
+          </StaggerReveal>
         </div>
       </section>
 
       {/* ================================================================
-          CTA STRIP — surface
+          HOW TO APPLY - surface
+          Source: topsysit.com/careers/ - apply instructions repeated on
+          every listing, consolidated once here
           ================================================================ */}
       <section className="bg-surface" style={{ padding: "5rem 0" }}>
         <div className="wrap">
           <div className="flex gap-3 flex-wrap items-center justify-between">
             <div>
               <p className="font-display font-medium text-heading-4 text-ink">
-                Ready to apply?
+                How to apply
               </p>
-              <p className="text-body-sm text-ink-2 mt-1 max-w-[52ch]">
-                Tell us what you&rsquo;ve built, what you&rsquo;ve shipped, and where you want to work next.
+              <p className="text-body-sm text-ink-2 mt-1 max-w-[56ch]">
+                Send your resume, with contact information, to{" "}
+                <a
+                  href="mailto:hr@topsysit.com"
+                  className="text-teal border-b border-current pb-0.5"
+                >
+                  hr@topsysit.com
+                </a>{" "}
+                or by mail to TOPSYS IT Solutions LLC, 1740 Grassland Pkwy, Suite 301, Alpharetta, GA 30004.
               </p>
             </div>
             <div className="flex gap-3 flex-wrap">
-              <Button href="/contact?re=careers">Submit your resume</Button>
+              <Button href="mailto:hr@topsysit.com">Email your resume</Button>
               <Button
                 href="https://linkedin.com/company/topsys-it"
                 variant="secondary"
