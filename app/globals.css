@@ -557,13 +557,14 @@
   }
 }
 
-/* Ultra-wide (≥1600px): let the container use more of the available width
-   instead of leaving large fixed side margins, and spread nav items a
-   touch further so the header doesn't read as clustered top-left. */
+/* Ultra-wide (≥1600px): the container tracks the viewport directly
+   (95vw, capped so it never runs away on very large displays) instead of
+   a fixed rem ceiling, so large monitors don't strand fixed side margins.
+   Nav items get a touch more spread too. */
 @media (width >= 100rem) {
   .wrap {
-    max-width: 108rem;
-    padding-inline: clamp(3.5rem, 6vw, 6.5rem);
+    max-width: min(95vw, 140rem);
+    padding-inline: clamp(2.5rem, 3vw, 4.5rem);
   }
 
   .nav-item {

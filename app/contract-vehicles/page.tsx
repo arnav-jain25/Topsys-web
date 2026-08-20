@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -89,6 +90,14 @@ export default function ContractVehiclesPage() {
         />
         <div className="wrap relative z-[1]">
           <Breadcrumb items={[{ label: "DIR Contract" }]} />
+          <Image
+            src="/brand/dir-logo-tx.png"
+            alt="Texas Department of Information Resources"
+            width={3175}
+            height={1569}
+            className="h-14 w-auto mt-6"
+            priority
+          />
           <Eyebrow className="mt-6">DIR Contract</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"

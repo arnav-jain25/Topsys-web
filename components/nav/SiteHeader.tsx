@@ -93,10 +93,10 @@ const INTENT_LINKS = [
 const NAV_LINKS = [
   { label: "Industries", href: "/industries" },
   { label: "Public sector", href: "/public-sector" },
-  { label: "DIR Contract", href: "/contract-vehicles" },
   { label: "Case studies", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
+  { label: "DIR Contract", href: "/contract-vehicles" },
 ];
 
 /* ---- Command bar search data ---- */
