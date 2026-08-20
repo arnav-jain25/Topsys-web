@@ -27,6 +27,26 @@ const FAILURE_MODES = [
   },
 ];
 
+/* ---- Offering icons — thin monoline, 20x20, mirrors the icon set already
+   established in SiteHeader, ServicesShowcase, and the AI & data page ---- */
+const IconShieldCheck = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 1.5L2 4.5V9c0 3.5 3 6.5 7 7 4-1 7-3.5 7-7V4.5L9 1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    <path d="M6 9l2.5 2.5L13 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconIdentity = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="6" r="3" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M3 15.5c0-3 2.7-5.2 6-5.2s6 2.2 6 5.2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+const IconSIEM = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M2 10.5h3l1.6-5 2.8 9 1.6-6 1.3 2h3.7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const OFFERINGS = [
   {
     title: "Security assessment & advisory",
@@ -36,6 +56,7 @@ const OFFERINGS = [
       "Penetration testing with exploitation evidence, not theoretical risk",
       "Cloud security posture review: misconfiguration and privilege exposure",
     ],
+    Icon: IconShieldCheck,
   },
   {
     title: "Identity & access management",
@@ -45,6 +66,7 @@ const OFFERINGS = [
       "Privileged access management and just-in-time provisioning",
       "Role and entitlement review with access certification workflows",
     ],
+    Icon: IconIdentity,
   },
   {
     title: "SIEM & threat detection",
@@ -54,6 +76,7 @@ const OFFERINGS = [
       "Detection rule development tied to MITRE ATT&CK",
       "Incident response playbooks and tabletop exercise facilitation",
     ],
+    Icon: IconSIEM,
   },
 ];
 
@@ -88,8 +111,16 @@ export default function CybersecurityPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <ScrollReveal className="wrap" delay={80}>
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <ScrollReveal className="wrap relative z-[1]" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -247,7 +278,7 @@ export default function CybersecurityPage() {
             className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1"
             itemDelay={100}
           >
-            {OFFERINGS.map(({ title, body, bullets }, i) => (
+            {OFFERINGS.map(({ title, body, bullets, Icon }, i) => (
               <div
                 key={title}
                 className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
@@ -257,9 +288,14 @@ export default function CybersecurityPage() {
                   className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
                   aria-hidden="true"
                 />
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <div className="flex items-start justify-between">
+                  <span className="text-teal transition-colors duration-fast ease-standard">
+                    <Icon />
+                  </span>
+                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
                 <h3 className="font-display font-medium text-heading-3 text-ink mt-3 mb-2">
                   {title}
                 </h3>

@@ -20,6 +20,31 @@ const SKILLS = [
   { group: "Cybersecurity", items: ["SIEM", "IAM", "Okta", "CyberArk", "Splunk", "NIST CSF", "CMMC", "penetration testing", "cloud security"] },
 ];
 
+/* ---- Engagement model icons — thin monoline, 20x20, mirrors the icon set
+   already established in SiteHeader, ServicesShowcase, and the AI & data page ---- */
+const IconEmbedded = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="5.5" r="2.5" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M3.5 15c0-2.8 2.5-5 5.5-5s5.5 2.2 5.5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    <rect x="1.5" y="1.5" width="15" height="15" rx="2" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+  </svg>
+);
+const IconPods = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="6" cy="6.5" r="2" stroke="currentColor" strokeWidth="1.2" />
+    <circle cx="12.5" cy="6" r="2" stroke="currentColor" strokeWidth="1.2" />
+    <circle cx="9" cy="12.5" r="2" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M7.4 8L8.3 10.9M10.6 8L9.7 10.9M8 6.3h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+  </svg>
+);
+const IconRecruiting = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="7.5" cy="7.5" r="5" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M11.2 11.2L16 16" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    <path d="M5.8 7.5l1.2 1.2 2.2-2.4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const MODELS = [
   {
     ord: "01",
@@ -30,6 +55,7 @@ const MODELS = [
       "Contract, contract-to-hire, or direct placement",
       "7-day replacement guarantee on poor fits",
     ],
+    Icon: IconEmbedded,
   },
   {
     ord: "02",
@@ -40,6 +66,7 @@ const MODELS = [
       "Delivery manager included",
       "Accountable to milestones",
     ],
+    Icon: IconPods,
   },
   {
     ord: "03",
@@ -50,6 +77,7 @@ const MODELS = [
       "Reduced rate for clients with active engagements",
       "Placement guarantee",
     ],
+    Icon: IconRecruiting,
   },
 ];
 
@@ -84,8 +112,16 @@ export default function TechnologyTalentPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <ScrollReveal className="wrap" delay={80}>
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <ScrollReveal className="wrap relative z-[1]" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -208,7 +244,7 @@ export default function TechnologyTalentPage() {
             className="grid grid-cols-3 gap-5 mt-10 max-[767px]:grid-cols-1"
             itemDelay={100}
           >
-            {MODELS.map(({ ord, title, body, features }) => (
+            {MODELS.map(({ ord, title, body, features, Icon }) => (
               <div
                 key={ord}
                 className="group bg-white border border-hairline rounded-card px-7 py-7 transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
@@ -218,9 +254,14 @@ export default function TechnologyTalentPage() {
                   className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
                   aria-hidden="true"
                 />
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                  {ord}
-                </span>
+                <div className="flex items-start justify-between">
+                  <span className="text-teal transition-colors duration-fast ease-standard">
+                    <Icon />
+                  </span>
+                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                    {ord}
+                  </span>
+                </div>
                 <h3 className="font-display font-medium text-heading-3 text-ink mt-3 mb-3">
                   {title}
                 </h3>

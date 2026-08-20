@@ -83,8 +83,16 @@ export default function CapabilitiesPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <ScrollReveal className="wrap" delay={80}>
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <ScrollReveal className="wrap relative z-[1]" delay={80}>
           <Breadcrumb items={[{ label: "Services" }]} />
           <Eyebrow className="mt-6">Services</Eyebrow>
           <h1

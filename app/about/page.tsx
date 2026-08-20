@@ -5,6 +5,7 @@ import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { OFFICES } from "@/lib/offices";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import {
   AboutValuesGrid,
   AboutCredentialsGrid,
@@ -38,8 +39,16 @@ export default function AboutPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative z-[1]">
           <Breadcrumb items={[{ label: "About" }]} />
           <Eyebrow className="mt-6">About</Eyebrow>
           <h1
@@ -72,7 +81,7 @@ export default function AboutPage() {
           FOUNDER — paper
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>Leadership</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -119,7 +128,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
   title: "How to work with us | TOPSYS IT public sector",
@@ -28,21 +29,46 @@ const PROCUREMENT_PATHS = [
   },
 ];
 
+/* ---- Step icons — thin monoline, 20x20, mirrors the icon set already
+   established in SiteHeader, ServicesShowcase, and the AI & data page ---- */
+const IconBriefing = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M2.5 4.5h13v8h-8L4 15v-2.5H2.5v-8z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    <path d="M5.5 7.5h7M5.5 10h4.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+const IconAlignment = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M6 9l2.5 2.5L13 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconProposal = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M4.5 2h6l3 3v11h-9V2z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M10.5 2v3h3" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M6.5 9.5h5M6.5 12h5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+  </svg>
+);
+
 const STEPS = [
   {
     ord: "01",
     title: "Capability briefing",
     body: "A 30-minute call covering your program, your timeline, and which procurement path fits. No proposal required, no commitment on either side. We ask specific questions about the work; you ask specific questions about us.",
+    Icon: IconBriefing,
   },
   {
     ord: "02",
     title: "Scope alignment",
     body: "We review the requirements in detail and confirm whether the DIR contract, a prime arrangement, or a direct procurement is the right path. If it&rsquo;s DIR, we can issue a quote within days. If it&rsquo;s a prime or direct path, we outline next steps.",
+    Icon: IconAlignment,
   },
   {
     ord: "03",
     title: "Proposal or quote",
     body: "Depending on the path: a quote under the DIR cooperative contract for Texas agencies, a teaming agreement if we&rsquo;re working through a prime, or a full proposal for a direct competitive procurement.",
+    Icon: IconProposal,
   },
 ];
 
@@ -67,8 +93,16 @@ export default function HowToWorkWithUsPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative z-[1]">
           <Breadcrumb
             items={[
               { label: "Public sector", href: "/public-sector" },
@@ -155,22 +189,35 @@ export default function HowToWorkWithUsPage() {
             Government procurement moves at government speed. We design our process to stay useful across the months it takes to get to contract, not just the first call.
           </p>
 
-          <div className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1">
-            {STEPS.map(({ ord, title, body }) => (
+          <StaggerReveal
+            className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1"
+            itemDelay={100}
+          >
+            {STEPS.map(({ ord, title, body, Icon }) => (
               <div
                 key={ord}
-                className="bg-white border border-hairline rounded-card px-7 py-7"
+                className="group bg-white border border-hairline rounded-card px-7 py-7 relative overflow-hidden transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent"
               >
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.1em]">
-                  {ord}
-                </span>
+                {/* Gradient top edge on hover — one of the four permitted uses */}
+                <span
+                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+                <div className="flex items-start justify-between">
+                  <span className="text-teal transition-colors duration-fast ease-standard">
+                    <Icon />
+                  </span>
+                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.1em]">
+                    {ord}
+                  </span>
+                </div>
                 <h3 className="font-display font-medium text-heading-4 text-ink mt-4 mb-2">
                   {title}
                 </h3>
                 <p className="text-body-xs text-ink-2">{body}</p>
               </div>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 

@@ -27,6 +27,26 @@ const FAILURE_MODES = [
   },
 ];
 
+/* ---- Offering icons — thin monoline, 20x20, mirrors the icon set already
+   established in SiteHeader, ServicesShowcase, and the AI & data page ---- */
+const IconCloud = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M5.2 13a3 3 0 0 1-.4-6 4.2 4.2 0 0 1 8-1.3A3.1 3.1 0 0 1 13 13H5.2z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+  </svg>
+);
+const IconPlatform = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 2.5l6.5 3.5L9 9.5 2.5 6z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M2.5 9.5L9 13l6.5-3.5M2.5 13L9 16.5 15.5 13" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+  </svg>
+);
+const IconFinOps = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M9 5v8M11 6.8c0-1-.9-1.6-2-1.6-1.2 0-2.2.6-2.2 1.6 0 2.2 4.4 1 4.4 3.2 0 1-1 1.6-2.2 1.6-1.1 0-2-.6-2-1.6" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+  </svg>
+);
+
 const OFFERINGS = [
   {
     title: "Cloud migration strategy",
@@ -36,6 +56,7 @@ const OFFERINGS = [
       "Migration sequencing: re-host, re-platform, re-architect decisions per workload",
       "Multi-cloud architecture for AWS, Azure, and GCP",
     ],
+    Icon: IconCloud,
   },
   {
     title: "Platform & DevOps engineering",
@@ -45,6 +66,7 @@ const OFFERINGS = [
       "Kubernetes, Helm, and ArgoCD for GitOps-based deployment",
       "GitHub Actions and Jenkins pipeline design and migration",
     ],
+    Icon: IconPlatform,
   },
   {
     title: "FinOps & cloud governance",
@@ -54,6 +76,7 @@ const OFFERINGS = [
       "Reserved instance and savings plan analysis",
       "Policy-as-code for governance guardrails",
     ],
+    Icon: IconFinOps,
   },
 ];
 
@@ -88,8 +111,16 @@ export default function CloudAndPlatformEngineeringPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <ScrollReveal className="wrap" delay={80}>
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <ScrollReveal className="wrap relative z-[1]" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -229,7 +260,7 @@ export default function CloudAndPlatformEngineeringPage() {
             className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1"
             itemDelay={100}
           >
-            {OFFERINGS.map(({ title, body, bullets }, i) => (
+            {OFFERINGS.map(({ title, body, bullets, Icon }, i) => (
               <div
                 key={title}
                 className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
@@ -239,9 +270,14 @@ export default function CloudAndPlatformEngineeringPage() {
                   className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
                   aria-hidden="true"
                 />
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <div className="flex items-start justify-between">
+                  <span className="text-teal transition-colors duration-fast ease-standard">
+                    <Icon />
+                  </span>
+                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
                 <h3 className="font-display font-medium text-heading-3 text-ink mt-3 mb-2">
                   {title}
                 </h3>

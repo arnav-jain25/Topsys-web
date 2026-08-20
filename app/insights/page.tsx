@@ -4,6 +4,8 @@ import { Button, TextLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { INSIGHTS } from "@/lib/insights";
 
 export const metadata: Metadata = {
@@ -18,8 +20,16 @@ export default function InsightsPage() {
       {/* ================================================================
           HERO — paper
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative z-[1]">
           <Breadcrumb items={[{ label: "Insights" }]} />
           <Eyebrow className="mt-6">Insights</Eyebrow>
           <h1
@@ -43,15 +53,21 @@ export default function InsightsPage() {
           CARD GRID — surface background
           ================================================================ */}
       <section className="bg-surface" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
-          <div className="grid grid-cols-3 gap-8 max-[1023px]:grid-cols-2 max-[639px]:grid-cols-1">
+        <ScrollReveal className="wrap">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-8 max-[1023px]:grid-cols-2 max-[639px]:grid-cols-1"
+            itemDelay={80}
+          >
             {INSIGHTS.map((insight) => (
               <article
                 key={insight.slug}
-                className="group bg-white border border-hairline rounded-card flex flex-col overflow-hidden transition-all duration-base ease-standard hover:-translate-y-0.5 hover:shadow-e2 hover:border-teal"
+                className="group bg-white border border-hairline rounded-card flex flex-col overflow-hidden transition-all duration-base ease-standard hover:-translate-y-0.5 hover:shadow-e2 hover:border-transparent relative"
               >
-                {/* Top teal accent on hover */}
-                <div className="h-0.5 w-full bg-teal opacity-0 group-hover:opacity-100 transition-opacity duration-base ease-standard" />
+                {/* Gradient top edge on hover — one of the four permitted uses */}
+                <span
+                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100 z-[1]"
+                  aria-hidden="true"
+                />
 
                 <div className="p-7 flex flex-col flex-1">
                   {/* Topic */}
@@ -96,8 +112,8 @@ export default function InsightsPage() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================

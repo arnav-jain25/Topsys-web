@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { CONTRACT_CONTACTS, OFFICES } from "@/lib/offices";
 
 export const metadata: Metadata = {
@@ -26,21 +27,46 @@ const SERVICES = [
   "Quality assurance & porting",
 ];
 
+/* ---- Step icons — thin monoline, 20x20, mirrors the icon set already
+   established in SiteHeader, ServicesShowcase, and the AI & data page ---- */
+const IconQuote = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M4.5 2h6l3 3v11h-9V2z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M10.5 2v3h3" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
+    <path d="M6.5 9.5h5M6.5 12h5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+  </svg>
+);
+const IconPurchaseOrder = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <rect x="2.5" y="3" width="13" height="12" rx="1" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M5.5 6.5h7M5.5 9h7M5.5 11.5h4" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+  </svg>
+);
+const IconAccepted = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M6 9l2.5 2.5L13 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const STEPS = [
   {
     ord: "01",
     title: "Request a quote",
     body: "Contact Tulika Varma by phone or email to receive a customized quote based on your requirements.",
+    Icon: IconQuote,
   },
   {
     ord: "02",
     title: "Place a purchase order",
     body: "Submit your purchase order directly to TOPSYS IT and ensure it clearly references DIR Contract No. DIR-CPO-5671 for accurate processing.",
+    Icon: IconPurchaseOrder,
   },
   {
     ord: "03",
     title: "Order accepted",
     body: "Purchase orders are considered valid and binding once reviewed and accepted by TOPSYS IT as the awarded vendor.",
+    Icon: IconAccepted,
   },
 ];
 
@@ -52,8 +78,16 @@ export default function ContractVehiclesPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative z-[1]">
           <Breadcrumb items={[{ label: "DIR Contract" }]} />
           <Eyebrow className="mt-6">DIR Contract</Eyebrow>
           <h1
@@ -158,19 +192,35 @@ export default function ContractVehiclesPage() {
           >
             Requesting a quote and placing a purchase order
           </h2>
-          <div className="grid grid-cols-3 gap-5 mt-10 max-[767px]:grid-cols-1">
-            {STEPS.map(({ ord, title, body }) => (
-              <div key={ord} className="bg-white border border-hairline rounded-card px-7 py-7">
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                  {ord}
-                </span>
+          <StaggerReveal
+            className="grid grid-cols-3 gap-5 mt-10 max-[767px]:grid-cols-1"
+            itemDelay={100}
+          >
+            {STEPS.map(({ ord, title, body, Icon }) => (
+              <div
+                key={ord}
+                className="group bg-white border border-hairline rounded-card px-7 py-7 relative overflow-hidden transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent"
+              >
+                {/* Gradient top edge on hover — one of the four permitted uses */}
+                <span
+                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+                <div className="flex items-start justify-between">
+                  <span className="text-teal transition-colors duration-fast ease-standard">
+                    <Icon />
+                  </span>
+                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                    {ord}
+                  </span>
+                </div>
                 <h3 className="font-display font-medium text-heading-3 text-ink mt-3 mb-3">
                   {title}
                 </h3>
                 <p className="text-body-xs text-ink-2">{body}</p>
               </div>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 

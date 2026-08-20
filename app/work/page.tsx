@@ -17,8 +17,16 @@ export default function WorkPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section className="bg-paper" style={{ padding: "6rem 0 4rem" }}>
-        <div className="wrap">
+      <section className="bg-paper relative overflow-hidden" style={{ padding: "6rem 0 4rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative z-[1]">
           <Breadcrumb items={[{ label: "Work" }]} />
           <h1
             className="font-display font-medium text-ink mt-6"

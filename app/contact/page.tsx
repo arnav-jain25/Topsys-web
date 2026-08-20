@@ -15,8 +15,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative z-[1]">
           <Breadcrumb items={[{ label: "Contact" }]} />
           <Eyebrow className="mt-6">Contact</Eyebrow>
           <h1

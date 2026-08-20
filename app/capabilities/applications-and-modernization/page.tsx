@@ -27,6 +27,27 @@ const FAILURE_MODES = [
   },
 ];
 
+/* ---- Offering icons — thin monoline, 20x20, mirrors the icon set already
+   established in SiteHeader, ServicesShowcase, and the AI & data page ---- */
+const IconAssessment = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M13.5 13.5L10.2 10.2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+  </svg>
+);
+const IconDevelopment = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M6 4.5L2 9l4 4.5M12 4.5l4 4.5-4 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconMigration = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="3.5" cy="9" r="2" stroke="currentColor" strokeWidth="1.3" />
+    <circle cx="14.5" cy="9" r="2" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M5.5 9h7M10.5 6.5L13 9l-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const OFFERINGS = [
   {
     title: "Assessment & architecture",
@@ -36,6 +57,7 @@ const OFFERINGS = [
       "Domain boundary identification for service decomposition",
       "Technical debt quantification and migration sequencing",
     ],
+    Icon: IconAssessment,
   },
   {
     title: "Application development",
@@ -45,6 +67,7 @@ const OFFERINGS = [
       "API design and implementation: REST, GraphQL, event-driven",
       "Testing strategy: unit, integration, contract, and load",
     ],
+    Icon: IconDevelopment,
   },
   {
     title: "Migration & modernization",
@@ -54,6 +77,7 @@ const OFFERINGS = [
       "Kafka-based event-driven decoupling",
       "Spring Boot and .NET service extraction from monoliths",
     ],
+    Icon: IconMigration,
   },
 ];
 
@@ -88,8 +112,16 @@ export default function ApplicationsAndModernizationPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
-        <ScrollReveal className="wrap" delay={80}>
+      <section className="relative overflow-hidden" style={{ padding: "6rem 0 5rem" }}>
+        <span
+          className="absolute top-[-10%] right-[-5%] w-[55%] h-[120%] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle,rgba(14,90,102,.07),rgba(141,198,62,.04) 45%,transparent 65%)",
+          }}
+          aria-hidden="true"
+        />
+        <ScrollReveal className="wrap relative z-[1]" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -228,7 +260,7 @@ export default function ApplicationsAndModernizationPage() {
             className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1"
             itemDelay={100}
           >
-            {OFFERINGS.map(({ title, body, bullets }, i) => (
+            {OFFERINGS.map(({ title, body, bullets, Icon }, i) => (
               <div
                 key={title}
                 className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
@@ -238,9 +270,14 @@ export default function ApplicationsAndModernizationPage() {
                   className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
                   aria-hidden="true"
                 />
-                <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <div className="flex items-start justify-between">
+                  <span className="text-teal transition-colors duration-fast ease-standard">
+                    <Icon />
+                  </span>
+                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
                 <h3 className="font-display font-medium text-heading-3 text-ink mt-3 mb-2">
                   {title}
                 </h3>
