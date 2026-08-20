@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
   title: "Applications & modernization — TOPSYS IT",
@@ -61,6 +63,25 @@ const TECH = [
   "Microservices", "PostgreSQL", "Redis",
 ];
 
+const HOW_WE_WORK = [
+  {
+    title: "API-first design",
+    body: "Every service boundary is an explicit contract. We design APIs before implementation, version from day one, and document in OpenAPI. Consumers can be added or changed without modifying producers.",
+  },
+  {
+    title: "Strangler fig pattern",
+    body: "New capability is built alongside the existing system, not instead of it. Traffic routes to the new service as each domain is ready. The legacy system shrinks as the modern one grows — no cutover day, no high-stakes rollback.",
+  },
+  {
+    title: "Event-driven decoupling",
+    body: "Kafka-based event streams replace point-to-point calls between services. Consumers process events on their own schedule. The publishing service doesn’t know or care who’s listening.",
+  },
+  {
+    title: "Team knowledge transfer built in",
+    body: "Architecture decision records, runbooks, and documented domain models are deliverables — not documentation sprints at the end. We write code the next engineer can operate without calling us.",
+  },
+];
+
 export default function ApplicationsAndModernizationPage() {
   return (
     <>
@@ -68,7 +89,7 @@ export default function ApplicationsAndModernizationPage() {
           HERO
           ================================================================ */}
       <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -98,14 +119,14 @@ export default function ApplicationsAndModernizationPage() {
               What we deliver
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           WHY MIGRATIONS FAIL — inverted
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>Why migrations fail</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
@@ -117,7 +138,10 @@ export default function ApplicationsAndModernizationPage() {
           >
             The problem is rarely the technology. It&rsquo;s the scope of the question.
           </h2>
-          <div className="grid grid-cols-3 gap-6 mt-12 max-[767px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-6 mt-12 max-[767px]:grid-cols-1"
+            itemDelay={80}
+          >
             {FAILURE_MODES.map(({ label, body }) => (
               <div key={label} className="border-t border-field-hairline pt-5">
                 <h3 className="font-display font-medium text-heading-4 text-on-field mb-2">
@@ -126,15 +150,15 @@ export default function ApplicationsAndModernizationPage() {
                 <p className="text-body-xs text-on-field-2 max-w-[52ch]">{body}</p>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           HOW WE WORK — paper
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>How we work</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -152,48 +176,19 @@ export default function ApplicationsAndModernizationPage() {
             product team keeps shipping. The platform team keeps migrating.
           </p>
 
-          <div className="mt-12 grid grid-cols-2 gap-8 max-[767px]:grid-cols-1">
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                API-first design
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                Every service boundary is an explicit contract. We design APIs before implementation,
-                version from day one, and document in OpenAPI. Consumers can be added or changed
-                without modifying producers.
-              </p>
-            </div>
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                Strangler fig pattern
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                New capability is built alongside the existing system, not instead of it. Traffic
-                routes to the new service as each domain is ready. The legacy system shrinks as
-                the modern one grows — no cutover day, no high-stakes rollback.
-              </p>
-            </div>
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                Event-driven decoupling
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                Kafka-based event streams replace point-to-point calls between services. Consumers
-                process events on their own schedule. The publishing service doesn&rsquo;t know or
-                care who&rsquo;s listening.
-              </p>
-            </div>
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                Team knowledge transfer built in
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                Architecture decision records, runbooks, and documented domain models are
-                deliverables — not documentation sprints at the end. We write code the next
-                engineer can operate without calling us.
-              </p>
-            </div>
-          </div>
+          <StaggerReveal
+            className="mt-12 grid grid-cols-2 gap-8 max-[767px]:grid-cols-1"
+            itemDelay={80}
+          >
+            {HOW_WE_WORK.map(({ title, body }) => (
+              <div key={title} className="border-t border-hairline pt-6">
+                <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
+                  {title}
+                </h3>
+                <p className="text-body-xs text-ink-2 max-w-[52ch]">{body}</p>
+              </div>
+            ))}
+          </StaggerReveal>
 
           {/* Technology stack */}
           <div className="mt-14">
@@ -211,14 +206,14 @@ export default function ApplicationsAndModernizationPage() {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           SERVICE OFFERINGS — surface, 3-col cards
           ================================================================ */}
       <section id="services" className="bg-surface" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>What we deliver</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -229,12 +224,20 @@ export default function ApplicationsAndModernizationPage() {
           >
             Three service lines, one engagement standard
           </h2>
-          <div className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1"
+            itemDelay={100}
+          >
             {OFFERINGS.map(({ title, body, bullets }, i) => (
               <div
                 key={title}
-                className="border border-hairline rounded-card px-6 py-6 bg-white"
+                className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
               >
+                {/* Gradient top edge on hover — one of the four permitted uses */}
+                <span
+                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
                 <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -254,8 +257,8 @@ export default function ApplicationsAndModernizationPage() {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       <CTASection />

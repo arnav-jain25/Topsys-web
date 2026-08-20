@@ -5,6 +5,8 @@ import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AIArc } from "@/components/sections/AIArc";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
   title: "AI & Data — TOPSYS IT",
@@ -111,7 +113,7 @@ export default function AIAndDataPage() {
           }}
           aria-hidden="true"
         />
-        <div className="wrap relative z-[1]">
+        <ScrollReveal className="wrap relative z-[1]" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -139,14 +141,14 @@ export default function AIAndDataPage() {
               How engagements run
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           WHERE AI STALLS — inverted, naming failure modes
           ================================================================ */}
       <section className="on-field" style={{ padding: "6rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>Where enterprise AI stalls</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
@@ -158,7 +160,10 @@ export default function AIAndDataPage() {
           >
             The failure modes are predictable. Most firms won't say them out loud.
           </h2>
-          <div className="grid grid-cols-2 gap-6 mt-12 max-[767px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-2 gap-6 mt-12 max-[767px]:grid-cols-1"
+            itemDelay={80}
+          >
             {STALLS.map(({ label, body }) => (
               <div
                 key={label}
@@ -170,15 +175,15 @@ export default function AIAndDataPage() {
                 <p className="text-body-xs text-on-field-2 max-w-[52ch]">{body}</p>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           CAPABILITY BLOCKS — paper
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>What we deliver</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -190,11 +195,14 @@ export default function AIAndDataPage() {
             Seven capabilities, one engineering standard
           </h2>
 
-          <div className="grid grid-cols-3 gap-4 mt-10 max-[1023px]:grid-cols-2 max-[599px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-4 mt-10 max-[1023px]:grid-cols-2 max-[599px]:grid-cols-1"
+            itemDelay={80}
+          >
             {CAPS.map(({ title, body }, i) => (
               <div
                 key={title}
-                className="border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[2px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
+                className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
               >
                 {/* Gradient top edge on hover — one of the four permitted uses */}
                 <span
@@ -210,15 +218,15 @@ export default function AIAndDataPage() {
                 <p className="text-body-xs text-ink-2">{body}</p>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           ENGAGEMENT ARC — inverted, expanded
           ================================================================ */}
       <section id="engagement" className="on-field" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>How AI engagements run</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
@@ -237,14 +245,14 @@ export default function AIAndDataPage() {
           <div className="mt-16">
             <Button href="/contact?re=ai">Talk about your use case</Button>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           TECHNOLOGY STACK — paper
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>Technology</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -268,7 +276,7 @@ export default function AIAndDataPage() {
               </div>
             </ContentToken>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
@@ -278,7 +286,7 @@ export default function AIAndDataPage() {
         className="bg-surface"
         style={{ padding: "7rem 0" }}
       >
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>By industry</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -289,7 +297,10 @@ export default function AIAndDataPage() {
           >
             Where we've delivered
           </h2>
-          <div className="grid grid-cols-3 gap-8 mt-10 max-[767px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-8 mt-10 max-[767px]:grid-cols-1"
+            itemDelay={100}
+          >
             {INDUSTRIES.map(({ sector, examples }) => (
               <div key={sector}>
                 <h3 className="font-display font-medium text-heading-4 text-ink pb-3 border-b border-hairline mb-5">
@@ -310,15 +321,15 @@ export default function AIAndDataPage() {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           FEATURED CASE — inverted
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>Case study</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
@@ -329,7 +340,10 @@ export default function AIAndDataPage() {
           >
             Proof, not positioning.
           </h2>
-          <div className="mt-10 grid grid-cols-2 gap-8 max-[767px]:grid-cols-1">
+          <StaggerReveal
+            className="mt-10 grid grid-cols-2 gap-8 max-[767px]:grid-cols-1"
+            itemDelay={120}
+          >
             <div
               className="rounded-panel border border-field-hairline px-8 py-8 flex flex-col"
               style={{ background: "linear-gradient(160deg,#123F4A,#0B2F38)" }}
@@ -376,13 +390,13 @@ export default function AIAndDataPage() {
                 <TextLink href="/work/revenue-intelligence">Read the case</TextLink>
               </div>
             </div>
-          </div>
+          </StaggerReveal>
           <div className="mt-10">
             <Button href="/work" variant="secondary">
               All case studies
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <CTASection />

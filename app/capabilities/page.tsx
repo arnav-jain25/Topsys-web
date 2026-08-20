@@ -5,6 +5,8 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
   title: "Services — TOPSYS IT",
@@ -82,7 +84,7 @@ export default function CapabilitiesPage() {
           HERO
           ================================================================ */}
       <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap" delay={80}>
           <Breadcrumb items={[{ label: "Services" }]} />
           <Eyebrow className="mt-6">Services</Eyebrow>
           <h1
@@ -99,16 +101,16 @@ export default function CapabilitiesPage() {
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
             We build and run critical technology for enterprise and government clients — across data and AI, modernization, cloud, security, and the specialized teams these programs need.
           </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           CAPABILITY GRID
           ================================================================ */}
       <section style={{ paddingBottom: "8rem" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <div className="flex flex-col gap-5">
-            {/* Lead card — AI & data */}
+            {/* Lead card — AI & data (full-width, already has hover effects) */}
             <Link
               href={CAPS[0].href}
               className="block rounded-panel relative overflow-hidden transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-field group"
@@ -148,8 +150,11 @@ export default function CapabilitiesPage() {
               </div>
             </Link>
 
-            {/* Standard 2-column grid for the rest */}
-            <div className="grid grid-cols-2 gap-5 max-[767px]:grid-cols-1">
+            {/* Standard 2-column grid for the rest — stagger reveal */}
+            <StaggerReveal
+              className="grid grid-cols-2 gap-5 max-[767px]:grid-cols-1"
+              itemDelay={80}
+            >
               {CAPS.slice(1).map(({ ord, href, title, lead, body }) => (
                 <Link
                   key={href}
@@ -171,16 +176,16 @@ export default function CapabilitiesPage() {
                   <p className="text-body-xs text-ink-2">{body}</p>
                 </Link>
               ))}
-            </div>
+            </StaggerReveal>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           ENGAGEMENT MODEL — inverted
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>How engagements work</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
@@ -194,7 +199,10 @@ export default function CapabilitiesPage() {
           <p className="text-body text-on-field-2 max-w-[62ch] mt-4">
             We scope the engagement model to what the program actually needs — not what simplifies our sales process.
           </p>
-          <div className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1"
+            itemDelay={80}
+          >
             {ENGAGEMENT_TYPES.map(({ type, desc }) => (
               <div key={type} className="border-t border-field-hairline pt-5">
                 <h3 className="font-display font-medium text-heading-4 text-on-field mb-2">
@@ -203,15 +211,15 @@ export default function CapabilitiesPage() {
                 <p className="text-body-xs text-on-field-2">{desc}</p>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           HOW WE WORK — paper
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>How we work</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -223,14 +231,14 @@ export default function CapabilitiesPage() {
             How engagements run
           </h2>
           <HowWeWork />
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           CROSS-LINKS
           ================================================================ */}
       <section className="bg-surface" style={{ padding: "5rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <div className="flex gap-4 flex-wrap items-center justify-between">
             <div>
               <p className="font-display font-medium text-heading-4 text-ink">
@@ -245,7 +253,7 @@ export default function CapabilitiesPage() {
               <Button href="/work" variant="secondary">See case studies</Button>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <CTASection />

@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
   title: "Cybersecurity — TOPSYS IT",
@@ -13,10 +15,10 @@ export const metadata: Metadata = {
 const FAILURE_MODES = [
   {
     label: "Compliance checkbox vs actual posture",
-    body: "A passed audit documents what was true on the day of the assessment. It doesn&rsquo;t tell you what an attacker can do today. Frameworks like NIST CSF and CMMC measure control implementation — they don&rsquo;t measure whether those controls stop a real threat.",
+    body: "A passed audit documents what was true on the day of the assessment. It doesn't tell you what an attacker can do today. Frameworks like NIST CSF and CMMC measure control implementation — they don't measure whether those controls stop a real threat.",
   },
   {
-    label: "Identity perimeter is gone, IAM wasn&rsquo;t updated",
+    label: "Identity perimeter is gone, IAM wasn't updated",
     body: "The network perimeter eroded with remote work, SaaS adoption, and cloud migration. The identity layer is now the perimeter. Most organizations still have IAM programs built for an on-prem world — role sprawl, dormant accounts, no conditional access, no privileged session recording.",
   },
   {
@@ -61,6 +63,25 @@ const TECH = [
   "NIST CSF", "CMMC",
 ];
 
+const HOW_WE_WORK = [
+  {
+    title: "Assessments that produce priorities, not findings",
+    body: "We map controls against NIST CSF and CMMC where the engagement requires it, then go further: exploitation testing, configuration review, and a remediation roadmap ordered by exploitability and business impact — not framework category.",
+  },
+  {
+    title: "IAM for the cloud and hybrid environment",
+    body: "Okta for workforce identity, CyberArk for privileged access, Azure AD for directory and conditional access. We rationalize existing configurations before adding new tools. Role sprawl and dormant accounts are the first problems we close.",
+  },
+  {
+    title: "SIEM built for the environment, not the demo",
+    body: "Splunk and Microsoft Sentinel deployments start with the data sources that matter for the threat model. Detection rules are mapped to MITRE ATT&CK. Alert volume is tuned before handoff. We don't leave a platform generating 300 daily alerts that no one investigates.",
+  },
+  {
+    title: "Cloud security posture management",
+    body: "Cloud environments change continuously. We instrument continuous posture monitoring so configuration drift — open storage buckets, overprivileged roles, disabled logging — is detected automatically rather than discovered in the next audit.",
+  },
+];
+
 export default function CybersecurityPage() {
   return (
     <>
@@ -68,7 +89,7 @@ export default function CybersecurityPage() {
           HERO
           ================================================================ */}
       <section style={{ padding: "6rem 0 5rem" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap" delay={80}>
           <Breadcrumb
             items={[
               { label: "Capabilities", href: "/capabilities" },
@@ -99,14 +120,14 @@ export default function CybersecurityPage() {
               Government programs
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           WHERE SECURITY PROGRAMS BREAK DOWN — inverted
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>Where security programs break down</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
@@ -118,7 +139,10 @@ export default function CybersecurityPage() {
           >
             Three patterns that leave organizations exposed while appearing compliant.
           </h2>
-          <div className="grid grid-cols-3 gap-6 mt-12 max-[767px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-6 mt-12 max-[767px]:grid-cols-1"
+            itemDelay={80}
+          >
             {FAILURE_MODES.map(({ label, body }) => (
               <div key={label} className="border-t border-field-hairline pt-5">
                 <h3 className="font-display font-medium text-heading-4 text-on-field mb-2">
@@ -127,15 +151,15 @@ export default function CybersecurityPage() {
                 <p className="text-body-xs text-on-field-2 max-w-[52ch]">{body}</p>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           HOW WE WORK — paper
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>How we work</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -155,49 +179,19 @@ export default function CybersecurityPage() {
             content from the vendor.
           </p>
 
-          <div className="mt-12 grid grid-cols-2 gap-8 max-[767px]:grid-cols-1">
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                Assessments that produce priorities, not findings
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                We map controls against NIST CSF and CMMC where the engagement requires it,
-                then go further: exploitation testing, configuration review, and a remediation
-                roadmap ordered by exploitability and business impact — not framework category.
-              </p>
-            </div>
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                IAM for the cloud and hybrid environment
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                Okta for workforce identity, CyberArk for privileged access, Azure AD for
-                directory and conditional access. We rationalize existing configurations before
-                adding new tools. Role sprawl and dormant accounts are the first problems we close.
-              </p>
-            </div>
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                SIEM built for the environment, not the demo
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                Splunk and Microsoft Sentinel deployments start with the data sources that matter
-                for the threat model. Detection rules are mapped to MITRE ATT&amp;CK. Alert volume
-                is tuned before handoff. We don&rsquo;t leave a platform generating 300 daily alerts
-                that no one investigates.
-              </p>
-            </div>
-            <div className="border-t border-hairline pt-6">
-              <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                Cloud security posture management
-              </h3>
-              <p className="text-body-xs text-ink-2 max-w-[52ch]">
-                Cloud environments change continuously. We instrument continuous posture monitoring
-                so configuration drift — open storage buckets, overprivileged roles, disabled
-                logging — is detected automatically rather than discovered in the next audit.
-              </p>
-            </div>
-          </div>
+          <StaggerReveal
+            className="mt-12 grid grid-cols-2 gap-8 max-[767px]:grid-cols-1"
+            itemDelay={80}
+          >
+            {HOW_WE_WORK.map(({ title, body }) => (
+              <div key={title} className="border-t border-hairline pt-6">
+                <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
+                  {title}
+                </h3>
+                <p className="text-body-xs text-ink-2 max-w-[52ch]">{body}</p>
+              </div>
+            ))}
+          </StaggerReveal>
 
           {/* Government context */}
           <div className="mt-14 border border-hairline rounded-card px-8 py-7 bg-surface">
@@ -231,14 +225,14 @@ export default function CybersecurityPage() {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
           SERVICE OFFERINGS — surface, 3-col cards
           ================================================================ */}
       <section id="services" className="bg-surface" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
+        <ScrollReveal className="wrap">
           <Eyebrow>What we deliver</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
@@ -249,12 +243,20 @@ export default function CybersecurityPage() {
           >
             Three service lines, one security standard
           </h2>
-          <div className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1">
+          <StaggerReveal
+            className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1"
+            itemDelay={100}
+          >
             {OFFERINGS.map(({ title, body, bullets }, i) => (
               <div
                 key={title}
-                className="border border-hairline rounded-card px-6 py-6 bg-white"
+                className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
               >
+                {/* Gradient top edge on hover — one of the four permitted uses */}
+                <span
+                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
                 <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -274,8 +276,8 @@ export default function CybersecurityPage() {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </ScrollReveal>
       </section>
 
       <CTASection />
