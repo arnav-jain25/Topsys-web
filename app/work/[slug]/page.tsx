@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import { CASE_STUDIES } from "@/lib/case-studies";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
+import { CapabilitiesBar } from "./CapabilitiesBar";
+import { ProblemSection } from "./ProblemSection";
+import { ApproachSteps } from "./ApproachSteps";
+import { OutcomeSection } from "./OutcomeSection";
+import { TechStack } from "./TechStack";
 
 /* ── Static generation ─────────────────────────────────────────────────── */
 
@@ -38,7 +43,7 @@ export default async function CaseStudyPage({
   return (
     <>
       {/* ================================================================
-          HERO — paper
+          HERO — paper  (CSS animation on mount — always in view)
           ================================================================ */}
       <section className="bg-paper" style={{ padding: "5rem 0 4rem" }}>
         <div className="wrap">
@@ -51,6 +56,10 @@ export default async function CaseStudyPage({
 
           <p
             className="font-mono text-mono-xs uppercase tracking-[.1em] text-ink-muted mt-6 mb-4"
+            style={{
+              animation:
+                "topsys-fade-in 500ms cubic-bezier(.2,0,0,1) 80ms both",
+            }}
           >
             {cs.tag}
           </p>
@@ -62,6 +71,8 @@ export default async function CaseStudyPage({
               lineHeight: 1.1,
               letterSpacing: "-0.028em",
               maxWidth: "26ch",
+              animation:
+                "topsys-fade-in 500ms cubic-bezier(.2,0,0,1) 160ms both",
             }}
           >
             {cs.title}
@@ -74,6 +85,8 @@ export default async function CaseStudyPage({
               background: "var(--color-surface)",
               padding: "1rem 1.5rem",
               maxWidth: "52ch",
+              animation:
+                "topsys-fade-in 500ms cubic-bezier(.2,0,0,1) 240ms both",
             }}
           >
             <p className="text-body-xs text-ink-muted">
@@ -85,164 +98,29 @@ export default async function CaseStudyPage({
       </section>
 
       {/* ================================================================
-          CAPABILITIES BAR — inverted
+          CAPABILITIES BAR — inverted, staggered badges
           ================================================================ */}
-      <section
-        className="on-field"
-        style={{ background: "var(--color-field)", padding: "2rem 0" }}
-      >
-        <div className="wrap">
-          <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-on-field-2 mb-3">
-            Capabilities involved
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {cs.capabilities.map((cap) => (
-              <span
-                key={cap}
-                className="font-mono text-mono-xs uppercase tracking-[.07em] text-on-field border border-field-hairline rounded-control px-3 py-1"
-              >
-                {cap}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CapabilitiesBar capabilities={cs.capabilities} />
 
       {/* ================================================================
-          PROBLEM — paper
+          PROBLEM — paper, paragraphs reveal on scroll
           ================================================================ */}
-      <section className="bg-paper" style={{ padding: "5rem 0" }}>
-        <div className="wrap">
-          <div style={{ maxWidth: "68ch" }}>
-            <h2
-              className="font-display font-medium text-ink"
-              style={{
-                fontSize: "clamp(1.375rem, 2.4vw, 1.75rem)",
-                lineHeight: 1.2,
-                letterSpacing: "-0.022em",
-                marginBottom: "1.75rem",
-              }}
-            >
-              The problem
-            </h2>
-            {cs.problem.map((para, i) => (
-              <p
-                key={i}
-                className="text-body text-ink-2"
-                style={{ marginBottom: i < cs.problem.length - 1 ? "1.25rem" : 0 }}
-              >
-                {para}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProblemSection problem={cs.problem} />
 
       {/* ================================================================
-          APPROACH — surface
+          APPROACH — surface, step cards stagger on scroll
           ================================================================ */}
-      <section className="bg-surface" style={{ padding: "5rem 0" }}>
-        <div className="wrap">
-          <h2
-            className="font-display font-medium text-ink"
-            style={{
-              fontSize: "clamp(1.375rem, 2.4vw, 1.75rem)",
-              lineHeight: 1.2,
-              letterSpacing: "-0.022em",
-              marginBottom: "2.5rem",
-            }}
-          >
-            What we did
-          </h2>
-
-          <div
-            className="grid gap-4"
-            style={{ gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 26rem), 1fr))" }}
-          >
-            {cs.approach.map((step, i) => (
-              <div
-                key={i}
-                className="bg-paper border border-hairline rounded-card"
-                style={{ padding: "1.75rem 2rem" }}
-              >
-                <p
-                  className="font-mono text-mono-xs uppercase tracking-[.09em] text-ink-muted mb-3"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3
-                  className="font-display font-medium text-ink"
-                  style={{
-                    fontSize: "1rem",
-                    lineHeight: 1.35,
-                    letterSpacing: "-0.01em",
-                    marginBottom: "0.75rem",
-                  }}
-                >
-                  {step.heading}
-                </h3>
-                <p className="text-body-xs text-ink-2">{step.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ApproachSteps steps={cs.approach} />
 
       {/* ================================================================
-          OUTCOME — inverted (only if present)
+          OUTCOME — inverted (only if present), count-up on reveal
           ================================================================ */}
-      {cs.outcome !== null && (
-        <section
-          className="on-field"
-          style={{ background: "var(--color-field)", padding: "5rem 0" }}
-        >
-          <div className="wrap" style={{ maxWidth: "52ch" }}>
-            <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-on-field-2 mb-4">
-              Outcome
-            </p>
-            <h2
-              className="font-display font-medium text-on-field"
-              style={{
-                fontSize: "clamp(1.375rem, 2.4vw, 1.75rem)",
-                lineHeight: 1.2,
-                letterSpacing: "-0.022em",
-              }}
-            >
-              {cs.outcome}
-            </h2>
-          </div>
-        </section>
-      )}
+      {cs.outcome !== null && <OutcomeSection outcome={cs.outcome} />}
 
       {/* ================================================================
-          TECH FOOTER — paper
+          TECH FOOTER — paper, tags stagger on scroll
           ================================================================ */}
-      <section className="bg-paper" style={{ padding: "4rem 0" }}>
-        <div className="wrap">
-          <div className="border-t border-hairline pt-6">
-            <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-ink-muted mb-4">
-              Technologies used
-            </p>
-            <div className="flex flex-wrap gap-2 items-center">
-              {cs.tech.map((t) => (
-                <span
-                  key={t}
-                  className="font-mono text-mono-sm text-ink-2 border border-hairline rounded-control px-3 py-1"
-                >
-                  {t}
-                </span>
-              ))}
-              {cs.metric && (
-                <span
-                  className="font-mono text-mono-sm font-medium text-teal border border-teal-tint rounded-control px-3 py-1 ml-2"
-                >
-                  {cs.metric}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      <TechStack tech={cs.tech} metric={cs.metric} />
 
       <CTASection />
     </>
