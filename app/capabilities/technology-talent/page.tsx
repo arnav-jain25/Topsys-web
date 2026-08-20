@@ -106,6 +106,17 @@ const HOW_DIFFERENT = [
 
 const MSP_PROGRAMS = ["Covendis", "OST Global", "CAI", "Knowledge Services", "Innova Sol", "Dexian", "iLabor", "Upglide"];
 
+/* MSP/VMS program icon — a simple checklist/roster mark, reads as
+   "vendor-of-record compliance" rather than a generic tag. Mirrors the
+   monoline icon set already established across the site. */
+const IconMSP = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <rect x="3" y="2" width="12" height="14" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M6 6.5h6M6 9h6M6 11.5h3.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+    <path d="M5.5 2v-.5a1 1 0 011-1h5a1 1 0 011 1V2" stroke="currentColor" strokeWidth="1.1" />
+  </svg>
+);
+
 export default function TechnologyTalentPage() {
   return (
     <>
@@ -323,19 +334,36 @@ export default function TechnologyTalentPage() {
       {/* ================================================================
           MSP / WORKFORCE PROGRAMS — surface (here and nowhere else per CLAUDE.md)
           ================================================================ */}
-      <section className="bg-surface" style={{ padding: "5rem 0" }}>
+      <section className="bg-surface" style={{ padding: "6rem 0" }}>
         <ScrollReveal className="wrap">
           <Eyebrow>Partner and MSP ecosystem</Eyebrow>
-          <p className="text-body text-ink-2 max-w-[62ch] mt-3">
+          <h2
+            className="font-display font-medium text-ink mt-4"
+            style={{
+              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
+              letterSpacing: "-0.025em",
+            }}
+          >
+            Vendor-of-record compliance, built in
+          </h2>
+          <p className="text-body text-ink-2 max-w-[62ch] mt-4">
             We work inside managed service provider programs and workforce management platforms for clients who require vendor-of-record compliance.
           </p>
-          <ul className="flex flex-wrap gap-3 mt-6 list-none">
+          <StaggerReveal className="grid grid-cols-4 gap-4 mt-8 max-[767px]:grid-cols-2 max-[1023px]:grid-cols-3">
             {MSP_PROGRAMS.map((name) => (
-              <li key={name} className="font-mono text-mono-xs uppercase tracking-[.06em] text-ink-muted bg-white border border-hairline rounded px-4 py-2">
-                {name}
-              </li>
+              <div
+                key={name}
+                className="group relative overflow-hidden flex items-center gap-3 bg-white border border-hairline rounded-card px-5 py-4 transition-all duration-base ease-standard hover:border-teal/40 hover:-translate-y-[2px] hover:shadow-e1"
+              >
+                <span className="flex-none text-teal">
+                  <IconMSP />
+                </span>
+                <span className="font-display font-medium text-body-sm text-ink">
+                  {name}
+                </span>
+              </div>
             ))}
-          </ul>
+          </StaggerReveal>
         </ScrollReveal>
       </section>
 

@@ -2,6 +2,17 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
+/* Delivery-partner icon — two linked nodes, reads as "we plug into their
+   program" rather than a generic briefcase. Mirrors the monoline icon set
+   established in SiteHeader / ServicesShowcase / AI & data. */
+const IconPartner = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="5" cy="9" r="3" stroke="currentColor" strokeWidth="1.3" />
+    <circle cx="13" cy="9" r="3" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M7.5 7.8c1 .6 1 1.8 0 2.4M10.5 7.8c-1 .6-1 1.8 0 2.4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+
 type NamedEntity = { name: string; sector: string };
 
 const END_CLIENTS: NamedEntity[] = [
@@ -70,32 +81,37 @@ export function ClientShowcase() {
                 <h3 className="font-display font-medium text-heading-4 text-on-field">
                   {name}
                 </h3>
-                <p className="text-body-xs text-on-field-2 mt-1">{sector}</p>
+                <p className="text-body-xs text-on-field-2 mt-1 capitalize">{sector}</p>
               </div>
             ))}
           </StaggerReveal>
         </div>
 
         {/* Delivery partners */}
-        <div className="mt-12">
+        <div className="mt-14 pt-10 border-t border-field-hairline">
           <ScrollReveal>
-            <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-on-field-2">
+            <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-signal">
               Delivery partners
             </p>
             <p className="text-body-xs text-on-field-2 max-w-[62ch] mt-2">
-              Global IT services firms we deliver technology and staffing capacity through, as a subcontractor on their programs.
+              Global IT services firms we deliver technology and staffing capacity through, as a subcontractor on their programs. Different relationship from a direct client: they hold the prime contract, we execute the work.
             </p>
           </ScrollReveal>
-          <ul className="flex flex-wrap gap-3 mt-5 list-none">
+          <StaggerReveal className="grid grid-cols-4 gap-4 mt-6 max-[767px]:grid-cols-2 max-[1023px]:grid-cols-2">
             {DELIVERY_PARTNERS.map((name) => (
-              <li
+              <div
                 key={name}
-                className="font-mono text-mono-xs uppercase tracking-[.06em] text-on-field-2 bg-field border border-field-hairline rounded px-4 py-2"
+                className="group relative overflow-hidden flex items-center gap-3 bg-field border border-field-hairline rounded-card px-5 py-4 transition-all duration-base ease-standard hover:border-signal/35 hover:-translate-y-[2px] hover:shadow-field"
               >
-                {name}
-              </li>
+                <span className="flex-none text-signal">
+                  <IconPartner />
+                </span>
+                <span className="font-display font-medium text-body-sm text-on-field">
+                  {name}
+                </span>
+              </div>
             ))}
-          </ul>
+          </StaggerReveal>
         </div>
       </div>
     </section>

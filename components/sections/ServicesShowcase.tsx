@@ -46,16 +46,17 @@ const IconTalent = () => (
   </svg>
 );
 
-/* Each service gets its own light tint + a deeper accent for the icon and
-   hover fill, so the row reads as five distinct offerings rather than one
-   repeated blue tile. Values are inline (not Tailwind classes) since the
-   palette here is intentionally broader than the core brand tokens. */
+/* Each service gets its own bold, saturated fill so the row pops against
+   the warm beige page background instead of blending into it — a light
+   pastel tint sat too close to paper's own lightness to read as distinct.
+   Values are inline (not Tailwind classes) since the palette here is
+   intentionally broader than the core brand tokens. */
 const SERVICES = [
-  { ord: "01", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#E2EEEF", fg: "#0E5A66" },
-  { ord: "02", href: "/capabilities/applications-and-modernization", title: "Applications & modernization", Icon: IconApps, bg: "#F6E9D2", fg: "#8A5A18" },
-  { ord: "03", href: "/capabilities/cloud-and-platform-engineering", title: "Cloud & platform", Icon: IconCloud, bg: "#DCEAF5", fg: "#235A82" },
-  { ord: "04", href: "/capabilities/cybersecurity", title: "Cybersecurity", Icon: IconSecurity, bg: "#F1E1E6", fg: "#7A2E45" },
-  { ord: "05", href: "/capabilities/technology-talent", title: "Technology talent", Icon: IconTalent, bg: "#E7EEDD", fg: "#55692F" },
+  { ord: "01", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#0E5A66", hoverBg: "#0A454E" },
+  { ord: "02", href: "/capabilities/applications-and-modernization", title: "Applications & modernization", Icon: IconApps, bg: "#B5790C", hoverBg: "#96650F" },
+  { ord: "03", href: "/capabilities/cloud-and-platform-engineering", title: "Cloud & platform", Icon: IconCloud, bg: "#1E6FA8", hoverBg: "#185A87" },
+  { ord: "04", href: "/capabilities/cybersecurity", title: "Cybersecurity", Icon: IconSecurity, bg: "#9C3159", hoverBg: "#812748" },
+  { ord: "05", href: "/capabilities/technology-talent", title: "Technology talent", Icon: IconTalent, bg: "#5F7A2E", hoverBg: "#4C6224" },
 ];
 
 export function ServicesShowcase() {
@@ -90,7 +91,7 @@ export function ServicesShowcase() {
           style={{ top: "40px", height: "1px", background: "var(--color-hairline)" }}
           aria-hidden="true"
         />
-        {SERVICES.map(({ ord, href, title, Icon, bg, fg }, i) => (
+        {SERVICES.map(({ ord, href, title, Icon, bg, hoverBg }, i) => (
           <Link
             key={href}
             href={href}
@@ -102,12 +103,12 @@ export function ServicesShowcase() {
             }
           >
             <span
-              className="relative z-[1] flex items-center justify-center w-[68px] h-[68px] min-[1440px]:w-20 min-[1440px]:h-20 rounded-panel border border-transparent transition-all duration-base ease-standard group-hover:-translate-y-[4px] group-hover:shadow-e2 group-focus-visible:-translate-y-[4px] group-focus-visible:shadow-e2"
-              style={{ background: bg, color: fg }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = fg; e.currentTarget.style.color = "#fff"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = bg; e.currentTarget.style.color = fg; }}
-              onFocus={(e) => { e.currentTarget.style.background = fg; e.currentTarget.style.color = "#fff"; }}
-              onBlur={(e) => { e.currentTarget.style.background = bg; e.currentTarget.style.color = fg; }}
+              className="relative z-[1] flex items-center justify-center w-[68px] h-[68px] min-[1440px]:w-20 min-[1440px]:h-20 rounded-panel text-white shadow-e1 transition-all duration-base ease-standard group-hover:-translate-y-[4px] group-hover:shadow-e2 group-focus-visible:-translate-y-[4px] group-focus-visible:shadow-e2"
+              style={{ background: bg }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = hoverBg; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = bg; }}
+              onFocus={(e) => { e.currentTarget.style.background = hoverBg; }}
+              onBlur={(e) => { e.currentTarget.style.background = bg; }}
             >
               <Icon />
             </span>
