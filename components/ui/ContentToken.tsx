@@ -4,13 +4,19 @@
  * Every {{TOKEN}} on the site must render through this component.
  * None ship to production — the launch checklist blocks them.
  */
-export function ContentToken({ id }: { id: string }) {
+export function ContentToken({
+  id,
+  children,
+}: {
+  id: string;
+  children?: React.ReactNode;
+}) {
   return (
     <span
       className="content-token"
       title={`Unresolved content token: ${id} — see docs/CONTENT-REGISTER.md`}
     >
-      {`{{${id}}}`}
+      {children ?? `{{${id}}}`}
     </span>
   );
 }
