@@ -83,7 +83,7 @@ export function ServicesShowcase() {
         <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
         What we build, end to end
       </p>
-      <div className="relative grid grid-cols-5 gap-4 max-[900px]:grid-cols-3 max-[600px]:grid-cols-2">
+      <div className="relative grid grid-cols-5 gap-4 min-[1440px]:gap-8 max-[900px]:grid-cols-3 max-[600px]:grid-cols-2">
         {/* Threaded rail behind the icons */}
         <div
           className="absolute left-0 right-0 hidden min-[901px]:block"
@@ -102,7 +102,7 @@ export function ServicesShowcase() {
             }
           >
             <span
-              className="relative z-[1] flex items-center justify-center w-[68px] h-[68px] rounded-panel border border-transparent transition-all duration-base ease-standard group-hover:-translate-y-[4px] group-hover:shadow-e2 group-focus-visible:-translate-y-[4px] group-focus-visible:shadow-e2"
+              className="relative z-[1] flex items-center justify-center w-[68px] h-[68px] min-[1440px]:w-20 min-[1440px]:h-20 rounded-panel border border-transparent transition-all duration-base ease-standard group-hover:-translate-y-[4px] group-hover:shadow-e2 group-focus-visible:-translate-y-[4px] group-focus-visible:shadow-e2"
               style={{ background: bg, color: fg }}
               onMouseEnter={(e) => { e.currentTarget.style.background = fg; e.currentTarget.style.color = "#fff"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = bg; e.currentTarget.style.color = fg; }}
@@ -114,7 +114,7 @@ export function ServicesShowcase() {
             <span className="mt-4 font-mono text-mono-xs text-ink-muted tracking-[.08em]">
               {ord}
             </span>
-            <span className="mt-2 font-display font-semibold uppercase tracking-[.01em] text-heading-5 text-ink transition-colors duration-fast ease-standard">
+            <span className="mt-2 font-display font-semibold uppercase tracking-[.01em] text-heading-5 min-[1440px]:text-heading-4 text-ink transition-colors duration-fast ease-standard">
               {title}
             </span>
           </Link>

@@ -51,7 +51,7 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
       <b
         className="block text-center font-mono font-normal leading-none"
         style={{
-          fontSize: "clamp(2.125rem, 4vw, 3.375rem)",
+          fontSize: "clamp(2.125rem, 4.2vw, 4rem)",
           letterSpacing: "-0.03em",
         }}
       >
@@ -72,7 +72,7 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
 const STATS: StatItem[] = [
   { value: 20, suffix: "+", label: "Years experience" },
   { value: 4, label: "Countries" },
-  { value: 49, label: "States served" },
+  { value: 30, label: "States served" },
   { value: "MBE", label: "Certified", static: true },
 ];
 

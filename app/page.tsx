@@ -53,7 +53,7 @@ export default function HomePage() {
           <div className="hero-copy">
             <h1
               className="font-display font-medium text-ink mb-6"
-              style={{ fontSize: "clamp(2.25rem, 4.9vw, 4.25rem)", lineHeight: 1.02, letterSpacing: "-0.035em" }}
+              style={{ fontSize: "clamp(2.25rem, 5.4vw, 5.5rem)", lineHeight: 1.02, letterSpacing: "-0.035em" }}
             >
               <span className="block whitespace-nowrap">Technology</span>
               <span className="block whitespace-nowrap">
@@ -61,18 +61,21 @@ export default function HomePage() {
                 <span className="text-signature">has to work.</span>
               </span>
             </h1>
-            <p className="text-lede text-ink-2 max-w-[52ch] mb-10">
+            <p
+              className="text-ink-2 max-w-[54ch] mb-10"
+              style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)", lineHeight: 1.6 }}
+            >
               Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
             </p>
             <div className="flex gap-3 flex-wrap max-[600px]:[&>a]:w-full">
-              <Button href="/contact">Talk to us</Button>
-              <Button href="/capabilities" variant="secondary">
+              <Button href="/contact" className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px]">Talk to us</Button>
+              <Button href="/capabilities" variant="secondary" className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px]">
                 Explore services
               </Button>
             </div>
-            <div className="mt-10 pt-6 border-t border-hairline flex flex-wrap gap-x-6 gap-y-2 font-mono text-mono-sm text-ink-muted uppercase tracking-[.06em]">
+            <div className="mt-10 pt-6 border-t border-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] text-ink-muted uppercase tracking-[.06em]">
               <span>20+ years</span>
-              <span>49 states served</span>
+              <span>30 states served</span>
               <span>4 countries</span>
               <span>MBE certified</span>
             </div>
@@ -194,7 +197,7 @@ export default function HomePage() {
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
                   States served
                 </dt>
-                <dd className="text-body-sm text-ink-2 mt-1">49</dd>
+                <dd className="text-body-sm text-ink-2 mt-1">30</dd>
               </dl>
               <div className="mt-8 flex gap-3 flex-wrap">
                 <Button href="/contact">Request a capability briefing</Button>

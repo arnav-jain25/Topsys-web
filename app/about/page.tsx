@@ -24,7 +24,7 @@ const CREDENTIALS = [
   { label: "D&B registration", value: "Registered" },
   { label: "Years in operation", value: "20+" },
   { label: "Countries of operation", value: "3" },
-  { label: "States served", value: "49" },
+  { label: "States served", value: "30" },
 ];
 
 const VALUES = [

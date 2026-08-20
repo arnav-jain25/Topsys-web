@@ -37,29 +37,6 @@ const SERVED: Record<string, string> = {
   WI: "State agency technology",
 };
 
-/* States with extended state engagements (19, lighter fill) */
-const EXTENDED: Record<string, string> = {
-  DE: "Extended state engagement",
-  HI: "Extended state engagement",
-  IN: "Extended state engagement",
-  KY: "Extended state engagement",
-  LA: "Extended state engagement",
-  ME: "Extended state engagement",
-  MT: "Extended state engagement",
-  NE: "Extended state engagement",
-  NV: "Extended state engagement",
-  NH: "Extended state engagement",
-  NJ: "Extended state engagement",
-  NM: "Extended state engagement",
-  NC: "Extended state engagement",
-  ND: "Extended state engagement",
-  SC: "Extended state engagement",
-  SD: "Extended state engagement",
-  WA: "Extended state engagement",
-  WV: "Extended state engagement",
-  WY: "Extended state engagement",
-};
-
 /* O-mark pin path — droplet pointing DOWN, circle at top, hole punched through.
    Used in exactly one place per CLAUDE.md. */
 function pinPath(cx: number, cy: number, R: number): string {
@@ -70,18 +47,16 @@ function pinPath(cx: number, cy: number, R: number): string {
 }
 
 export function USMap() {
-  const [tooltip, setTooltip] = useState<{ name: string; desc: string; direct: boolean; x: number; y: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{ name: string; desc: string; x: number; y: number } | null>(null);
 
   const servedStates = US_STATES.filter(([abbr]) => abbr in SERVED);
-  const extendedStates = US_STATES.filter(([abbr]) => abbr in EXTENDED);
 
   return (
     <div className="relative">
       {/* SR-only list precedes the map */}
       <p className="sr-only-text">
-        TOPSYS IT serves state government agencies across 49 states. Direct state engagements include:{" "}
-        {servedStates.map(([, name]) => name).join(", ")}. Extended state engagements include:{" "}
-        {extendedStates.map(([, name]) => name).join(", ")}.
+        TOPSYS IT serves state government agencies directly across 30 states:{" "}
+        {servedStates.map(([, name]) => name).join(", ")}.
       </p>
 
       <div className="relative mapwrap">
@@ -95,7 +70,6 @@ export function USMap() {
           <g>
             {US_STATES.map(([abbr, name, d, lx, ly]) => {
               const isServed = abbr in SERVED;
-              const isExtended = abbr in EXTENDED;
               return (
                 <path
                   key={abbr}
@@ -104,17 +78,13 @@ export function USMap() {
                   className={`transition-colors duration-base ease-standard ${
                     isServed
                       ? "fill-field hover:fill-teal cursor-default"
-                      : isExtended
-                      ? "fill-[#CFD8D3] hover:fill-[#B9C4BC] cursor-default"
                       : "fill-[#E8E5DC]"
                   }`}
                   stroke={isServed ? "var(--color-field-deep)" : "#C9C4B4"}
                   strokeWidth="0.9"
                   onMouseEnter={() => {
                     if (isServed) {
-                      setTooltip({ name, desc: SERVED[abbr], direct: true, x: lx, y: ly });
-                    } else if (isExtended) {
-                      setTooltip({ name, desc: EXTENDED[abbr], direct: false, x: lx, y: ly });
+                      setTooltip({ name, desc: SERVED[abbr], x: lx, y: ly });
                     }
                   }}
                   onMouseLeave={() => setTooltip(null)}
@@ -182,12 +152,7 @@ export function USMap() {
               top: `${(tooltip.y / 600) * 100}%`,
             }}
           >
-            <b className={`font-normal ${tooltip.direct ? "text-signal" : "text-on-field-2"}`}>
-              {tooltip.name}
-            </b>
-            <span className="block font-mono text-mono-xs uppercase tracking-[.06em] text-on-field-2 mt-0.5">
-              {tooltip.direct ? "Direct engagement" : "Extended engagement"}
-            </span>
+            <b className="text-signal font-normal">{tooltip.name}</b>
           </div>
         )}
       </div>
@@ -197,10 +162,6 @@ export function USMap() {
         <span className="flex items-center gap-2">
           <span className="inline-block w-[11px] h-[11px] rounded-sm bg-field" aria-hidden="true" />
           Direct state engagements
-        </span>
-        <span className="flex items-center gap-2">
-          <span className="inline-block w-[11px] h-[11px] rounded-sm bg-[#CFD8D3]" aria-hidden="true" />
-          Extended state engagements
         </span>
       </div>
     </div>

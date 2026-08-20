@@ -550,6 +550,26 @@
   .wrap {
     padding-inline: clamp(3rem, 5vw, 5rem);
   }
+
+  .nav-item {
+    padding: 0 24px 16px;
+    font-size: 15px;
+  }
+}
+
+/* Ultra-wide (≥1600px): let the container use more of the available width
+   instead of leaving large fixed side margins, and spread nav items a
+   touch further so the header doesn't read as clustered top-left. */
+@media (width >= 100rem) {
+  .wrap {
+    max-width: 108rem;
+    padding-inline: clamp(3.5rem, 6vw, 6.5rem);
+  }
+
+  .nav-item {
+    padding: 0 30px 16px;
+    font-size: 15.5px;
+  }
 }
 
 /* ============================================================================

@@ -106,7 +106,7 @@ export default function PublicSectorPage() {
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted">
                   States served
                 </dt>
-                <dd className="font-mono text-stat text-ink mt-2">49</dd>
+                <dd className="font-mono text-stat text-ink mt-2">30</dd>
               </div>
               <div className="border-t border-hairline pt-5 mt-6">
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted">
