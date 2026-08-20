@@ -1,0 +1,393 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState, useCallback } from "react";
+
+/* ---- Capabilities panel data ---- */
+const CAP_CARDS = [
+  {
+    href: "/capabilities/ai-and-data",
+    title: "AI & data",
+    desc: "Data foundations, applied AI, and analytics that change what people decide.",
+    sub: "Advisory · Generative AI · Automation · ML · Data platforms · Analytics · Governance",
+    lead: true,
+  },
+  {
+    href: "/capabilities/applications-and-modernization",
+    title: "Applications & modernization",
+    desc: "Legacy systems modernized in production",
+  },
+  {
+    href: "/capabilities/cloud-and-platform-engineering",
+    title: "Cloud & platform engineering",
+    desc: "Migration, DevSecOps, platform teams",
+  },
+  {
+    href: "/capabilities/cybersecurity",
+    title: "Cybersecurity",
+    desc: "Identity, compliance, risk",
+  },
+  {
+    href: "/capabilities/technology-talent",
+    title: "Technology talent",
+    desc: "Specialists and full delivery pods",
+  },
+];
+
+const INTENT_LINKS = [
+  { label: "Modernize a legacy system", href: "/capabilities/applications-and-modernization" },
+  { label: "Apply AI to a workflow", href: "/capabilities/ai-and-data" },
+  { label: "Staff a delivery team", href: "/capabilities/technology-talent" },
+  { label: "Buy through a contract vehicle", href: "/contract-vehicles" },
+];
+
+const NAV_LINKS = [
+  { label: "Industries", href: "/industries" },
+  { label: "Public sector", href: "/public-sector" },
+  { label: "Case studies", href: "/work" },
+  { label: "Insights", href: "/insights" },
+  { label: "About", href: "/about" },
+];
+
+/* ---- Command bar search data ---- */
+const SEARCH_GROUPS = [
+  {
+    label: "Capabilities",
+    items: [
+      { label: "AI & data", href: "/capabilities/ai-and-data" },
+      { label: "Legacy & mainframe modernization", href: "/capabilities/applications-and-modernization" },
+      { label: "Data platforms", href: "/capabilities/ai-and-data" },
+    ],
+  },
+  {
+    label: "Public sector",
+    items: [
+      { label: "State & local government", href: "/public-sector/state-and-local" },
+      { label: "Contract vehicles", href: "/contract-vehicles" },
+    ],
+  },
+  {
+    label: "Case studies",
+    items: [
+      { label: "Cross-processor payment intelligence", href: "/work/payments-data" },
+    ],
+  },
+];
+
+/* ========================================================================= */
+
+export function SiteHeader() {
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [cmdOpen, setCmdOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const capBtnRef = useRef<HTMLButtonElement>(null);
+  const cmdInputRef = useRef<HTMLInputElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  /* Close panel on outside click */
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (
+        panelOpen &&
+        panelRef.current &&
+        !panelRef.current.contains(e.target as Node) &&
+        !capBtnRef.current?.contains(e.target as Node)
+      ) {
+        setPanelOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [panelOpen]);
+
+  /* ⌘K / Ctrl+K shortcut */
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setCmdOpen((v) => !v);
+      }
+      if (e.key === "Escape") {
+        setCmdOpen(false);
+        setPanelOpen(false);
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
+  /* Focus input when command bar opens */
+  useEffect(() => {
+    if (cmdOpen) {
+      setTimeout(() => cmdInputRef.current?.focus(), 50);
+    }
+  }, [cmdOpen]);
+
+  /* Lock scroll when overlays open */
+  useEffect(() => {
+    const open = cmdOpen || mobileOpen;
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    return () => { document.documentElement.style.overflow = ""; };
+  }, [cmdOpen, mobileOpen]);
+
+  const closeCmd = useCallback(() => setCmdOpen(false), []);
+
+  return (
+    <>
+      {/* ---- Header ---- */}
+      <header
+        ref={headerRef}
+        className="sticky top-0 z-[100] bg-paper/90 backdrop-blur-[10px]"
+      >
+        <div className="wrap flex items-end gap-8 h-20 relative max-[1023px]:items-center max-[1023px]:justify-between max-[1023px]:h-[70px]">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="pb-4 max-[1023px]:pb-0 flex-none"
+            aria-label="TOPSYS IT — home"
+          >
+            <Image
+              src="/brand/topsys-logo.png"
+              alt="TOPSYS IT"
+              width={120}
+              height={30}
+              className="h-[30px] w-auto"
+              priority
+            />
+          </Link>
+
+          {/* Datum-rule nav (desktop) */}
+          <nav
+            className="flex-1 flex items-end relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-hairline max-[1023px]:hidden"
+            aria-label="Primary"
+          >
+            {/* Capabilities — has panel */}
+            <button
+              ref={capBtnRef}
+              className="nav-item group"
+              aria-expanded={panelOpen}
+              aria-controls="cap-panel"
+              onClick={() => setPanelOpen((v) => !v)}
+            >
+              Capabilities
+              {/* Gradient tick — one of the four permitted uses */}
+              <span
+                className={`absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${panelOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                aria-hidden="true"
+              />
+            </button>
+
+            {NAV_LINKS.map(({ label, href }) => (
+              <Link key={href} href={href} className="nav-item group">
+                {label}
+                <span
+                  className="absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left scale-x-0 group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right controls (desktop) */}
+          <div className="flex items-center gap-3.5 pb-3.5 max-[1023px]:hidden">
+            <button
+              className="flex items-center gap-2.5 h-9 px-3 bg-surface border border-hairline rounded-control font-mono text-mono-sm text-ink-muted hover:border-teal hover:text-teal transition-colors duration-fast ease-standard"
+              onClick={() => setCmdOpen(true)}
+              aria-label="Open search"
+            >
+              Search <span aria-hidden="true">⌘K</span>
+            </button>
+            <Link
+              href="/careers"
+              className="text-caption text-ink-muted hover:text-ink transition-colors duration-fast ease-standard"
+            >
+              Careers
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center h-10 px-5 bg-teal text-white rounded-control text-body-xs font-semibold hover:bg-teal-hover transition-colors duration-fast ease-standard"
+            >
+              Talk to us
+            </Link>
+          </div>
+
+          {/* Mobile burger */}
+          <button
+            className="hidden max-[1023px]:inline-flex items-center font-mono text-mono-sm uppercase tracking-[.09em]"
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? "Close" : "Menu"}
+          </button>
+
+          {/* Capability mega-panel */}
+          {panelOpen && (
+            <div
+              id="cap-panel"
+              ref={panelRef}
+              role="region"
+              aria-label="Capabilities"
+              className="absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              style={{
+                borderTopColor: "transparent",
+                borderImage: "var(--gradient-signature) 1",
+              }}
+            >
+              {/* Cap cards */}
+              <div>
+                <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-4">
+                  <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
+                  Capability map
+                </p>
+                <div className="grid grid-cols-2 gap-3 mt-4">
+                  {CAP_CARDS.map((c) =>
+                    c.lead ? (
+                      <Link
+                        key={c.href}
+                        href={c.href}
+                        onClick={() => setPanelOpen(false)}
+                        className="col-span-2 bg-gradient-to-r from-field to-field-raised border-0 rounded-card p-6 shadow-e1 hover:-translate-y-0.5 hover:shadow-field transition-all duration-fast ease-standard"
+                      >
+                        <h4 className="text-heading-5 font-display font-medium text-on-field mb-1">
+                          {c.title}
+                        </h4>
+                        <p className="text-caption text-on-field-2 leading-relaxed">{c.desc}</p>
+                        {c.sub && (
+                          <p className="mt-3 font-mono text-mono-xs uppercase tracking-[.06em] text-signal">
+                            {c.sub}
+                          </p>
+                        )}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={c.href}
+                        href={c.href}
+                        onClick={() => setPanelOpen(false)}
+                        className="border border-hairline rounded-card p-4 bg-white hover:border-teal hover:shadow-e1 hover:-translate-y-0.5 transition-all duration-fast ease-standard"
+                      >
+                        <h4 className="text-heading-5 font-display font-medium text-ink mb-0.5">
+                          {c.title}
+                        </h4>
+                        <p className="text-caption text-ink-muted leading-relaxed">{c.desc}</p>
+                      </Link>
+                    )
+                  )}
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="bg-hairline" />
+
+              {/* Intent links */}
+              <div>
+                <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-4">
+                  <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
+                  I need to
+                </p>
+                <div className="flex flex-col gap-2 mt-4">
+                  {INTENT_LINKS.map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setPanelOpen(false)}
+                      className="flex justify-between items-center p-4 bg-white border border-hairline rounded-card text-body-xs text-ink hover:border-teal hover:translate-x-[3px] hover:shadow-e1 transition-all duration-fast ease-standard"
+                    >
+                      {label}
+                      <span className="font-mono text-teal" aria-hidden="true">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile nav drawer */}
+        {mobileOpen && (
+          <div className="hidden max-[1023px]:block border-t border-hairline bg-paper px-5 pb-6 space-y-1">
+            <button
+              className="block w-full text-left py-3 border-b border-hairline font-display font-medium text-heading-5 text-ink"
+              onClick={() => { setPanelOpen((v) => !v); }}
+              aria-expanded={panelOpen}
+            >
+              Capabilities
+            </button>
+            {NAV_LINKS.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="block py-3 border-b border-hairline font-display font-medium text-heading-5 text-ink"
+                onClick={() => setMobileOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+            <div className="pt-4 flex flex-col gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center h-12 px-5 bg-teal text-white rounded-control text-body-xs font-semibold"
+                onClick={() => setMobileOpen(false)}
+              >
+                Talk to us
+              </Link>
+              <Link
+                href="/careers"
+                className="text-center text-body-sm text-ink-muted"
+                onClick={() => setMobileOpen(false)}
+              >
+                Careers
+              </Link>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* ---- Command bar overlay ---- */}
+      {cmdOpen && (
+        <div
+          className="fixed inset-0 bg-field-deep/[.45] backdrop-blur-[3px] z-[150] pt-[12vh]"
+          onClick={(e) => { if (e.target === e.currentTarget) closeCmd(); }}
+          role="presentation"
+        >
+          <div
+            className="max-w-[620px] mx-auto bg-paper rounded-panel shadow-e2 overflow-hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search"
+          >
+            <input
+              ref={cmdInputRef}
+              type="text"
+              placeholder="Search — try COBOL, Snowflake, Pennsylvania, agentic AI"
+              className="w-full h-[62px] px-6 border-0 border-b border-hairline bg-transparent font-body text-[17px] text-ink focus:outline-none placeholder:text-ink-muted"
+              autoComplete="off"
+            />
+            <div className="py-3 max-h-[50vh] overflow-auto">
+              {SEARCH_GROUPS.map(({ label, items }) => (
+                <div key={label}>
+                  <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-ink-muted px-6 pt-3 pb-1.5">
+                    {label}
+                  </p>
+                  {items.map(({ label: l, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={closeCmd}
+                      className="block px-6 py-2 text-body-sm text-ink hover:bg-teal-tint transition-colors duration-fast ease-standard"
+                    >
+                      {l}
+                    </Link>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
