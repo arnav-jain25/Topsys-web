@@ -3,7 +3,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroSceneLoader } from "@/components/sections/HeroSceneLoader";
 import {
   StatBar,
-  ClientGrid,
+  ServicesShowcase,
   DualModel,
   CapabilityGrid,
   AIArc,
@@ -71,7 +71,7 @@ export default function HomePage() {
       <section className="border-t border-hairline" style={{ padding: "4rem 0" }}>
         <div className="wrap">
           <StatBar />
-          <ClientGrid />
+          <ServicesShowcase />
         </div>
       </section>
 
@@ -174,7 +174,7 @@ export default function HomePage() {
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">
-                  Health & human services · Corrections · Transportation · General services
+                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · Job and Family Services (JFS)
                 </dd>
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
                   States served

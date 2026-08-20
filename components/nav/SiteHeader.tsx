@@ -87,12 +87,13 @@ const INTENT_LINKS = [
   { label: "Modernize a legacy system", href: "/capabilities/applications-and-modernization" },
   { label: "Apply AI to a workflow", href: "/capabilities/ai-and-data" },
   { label: "Staff a delivery team", href: "/capabilities/technology-talent" },
-  { label: "Buy through a contract vehicle", href: "/contract-vehicles" },
+  { label: "Buy through the DIR Contract", href: "/contract-vehicles" },
 ];
 
 const NAV_LINKS = [
   { label: "Industries", href: "/industries" },
   { label: "Public sector", href: "/public-sector" },
+  { label: "DIR Contract", href: "/contract-vehicles" },
   { label: "Case studies", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
@@ -112,7 +113,7 @@ const SEARCH_GROUPS = [
     label: "Public sector",
     items: [
       { label: "State & local government", href: "/public-sector/state-and-local" },
-      { label: "Contract vehicles", href: "/contract-vehicles" },
+      { label: "DIR Contract", href: "/contract-vehicles" },
     ],
   },
   {

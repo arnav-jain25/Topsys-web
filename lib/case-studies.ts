@@ -76,6 +76,39 @@ export const CASE_STUDIES: CaseStudy[] = [
     metric: "5 systems unified",
   },
   {
+    slug: "conversational-incident-response",
+    tag: "Financial services · Cybersecurity",
+    title: "A conversational AI platform for security incident response",
+    lede: "Investigation, evidence, and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval.",
+    client: "A financial services security operations team",
+    capabilities: ["AI & data", "Cybersecurity", "Applications & modernization"],
+    problem: [
+      "Incident response ran across a patchwork of dashboards, chat threads, and ticketing tools. The investigation an analyst performed, the evidence that supported it, and the reasoning behind a recommended action were rarely captured in one place. Reconstructing why a decision was made meant piecing it back together after the fact.",
+      "Analysts needed a system that could investigate at machine speed without removing the human from the loop. Automating containment actions outright was a non-starter for a regulated environment; the requirement was a system that proposed, explained, and waited to be told yes.",
+    ],
+    approach: [
+      {
+        heading: "Conversation-first incident workspace",
+        body: "Every incident opens directly into a conversation with the agent rather than a separate ticket form. Investigation, evidence, and the decision checkpoint live as tabs inside that one record, so the agent's reasoning stays attached to the transcript that produced it.",
+      },
+      {
+        heading: "Evidence-weighted hypotheses",
+        body: "As the agent works an investigation plan, it tracks competing hypotheses with a live confidence weighting, updated as each tool call returns evidence. Analysts see not just a conclusion but the case for and against it.",
+      },
+      {
+        heading: "Structured agent activity, not chat bubbles",
+        body: "Tool calls render as structured events: a name, a status, a timestamp, a result, and the evidence it produced. An analyst can see exactly what the agent checked and what it found, in an audit-ready format from the start.",
+      },
+      {
+        heading: "Human approval, always",
+        body: "The agent recommends an action; it never executes one unaudited. An analyst can approve, modify, or reject the recommendation, and a modified action is recorded alongside the original rather than silently overwriting it. Every incident closes into a searchable, replayable transcript.",
+      },
+    ],
+    outcome: null,
+    tech: ["React", "LLM orchestration", "State machine architecture", "Audit logging"],
+    metric: null,
+  },
+  {
     slug: "realtime-data-platform",
     tag: "Financial services · Fortune 500",
     title: "Real-time card delivery visibility under a 40ms latency budget",

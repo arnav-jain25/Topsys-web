@@ -1,5 +1,5 @@
 export { StatBar } from "./StatBar";
-export { ClientGrid } from "./ClientGrid";
+export { ServicesShowcase } from "./ServicesShowcase";
 export { DualModel } from "./DualModel";
 export { CapabilityGrid } from "./CapabilityGrid";
 export { AIArc } from "./AIArc";

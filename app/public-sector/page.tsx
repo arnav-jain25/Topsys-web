@@ -85,7 +85,7 @@ export default function PublicSectorPage() {
           <div className="flex gap-3 flex-wrap mt-10">
             <Button href="/contact?re=public-sector">Request a capability briefing</Button>
             <Button href="/contract-vehicles" variant="secondary">
-              Contract vehicles
+              DIR Contract
             </Button>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function PublicSectorPage() {
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-2">
-                  Health & human services · Corrections · Transportation · General services
+                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · Job and Family Services (JFS)
                 </dd>
               </div>
               <div className="border-t border-hairline pt-5 mt-6">
@@ -158,6 +158,36 @@ export default function PublicSectorPage() {
                 <p className="text-body-xs text-ink-2">{body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          CAPABILITY AUGMENTED STAFFING (CASM) — paper
+          ================================================================ */}
+      <section style={{ padding: "7rem 0" }}>
+        <div className="wrap">
+          <Eyebrow>Capability Augmented Staffing (CASM)</Eyebrow>
+          <div className="grid grid-cols-[1.2fr_.8fr] gap-12 mt-6 items-start max-[767px]:grid-cols-1">
+            <p className="text-lede text-ink-2 max-w-[56ch]">
+              Specialists embedded directly into client teams to reduce onboarding friction and accelerate time-to-value.
+            </p>
+            <div className="border border-hairline rounded-card bg-white px-7 py-7">
+              <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-ink-muted mb-4">
+                How specialists engage
+              </p>
+              <ul className="list-none space-y-0">
+                {["Embedded specialists", "Project pods", "Contract, contract-to-hire, direct"].map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-2.5 py-[11px] border-t border-hairline font-mono text-mono text-ink-2 first:border-0"
+                  >
+                    <span className="text-teal flex-none" aria-hidden="true">·</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -252,7 +282,7 @@ export default function PublicSectorPage() {
           <div className="mt-12 flex gap-3 flex-wrap">
             <Button href="/contact?re=public-sector">Request a capability briefing</Button>
             <Button href="/contract-vehicles" variant="secondary">
-              View contract vehicles
+              View DIR Contract
             </Button>
           </div>
         </div>

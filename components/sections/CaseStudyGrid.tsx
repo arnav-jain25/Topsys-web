@@ -142,6 +142,32 @@ const PlatformDiagram = () => (
   </svg>
 );
 
+const ConversationalDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="An incident feeding a conversational agent, which weighs evidence-backed hypotheses and routes a recommendation through human approval.">
+    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
+      <rect x="2" y="34" width="54" height="22" rx="3" />
+      <rect x="150" y="6" width="70" height="20" rx="3" />
+      <rect x="150" y="66" width="70" height="20" rx="3" />
+      <rect x="248" y="34" width="50" height="22" rx="3" />
+    </g>
+    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
+      <path d="M56 45 H74" />
+      <path d="M132 45 H141 V16 H150" />
+      <path d="M132 45 H141 V76 H150" />
+      <path d="M220 16 H232 V45 H248" />
+      <path d="M220 76 H232 V45" />
+    </g>
+    <rect x="74" y="31" width="58" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
+    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+      <text x="10" y="48">INCIDENT</text>
+      <text x="158" y="19">EVIDENCE</text>
+      <text x="158" y="79">HUMAN APPROVAL</text>
+      <text x="254" y="48">ACTION</text>
+    </g>
+    <text x="103" y="48" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-signal)">AGENT</text>
+  </svg>
+);
+
 const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Financial services · Active",
@@ -160,6 +186,15 @@ const CASE_STUDIES: CaseStudy[] = [
     tech: ["BigQuery", "ETL/ELT"],
     metric: "5 systems unified",
     href: "/work/revenue-intelligence",
+  },
+  {
+    tag: "Financial services · Cybersecurity",
+    title: "A conversational AI platform for security incident response",
+    body: "Investigation, evidence and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval.",
+    diagram: <ConversationalDiagram />,
+    tech: ["React", "LLM orchestration"],
+    metric: null,
+    href: "/work/conversational-incident-response",
   },
   {
     tag: "Financial services · Fortune 500",

@@ -14,11 +14,11 @@
 
 @theme {
   /* --- Colour: light ground -------------------------------------------- */
-  --color-paper: #f8f7f3;           /* page background — warm off-white, never pure white */
-  --color-surface: #efede6;         /* raised regions */
-  --color-sunken: #e4e1d8;          /* input fills */
-  --color-hairline: #d8d5cc;        /* default 1px borders */
-  --color-hairline-strong: #b9b5a9; /* hover borders, emphasis rules */
+  --color-paper: #f4efe3;           /* page background — warm beige, never pure white */
+  --color-surface: #ece3d0;         /* raised regions */
+  --color-sunken: #e0d4b8;          /* input fills */
+  --color-hairline: #d6c9ab;        /* default 1px borders */
+  --color-hairline-strong: #b7a67f; /* hover borders, emphasis rules */
 
   /* --- Colour: ink ------------------------------------------------------ */
   --color-ink: #0e1a1f;             /* primary text — petrol-tinted near-black */

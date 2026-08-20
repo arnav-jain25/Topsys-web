@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { US_STATES } from "@/lib/us-states-geometry";
 
-/* States with confirmed direct engagements */
+/* States with direct state engagements */
 const SERVED: Record<string, string> = {
   TX: "Statewide technology services",
   PA: "Corrections and enterprise systems",
@@ -60,7 +60,7 @@ export function USMap() {
     <div className="relative">
       {/* SR-only list precedes the map */}
       <p className="sr-only-text">
-        TOPSYS IT serves state government agencies. Confirmed engagements include:{" "}
+        TOPSYS IT serves state government agencies. Direct state engagements include:{" "}
         {servedStates.map(([, name]) => name).join(", ")}.
       </p>
 
@@ -177,11 +177,11 @@ export function USMap() {
       <div className="flex gap-6 mt-5 flex-wrap font-mono text-mono-xs uppercase tracking-[.06em] text-ink-muted">
         <span className="flex items-center gap-2">
           <span className="inline-block w-[11px] h-[11px] rounded-sm bg-field" aria-hidden="true" />
-          Confirmed engagements
+          Direct state engagements
         </span>
         <span className="flex items-center gap-2">
           <span className="inline-block w-[11px] h-[11px] rounded-sm bg-[#CFD8D3]" aria-hidden="true" />
-          Additional states served
+          Extended state engagements
         </span>
       </div>
     </div>

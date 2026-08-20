@@ -28,7 +28,7 @@ const company = [
 
 const connect = [
   { label: "Contact", href: "/contact" },
-  { label: "Contract vehicles", href: "/contract-vehicles" },
+  { label: "DIR Contract", href: "/contract-vehicles" },
 ];
 
 const legal = [

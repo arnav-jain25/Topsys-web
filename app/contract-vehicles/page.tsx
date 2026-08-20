@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { CONTRACT_CONTACTS, OFFICES } from "@/lib/offices";
 
 export const metadata: Metadata = {
-  title: "Contract vehicles — TOPSYS IT",
+  title: "DIR Contract — TOPSYS IT",
   description:
     "TOPSYS IT holds Texas DIR Contract No. DIR-CPO-5671 for IT staff augmentation services (ITSAC). Request a quote or place a purchase order referencing the contract number.",
 };
@@ -54,8 +54,8 @@ export default function ContractVehiclesPage() {
           ================================================================ */}
       <section style={{ padding: "6rem 0 5rem" }}>
         <div className="wrap">
-          <Breadcrumb items={[{ label: "Contract vehicles" }]} />
-          <Eyebrow className="mt-6">Contract vehicles</Eyebrow>
+          <Breadcrumb items={[{ label: "DIR Contract" }]} />
+          <Eyebrow className="mt-6">DIR Contract</Eyebrow>
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{

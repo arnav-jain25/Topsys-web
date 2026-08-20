@@ -49,7 +49,7 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
       className={`relative pt-4 transition-all duration-slow ease-standard ${visible ? "before:scale-x-100" : "before:scale-x-0"} before:absolute before:top-0 before:left-0 before:right-0 before:h-0.5 before:bg-signature before:rounded-sm before:origin-left before:transition-transform before:duration-[700ms] before:ease-standard`}
     >
       <b
-        className="block font-mono font-normal leading-none"
+        className="block text-center font-mono font-normal leading-none"
         style={{
           fontSize: "clamp(2.125rem, 4vw, 3.375rem)",
           letterSpacing: "-0.03em",
@@ -60,7 +60,7 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
           : `${visible ? counted : 0}${suffix}`}
       </b>
       <small
-        className="block mt-3 font-mono text-mono-sm uppercase text-ink-muted"
+        className="block text-center mt-3 font-mono text-mono-sm uppercase text-ink-muted"
         style={{ letterSpacing: "0.1em" }}
       >
         {label}

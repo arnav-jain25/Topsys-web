@@ -223,6 +223,56 @@ export default function AIAndDataPage() {
       </section>
 
       {/* ================================================================
+          CONVERSATIONAL & MULTI-MODEL AI — surface
+          ================================================================ */}
+      <section className="bg-surface" style={{ padding: "7rem 0" }}>
+        <ScrollReveal className="wrap">
+          <Eyebrow>Patterns we build on</Eyebrow>
+          <h2
+            className="font-display font-medium text-ink mt-4"
+            style={{
+              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
+              letterSpacing: "-0.025em",
+            }}
+          >
+            Two architectures that show up in most AI programs
+          </h2>
+
+          <StaggerReveal
+            className="grid grid-cols-2 gap-5 mt-10 max-[767px]:grid-cols-1"
+            itemDelay={90}
+          >
+            <div className="group relative rounded-panel px-8 py-8 overflow-hidden border-0 shadow-e1 transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-field bg-gradient-to-br from-field to-field-deep">
+              <span
+                className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <span className="font-mono text-mono-xs uppercase tracking-[.08em] text-signal">01</span>
+              <h3 className="font-display font-medium text-heading-2 text-on-field mt-3 mb-2.5">
+                Conversational AI
+              </h3>
+              <p className="text-body-sm text-on-field-2">
+                State-driven workspaces where the conversation carries the work — a system asks clarifying questions, proposes a plan, tracks evidence as it gathers it, and routes every action through a human approval checkpoint before it executes. Built for domains where the reasoning trail matters as much as the outcome: investigation, triage, and case handling.
+              </p>
+            </div>
+            <div className="group relative rounded-card px-8 py-8 border border-hairline bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent overflow-hidden">
+              <span
+                className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <span className="font-mono text-mono-xs uppercase tracking-[.08em] text-ink-muted">02</span>
+              <h3 className="font-display font-medium text-heading-2 text-ink mt-3 mb-2.5">
+                Multi-model AI
+              </h3>
+              <p className="text-body-sm text-ink-2">
+                Orchestration layers that route each step of a workflow to the model suited to it, rather than forcing one model to do everything. A fast, cheap model handles classification and routing; a stronger model handles reasoning and synthesis; deterministic logic handles anything that shouldn't be probabilistic at all.
+              </p>
+            </div>
+          </StaggerReveal>
+        </ScrollReveal>
+      </section>
+
+      {/* ================================================================
           ENGAGEMENT ARC — inverted, expanded
           ================================================================ */}
       <section id="engagement" className="on-field" style={{ padding: "7rem 0" }}>
