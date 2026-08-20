@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Technology | TOPSYS IT",
+  title: "Technology",
   description:
     "Engineering delivery, platform and DevOps, and data infrastructure for technology companies building products that engineers will read, operate, and depend on.",
 };

@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Cloud & platform engineering | TOPSYS IT",
+  title: "Cloud & platform engineering",
   description:
     "Cloud migration, infrastructure as code, Kubernetes, CI/CD, and FinOps. We build platforms that reduce operational complexity, not move it to a different vendor.",
 };

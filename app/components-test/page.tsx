@@ -141,7 +141,7 @@ export default function ComponentsTestPage() {
             className="font-display font-medium text-on-field"
             style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", maxWidth: "20ch" }}
           >
-            AI that survives contact with production.
+            AI that survives data contact with production.
           </h2>
           <AIArc />
         </div>

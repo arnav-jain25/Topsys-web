@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Telecommunications | TOPSYS IT",
+  title: "Telecommunications",
   description:
     "Subscriber analytics, OSS/BSS integration, and digital platform development for telecommunications providers managing network-scale data and complex legacy system landscapes.",
 };

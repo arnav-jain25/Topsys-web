@@ -7,7 +7,7 @@ import { OFFICES } from "@/lib/offices";
 import { ContactOfficeGrid } from "./ContactOfficeGrid";
 
 export const metadata: Metadata = {
-  title: "Contact | TOPSYS IT",
+  title: "Contact",
   description:
     "Enterprise engagement, public sector briefing, talent requirement, or careers. Tell us which one applies and we'll route it to the right team.",
 };

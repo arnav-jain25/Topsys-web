@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const insight = INSIGHTS.find((i) => i.slug === slug);
   if (!insight) return {};
   return {
-    title: `${insight.title} | TOPSYS IT`,
+    title: insight.title,
     description: insight.summary,
   };
 }

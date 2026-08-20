@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Financial services | TOPSYS IT",
+  title: "Financial services",
   description:
     "Data platforms, application modernization, and engineering talent for financial institutions operating under SOX, PCI-DSS, and real-time payment latency requirements.",
 };

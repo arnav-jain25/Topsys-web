@@ -3,7 +3,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Subprocessors | TOPSYS IT",
+  title: "Subprocessors",
   description:
     "Third-party service providers used by TOPSYS IT Solutions LLC in connection with its services and website.",
 };

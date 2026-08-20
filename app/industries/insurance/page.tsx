@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Insurance | TOPSYS IT",
+  title: "Insurance",
   description:
     "Claims processing, underwriting and actuarial data platforms, and policy administration modernization for carriers operating under NAIC and state insurance department reporting requirements.",
 };

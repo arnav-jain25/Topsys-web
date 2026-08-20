@@ -135,7 +135,7 @@ export default function HomePage() {
             className="font-display font-medium text-on-field mt-4"
             style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em", maxWidth: "20ch" }}
           >
-            AI that survives contact with production.
+            AI that survives data contact with production.
           </h2>
           <p className="text-lede text-on-field-2 max-w-[64ch] mt-6">
             Most enterprise AI stalls in the same place: a pilot works in a notebook, then meets real data, real users and real compliance requirements. We start further back. What's the workflow, what does it cost you today, and is the data underneath it good enough to trust?

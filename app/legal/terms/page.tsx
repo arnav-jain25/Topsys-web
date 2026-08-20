@@ -3,7 +3,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Terms of use | TOPSYS IT",
+  title: "Terms of use",
   description:
     "Terms governing use of the TOPSYS IT Solutions LLC website.",
 };

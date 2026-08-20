@@ -6,7 +6,7 @@ import { USMap } from "@/components/sections/USMap";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Public sector | TOPSYS IT",
+  title: "Public sector",
   description:
     "Technology modernization, data, security, and engineering talent for state and local government agencies. Delivered inside real procurement, compliance, and legacy constraints.",
 };
@@ -54,6 +54,10 @@ const SERVICES = [
   {
     title: "Technology talent",
     body: "Specialists and teams for state IT programs: project managers, engineers, architects, and business analysts who've worked in government technology environments.",
+  },
+  {
+    title: "Capability Augmented Staffing (CASM)",
+    body: "Specialists embedded directly into client teams to reduce onboarding friction and accelerate time-to-value.",
   },
 ];
 
@@ -129,7 +133,7 @@ export default function PublicSectorPage() {
       </section>
 
       {/* ================================================================
-          WHAT WE DO — paper, 4 service blocks
+          WHAT WE DO — paper, 5 service blocks
           ================================================================ */}
       <section className="bg-surface" style={{ padding: "7rem 0" }}>
         <div className="wrap">
@@ -155,36 +159,6 @@ export default function PublicSectorPage() {
                 <p className="text-body-xs text-ink-2">{body}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          CAPABILITY AUGMENTED STAFFING (CASM) — paper
-          ================================================================ */}
-      <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
-          <Eyebrow>Capability Augmented Staffing (CASM)</Eyebrow>
-          <div className="grid grid-cols-[1.2fr_.8fr] gap-12 mt-6 items-start max-[767px]:grid-cols-1">
-            <p className="text-lede text-ink-2 max-w-[56ch]">
-              Specialists embedded directly into client teams to reduce onboarding friction and accelerate time-to-value.
-            </p>
-            <div className="border border-hairline rounded-card bg-white px-7 py-7">
-              <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-ink-muted mb-4">
-                How specialists engage
-              </p>
-              <ul className="list-none space-y-0">
-                {["Embedded specialists", "Project pods", "Contract, contract-to-hire, direct"].map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-2.5 py-[11px] border-t border-hairline font-mono text-mono text-ink-2 first:border-0"
-                  >
-                    <span className="text-teal flex-none" aria-hidden="true">·</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>

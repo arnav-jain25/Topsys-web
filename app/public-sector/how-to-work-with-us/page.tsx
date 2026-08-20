@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "How to work with us | TOPSYS IT public sector",
+  title: "How to work with us",
   description:
     "Procurement paths, contract vehicles, and program engagement for state and local government agencies working with TOPSYS IT.",
 };

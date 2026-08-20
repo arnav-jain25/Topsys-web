@@ -9,7 +9,7 @@ import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { INSIGHTS } from "@/lib/insights";
 
 export const metadata: Metadata = {
-  title: "Insights | TOPSYS IT",
+  title: "Insights",
   description:
     "Technology perspectives from the TOPSYS IT delivery team on AI, data, cloud, cybersecurity, and application modernization.",
 };

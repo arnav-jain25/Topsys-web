@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Applications & modernization | TOPSYS IT",
+  title: "Applications & modernization",
   description:
     "Legacy modernization, application development, API strategy, and microservices migration for enterprise and government. We re-architect systems. We don't just replace them.",
 };

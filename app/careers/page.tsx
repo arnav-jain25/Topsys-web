@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Careers | TOPSYS IT",
+  title: "Careers",
   description:
     "Open roles at TOPSYS IT Solutions LLC. Engineering and delivery positions across enterprise and government technology programs.",
 };
@@ -94,6 +94,12 @@ const ROLES = [
     jd: "Design, develop and maintain infrastructure and application deployments across multiple environments. Configure scripts to automate build and release procedures. Develop CI/CD pipelines using tools such as Jenkins and Docker, integrated with the AWS cloud platform. Monitor, report, and troubleshoot environment failures. Perform security and quality scan analysis on infrastructure and applications. Identify and remediate network and compliance issues.",
     requirements:
       "Master&rsquo;s degree in computer science, engineering, technology, or a related field, and one year of experience. Work location is Alpharetta, GA, which may also require travel to client locations throughout the USA.",
+  },
+  {
+    title: "Technical project manager",
+    jd: "Plan, coordinate, and oversee enterprise IT infrastructure and application projects by defining project objectives, developing schedules and milestones, coordinating resources and cross-functional activities, managing dependencies and risks, and monitoring deliverables. Manage the end-to-end execution of strategic enterprise technology initiatives, including planning, requirements coordination, implementation, testing, deployment, and post-production activities. Serve as Scrum Master for Agile delivery teams, facilitating Sprint Planning, Daily Stand-ups, Sprint Reviews, Sprint Retrospectives, backlog refinement, and other Agile ceremonies, while identifying and removing project impediments. Coordinate cloud modernization initiatives involving the migration of on-premises applications to multi-cloud environments. Coordinate business process automation initiatives with business stakeholders and technical teams to identify, evaluate, and prioritize automation opportunities. Monitor project performance against approved schedules, budgets, deliverables, and quality requirements, and develop mitigation strategies for project risks and issues.",
+    requirements:
+      "Bachelor&rsquo;s degree in computer science, computer information systems, information technology, or a related field, or a combination of education and experience equating to the U.S. equivalent of a bachelor&rsquo;s degree in one of the aforementioned subjects.",
   },
 ];
 

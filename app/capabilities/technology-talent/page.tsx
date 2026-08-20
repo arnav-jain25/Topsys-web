@@ -8,7 +8,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Technology talent | TOPSYS IT",
+  title: "Technology talent",
   description:
     "Senior engineers, architects, and full delivery pods for enterprise technology programs. Screened by practitioners, accountable to your delivery plan.",
 };

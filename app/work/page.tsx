@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { CaseStudyList } from "./CaseStudyList";
 
 export const metadata: Metadata = {
-  title: "Work | TOPSYS IT",
+  title: "Work",
   description:
     "Technology delivery case studies from TOPSYS IT. Data platforms, modernization, real-time systems, and platform engineering for enterprise and government clients.",
 };

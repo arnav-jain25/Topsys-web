@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Retail | TOPSYS IT",
+  title: "Retail",
   description:
     "Omnichannel commerce platforms, inventory and supply chain data, and PCI-DSS-scoped payment integration for retailers operating across store, web, and marketplace channels.",
 };

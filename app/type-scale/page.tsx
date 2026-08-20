@@ -93,7 +93,7 @@ export default function TypeScalePage() {
                 letterSpacing: "-0.028em",
               }}
             >
-              AI that survives contact with production.
+              AI that survives data contact with production.
             </p>
           </div>
 

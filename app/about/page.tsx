@@ -13,7 +13,7 @@ import {
 } from "./AboutSections";
 
 export const metadata: Metadata = {
-  title: "About | TOPSYS IT",
+  title: "About",
   description:
     "TOPSYS IT Solutions LLC is a minority-owned technology delivery firm with offices across the United States, Canada, and India. Founded by Abhishek Reddy Baddam.",
 };

@@ -7,7 +7,7 @@ import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { CONTRACT_CONTACTS, OFFICES } from "@/lib/offices";
 
 export const metadata: Metadata = {
-  title: "DIR Contract | TOPSYS IT",
+  title: "DIR Contract",
   description:
     "TOPSYS IT holds Texas DIR Contract No. DIR-CPO-5671 for IT staff augmentation services (ITSAC). Request a quote or place a purchase order referencing the contract number.",
 };

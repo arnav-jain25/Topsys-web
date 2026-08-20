@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Cybersecurity | TOPSYS IT",
+  title: "Cybersecurity",
   description:
     "Security assessments, IAM programs, SIEM operations, and compliance advisory for enterprise and government. Compliance documentation and actual security posture are not the same deliverable.",
 };

@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Services | TOPSYS IT",
+  title: "Services",
   description:
     "Data and AI, application modernization, cloud and platform engineering, cybersecurity, and technology talent. TOPSYS IT delivers across the full technology stack for enterprise and government clients.",
 };

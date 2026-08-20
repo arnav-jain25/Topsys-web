@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Healthcare | TOPSYS IT",
+  title: "Healthcare",
   description:
     "Health data integration, HL7/FHIR pipelines, clinical application development, and HIPAA-aware security engineering for health systems, payers, and digital health companies.",
 };

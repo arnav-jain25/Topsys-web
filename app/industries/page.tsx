@@ -8,7 +8,7 @@ import { IndustryIndexGrid } from "./_components/IndustryIndexGrid";
 import { ClientShowcase } from "./_components/ClientShowcase";
 
 export const metadata: Metadata = {
-  title: "Industries | TOPSYS IT",
+  title: "Industries",
   description:
     "TOPSYS IT delivers technology programs across financial services, telecommunications, healthcare, state government, technology, retail, and insurance.",
 };
