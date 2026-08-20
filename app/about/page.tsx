@@ -5,6 +5,11 @@ import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { OFFICES } from "@/lib/offices";
+import {
+  AboutValuesGrid,
+  AboutCredentialsGrid,
+  AboutOfficesGrid,
+} from "./AboutSections";
 
 export const metadata: Metadata = {
   title: "About — TOPSYS IT",
@@ -59,13 +64,7 @@ export default function AboutPage() {
           ================================================================ */}
       <section className="bg-surface" style={{ padding: "5rem 0" }}>
         <div className="wrap">
-          <div className="grid grid-cols-3 gap-8 max-[767px]:grid-cols-1">
-            {VALUES.map((v) => (
-              <div key={v} className="border-t-2 border-teal pt-5">
-                <p className="text-body text-ink-2">{v}</p>
-              </div>
-            ))}
-          </div>
+          <AboutValuesGrid values={VALUES} />
         </div>
       </section>
 
@@ -139,18 +138,7 @@ export default function AboutPage() {
             Certifications and registrations
           </h2>
 
-          <dl className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-2 max-[479px]:grid-cols-1">
-            {CREDENTIALS.map(({ label, value }) => (
-              <div key={label} className="border-t border-field-hairline pt-5">
-                <dt className="font-mono text-mono-xs text-on-field-2 uppercase tracking-[.08em]">
-                  {label}
-                </dt>
-                <dd className="font-mono text-stat text-on-field mt-2" style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}>
-                  {value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <AboutCredentialsGrid credentials={CREDENTIALS} />
 
           <div className="mt-12 border-t border-field-hairline pt-8">
             <p className="text-body-xs text-on-field-2 max-w-[60ch]">
@@ -179,26 +167,7 @@ export default function AboutPage() {
             Three countries, four offices, with regional presence in the UAE. Delivery teams work across time zones to stay embedded with client teams wherever they sit.
           </p>
 
-          <div className="grid grid-cols-4 gap-6 mt-12 max-[767px]:grid-cols-2 max-[479px]:grid-cols-1">
-            {OFFICES.map(({ id, label, address, phone, mapsUrl }) => (
-              <div key={id} className="border-t border-hairline pt-5">
-                <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                  {label}
-                </h3>
-                <a
-                  href={mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-body-xs text-ink-muted hover:text-teal transition-colors duration-fast ease-standard"
-                >
-                  {address}
-                </a>
-                {phone && (
-                  <p className="font-mono text-mono-xs text-ink-muted mt-2">{phone}</p>
-                )}
-              </div>
-            ))}
-          </div>
+          <AboutOfficesGrid offices={OFFICES} />
         </div>
       </section>
 

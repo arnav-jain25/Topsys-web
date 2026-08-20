@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { OFFICES } from "@/lib/offices";
+import { ContactOfficeGrid } from "./ContactOfficeGrid";
 
 export const metadata: Metadata = {
   title: "Contact — TOPSYS IT",
@@ -58,26 +59,7 @@ export default function ContactPage() {
           >
             Where to find us
           </h2>
-          <div className="grid grid-cols-4 gap-6 mt-10 max-[767px]:grid-cols-2 max-[479px]:grid-cols-1">
-            {OFFICES.map(({ id, label, address, phone, mapsUrl }) => (
-              <div key={id} className="border-t border-hairline pt-5">
-                <h3 className="font-display font-medium text-heading-4 text-ink mb-2">
-                  {label}
-                </h3>
-                <a
-                  href={mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-body-xs text-ink-muted hover:text-teal transition-colors duration-fast ease-standard"
-                >
-                  {address}
-                </a>
-                {phone && (
-                  <p className="font-mono text-mono-xs text-ink-muted mt-2">{phone}</p>
-                )}
-              </div>
-            ))}
-          </div>
+          <ContactOfficeGrid offices={OFFICES} />
         </div>
       </section>
     </>
