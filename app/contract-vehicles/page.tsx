@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { CONTRACT_CONTACTS, OFFICES } from "@/lib/offices";
 
 export const metadata: Metadata = {
-  title: "DIR Contract — TOPSYS IT",
+  title: "DIR Contract | TOPSYS IT",
   description:
     "TOPSYS IT holds Texas DIR Contract No. DIR-CPO-5671 for IT staff augmentation services (ITSAC). Request a quote or place a purchase order referencing the contract number.",
 };
@@ -135,7 +135,7 @@ export default function ContractVehiclesPage() {
           <ul className="grid grid-cols-3 gap-x-8 gap-y-3 mt-10 max-[767px]:grid-cols-1 max-[1023px]:grid-cols-2">
             {SERVICES.map((s) => (
               <li key={s} className="flex gap-3 items-start text-body-xs text-ink-2 border-t border-hairline pt-3">
-                <span className="text-teal mt-[2px] flex-none font-mono" aria-hidden="true">—</span>
+                <span className="text-teal mt-[2px] flex-none font-mono" aria-hidden="true">•</span>
                 {s}
               </li>
             ))}

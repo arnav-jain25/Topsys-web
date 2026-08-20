@@ -3,7 +3,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Privacy policy — TOPSYS IT",
+  title: "Privacy policy | TOPSYS IT",
   description:
     "How TOPSYS IT Solutions LLC collects and uses information from visitors to this website.",
 };

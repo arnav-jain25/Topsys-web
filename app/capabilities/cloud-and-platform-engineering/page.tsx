@@ -7,19 +7,19 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Cloud & platform engineering — TOPSYS IT",
+  title: "Cloud & platform engineering | TOPSYS IT",
   description:
-    "Cloud migration, infrastructure as code, Kubernetes, CI/CD, and FinOps. We build platforms that reduce operational complexity — not move it to a different vendor.",
+    "Cloud migration, infrastructure as code, Kubernetes, CI/CD, and FinOps. We build platforms that reduce operational complexity, not move it to a different vendor.",
 };
 
 const FAILURE_MODES = [
   {
     label: "Lift-and-shift that doesn't reduce complexity",
-    body: "Moving a VM to the cloud without changing the architecture gives you the same operational complexity at a higher monthly cost. The cloud bill arrives. The promised agility doesn't. The team still manages servers — they're just someone else's servers.",
+    body: "Moving a VM to the cloud without changing the architecture gives you the same operational complexity at a higher monthly cost. The cloud bill arrives. The promised agility doesn't. The team still manages servers, they're just someone else's servers.",
   },
   {
     label: "Terraform written by one person",
-    body: "Infrastructure as code that only one engineer can interpret is not infrastructure as code — it's a different kind of bus factor. When that person is unavailable, the team stops deploying and starts reading documentation they've never seen before.",
+    body: "Infrastructure as code that only one engineer can interpret is not infrastructure as code. It's a different kind of bus factor. When that person is unavailable, the team stops deploying and starts reading documentation they've never seen before.",
   },
   {
     label: "Cloud cost that wasn't in the plan",
@@ -109,7 +109,7 @@ export default function CloudAndPlatformEngineeringPage() {
             Cloud migrations create new vendor dependencies. They don&rsquo;t have to.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            The goal is a platform your teams can operate, extend, and understand — not a cloud
+            The goal is a platform your teams can operate, extend, and understand, not a cloud
             bill that grows faster than the value it produces. We build infrastructure as code,
             automate deployments end to end, and put cost accountability where the engineering
             decisions are made.
@@ -250,7 +250,7 @@ export default function CloudAndPlatformEngineeringPage() {
                   {bullets.map((b) => (
                     <li key={b} className="text-body-xs text-ink-2 flex gap-2 items-start">
                       <span className="text-teal mt-[2px] flex-none" aria-hidden="true">
-                        —
+                        •
                       </span>
                       {b}
                     </li>

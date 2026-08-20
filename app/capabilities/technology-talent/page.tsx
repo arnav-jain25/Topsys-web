@@ -8,7 +8,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Technology talent — TOPSYS IT",
+  title: "Technology talent | TOPSYS IT",
   description:
     "Senior engineers, architects, and full delivery pods for enterprise technology programs. Screened by practitioners, accountable to your delivery plan.",
 };
@@ -24,7 +24,7 @@ const MODELS = [
   {
     ord: "01",
     title: "Embedded specialists",
-    body: "Individual senior contributors placed into your delivery team. Not a warm body to fill a seat — an engineer or architect who joins your sprint, attends your standups, and is accountable to your definition of done.",
+    body: "Individual senior contributors placed into your delivery team. Not a warm body to fill a seat, but an engineer or architect who joins your sprint, attends your standups, and is accountable to your definition of done.",
     features: [
       "Screened by engineers, not recruiters",
       "Contract, contract-to-hire, or direct placement",
@@ -34,7 +34,7 @@ const MODELS = [
   {
     ord: "02",
     title: "Project pods",
-    body: "A self-contained team — typically a lead engineer, two to four contributors, and a delivery manager — organized around your program's outcome and accountable to milestones, not hours.",
+    body: "A self-contained team, typically a lead engineer, two to four contributors, and a delivery manager, organized around your program's outcome and accountable to milestones, not hours.",
     features: [
       "Skills assembled for the specific program",
       "Delivery manager included",
@@ -44,7 +44,7 @@ const MODELS = [
   {
     ord: "03",
     title: "Specialist recruiting",
-    body: "Direct-hire placement for roles where you need someone permanently. Technical phone screens, reference checks, and a structured offer process — handled by people who've done the job they're hiring for.",
+    body: "Direct-hire placement for roles where you need someone permanently. Technical phone screens, reference checks, and a structured offer process, handled by people who've done the job they're hiring for.",
     features: [
       "Technical screening included",
       "Reduced rate for clients with active engagements",
@@ -64,7 +64,7 @@ const MARKET_FAILURES = [
   },
   {
     label: "No accountability after placement",
-    body: "The vendor made the placement and moved on. When the contractor isn't performing, the client manages it. We stay engaged — because our delivery teams work alongside the talent we place.",
+    body: "The vendor made the placement and moved on. When the contractor isn't performing, the client manages it. We stay engaged, because our delivery teams work alongside the talent we place.",
   },
 ];
 
@@ -172,7 +172,7 @@ export default function TechnologyTalentPage() {
               <p className="text-body text-ink-2 mt-4">
                 <ContentToken id="CAP-03">
                   <span className="text-ink-muted">
-                    Verification pending: confirm whether recruiting works alongside delivery teams or operates independently — this is the central differentiator claim for this page.
+                    Verification pending: confirm whether recruiting works alongside delivery teams or operates independently. This is the central differentiator claim for this page.
                   </span>
                 </ContentToken>
               </p>
@@ -180,7 +180,7 @@ export default function TechnologyTalentPage() {
             <div className="space-y-4">
               {HOW_DIFFERENT.map((item) => (
                 <div key={item} className="flex gap-3 items-start text-body-xs text-ink-2">
-                  <span className="text-teal mt-[2px] flex-none font-mono" aria-hidden="true">—</span>
+                  <span className="text-teal mt-[2px] flex-none font-mono" aria-hidden="true">•</span>
                   {item}
                 </div>
               ))}
@@ -228,7 +228,7 @@ export default function TechnologyTalentPage() {
                 <ul className="space-y-2 border-t border-hairline pt-4">
                   {features.map((f) => (
                     <li key={f} className="flex gap-2 text-body-xs text-ink-muted">
-                      <span className="text-teal mt-[2px] flex-none font-mono" aria-hidden="true">—</span>
+                      <span className="text-teal mt-[2px] flex-none font-mono" aria-hidden="true">•</span>
                       {f}
                     </li>
                   ))}
@@ -309,7 +309,7 @@ export default function TechnologyTalentPage() {
                 Many clients start with a team and end with a program.
               </p>
               <p className="text-body-sm text-ink-2 mt-2 max-w-[64ch]">
-                What starts as embedded staff to accelerate a delivery often becomes a scoped engagement once we understand the system. We design for that transition — the team you hire from us can become the team that owns the deliverable.
+                What starts as embedded staff to accelerate a delivery often becomes a scoped engagement once we understand the system. We design for that transition: the team you hire from us can become the team that owns the deliverable.
               </p>
             </div>
             <Button href="/capabilities">See all capabilities</Button>

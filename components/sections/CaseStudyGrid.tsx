@@ -199,7 +199,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Financial services · Fortune 500",
     title: "Real-time card delivery visibility under a 40ms latency budget",
-    body: "A multi-stage Kafka streaming pipeline with DynamoDB persistence, SageMaker models, PII protection and a full audit trail — all inside a strict per-message latency SLA in production. Senior engineers on site within two weeks.",
+    body: "A multi-stage Kafka streaming pipeline with DynamoDB persistence, SageMaker models, PII protection and a full audit trail, all inside a strict per-message latency SLA in production. Senior engineers on site within two weeks.",
     diagram: <KafkaDiagram />,
     tech: ["Kafka", "SageMaker"],
     metric: "40ms SLA",

@@ -45,7 +45,7 @@ export default function TypeScalePage() {
   return (
     <>
       {/* ------------------------------------------------------------------ */}
-      <Section title="Display scale — Archivo 500">
+      <Section title="Display scale: Archivo 500">
         <Eyebrow>Display scale</Eyebrow>
 
         <div className="space-y-6">
@@ -117,7 +117,7 @@ export default function TypeScalePage() {
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      <Section title="Heading scale — Archivo 500" ground="light">
+      <Section title="Heading scale: Archivo 500" ground="light">
         <div className="space-y-4">
           {(
             [
@@ -144,7 +144,7 @@ export default function TypeScalePage() {
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      <Section title="Body scale — Public Sans 400/600" ground="light">
+      <Section title="Body scale: Public Sans 400/600" ground="light">
         <div className="space-y-6">
           {(
             [
@@ -183,7 +183,7 @@ export default function TypeScalePage() {
       </Section>
 
       {/* ------------------------------------------------------------------ */}
-      <Section title="Utility scale — IBM Plex Mono 400/500" ground="light">
+      <Section title="Utility scale: IBM Plex Mono 400/500" ground="light">
         <div className="space-y-6">
           <div>
             <span className="font-mono text-mono-xs text-ink-muted block mb-2">
@@ -276,7 +276,7 @@ export default function TypeScalePage() {
         <div className="space-y-8">
           <div>
             <span className="font-mono text-mono-xs text-ink-muted block mb-4">
-              Buttons — light ground
+              Buttons: light ground
             </span>
             <div className="flex gap-3 flex-wrap items-center">
               <Button href="/contact">Talk to us</Button>
@@ -289,7 +289,7 @@ export default function TypeScalePage() {
 
           <div className="on-field rounded-panel p-8">
             <span className="font-mono text-mono-xs text-on-field-2 block mb-4">
-              Buttons — inverted ground
+              Buttons: inverted ground
             </span>
             <div className="flex gap-3 flex-wrap items-center">
               <Button href="/contact">Talk to us</Button>
@@ -305,7 +305,7 @@ export default function TypeScalePage() {
       {/* ------------------------------------------------------------------ */}
       <Section title="Content tokens" ground="light">
         <span className="font-mono text-mono-xs text-ink-muted block mb-4">
-          Unresolved tokens — see docs/CONTENT-REGISTER.md
+          Unresolved tokens: see docs/CONTENT-REGISTER.md
         </span>
         <p className="text-body text-ink-2 max-w-[60ch]">
           States served: <ContentToken id="STAT-01" />. AI engagements
@@ -317,7 +317,7 @@ export default function TypeScalePage() {
       {/* ------------------------------------------------------------------ */}
       <Section title="Focus ring" ground="light">
         <span className="font-mono text-mono-xs text-ink-muted block mb-4">
-          Tab to these — 2px teal ring, 3px offset
+          Tab to these: 2px teal ring, 3px offset
         </span>
         <div className="flex gap-4 flex-wrap">
           <Button href="#">Focusable button</Button>

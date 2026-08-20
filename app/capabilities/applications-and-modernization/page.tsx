@@ -7,15 +7,15 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Applications & modernization — TOPSYS IT",
+  title: "Applications & modernization | TOPSYS IT",
   description:
-    "Legacy modernization, application development, API strategy, and microservices migration for enterprise and government. We re-architect systems — we don't just replace them.",
+    "Legacy modernization, application development, API strategy, and microservices migration for enterprise and government. We re-architect systems. We don't just replace them.",
 };
 
 const FAILURE_MODES = [
   {
     label: "Scoped as replacement, not re-architecture",
-    body: "Most migrations are funded to swap one technology for another on the same design. The new system inherits the same bottlenecks, the same data model, and the same coupling — just on a newer runtime. You spend the budget and arrive where you started.",
+    body: "Most migrations are funded to swap one technology for another on the same design. The new system inherits the same bottlenecks, the same data model, and the same coupling, just on a newer runtime. You spend the budget and arrive where you started.",
   },
   {
     label: "API sprawl with no contract",
@@ -70,7 +70,7 @@ const HOW_WE_WORK = [
   },
   {
     title: "Strangler fig pattern",
-    body: "New capability is built alongside the existing system, not instead of it. Traffic routes to the new service as each domain is ready. The legacy system shrinks as the modern one grows — no cutover day, no high-stakes rollback.",
+    body: "New capability is built alongside the existing system, not instead of it. Traffic routes to the new service as each domain is ready. The legacy system shrinks as the modern one grows, with no cutover day and no high-stakes rollback.",
   },
   {
     title: "Event-driven decoupling",
@@ -78,7 +78,7 @@ const HOW_WE_WORK = [
   },
   {
     title: "Team knowledge transfer built in",
-    body: "Architecture decision records, runbooks, and documented domain models are deliverables — not documentation sprints at the end. We write code the next engineer can operate without calling us.",
+    body: "Architecture decision records, runbooks, and documented domain models are deliverables, not documentation sprints at the end. We write code the next engineer can operate without calling us.",
   },
 ];
 
@@ -110,7 +110,7 @@ export default function ApplicationsAndModernizationPage() {
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
             Every quarter a legacy system stays in place, the cost of replacing it grows and the
-            team that understands it shrinks. We modernize applications incrementally — without
+            team that understands it shrinks. We modernize applications incrementally, without
             stopping product delivery to do it.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
@@ -249,7 +249,7 @@ export default function ApplicationsAndModernizationPage() {
                   {bullets.map((b) => (
                     <li key={b} className="text-body-xs text-ink-2 flex gap-2 items-start">
                       <span className="text-teal mt-[2px] flex-none" aria-hidden="true">
-                        —
+                        •
                       </span>
                       {b}
                     </li>

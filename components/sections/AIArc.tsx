@@ -6,7 +6,7 @@ const STAGES = [
   {
     label: "Strategy",
     detail:
-      "Where AI is worth doing at all — mapped against the cost of the work today, the data you actually hold and the risk you can carry.",
+      "Where AI is worth doing at all, mapped against the cost of the work today, the data you actually hold and the risk you can carry.",
   },
   {
     label: "Use case",
@@ -21,12 +21,12 @@ const STAGES = [
   {
     label: "Build",
     detail:
-      "Prompt engineering, fine-tuning, retrieval, orchestration — whatever the use case demands, not the architecture the team already knows.",
+      "Prompt engineering, fine-tuning, retrieval, orchestration: whatever the use case demands, not the architecture the team already knows.",
   },
   {
     label: "Integrate",
     detail:
-      "Wired into the system of record, not sitting alongside it. The handoff is the product — the model alone is not.",
+      "Wired into the system of record, not sitting alongside it. The handoff is the product. The model alone is not.",
   },
   {
     label: "Govern",

@@ -18,7 +18,7 @@ export function CTASection() {
           Tell us what you're trying to build.
         </h2>
         <p className="text-lede text-on-field-2 mb-12 relative max-w-[60ch]">
-          A modernization program, an AI use case, a system that keeps breaking, or a team you can't hire fast enough. We'll put the right people on the call — not a salesperson.
+          A modernization program, an AI use case, a system that keeps breaking, or a team you can't hire fast enough. We'll put the right people on the call, not a salesperson.
         </p>
         <div className="relative">
           <Button href="/contact" variant="primary">

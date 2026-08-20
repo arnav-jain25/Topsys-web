@@ -14,7 +14,7 @@ export function ContentToken({
   return (
     <span
       className="content-token"
-      title={`Unresolved content token: ${id} — see docs/CONTENT-REGISTER.md`}
+      title={`Unresolved content token: ${id} (see docs/CONTENT-REGISTER.md)`}
     >
       {children ?? `{{${id}}}`}
     </span>

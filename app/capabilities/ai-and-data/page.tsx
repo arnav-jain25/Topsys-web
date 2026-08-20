@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "AI & Data — TOPSYS IT",
+  title: "AI & Data | TOPSYS IT",
   description:
     "Data foundations, applied AI, and analytics that change what people decide. TOPSYS IT takes AI from pilot to production for enterprise and government clients.",
 };
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const STALLS = [
   {
     label: "Data that can't be trusted",
-    body: "The model is only as good as what it's trained on and what it retrieves. Most enterprise data estates weren't built for AI — lineage is missing, ownership is unclear, and quality gates don't exist. You find this out after the pilot.",
+    body: "The model is only as good as what it's trained on and what it retrieves. Most enterprise data estates weren't built for AI: lineage is missing, ownership is unclear, and quality gates don't exist. You find this out after the pilot.",
   },
   {
     label: "No clear workflow owner",
@@ -25,7 +25,7 @@ const STALLS = [
   },
   {
     label: "Integration deferred",
-    body: "The model lives next to the system of record, not inside it. Users don't adopt it because it adds a step. The handoff is the product — a model alone isn't.",
+    body: "The model lives next to the system of record, not inside it. Users don't adopt it because it adds a step. The handoff is the product. A model alone isn't.",
   },
   {
     label: "Governance added at the end",
@@ -40,7 +40,7 @@ const CAPS = [
   },
   {
     title: "Generative AI",
-    body: "Document processing, retrieval-augmented generation, conversational interfaces, and multi-step agents — built on the models and orchestration layers that match the use case.",
+    body: "Document processing, retrieval-augmented generation, conversational interfaces, and multi-step agents, built on the models and orchestration layers that match the use case.",
   },
   {
     title: "Intelligent automation",
@@ -48,7 +48,7 @@ const CAPS = [
   },
   {
     title: "Machine learning",
-    body: "Forecasting, anomaly detection, scoring, and recommendation systems built for production — latency budgets, retraining pipelines, monitoring, and drift detection included.",
+    body: "Forecasting, anomaly detection, scoring, and recommendation systems built for production: latency budgets, retraining pipelines, monitoring, and drift detection included.",
   },
   {
     title: "Data platforms",
@@ -133,7 +133,7 @@ export default function AIAndDataPage() {
             AI is an engineering problem before it's a model problem.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            Most AI programs stall in the same place: the pilot worked, and then it met real data, real users, and real compliance requirements. We start before the model — at the workflow, the data, and the organizational design — and stay through production and scale.
+            Most AI programs stall in the same place: the pilot worked, and then it met real data, real users, and real compliance requirements. We start before the model, at the workflow, the data, and the organizational design, and stay through production and scale.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
             <Button href="/contact?re=ai">Discuss your AI use case</Button>
@@ -252,7 +252,7 @@ export default function AIAndDataPage() {
                 Conversational AI
               </h3>
               <p className="text-body-sm text-on-field-2">
-                State-driven workspaces where the conversation carries the work — a system asks clarifying questions, proposes a plan, tracks evidence as it gathers it, and routes every action through a human approval checkpoint before it executes. Built for domains where the reasoning trail matters as much as the outcome: investigation, triage, and case handling.
+                State-driven workspaces where the conversation carries the work: a system asks clarifying questions, proposes a plan, tracks evidence as it gathers it, and routes every action through a human approval checkpoint before it executes. Built for domains where the reasoning trail matters as much as the outcome: investigation, triage, and case handling.
               </p>
             </div>
             <div className="group relative rounded-card px-8 py-8 border border-hairline bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent overflow-hidden">
@@ -321,7 +321,7 @@ export default function AIAndDataPage() {
             <ContentToken id="CAP-STACK">
               <div className="py-8">
                 <p className="text-body-xs text-ink-muted">
-                  Platform and tool verification pending — see CONTENT-REGISTER.md.
+                  Platform and tool verification pending: see CONTENT-REGISTER.md.
                 </p>
               </div>
             </ContentToken>
@@ -363,7 +363,7 @@ export default function AIAndDataPage() {
                       className="text-body-xs text-ink-2 flex gap-2 items-start"
                     >
                       <span className="text-teal mt-[2px] flex-none" aria-hidden="true">
-                        —
+                        •
                       </span>
                       {ex}
                     </li>

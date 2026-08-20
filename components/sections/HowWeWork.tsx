@@ -13,7 +13,7 @@ const PANELS = [
     label: "We work in your environment",
     n: "02",
     title: "We work in your environment",
-    body: "We embed inside your tooling, your repositories, your ticketing system. When the engagement ends the knowledge stays inside your organization — not in our documentation.",
+    body: "We embed inside your tooling, your repositories, your ticketing system. When the engagement ends the knowledge stays inside your organization, not in our documentation.",
   },
   {
     label: "You can start small",
@@ -123,7 +123,7 @@ export function HowWeWork() {
           ))}
         </div>
         <p className="mt-6 text-body-sm text-ink-2 max-w-[64ch]">
-          Certified minority business enterprise — qualifying for supplier diversity programs at enterprises and government agencies alike.
+          Certified minority business enterprise, qualifying for supplier diversity programs at enterprises and government agencies alike.
         </p>
       </div>
     </div>

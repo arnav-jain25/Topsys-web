@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Careers - TOPSYS IT",
+  title: "Careers | TOPSYS IT",
   description:
     "Open roles at TOPSYS IT Solutions LLC. Engineering and delivery positions across enterprise and government technology programs.",
 };
@@ -264,7 +264,7 @@ export default function CareersPage() {
             <div className="flex gap-3 flex-wrap">
               <Button href="mailto:hr@topsysit.com">Email your resume</Button>
               <Button
-                href="https://linkedin.com/company/topsys-it"
+                href="https://www.linkedin.com/company/topsysitsolutions/"
                 variant="secondary"
               >
                 LinkedIn

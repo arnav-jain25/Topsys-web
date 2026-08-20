@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const BUILD_SOLUTION = {
   title: "Build the solution",
-  body: "SOW-based engagements where we own the deliverable — architecture, build, integration, and the second year when someone has to maintain it.",
+  body: "SOW-based engagements where we own the deliverable: architecture, build, integration, and the second year when someone has to maintain it.",
   items: [
     "Fixed scope and milestones",
     "Architecture owned end to end",
@@ -91,7 +91,7 @@ export function DualModel() {
               className="flex gap-2.5 py-[11px] border-t border-field-hairline font-mono text-mono text-on-field-2 first:border-0"
               style={itemRevealStyle(phase, 200 + i * 80)}
             >
-              <span className="text-signal flex-none" aria-hidden="true">—</span>
+              <span className="text-signal flex-none" aria-hidden="true">-</span>
               {item}
             </li>
           ))}
@@ -114,7 +114,7 @@ export function DualModel() {
               className="flex gap-2.5 py-[11px] border-t border-hairline font-mono text-mono text-ink-muted first:border-0"
               style={itemRevealStyle(phase, 350 + i * 80)}
             >
-              <span className="text-teal flex-none" aria-hidden="true">—</span>
+              <span className="text-teal flex-none" aria-hidden="true">-</span>
               {item}
             </li>
           ))}

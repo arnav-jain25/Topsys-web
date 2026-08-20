@@ -24,7 +24,7 @@ const CAPS: CapCard[] = [
   {
     ordinal: "02",
     title: "Applications & modernization",
-    body: "Legacy systems modernized incrementally, in production, without pausing the business. Custom applications, integration and long-term support — including COBOL, DB2, CICS and mainframe estates.",
+    body: "Legacy systems modernized incrementally, in production, without pausing the business. Custom applications, integration and long-term support, including COBOL, DB2, CICS and mainframe estates.",
     href: "/capabilities/applications-and-modernization",
   },
   {
@@ -36,7 +36,7 @@ const CAPS: CapCard[] = [
   {
     ordinal: "04",
     title: "Cybersecurity",
-    body: "Assessments, identity and access, compliance and risk — engineered into delivery rather than bolted on afterward.",
+    body: "Assessments, identity and access, compliance and risk, engineered into delivery rather than bolted on afterward.",
     href: "/capabilities/cybersecurity",
   },
   {

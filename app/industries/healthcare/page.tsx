@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Healthcare — TOPSYS IT",
+  title: "Healthcare | TOPSYS IT",
   description:
     "Health data integration, HL7/FHIR pipelines, clinical application development, and HIPAA-aware security engineering for health systems, payers, and digital health companies.",
 };
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const CONTEXT = [
   {
     label: "Compliance is not optional",
-    body: "HIPAA, HL7, FHIR — a data handling failure is a liability event, not a finding. PHI access controls, audit logging, and breach notification requirements are architecture decisions, not policy documents.",
+    body: "HIPAA, HL7, FHIR: a data handling failure is a liability event, not a finding. PHI access controls, audit logging, and breach notification requirements are architecture decisions, not policy documents.",
   },
   {
     label: "Interoperability gap",
@@ -35,12 +35,12 @@ const CAPABILITIES = [
   },
   {
     title: "Application development",
-    body: "Care management tools, patient portal systems, and clinical workflow applications. Built for the actual workflows of clinicians and care coordinators — not for the demo. HIPAA-aware from the first design review.",
+    body: "Care management tools, patient portal systems, and clinical workflow applications. Built for the actual workflows of clinicians and care coordinators, not for the demo. HIPAA-aware from the first design review.",
     tech: ["Java", "Python", "FHIR", "REST APIs", "AWS", "Azure"],
   },
   {
     title: "Security",
-    body: "HIPAA-aligned security posture, access controls for PHI, audit logging, and breach readiness. Security architecture reviewed at the program level — not as a checklist after the build is done.",
+    body: "HIPAA-aligned security posture, access controls for PHI, audit logging, and breach readiness. Security architecture reviewed at the program level, not as a checklist after the build is done.",
     tech: ["AWS", "Azure", "IAM", "Audit logging", "Encryption"],
   },
 ];
@@ -82,10 +82,10 @@ export default function HealthcarePage() {
               maxWidth: "22ch",
             }}
           >
-            Health data has to be right, compliant, and findable — all three.
+            Health data has to be right, compliant, and findable. All three.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            We build HL7/FHIR integration pipelines, clinical data platforms, and HIPAA-aligned applications for health systems, payers, and digital health companies. Data quality and compliance are architecture decisions — we make them early.
+            We build HL7/FHIR integration pipelines, clinical data platforms, and HIPAA-aligned applications for health systems, payers, and digital health companies. Data quality and compliance are architecture decisions, and we make them early.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
             <Button href="/contact?re=enterprise">Talk to us</Button>
@@ -109,7 +109,7 @@ export default function HealthcarePage() {
             What makes healthcare technology harder than other verticals
           </h2>
           <p className="text-body text-on-field-2 max-w-[62ch] mt-4">
-            Healthcare has three distinct hard problems — compliance, interoperability, and data quality — and they interact. You can&rsquo;t solve one without the other two. Most projects fail because they solve one and assume the rest.
+            Healthcare has three distinct hard problems: compliance, interoperability, and data quality. They interact. You can&rsquo;t solve one without the other two. Most projects fail because they solve one and assume the rest.
           </p>
           <IndustryItemGrid
             items={CONTEXT.map(({ label, body }) => ({ heading: label, body }))}

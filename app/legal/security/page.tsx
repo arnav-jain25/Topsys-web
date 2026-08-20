@@ -3,7 +3,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Security overview — TOPSYS IT",
+  title: "Security overview | TOPSYS IT",
   description:
     "How TOPSYS IT Solutions LLC approaches security for this website and client engagements.",
 };

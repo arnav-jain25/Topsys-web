@@ -7,7 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { INSIGHTS } from "@/lib/insights";
 
 export const metadata: Metadata = {
-  title: "Insights — TOPSYS IT",
+  title: "Insights | TOPSYS IT",
   description:
     "Technology perspectives from the TOPSYS IT delivery team on AI, data, cloud, cybersecurity, and application modernization.",
 };

@@ -7,7 +7,7 @@ import { OFFICES } from "@/lib/offices";
 import { ContactOfficeGrid } from "./ContactOfficeGrid";
 
 export const metadata: Metadata = {
-  title: "Contact — TOPSYS IT",
+  title: "Contact | TOPSYS IT",
   description:
     "Enterprise engagement, public sector briefing, talent requirement, or careers. Tell us which one applies and we'll route it to the right team.",
 };
@@ -31,7 +31,7 @@ export default function ContactPage() {
             Tell us which one applies.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            An enterprise program, a state or local government briefing, a role you need to staff, or a role you&rsquo;re looking for. Pick one — the form and the team behind it change accordingly.
+            An enterprise program, a state or local government briefing, a role you need to staff, or a role you&rsquo;re looking for. Pick one, and the form and the team behind it change accordingly.
           </p>
         </div>
       </section>

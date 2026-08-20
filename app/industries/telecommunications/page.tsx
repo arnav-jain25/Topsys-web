@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Telecommunications — TOPSYS IT",
+  title: "Telecommunications | TOPSYS IT",
   description:
     "Subscriber analytics, OSS/BSS integration, and digital platform development for telecommunications providers managing network-scale data and complex legacy system landscapes.",
 };
@@ -23,7 +23,7 @@ const CONTEXT = [
   },
   {
     label: "Legacy systems that predate the network",
-    body: "Customer management and billing systems that predate the current network infrastructure — sometimes by fifteen years. They weren&rsquo;t designed for the data volumes, the API expectations, or the real-time reporting requirements they carry today.",
+    body: "Customer management and billing systems that predate the current network infrastructure, sometimes by fifteen years. They weren&rsquo;t designed for the data volumes, the API expectations, or the real-time reporting requirements they carry today.",
   },
 ];
 
@@ -48,11 +48,11 @@ const CAPABILITIES = [
 const APPROACH = [
   {
     title: "Integration before replacement",
-    body: "OSS/BSS consolidation projects that start with replacement have a high failure rate. We start by mapping what exists, identifying the seams that can be opened with APIs, and moving data through them — before recommending any platform change.",
+    body: "OSS/BSS consolidation projects that start with replacement have a high failure rate. We start by mapping what exists, identifying the seams that can be opened with APIs, and moving data through them, before recommending any platform change.",
   },
   {
     title: "Data infrastructure as a product",
-    body: "Telco data teams often have the data but not the infrastructure to act on it. We build streaming pipelines, subscriber data models, and analytics platforms that become the system of record — not the BI report that runs on Friday.",
+    body: "Telco data teams often have the data but not the infrastructure to act on it. We build streaming pipelines, subscriber data models, and analytics platforms that become the system of record, not the BI report that runs on Friday.",
   },
   {
     title: "Teams that understand the network",

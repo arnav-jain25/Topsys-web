@@ -3,7 +3,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Subprocessors — TOPSYS IT",
+  title: "Subprocessors | TOPSYS IT",
   description:
     "Third-party service providers used by TOPSYS IT Solutions LLC in connection with its services and website.",
 };
@@ -28,7 +28,7 @@ export default function SubprocessorsPage() {
         <div className="mt-8 max-w-[70ch] space-y-6 text-body text-ink-2">
           <p>
             TOPSYS IT Solutions LLC uses a limited number of third-party service
-            providers — subprocessors — in connection with delivering its
+            providers (subprocessors) in connection with delivering its
             services and operating this website.
           </p>
           <p>

@@ -92,7 +92,7 @@ export default function ComponentsTestPage() {
       {/* ---- Stat bar -------------------------------------------------- */}
       <section className="bg-paper py-16">
         <div className="wrap">
-          <Eyebrow className="mb-8">Stat bar — count-up on scroll</Eyebrow>
+          <Eyebrow className="mb-8">Stat bar · count-up on scroll</Eyebrow>
           <StatBar />
         </div>
       </section>

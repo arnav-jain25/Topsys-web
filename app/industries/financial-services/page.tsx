@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Financial services — TOPSYS IT",
+  title: "Financial services | TOPSYS IT",
   description:
     "Data platforms, application modernization, and engineering talent for financial institutions operating under SOX, PCI-DSS, and real-time payment latency requirements.",
 };
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const CONTEXT = [
   {
     label: "Compliance surface area",
-    body: "SOX controls, PCI-DSS scope, audit exposure across every system that touches financial data. Compliance isn't a gate at the end of the project — it's a constraint on the architecture from the first sprint.",
+    body: "SOX controls, PCI-DSS scope, audit exposure across every system that touches financial data. Compliance isn't a gate at the end of the project. It's a constraint on the architecture from the first sprint.",
   },
   {
     label: "Data volume at latency requirements",
@@ -23,7 +23,7 @@ const CONTEXT = [
   },
   {
     label: "Regulatory reporting on aging systems",
-    body: "Reporting requirements written against systems that predate those requirements by decades. Mainframes, batch jobs, proprietary data formats — the source of record is often the hardest part of the problem.",
+    body: "Reporting requirements written against systems that predate those requirements by decades. Mainframes, batch jobs, proprietary data formats: the source of record is often the hardest part of the problem.",
   },
 ];
 
@@ -48,11 +48,11 @@ const CAPABILITIES = [
 const APPROACH = [
   {
     title: "Architecture under constraint",
-    body: "Financial systems have hard requirements — compliance scope, audit traceability, disaster recovery targets — that commercial systems often treat as optional. We treat them as inputs, not afterthoughts.",
+    body: "Financial systems have hard requirements: compliance scope, audit traceability, disaster recovery targets. Commercial systems often treat these as optional. We treat them as inputs, not afterthoughts.",
   },
   {
     title: "Incremental modernization",
-    body: "Big-bang replacements fail in financial services more often than in any other vertical. We modernize in slices: a payment processor here, a reporting system there, each slice adding to — not replacing — audit coverage.",
+    body: "Big-bang replacements fail in financial services more often than in any other vertical. We modernize in slices: a payment processor here, a reporting system there, each slice adding to, not replacing, audit coverage.",
   },
   {
     title: "Data quality as an engineering discipline",
@@ -109,7 +109,7 @@ export default function FinancialServicesPage() {
             What makes financial services technology different
           </h2>
           <p className="text-body text-on-field-2 max-w-[62ch] mt-4">
-            Vendors who have only built SaaS products underestimate financial services. The data correctness requirements, the compliance surface area, and the latency constraints all have to be solved together — not sequentially.
+            Vendors who have only built SaaS products underestimate financial services. The data correctness requirements, the compliance surface area, and the latency constraints all have to be solved together, not sequentially.
           </p>
           <IndustryItemGrid
             items={CONTEXT.map(({ label, body }) => ({ heading: label, body }))}

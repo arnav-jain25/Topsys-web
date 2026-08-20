@@ -7,7 +7,7 @@ import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
 export const metadata: Metadata = {
-  title: "Technology — TOPSYS IT",
+  title: "Technology | TOPSYS IT",
   description:
     "Engineering delivery, platform and DevOps, and data infrastructure for technology companies building products that engineers will read, operate, and depend on.",
 };
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const CONTEXT = [
   {
     label: "Technical debt accumulates faster",
-    body: "Technology companies move faster than other verticals — and accumulate technical debt proportionally. The architecture that worked at fifty engineers breaks at two hundred. The shortcuts taken to ship v1 become the incidents that wake teams up at 3am.",
+    body: "Technology companies move faster than other verticals, and accumulate technical debt proportionally. The architecture that worked at fifty engineers breaks at two hundred. The shortcuts taken to ship v1 become the incidents that wake teams up at 3am.",
   },
   {
     label: "Internal tooling becomes critical infrastructure",
@@ -23,7 +23,7 @@ const CONTEXT = [
   },
   {
     label: "Scaling an engineering org is harder than scaling the product",
-    body: "Adding engineers doesn&rsquo;t add proportional output. Onboarding time grows, context is duplicated, and the systems that held institutional knowledge — if they existed — break down. Scaling engineering is an organizational and technical problem.",
+    body: "Adding engineers doesn&rsquo;t add proportional output. Onboarding time grows, context is duplicated, and the systems that held institutional knowledge, if they existed, break down. Scaling engineering is an organizational and technical problem.",
   },
 ];
 
@@ -40,7 +40,7 @@ const CAPABILITIES = [
   },
   {
     title: "Data and AI",
-    body: "Data infrastructure, ML pipelines, and analytics engineering built for production — not for the notebook. Data that runs in scheduled jobs, not Jupyter cells. Models that are monitored, versioned, and retrained without manual intervention.",
+    body: "Data infrastructure, ML pipelines, and analytics engineering built for production, not for the notebook. Data that runs in scheduled jobs, not Jupyter cells. Models that are monitored, versioned, and retrained without manual intervention.",
     tech: ["Python", "Spark", "Kafka", "dbt", "Snowflake", "AWS", "GCP"],
   },
 ];
@@ -56,7 +56,7 @@ const APPROACH = [
   },
   {
     title: "Data for production, not for demos",
-    body: "A data pipeline that runs in a notebook is a prototype. We build data systems that run on a schedule, handle late-arriving data, alert on failures, and produce results the business can act on — not results that look right until someone looks closely.",
+    body: "A data pipeline that runs in a notebook is a prototype. We build data systems that run on a schedule, handle late-arriving data, alert on failures, and produce results the business can act on, not results that look right until someone looks closely.",
   },
 ];
 
@@ -85,7 +85,7 @@ export default function TechnologyPage() {
             Building for engineers who will read your code, not just run it.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            We embed senior engineers, build internal developer platforms, and deliver production-ready data infrastructure for technology companies. The bar is engineers who raise the team&rsquo;s standards — not ones who fill a seat.
+            We embed senior engineers, build internal developer platforms, and deliver production-ready data infrastructure for technology companies. The bar is engineers who raise the team&rsquo;s standards, not ones who fill a seat.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
             <Button href="/contact?re=enterprise">Talk to us</Button>

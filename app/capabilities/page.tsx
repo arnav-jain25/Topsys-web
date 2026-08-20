@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Services — TOPSYS IT",
+  title: "Services | TOPSYS IT",
   description:
     "Data and AI, application modernization, cloud and platform engineering, cybersecurity, and technology talent. TOPSYS IT delivers across the full technology stack for enterprise and government clients.",
 };
@@ -20,7 +20,7 @@ const CAPS = [
     href: "/capabilities/ai-and-data",
     title: "AI & data",
     lead: "Data foundations, applied AI, and analytics that change what people decide.",
-    body: "We start with the workflow and the data, not the model. Strategy, use-case definition, data platform work, build, integration, governance, and scale — end to end.",
+    body: "We start with the workflow and the data, not the model. Strategy, use-case definition, data platform work, build, integration, governance, and scale, end to end.",
     subcaps: ["AI advisory", "Generative AI", "Intelligent automation", "Machine learning", "Data platforms", "Analytics", "AI governance"],
     dark: true,
   },
@@ -56,7 +56,7 @@ const CAPS = [
     href: "/capabilities/technology-talent",
     title: "Technology talent",
     lead: "Senior specialists and full pods, vetted by engineers.",
-    body: "Embedded specialists, project pods, and specialist recruiting. Accountable to your delivery plan — not to a headcount target.",
+    body: "Embedded specialists, project pods, and specialist recruiting. Accountable to your delivery plan, not to a headcount target.",
     subcaps: [],
     dark: false,
   },
@@ -65,7 +65,7 @@ const CAPS = [
 const ENGAGEMENT_TYPES = [
   {
     type: "SOW-based",
-    desc: "We own the deliverable — scope, architecture, build, integration, and the second standup after handover. Fixed scope and milestones. Suitable for defined programs.",
+    desc: "We own the deliverable: scope, architecture, build, integration, and the second standup after handover. Fixed scope and milestones. Suitable for defined programs.",
   },
   {
     type: "Embedded team",
@@ -99,7 +99,7 @@ export default function CapabilitiesPage() {
             Five services. One engineering standard across all of them.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            We build and run critical technology for enterprise and government clients — across data and AI, modernization, cloud, security, and the specialized teams these programs need.
+            We build and run critical technology for enterprise and government clients, across data and AI, modernization, cloud, security, and the specialized teams these programs need.
           </p>
         </ScrollReveal>
       </section>
@@ -115,7 +115,7 @@ export default function CapabilitiesPage() {
               href={CAPS[0].href}
               className="block rounded-panel relative overflow-hidden transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-field group"
               style={{ background: "linear-gradient(135deg,#0B2F38 0%,#06232A 60%,#0E3A44 100%)", padding: "3rem" }}
-              aria-label={`${CAPS[0].title} — ${CAPS[0].lead}`}
+              aria-label={`${CAPS[0].title}: ${CAPS[0].lead}`}
             >
               {/* Ambient glow */}
               <span
@@ -160,7 +160,7 @@ export default function CapabilitiesPage() {
                   key={href}
                   href={href}
                   className="block border border-hairline rounded-card px-8 py-8 bg-white relative overflow-hidden transition-all duration-base ease-standard hover:border-transparent hover:shadow-e2 hover:-translate-y-[3px] group"
-                  aria-label={`${title} — ${lead}`}
+                  aria-label={`${title}: ${lead}`}
                 >
                   {/* Gradient top edge on hover — one of the four permitted uses */}
                   <span
@@ -197,7 +197,7 @@ export default function CapabilitiesPage() {
             Three ways to engage
           </h2>
           <p className="text-body text-on-field-2 max-w-[62ch] mt-4">
-            We scope the engagement model to what the program actually needs — not what simplifies our sales process.
+            We scope the engagement model to what the program actually needs, not what simplifies our sales process.
           </p>
           <StaggerReveal
             className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1"

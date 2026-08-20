@@ -196,7 +196,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="pb-4 max-[1023px]:pb-0 flex-none"
-            aria-label="TOPSYS IT — home"
+            aria-label="TOPSYS IT home"
           >
             <Image
               src="/brand/topsys-logo.png"
@@ -418,7 +418,7 @@ export function SiteHeader() {
             <input
               ref={cmdInputRef}
               type="text"
-              placeholder="Search — try COBOL, Snowflake, Pennsylvania, agentic AI"
+              placeholder="Search: try COBOL, Snowflake, Pennsylvania, agentic AI"
               className="w-full h-[62px] px-6 border-0 border-b border-hairline bg-transparent font-body text-[17px] text-ink focus:outline-none placeholder:text-ink-muted"
               autoComplete="off"
             />

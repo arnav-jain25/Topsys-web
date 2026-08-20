@@ -22,12 +22,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     capabilities: ["Data & analytics", "Data engineering"],
     problem: [
       "Payment data existed in two separate processor environments, each with its own schema, field naming conventions, and settlement logic. Interchange categories weren’t normalized. Fee structures were defined differently per processor. Dispute workflows produced records that couldn’t be compared without manual reconciliation.",
-      "Business stakeholders had no single view of payment performance across processors. Reports were built by pulling separate exports, aligning them manually, and accepting that the numbers wouldn’t always agree. The root cause wasn’t the reporting layer — it was the absence of a canonical model for what a payment is.",
+      "Business stakeholders had no single view of payment performance across processors. Reports were built by pulling separate exports, aligning them manually, and accepting that the numbers wouldn’t always agree. The root cause wasn’t the reporting layer. It was the absence of a canonical model for what a payment is.",
     ],
     approach: [
       {
         heading: "Source analysis and canonical model design",
-        body: "Mapped every field from both processor data feeds. Defined a canonical payment event schema — one definition of payment amount, settlement date, interchange category, dispute status — that both sources would conform to after transformation. Built the source-to-target mappings and documented every business rule as a testable expectation.",
+        body: "Mapped every field from both processor data feeds. Defined a canonical payment event schema, one definition of payment amount, settlement date, interchange category, and dispute status, that both sources would conform to after transformation. Built the source-to-target mappings and documented every business rule as a testable expectation.",
       },
       {
         heading: "Pipeline build on Snowflake",
@@ -60,15 +60,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     approach: [
       {
         heading: "Source system inventory and data contracts",
-        body: "Documented the data model, update cadence, and reliability characteristics of each source system. Defined what each system owned — CRM owned opportunities, HR owned headcount, payments owned actuals — and established contracts for what each would produce.",
+        body: "Documented the data model, update cadence, and reliability characteristics of each source system. Defined what each system owned: CRM owned opportunities, HR owned headcount, payments owned actuals. Established contracts for what each would produce.",
       },
       {
         heading: "BigQuery data lake and ELT pipelines",
-        body: "Built optimized ELT pipelines from all five sources into a BigQuery staging layer. Modeled a unified revenue entity in dbt — one definition of a recognized revenue event that reconciled against both the quoting system and the accounting system.",
+        body: "Built optimized ELT pipelines from all five sources into a BigQuery staging layer. Modeled a unified revenue entity in dbt: one definition of a recognized revenue event that reconciled against both the quoting system and the accounting system.",
       },
       {
         heading: "Forecasting and anomaly detection",
-        body: "Built predictive forecasting models on top of the unified revenue model. Layered anomaly detection to flag when actuals deviated from expected patterns — early warning rather than month-end surprise.",
+        body: "Built predictive forecasting models on top of the unified revenue model. Layered anomaly detection to flag when actuals deviated from expected patterns: early warning rather than month-end surprise.",
       },
     ],
     outcome: "5 systems unified under a single revenue model",
@@ -112,21 +112,21 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "realtime-data-platform",
     tag: "Financial services · Fortune 500",
     title: "Real-time card delivery visibility under a 40ms latency budget",
-    lede: "A multi-stage Kafka streaming pipeline with DynamoDB persistence, SageMaker models, PII protection and a full audit trail — all inside a strict per-message latency SLA.",
+    lede: "A multi-stage Kafka streaming pipeline with DynamoDB persistence, SageMaker models, PII protection and a full audit trail, all inside a strict per-message latency SLA.",
     client: "A Fortune 500 financial institution with a consumer card business",
     capabilities: ["Data & analytics", "Cloud & platform engineering", "Technology talent"],
     problem: [
-      "Card delivery events — production, dispatch, tracking, delivery confirmation — were processed in batch. Operations teams had no real-time view of where cards were in the delivery pipeline. When cards didn’t arrive, the first signal was a customer call.",
+      "Card delivery events (production, dispatch, tracking, delivery confirmation) were processed in batch. Operations teams had no real-time view of where cards were in the delivery pipeline. When cards didn’t arrive, the first signal was a customer call.",
       "The program required real-time event processing at production volume, with PII handling that met compliance requirements, a full audit trail for every record, and a latency budget of 40ms per message end-to-end. Senior engineers who could design to that constraint were needed on site within two weeks.",
     ],
     approach: [
       {
         heading: "Architecture design under the latency constraint",
-        body: "Designed the pipeline starting from the latency budget, not the other way around. Each stage — ingest, transform, enrich, persist, score — was profiled against the budget. Kafka was chosen for ingest throughput and ordering guarantees. DynamoDB for persistence latency characteristics. SageMaker endpoints for inference with predictable p99 latency.",
+        body: "Designed the pipeline starting from the latency budget, not the other way around. Each stage (ingest, transform, enrich, persist, score) was profiled against the budget. Kafka was chosen for ingest throughput and ordering guarantees. DynamoDB for persistence latency characteristics. SageMaker endpoints for inference with predictable p99 latency.",
       },
       {
         heading: "PII protection and audit trail",
-        body: "Built PII tokenization at the ingest boundary — raw identifiers never persisted in intermediate stages. Implemented a replayable audit log for every message transformation, satisfying compliance requirements for data lineage.",
+        body: "Built PII tokenization at the ingest boundary: raw identifiers never persisted in intermediate stages. Implemented a replayable audit log for every message transformation, satisfying compliance requirements for data lineage.",
       },
       {
         heading: "SageMaker model integration",
@@ -149,7 +149,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: "A multi-site health system operating across several facilities",
     capabilities: ["Data & analytics", "Data engineering", "Cybersecurity"],
     problem: [
-      "Clinical data was produced by multiple EMR systems across different facilities. Each system used HL7 2.x messaging with inconsistent field population — the same data element implemented differently across sites. Patient matching across facilities wasn’t automated: a patient who visited two sites existed as two unrelated records.",
+      "Clinical data was produced by multiple EMR systems across different facilities. Each system used HL7 2.x messaging with inconsistent field population: the same data element implemented differently across sites. Patient matching across facilities wasn’t automated: a patient who visited two sites existed as two unrelated records.",
       "The absence of a unified patient record meant that population health analysis required manual data pulls from each system. Care gap analysis was running weeks behind. Regulatory reporting took longer than it should because nobody trusted the numbers that came out automatically.",
     ],
     approach: [
@@ -163,7 +163,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Clinical data warehouse on Snowflake",
-        body: "Built a clinical data warehouse modeled in dbt on Snowflake. Clinical entities — patients, encounters, diagnoses, observations, medications — were modeled as stable, testable relations that downstream analytics could depend on.",
+        body: "Built a clinical data warehouse modeled in dbt on Snowflake. Clinical entities (patients, encounters, diagnoses, observations, medications) were modeled as stable, testable relations that downstream analytics could depend on.",
       },
       {
         heading: "HIPAA-aligned data handling",
@@ -183,7 +183,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     capabilities: ["Cloud & platform engineering", "Technology talent"],
     problem: [
       "A growing engineering organization had accumulated infrastructure debt in proportion to its product velocity. Forty microservices were deployed across six teams using four different CI/CD pipelines. Terraform was owned by one person. Infrastructure provisioning was done by hand for anything outside the happy path.",
-      "Deployments were inconsistent. Runbooks differed by service. Observability was partial — some services emitted metrics, others didn’t. When something broke in production, correlating the failure across services was a manual process that depended on knowing who owned what.",
+      "Deployments were inconsistent. Runbooks differed by service. Observability was partial: some services emitted metrics, others didn’t. When something broke in production, correlating the failure across services was a manual process that depended on knowing who owned what.",
     ],
     approach: [
       {

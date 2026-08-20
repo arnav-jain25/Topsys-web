@@ -7,11 +7,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: {
     default:
-      "TOPSYS IT — Technology modernization, AI and data, and engineering talent",
-    template: "%s — TOPSYS IT",
+      "TOPSYS IT: Technology modernization, AI and data, and engineering talent",
+    template: "%s | TOPSYS IT",
   },
   description:
-    "TOPSYS IT builds and runs critical systems for enterprises and state government agencies — modernization, AI and data, cloud, security, and specialized technology teams.",
+    "TOPSYS IT builds and runs critical systems for enterprises and state government agencies: modernization, AI and data, cloud, security, and specialized technology teams.",
   metadataBase: new URL("https://www.topsysit.com"),
 };
 

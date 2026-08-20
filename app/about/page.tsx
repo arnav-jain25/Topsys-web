@@ -12,7 +12,7 @@ import {
 } from "./AboutSections";
 
 export const metadata: Metadata = {
-  title: "About — TOPSYS IT",
+  title: "About | TOPSYS IT",
   description:
     "TOPSYS IT Solutions LLC is a minority-owned technology delivery firm with offices across the United States, Canada, and India. Founded by Abhishek Reddy Baddam.",
 };
@@ -89,7 +89,7 @@ export default function AboutPage() {
             <div>
               <div
                 className="w-full aspect-[3/4] bg-surface rounded-card border border-hairline flex items-center justify-center"
-                aria-label="Photo of Abhishek Reddy Baddam — pending"
+                aria-label="Photo of Abhishek Reddy Baddam, pending"
               >
                 <ContentToken id="BIO-01">
                   <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
@@ -111,7 +111,7 @@ export default function AboutPage() {
                   Abhishek founded TOPSYS IT with a specific conviction: that the gap between enterprise technology strategy and execution is mostly an engineering problem, and that the people who close it are senior practitioners, not project managers with a managed service.
                 </p>
                 <p>
-                  With over 25 years of technology delivery experience and an M.S. in Computer Science from CUNY, he has led programs across financial services, telecommunications, healthcare, and state government — building teams and systems that run in production, not in decks.
+                  With over 25 years of technology delivery experience and an M.S. in Computer Science from CUNY, he has led programs across financial services, telecommunications, healthcare, and state government, building teams and systems that run in production, not in decks.
                 </p>
                 <p>
                   TOPSYS IT is minority-owned and MBE certified. The firm operates across the United States, Canada, and India, with regional presence in the UAE, and delivery teams embedded in enterprise and government programs nationwide.

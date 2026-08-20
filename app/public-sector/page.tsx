@@ -7,7 +7,7 @@ import { USMap } from "@/components/sections/USMap";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Public sector — TOPSYS IT",
+  title: "Public sector | TOPSYS IT",
   description:
     "Technology modernization, data, security, and engineering talent for state and local government agencies. Delivered inside real procurement, compliance, and legacy constraints.",
 };
@@ -54,7 +54,7 @@ const SERVICES = [
   },
   {
     title: "Technology talent",
-    body: "Specialists and teams for state IT programs — project managers, engineers, architects, and business analysts who've worked in government technology environments.",
+    body: "Specialists and teams for state IT programs: project managers, engineers, architects, and business analysts who've worked in government technology environments.",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function PublicSectorPage() {
             Government technology, delivered to the standard it demands.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            We work with state and local government agencies on modernization, data, security, and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them — we've worked inside all of it.
+            We work with state and local government agencies on modernization, data, security, and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we've worked inside all of it.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
             <Button href="/contact?re=public-sector">Request a capability briefing</Button>

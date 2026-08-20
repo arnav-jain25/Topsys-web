@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { CaseStudyList } from "./CaseStudyList";
 
 export const metadata: Metadata = {
-  title: "Work — TOPSYS IT",
+  title: "Work | TOPSYS IT",
   description:
     "Technology delivery case studies from TOPSYS IT. Data platforms, modernization, real-time systems, and platform engineering for enterprise and government clients.",
 };
@@ -32,7 +32,7 @@ export default function WorkPage() {
             Work that runs in production.
           </h1>
           <p className="text-lede text-ink-2 mt-5" style={{ maxWidth: "58ch" }}>
-            Five programs. Three sectors. No positioning — just the architecture,
+            Five programs. Three sectors. No positioning, just the architecture,
             the problem, and what we built.
           </p>
           <p className="text-body-xs text-ink-muted mt-3">

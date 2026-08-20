@@ -5,7 +5,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "How to work with us — TOPSYS IT public sector",
+  title: "How to work with us | TOPSYS IT public sector",
   description:
     "Procurement paths, contract vehicles, and program engagement for state and local government agencies working with TOPSYS IT.",
 };
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const PROCUREMENT_PATHS = [
   {
     title: "DIR cooperative contract",
-    body: "Texas state and local government entities can use DIR-CPO-5671 (ITSAC) without a full RFP. The cooperative contract is already in place — procurement is a quote, not a solicitation. Fastest path for most Texas agencies.",
+    body: "Texas state and local government entities can use DIR-CPO-5671 (ITSAC) without a full RFP. The cooperative contract is already in place. Procurement is a quote, not a solicitation. Fastest path for most Texas agencies.",
     cta: { label: "View contract details", href: "/contract-vehicles" },
   },
   {
@@ -23,7 +23,7 @@ const PROCUREMENT_PATHS = [
   },
   {
     title: "Direct contract",
-    body: "For agencies that want a direct vendor relationship, we support the full procurement process from capability briefing through award — RFP responses, oral presentations, and scope negotiations.",
+    body: "For agencies that want a direct vendor relationship, we support the full procurement process from capability briefing through award: RFP responses, oral presentations, and scope negotiations.",
     cta: { label: "Request a briefing", href: "/contact?re=public-sector" },
   },
 ];
@@ -152,7 +152,7 @@ export default function HowToWorkWithUsPage() {
             Three steps from first contact to contract
           </h2>
           <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-            Government procurement moves at government speed. We design our process to stay useful across the months it takes to get to contract — not just the first call.
+            Government procurement moves at government speed. We design our process to stay useful across the months it takes to get to contract, not just the first call.
           </p>
 
           <div className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1">

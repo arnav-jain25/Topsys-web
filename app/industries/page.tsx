@@ -7,7 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { IndustryIndexGrid } from "./_components/IndustryIndexGrid";
 
 export const metadata: Metadata = {
-  title: "Industries — TOPSYS IT",
+  title: "Industries | TOPSYS IT",
   description:
     "TOPSYS IT delivers technology programs across financial services, telecommunications, healthcare, state government, and technology companies.",
 };

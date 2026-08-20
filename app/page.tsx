@@ -88,7 +88,7 @@ export default function HomePage() {
             Build the solution. Build the team. Or both.
           </h2>
           <p className="text-lede text-ink-2 max-w-[64ch] mt-6">
-            Most firms make you choose. A consultancy scopes your program and staffs it with people you didn't pick. A staffing vendor sends résumés and steps back at onboarding. We do both — same engineering standard, same accountability, one firm.
+            Most firms make you choose. A consultancy scopes your program and staffs it with people you didn't pick. A staffing vendor sends résumés and steps back at onboarding. We do both, with the same engineering standard and the same accountability, as one firm.
           </p>
           <DualModel />
         </div>
@@ -123,7 +123,7 @@ export default function HomePage() {
             AI that survives contact with production.
           </h2>
           <p className="text-lede text-on-field-2 max-w-[64ch] mt-6">
-            Most enterprise AI stalls in the same place: a pilot works in a notebook, then meets real data, real users and real compliance requirements. We start further back — what's the workflow, what does it cost you today, and is the data underneath it good enough to trust?
+            Most enterprise AI stalls in the same place: a pilot works in a notebook, then meets real data, real users and real compliance requirements. We start further back. What's the workflow, what does it cost you today, and is the data underneath it good enough to trust?
           </p>
 
           <AIArc />
@@ -167,7 +167,7 @@ export default function HomePage() {
             <USMap />
             <div>
               <p className="text-body text-ink-2">
-                We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them — we've worked inside all of it.
+                We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we've worked inside all of it.
               </p>
               <dl className="mt-8 space-y-0">
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">

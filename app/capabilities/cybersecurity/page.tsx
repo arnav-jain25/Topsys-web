@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
-  title: "Cybersecurity — TOPSYS IT",
+  title: "Cybersecurity | TOPSYS IT",
   description:
     "Security assessments, IAM programs, SIEM operations, and compliance advisory for enterprise and government. Compliance documentation and actual security posture are not the same deliverable.",
 };
@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 const FAILURE_MODES = [
   {
     label: "Compliance checkbox vs actual posture",
-    body: "A passed audit documents what was true on the day of the assessment. It doesn't tell you what an attacker can do today. Frameworks like NIST CSF and CMMC measure control implementation — they don't measure whether those controls stop a real threat.",
+    body: "A passed audit documents what was true on the day of the assessment. It doesn't tell you what an attacker can do today. Frameworks like NIST CSF and CMMC measure control implementation. They don't measure whether those controls stop a real threat.",
   },
   {
     label: "Identity perimeter is gone, IAM wasn't updated",
-    body: "The network perimeter eroded with remote work, SaaS adoption, and cloud migration. The identity layer is now the perimeter. Most organizations still have IAM programs built for an on-prem world — role sprawl, dormant accounts, no conditional access, no privileged session recording.",
+    body: "The network perimeter eroded with remote work, SaaS adoption, and cloud migration. The identity layer is now the perimeter. Most organizations still have IAM programs built for an on-prem world: role sprawl, dormant accounts, no conditional access, no privileged session recording.",
   },
   {
     label: "Cloud security nobody reviews after deployment",
@@ -30,7 +30,7 @@ const FAILURE_MODES = [
 const OFFERINGS = [
   {
     title: "Security assessment & advisory",
-    body: "Assessments that produce a prioritized remediation backlog — not a findings report that sits in a shared drive.",
+    body: "Assessments that produce a prioritized remediation backlog, not a findings report that sits in a shared drive.",
     bullets: [
       "NIST CSF and CMMC gap assessments for state and federal programs",
       "Penetration testing with exploitation evidence, not theoretical risk",
@@ -39,7 +39,7 @@ const OFFERINGS = [
   },
   {
     title: "Identity & access management",
-    body: "IAM programs designed for the environment you operate in — cloud-native, hybrid, or multi-directory.",
+    body: "IAM programs designed for the environment you operate in: cloud-native, hybrid, or multi-directory.",
     bullets: [
       "Okta, CyberArk, and Azure AD implementation and rationalization",
       "Privileged access management and just-in-time provisioning",
@@ -66,7 +66,7 @@ const TECH = [
 const HOW_WE_WORK = [
   {
     title: "Assessments that produce priorities, not findings",
-    body: "We map controls against NIST CSF and CMMC where the engagement requires it, then go further: exploitation testing, configuration review, and a remediation roadmap ordered by exploitability and business impact — not framework category.",
+    body: "We map controls against NIST CSF and CMMC where the engagement requires it, then go further: exploitation testing, configuration review, and a remediation roadmap ordered by exploitability and business impact, not framework category.",
   },
   {
     title: "IAM for the cloud and hybrid environment",
@@ -78,7 +78,7 @@ const HOW_WE_WORK = [
   },
   {
     title: "Cloud security posture management",
-    body: "Cloud environments change continuously. We instrument continuous posture monitoring so configuration drift — open storage buckets, overprivileged roles, disabled logging — is detected automatically rather than discovered in the next audit.",
+    body: "Cloud environments change continuously. We instrument continuous posture monitoring so configuration drift, such as open storage buckets, overprivileged roles, and disabled logging, is detected automatically rather than discovered in the next audit.",
   },
 ];
 
@@ -111,7 +111,7 @@ export default function CybersecurityPage() {
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
             We run assessments that produce remediation priorities, build IAM programs for the
             identity perimeter that replaced the network, and operate SIEM environments that detect
-            threats — not just collect logs. For state and federal programs, we work within NIST CSF
+            threats, not just collect logs. For state and federal programs, we work within NIST CSF
             and CMMC frameworks without pretending a framework audit is the same as a security review.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
@@ -204,7 +204,7 @@ export default function CybersecurityPage() {
             <p className="text-body-xs text-ink-2 max-w-[66ch]">
               We support state and local agencies navigating NIST Cybersecurity Framework adoption
               and federal contractors working toward CMMC compliance. We don&rsquo;t invent certification
-              claims or guarantee audit outcomes — we build the technical controls and documentation
+              claims or guarantee audit outcomes. We build the technical controls and documentation
               that support the compliance program your legal and contracting team manages.
             </p>
           </div>
@@ -268,7 +268,7 @@ export default function CybersecurityPage() {
                   {bullets.map((b) => (
                     <li key={b} className="text-body-xs text-ink-2 flex gap-2 items-start">
                       <span className="text-teal mt-[2px] flex-none" aria-hidden="true">
-                        —
+                        •
                       </span>
                       {b}
                     </li>
