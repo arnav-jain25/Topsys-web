@@ -96,6 +96,7 @@ const NAV_LINKS = [
   { label: "Case studies", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
+  { label: "Partners & MSP", href: "/capabilities/technology-talent#msp" },
   { label: "DIR Contract", href: "/contract-vehicles" },
 ];
 

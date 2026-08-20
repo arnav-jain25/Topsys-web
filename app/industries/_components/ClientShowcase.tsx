@@ -27,7 +27,7 @@ const END_CLIENTS: NamedEntity[] = [
   { name: "T-Mobile", sector: "telecommunications" },
 ];
 
-const DELIVERY_PARTNERS = ["Cognizant", "Capgemini", "IBM", "UST Global"];
+const DELIVERY_PARTNERS = ["Cognizant", "Capgemini", "IBM", "iLabor"];
 
 /**
  * Private client / delivery-partner showcase for the industries index.

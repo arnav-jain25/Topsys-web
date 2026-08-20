@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { OFFICES } from "@/lib/offices";
@@ -94,17 +93,33 @@ export default function AboutPage() {
           </h2>
 
           <div className="grid grid-cols-[280px_1fr] gap-12 mt-10 items-start max-[767px]:grid-cols-1">
-            {/* Photo placeholder */}
+            {/* Monogram mark, standing in for a founder photo we don't have
+                a real one for yet. Never substitute stock or AI-generated
+                photography per CLAUDE.md — this is a deliberate brand
+                treatment, not a placeholder. */}
             <div>
               <div
-                className="w-full aspect-[3/4] bg-surface rounded-card border border-hairline flex items-center justify-center"
-                aria-label="Photo of Abhishek Reddy Baddam, pending"
+                className="w-full aspect-[3/4] rounded-card overflow-hidden relative flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg,#0B2F38 0%,#06232A 60%,#0E3A44 100%)" }}
+                role="img"
+                aria-label="Monogram for Abhishek Reddy Baddam"
               >
-                <ContentToken id="BIO-01">
-                  <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
-                    Photo pending
-                  </span>
-                </ContentToken>
+                <span
+                  className="absolute top-[-20%] right-[-15%] w-[70%] h-[70%] pointer-events-none"
+                  style={{ background: "radial-gradient(circle,rgba(141,198,62,.18),transparent 65%)" }}
+                  aria-hidden="true"
+                />
+                <span
+                  className="absolute bottom-0 left-0 right-0 h-[3px]"
+                  style={{ background: "var(--gradient-signature)" }}
+                  aria-hidden="true"
+                />
+                <span
+                  className="relative font-display font-medium"
+                  style={{ fontSize: "5.5rem", letterSpacing: "-0.03em", color: "rgba(234,242,241,0.92)" }}
+                >
+                  AB
+                </span>
               </div>
             </div>
 

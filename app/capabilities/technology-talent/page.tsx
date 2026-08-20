@@ -7,6 +7,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
+import { HashScrollFix } from "@/components/ui/HashScrollFix";
 
 export const metadata: Metadata = {
   title: "Technology talent",
@@ -121,6 +122,7 @@ const IconMSP = () => (
 export default function TechnologyTalentPage() {
   return (
     <>
+      <HashScrollFix />
       {/* ================================================================
           HERO
           ================================================================ */}
@@ -338,7 +340,7 @@ export default function TechnologyTalentPage() {
       {/* ================================================================
           MSP / WORKFORCE PROGRAMS — surface (here and nowhere else per CLAUDE.md)
           ================================================================ */}
-      <section className="bg-surface" style={{ padding: "6rem 0" }}>
+      <section id="msp" className="bg-surface" style={{ padding: "6rem 0", scrollMarginTop: "100px" }}>
         <ScrollReveal className="wrap">
           <Eyebrow>Partner and MSP ecosystem</Eyebrow>
           <h2

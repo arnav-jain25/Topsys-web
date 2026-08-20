@@ -4,9 +4,9 @@ import { useState } from "react";
 
 const PANELS = [
   {
-    label: "Senior people stay on the work",
+    label: "Practitioners stay on the work",
     n: "01",
-    title: "Senior people stay on the work",
+    title: "Practitioners stay on the work",
     body: "The engineers and architects who scope your program are the ones who deliver it. No senior pitch team, no junior delivery team. The person who drew your architecture is in your standup six months later.",
   },
   {
