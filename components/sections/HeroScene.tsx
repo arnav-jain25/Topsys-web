@@ -119,10 +119,7 @@ export function HeroScene() {
 
       const scene = new THREE.Scene();
       const cam = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
-      /* Pulled in from 8.6 → 6.8: everything appears ~26% larger with no
-         geometry changes. This is the single highest-leverage knob for
-         perceived presence — a subtle scene just looks too far away. */
-      cam.position.z = 6.8;
+      cam.position.z = 7.2;
 
       const renderer = new THREE.WebGLRenderer({ canvas: canvas as HTMLCanvasElement, alpha: true, antialias: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -130,10 +127,11 @@ export function HeroScene() {
       const grp = new THREE.Group();
       scene.add(grp);
 
-      // Main particle cloud
+      // Main particle cloud — small crisp points, additive blending makes
+      // dense clusters bloom brighter without any size increase
       const pos = new Float32Array(forms[0]);
       const col = new Float32Array(N * 3);
-      const cA = new THREE.Color("#0E5A66"), cB = new THREE.Color("#2C8A6E"), cC = new THREE.Color("#8DC63E");
+      const cA = new THREE.Color("#0E7A8A"), cB = new THREE.Color("#2C8A6E"), cC = new THREE.Color("#8DC63E");
       const tmp = new THREE.Color();
       for (let i = 0; i < N; i++) {
         const t = i / N;
@@ -143,9 +141,9 @@ export function HeroScene() {
       const geo = new THREE.BufferGeometry();
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.085, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 0.95, depthWrite: false })));
+      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.052, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false, blending: THREE.AdditiveBlending })));
 
-      // Satellite points
+      // Satellite points — slightly larger accent dots at the periphery
       const sN = 52, sPos = new Float32Array(sN * 3);
       const sSeed = Array.from({ length: sN }, () => ({
         r: 2.9 + Math.random() * 1.25, a: Math.random() * Math.PI * 2,
@@ -153,15 +151,14 @@ export function HeroScene() {
       }));
       const sGeo = new THREE.BufferGeometry();
       sGeo.setAttribute("position", new THREE.BufferAttribute(sPos, 3));
-      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.16, color: "#8DC63E", transparent: true, opacity: 0.9, sizeAttenuation: true, depthWrite: false })));
+      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.10, color: "#8DC63E", transparent: true, opacity: 0.85, sizeAttenuation: true, depthWrite: false, blending: THREE.AdditiveBlending })));
 
-      // Orbital rings — opacity and tube radius raised so they read clearly
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.007, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E5A66", transparent: true, opacity: 0.55 }));
+      // Orbital rings
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.006, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E5A66", transparent: true, opacity: 0.45 }));
       ring.rotation.x = Math.PI / 2.3; grp.add(ring);
-      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.007, 6, 150), new THREE.MeshBasicMaterial({ color: "#8DC63E", transparent: true, opacity: 0.42 }));
+      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.006, 6, 150), new THREE.MeshBasicMaterial({ color: "#8DC63E", transparent: true, opacity: 0.32 }));
       ring2.rotation.x = Math.PI / 1.65; ring2.rotation.y = 0.7; grp.add(ring2);
-      // Third ring — adds depth and a sense of orbital system
-      const ring3 = new THREE.Mesh(new THREE.TorusGeometry(4.4, 0.005, 6, 150), new THREE.MeshBasicMaterial({ color: "#2C8A6E", transparent: true, opacity: 0.28 }));
+      const ring3 = new THREE.Mesh(new THREE.TorusGeometry(4.4, 0.004, 6, 150), new THREE.MeshBasicMaterial({ color: "#2C8A6E", transparent: true, opacity: 0.22 }));
       ring3.rotation.x = Math.PI / 3.2; ring3.rotation.y = -0.5; grp.add(ring3);
 
       function resize() {
