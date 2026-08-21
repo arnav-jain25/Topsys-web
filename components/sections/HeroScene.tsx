@@ -13,7 +13,7 @@ const CAPS: [string, string][] = [
 ];
 
 /* ---- Particle geometry builders ---- */
-const GX = 20, GY = 10, GZ = 14, N = GX * GY * GZ;
+const GX = 22, GY = 11, GZ = 16, N = GX * GY * GZ;
 
 function fData(): number[] {
   const a: number[] = [], sx = 4.6 / GX, sy = 2.9 / GY, sz = 3.4 / GZ;
@@ -142,22 +142,37 @@ export function HeroScene() {
       ctx2d.fillRect(0, 0, 64, 64);
       const discTex = new THREE.CanvasTexture(discCanvas);
 
-      // Main particle cloud
+      // Dual-layer particle cloud:
+      // · Matte layer (NormalBlending) — deep teal/green, gives the cloud solid
+      //   visible mass and colour against the paper background
+      // · Spark layer (AdditiveBlending) — bright cyan/lime, same positions,
+      //   creates the glittering bloom where dots accumulate
       const pos = new Float32Array(forms[0]);
-      const col = new Float32Array(N * 3);
-      const cA = new THREE.Color("#0E7A8A"), cB = new THREE.Color("#2C8A6E"), cC = new THREE.Color("#8DC63E");
+      const colMatte = new Float32Array(N * 3);
+      const colSpark = new Float32Array(N * 3);
+      const mA = new THREE.Color("#0B5262"), mB = new THREE.Color("#196A5A"), mC = new THREE.Color("#2A8060");
+      const sA = new THREE.Color("#22C8DC"), sB = new THREE.Color("#3ED490"), sC = new THREE.Color("#A0E840");
       const tmp = new THREE.Color();
       for (let i = 0; i < N; i++) {
         const t = i / N;
-        tmp.copy(t < 0.6 ? cA.clone().lerp(cB, t / 0.6) : cB.clone().lerp(cC, (t - 0.6) / 0.4));
-        col[i * 3] = tmp.r; col[i * 3 + 1] = tmp.g; col[i * 3 + 2] = tmp.b;
+        tmp.copy(t < 0.6 ? mA.clone().lerp(mB, t / 0.6) : mB.clone().lerp(mC, (t - 0.6) / 0.4));
+        colMatte[i * 3] = tmp.r; colMatte[i * 3 + 1] = tmp.g; colMatte[i * 3 + 2] = tmp.b;
+        tmp.copy(t < 0.6 ? sA.clone().lerp(sB, t / 0.6) : sB.clone().lerp(sC, (t - 0.6) / 0.4));
+        colSpark[i * 3] = tmp.r; colSpark[i * 3 + 1] = tmp.g; colSpark[i * 3 + 2] = tmp.b;
       }
+      // posAttr is shared — one needsUpdate call syncs both layers in the loop
+      const posAttr = new THREE.BufferAttribute(pos, 3);
       const geo = new THREE.BufferGeometry();
-      geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.062, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false, blending: THREE.AdditiveBlending, map: discTex, alphaTest: 0.01 })));
+      geo.setAttribute("position", posAttr);
+      geo.setAttribute("color", new THREE.BufferAttribute(colMatte, 3));
+      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.044, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 0.78, depthWrite: false, blending: THREE.NormalBlending, map: discTex, alphaTest: 0.01 })));
 
-      // Satellite dots — brighter accent points at the cloud periphery
+      const geoGlit = new THREE.BufferGeometry();
+      geoGlit.setAttribute("position", posAttr);
+      geoGlit.setAttribute("color", new THREE.BufferAttribute(colSpark, 3));
+      grp.add(new THREE.Points(geoGlit, new THREE.PointsMaterial({ size: 0.030, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending, map: discTex, alphaTest: 0.01 })));
+
+      // Satellite accent dots
       const sN = 52, sPos = new Float32Array(sN * 3);
       const sSeed = Array.from({ length: sN }, () => ({
         r: 2.9 + Math.random() * 1.25, a: Math.random() * Math.PI * 2,
@@ -165,14 +180,14 @@ export function HeroScene() {
       }));
       const sGeo = new THREE.BufferGeometry();
       sGeo.setAttribute("position", new THREE.BufferAttribute(sPos, 3));
-      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.13, color: "#8DC63E", transparent: true, opacity: 0.9, sizeAttenuation: true, depthWrite: false, blending: THREE.AdditiveBlending, map: discTex, alphaTest: 0.01 })));
+      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.11, color: "#8DC63E", transparent: true, opacity: 0.88, sizeAttenuation: true, depthWrite: false, blending: THREE.AdditiveBlending, map: discTex, alphaTest: 0.01 })));
 
-      // Orbital rings
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.006, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E5A66", transparent: true, opacity: 0.45 }));
+      // Orbital rings — tube broadened for visual weight
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.011, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E6A78", transparent: true, opacity: 0.50 }));
       ring.rotation.x = Math.PI / 2.3; grp.add(ring);
-      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.006, 6, 150), new THREE.MeshBasicMaterial({ color: "#8DC63E", transparent: true, opacity: 0.32 }));
+      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.010, 6, 150), new THREE.MeshBasicMaterial({ color: "#8DC63E", transparent: true, opacity: 0.38 }));
       ring2.rotation.x = Math.PI / 1.65; ring2.rotation.y = 0.7; grp.add(ring2);
-      const ring3 = new THREE.Mesh(new THREE.TorusGeometry(4.4, 0.004, 6, 150), new THREE.MeshBasicMaterial({ color: "#2C8A6E", transparent: true, opacity: 0.22 }));
+      const ring3 = new THREE.Mesh(new THREE.TorusGeometry(4.4, 0.007, 6, 150), new THREE.MeshBasicMaterial({ color: "#2C8A6E", transparent: true, opacity: 0.28 }));
       ring3.rotation.x = Math.PI / 3.2; ring3.rotation.y = -0.5; grp.add(ring3);
 
       function resize() {
