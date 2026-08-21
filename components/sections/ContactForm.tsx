@@ -197,7 +197,7 @@ export function ContactForm() {
   const [routeId, setRouteId] = useState<RouteId>(initialRoute);
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const route = ROUTES.find((r) => r.id === routeId)!;
 
   function handleRouteChange(id: RouteId) {
@@ -207,7 +207,7 @@ export function ContactForm() {
     setStatus("idle");
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const nextErrors: Record<string, string> = {};
     for (const field of route.fields) {
@@ -221,8 +221,31 @@ export function ContactForm() {
     }
     setErrors({});
     setStatus("submitting");
-    // Form endpoint pending — see docs/CONTENT-REGISTER.md {{FORM-ENDPOINT-01}}
-    setStatus("success");
+
+    const payload = {
+      access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "",
+      subject: `TOPSYS IT — ${route.label} inquiry from ${values.name ?? "unknown"}`,
+      from_name: values.name ?? "TOPSYS IT website",
+      ...values,
+      _route: route.label,
+      _destination: route.destination,
+    };
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json()) as { success: boolean; message?: string };
+      if (data.success) {
+        setStatus("success");
+      } else {
+        throw new Error(data.message ?? "Submission failed");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   if (status === "success") {
@@ -234,6 +257,30 @@ export function ContactForm() {
         <p className="text-body text-ink-2 max-w-[52ch]">
           {route.destination} We&rsquo;ll respond within one business day.
         </p>
+      </div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div className="border-t-2 border-teal pt-8" role="alert">
+        <h2 className="font-display font-medium text-heading-2 text-ink mb-2">
+          Something went wrong.
+        </h2>
+        <p className="text-body text-ink-2 max-w-[52ch]">
+          Please email us directly at{" "}
+          <a href="mailto:hr@topsysit.com" className="text-teal border-b border-current pb-0.5">
+            hr@topsysit.com
+          </a>{" "}
+          and we&rsquo;ll get back to you within one business day.
+        </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-6 font-mono text-mono-sm text-teal uppercase tracking-[.06em] hover:underline underline-offset-4"
+        >
+          Try again
+        </button>
       </div>
     );
   }

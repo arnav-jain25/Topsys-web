@@ -17,6 +17,13 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#f4efe3",
+  /* Explicit rather than relying on the framework default. Without a locked
+     device-width viewport, mobile Safari/Chrome fall back to a ~980px layout
+     viewport, which is what let the page be pinch-zoomed out to reveal dead
+     space beside the content. `maximumScale` is deliberately left alone —
+     capping user zoom is a WCAG 1.4.4 failure. */
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

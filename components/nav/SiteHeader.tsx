@@ -131,6 +131,9 @@ export function SiteHeader() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  /* Separate from `panelOpen`: the mobile drawer expands an inline list, it does
+     not open the desktop mega-panel, so the two must not share a flag. */
+  const [mobileServices, setMobileServices] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const capBtnRef = useRef<HTMLButtonElement>(null);
   const cmdInputRef = useRef<HTMLInputElement>(null);
@@ -163,6 +166,7 @@ export function SiteHeader() {
         setCmdOpen(false);
         setPanelOpen(false);
         setMobileOpen(false);
+        setMobileServices(false);
       }
     };
     document.addEventListener("keydown", handler);
@@ -184,6 +188,19 @@ export function SiteHeader() {
   }, [cmdOpen, mobileOpen]);
 
   const closeCmd = useCallback(() => setCmdOpen(false), []);
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+    setMobileServices(false);
+  }, []);
+
+  /* Close the drawer if the viewport grows past the mobile breakpoint while it is
+     open — otherwise the fixed sheet stays pinned over the desktop layout. */
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => { if (mq.matches) closeMobile(); };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [closeMobile]);
 
   return (
     <>
@@ -266,10 +283,11 @@ export function SiteHeader() {
 
           {/* Mobile burger */}
           <button
-            className="hidden max-[1023px]:inline-flex items-center font-mono text-mono-sm uppercase tracking-[.09em]"
+            className="hidden max-[1023px]:inline-flex items-center justify-center min-h-11 min-w-11 relative z-[96] font-mono text-mono-sm uppercase tracking-[.09em]"
             aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMobileOpen((v) => !v)}
+            onClick={() => (mobileOpen ? closeMobile() : setMobileOpen(true))}
           >
             {mobileOpen ? "Close" : "Menu"}
           </button>
@@ -281,7 +299,11 @@ export function SiteHeader() {
               ref={panelRef}
               role="region"
               aria-label="Services"
-              className="absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              /* Desktop only. Its 3-column grid and 3rem padding have no viable
+                 mobile rendering — on a phone the columns collapsed to ~140px and
+                 every service title broke mid-word. Mobile gets the inline list
+                 in the drawer below instead. */
+              className="hidden min-[1024px]:grid absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 borderTopColor: "transparent",
                 borderImage: "var(--gradient-signature) 1",
@@ -363,45 +385,111 @@ export function SiteHeader() {
           )}
         </div>
 
-        {/* Mobile nav drawer */}
-        {mobileOpen && (
-          <div className="hidden max-[1023px]:block border-t border-hairline bg-paper px-5 pb-6 space-y-1">
-            <button
-              className="block w-full text-left py-3 border-b border-hairline font-display font-medium text-heading-5 text-ink"
-              onClick={() => { setPanelOpen((v) => !v); }}
-              aria-expanded={panelOpen}
-            >
-              Services
-            </button>
-            {NAV_LINKS.map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                className="block py-3 border-b border-hairline font-display font-medium text-heading-5 text-ink"
-                onClick={() => setMobileOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
-            <div className="pt-4 flex flex-col gap-3">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center h-12 px-5 bg-teal text-white rounded-control text-body-xs font-semibold"
-                onClick={() => setMobileOpen(false)}
-              >
-                Talk to us
-              </Link>
-              <Link
-                href="/careers"
-                className="text-center text-body-sm text-ink-muted"
-                onClick={() => setMobileOpen(false)}
-              >
-                Careers
-              </Link>
-            </div>
-          </div>
-        )}
       </header>
+
+      {/* Mobile nav drawer — a fixed sheet under the header bar rather than an
+          in-flow block, so it scrolls independently and the page behind it
+          cannot be reached by accident. Dismissed by the backdrop, Escape, the
+          Close control, or picking any destination.
+
+          Deliberately a SIBLING of <header>, not a child: the header carries
+          `backdrop-blur`, and any filter/backdrop-filter makes an element a
+          containing block for `position: fixed` descendants. Nested inside, the
+          sheet resolved `top:70px; bottom:0` against the 70px header box and
+          collapsed to a ~49px strip with a zero-height backdrop — which is why
+          the menu looked broken on a phone and could only be dismissed by the
+          Close control. */}
+      {mobileOpen && (
+          <>
+            <div
+              className="hidden max-[1023px]:block fixed inset-x-0 top-[70px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px]"
+              onClick={closeMobile}
+              aria-hidden="true"
+            />
+            <div
+              id="mobile-nav"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
+              className="hidden max-[1023px]:flex flex-col fixed inset-x-0 top-[70px] bottom-0 z-[95] bg-paper border-t border-hairline overflow-y-auto overscroll-contain px-5 pt-2 pb-10"
+            >
+              {/* Services — inline disclosure, not the desktop mega-panel */}
+              <button
+                className="flex w-full items-center justify-between py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink text-left"
+                onClick={() => setMobileServices((v) => !v)}
+                aria-expanded={mobileServices}
+                aria-controls="mobile-services"
+              >
+                Services
+                <svg
+                  width="16" height="16" viewBox="0 0 16 16" fill="none"
+                  aria-hidden="true"
+                  className={`flex-none text-ink-muted transition-transform duration-base ease-standard ${mobileServices ? "rotate-180" : ""}`}
+                >
+                  <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {mobileServices && (
+                <div id="mobile-services" className="py-2 pl-1">
+                  {CAP_CARDS.map((c) => (
+                    <Link
+                      key={c.href}
+                      href={c.href}
+                      onClick={closeMobile}
+                      className="flex items-center gap-3 py-3 border-b border-hairline text-body-sm text-ink-2"
+                    >
+                      <span className="text-teal flex-none"><c.Icon /></span>
+                      {c.title}
+                    </Link>
+                  ))}
+                  <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-ink-muted pt-5 pb-1">
+                    I need to
+                  </p>
+                  {INTENT_LINKS.map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={closeMobile}
+                      className="flex items-center justify-between gap-3 py-3 border-b border-hairline text-body-sm text-ink-2"
+                    >
+                      {label}
+                      <span className="font-mono text-teal flex-none" aria-hidden="true">→</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {NAV_LINKS.map(({ label, href }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="block py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink"
+                  onClick={closeMobile}
+                >
+                  {label}
+                </Link>
+              ))}
+
+              <div className="pt-6 flex flex-col gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center h-12 px-5 bg-teal text-white rounded-control text-body-sm font-semibold"
+                  onClick={closeMobile}
+                >
+                  Talk to us
+                </Link>
+                <Link
+                  href="/careers"
+                  className="inline-flex items-center justify-center h-12 text-body-sm text-ink-muted"
+                  onClick={closeMobile}
+                >
+                  Careers
+                </Link>
+              </div>
+            </div>
+          </>
+      )}
 
       {/* ---- Command bar overlay ---- */}
       {cmdOpen && (

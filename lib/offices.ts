@@ -39,8 +39,8 @@ export const OFFICES: Office[] = [
     city: "Hyderabad",
     country: "India",
     label: "India",
-    address: "First Floor, Shyam Arihant, Patigadda Road, Secunderabad, 500003 Hyderabad, TS, India",
-    mapsUrl: "https://maps.google.com/?q=Shyam+Arihant+Patigadda+Road+Secunderabad+Hyderabad+Telangana+India",
+    address: "3rd Floor, Eternal Samyuktha, Vittal Rao Nagar Road, Madhapur, Hyderabad 500081, India",
+    mapsUrl: "https://maps.google.com/?q=Eternal+Samyuktha+Vittal+Rao+Nagar+Road+Madhapur+Hyderabad+500081",
   },
 ];
 

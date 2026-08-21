@@ -46,6 +46,12 @@
 
   /* --- Type: display scale (Archivo) ------------------------------------ */
   --text-display-1: clamp(2.25rem, 4.9vw, 5.5rem);    /* 36 -> 88 · hero h1 */
+  /* The hero h1 runs slightly hotter than display-1 (5.4vw) because it holds a
+     deliberate two-line break. Kept as a token rather than an inline clamp so
+     the ultra-wide blocks at the bottom of this file can raise its ceiling too —
+     inline styles win over any media query, which is what left the headline
+     stranded at 88px on a 2560px monitor. */
+  --text-hero-h1: clamp(2rem, 5.4vw, 5.5rem);
   --text-display-1--line-height: 1.02;
   --text-display-1--letter-spacing: -0.035em;
   --text-display-1--font-weight: 500;
@@ -372,6 +378,11 @@
     scroll-padding-top: 100px;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Last-resort guard against horizontal scroll. `clip` rather than `hidden`
+       because `hidden` on the root establishes a scroll container and breaks
+       `position: sticky` on the header. Individual overflows are still fixed at
+       source; this only stops one escaping element from shifting the whole page. */
+    overflow-x: clip;
   }
 
   body {
@@ -570,6 +581,64 @@
   .nav-item {
     padding: 0 30px 16px;
     font-size: 15.5px;
+  }
+}
+
+/* ============================================================================
+   Ultra-wide type ceilings (≥1600px)
+
+   The fluid clamps above top out around a 1440–1600px viewport. Past that the
+   container keeps growing but every type size is frozen at its ceiling, so on a
+   2560px or 3440px monitor the page reads as small text stranded in a wide
+   field. Raising the ceilings lets the type keep tracking the viewport, which is
+   what keeps the composition's proportions intact rather than just its widths.
+
+   Measure caps are deliberately NOT raised — body copy stays at 68 characters
+   per the type rules. Wide screens get larger text, not longer lines.
+   ========================================================================= */
+
+@media (width >= 100rem) {
+  :root {
+    --text-display-1: clamp(5.5rem, 4.9vw, 7rem);       /* 88 -> 112 */
+    --text-hero-h1: clamp(5.5rem, 5.4vw, 7.5rem);       /* 88 -> 120 */
+    --text-display-2: clamp(4.5rem, 4.4vw, 5.75rem);    /* 72 -> 92  */
+    --text-display-3: clamp(3.75rem, 3.8vw, 4.75rem);   /* 60 -> 76  */
+    --text-display-4: clamp(2.75rem, 2.6vw, 3.5rem);    /* 44 -> 56  */
+    --text-heading-fluid: clamp(1.625rem, 2.1vw, 2rem); /* 26 -> 32  */
+    --text-stat: clamp(3.375rem, 4vw, 4.5rem);          /* 54 -> 72  */
+
+    /* Static steps get one proportional bump so headings and body stay in
+       relation to the enlarged display sizes. */
+    --text-heading-1: 1.75rem;    /* 24 -> 28 */
+    --text-heading-2: 1.5rem;     /* 21 -> 24 */
+    --text-heading-3: 1.3125rem;  /* 19 -> 21 */
+    --text-heading-4: 1.25rem;    /* 18 -> 20 */
+    --text-heading-5: 1.0625rem;  /* 15 -> 17 */
+
+    --text-lede-lg: 1.375rem;     /* 19 -> 22 */
+    --text-lede: 1.25rem;         /* 18 -> 20 */
+    --text-body-sm: 1rem;         /* 15 -> 16 */
+    --text-body-xs: 0.9375rem;    /* 14 -> 15 */
+    --text-caption: 0.875rem;     /* 13 -> 14 */
+  }
+
+  body {
+    font-size: 1.1875rem; /* 19px base */
+  }
+}
+
+/* Very wide (≥2200px): one further step, and the container stops chasing the
+   viewport so line lengths stay readable rather than spanning the whole wall. */
+@media (width >= 137.5rem) {
+  :root {
+    --text-display-1: 7.5rem;  /* 120 */
+    --text-hero-h1: 8.25rem;   /* 132 */
+    --text-display-2: 6.25rem; /* 100 */
+    --text-display-3: 5.25rem; /* 84  */
+  }
+
+  body {
+    font-size: 1.25rem; /* 20px base */
   }
 }
 

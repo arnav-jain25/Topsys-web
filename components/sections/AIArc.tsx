@@ -49,7 +49,11 @@ export function AIArc() {
       {/* Stage selector */}
       <div
         className="grid relative mt-16 before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-field-hairline"
-        style={{ gridTemplateColumns: `repeat(${STAGES.length}, 1fr)` }}
+        /* minmax(0, 1fr) rather than 1fr: a bare `1fr` track carries an implicit
+           `min-width: auto`, so the longest stage label forced the whole row wider
+           than the viewport on phones and made the document scroll sideways.
+           Flooring the track at 0 lets the labels wrap inside their column. */
+        style={{ gridTemplateColumns: `repeat(${STAGES.length}, minmax(0, 1fr))` }}
       >
         {/* Gradient progress indicator — one of the four permitted uses */}
         <span

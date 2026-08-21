@@ -26,8 +26,12 @@ export default function HomePage() {
         style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem" }}
         aria-label="Hero"
       >
-        {/* Particle canvas — fills the section, pointer-events none */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Particle canvas — fills the section, pointer-events none.
+            Hidden below 1024px: on a phone the copy spans the full width, so the
+            canvas sits directly behind the text instead of beside it and reads as
+            visual noise. Skipping it on mobile also drops the three.js payload on
+            exactly the devices least able to afford it. */}
+        <div className="absolute inset-0 z-0 pointer-events-none max-[1023px]:hidden">
           {/* Ambient glow behind the canvas */}
           <span
             className="absolute z-0 pointer-events-none"
@@ -51,12 +55,17 @@ export default function HomePage() {
 
         <div className="wrap relative z-[2] hero-copy-grid w-full">
           <div className="hero-copy">
+            {/* `nowrap` holds the two-line break on desktop, where the 5.4vw size
+                is measured to fit. Below 600px the floor of the clamp (36px) is
+                wider than the viewport, so nowrap pushed the line past the edge
+                and made the whole document horizontally scrollable — hence the
+                normal-wrap override at the small end. */}
             <h1
               className="font-display font-medium text-ink mb-6"
-              style={{ fontSize: "clamp(2.25rem, 5.4vw, 5.5rem)", lineHeight: 1.02, letterSpacing: "-0.035em" }}
+              style={{ fontSize: "var(--text-hero-h1)", lineHeight: 1.02, letterSpacing: "-0.035em" }}
             >
-              <span className="block whitespace-nowrap">Technology</span>
-              <span className="block whitespace-nowrap">
+              <span className="block whitespace-nowrap max-[600px]:whitespace-normal">Technology</span>
+              <span className="block whitespace-nowrap max-[600px]:whitespace-normal">
                 that{" "}
                 <span className="text-signature">has to work.</span>
               </span>
