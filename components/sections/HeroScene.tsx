@@ -24,17 +24,19 @@ function fData(): number[] {
   return a;
 }
 
-// Double helix — two intertwined spirals, 3 full turns, slight noise
+// Trefoil knot — 3-lobed interlocked ring, organic and symmetric
 function fAI(): number[] {
-  const a: number[] = [], turns = 3, H = 3.2, R = 1.5;
+  const a: number[] = [], R = 2.2, r = 0.75;
   for (let i = 0; i < N; i++) {
-    const strand = i % 2, t = i / N;
-    const angle = t * turns * Math.PI * 2 + strand * Math.PI;
-    const y = (t - 0.5) * H;
+    const t = (i / N) * Math.PI * 2;
+    const x = (R + r * Math.cos(3 * t)) * Math.cos(2 * t);
+    const y = (R + r * Math.cos(3 * t)) * Math.sin(2 * t);
+    const z = r * Math.sin(3 * t) * 0.9;
+    const sp = 0.19;
     a.push(
-      Math.cos(angle) * R + (Math.random() - 0.5) * 0.22,
-      y + (Math.random() - 0.5) * 0.12,
-      Math.sin(angle) * R + (Math.random() - 0.5) * 0.22,
+      x + (Math.random() - 0.5) * sp,
+      z + (Math.random() - 0.5) * sp * 0.7,
+      y + (Math.random() - 0.5) * sp,
     );
   }
   return a;
@@ -155,63 +157,38 @@ export function HeroScene() {
       ctx2d.fillRect(0, 0, 64, 64);
       const discTex = new THREE.CanvasTexture(discCanvas);
 
-      // ── Main cloud ─────────────────────────────────────────────────────
-      // Base palette: predominantly dark teals so the cloud has real depth and
-      // contrast against the paper background. The mass reads as dark → sparkle
-      // dots of a contrasting hue register as genuine colour flashes.
-      const PALETTE = [
-        new THREE.Color("#0B2F38"), new THREE.Color("#0E5A66"),
-        new THREE.Color("#0A454E"), new THREE.Color("#196A5A"),
-        new THREE.Color("#2C8A6E"), new THREE.Color("#0B2F38"),
-        new THREE.Color("#0E5A66"),
+      // ── All-particle twinkle ───────────────────────────────────────────
+      // Every particle gets a unique phase and speed. Each frame the color
+      // buffer is rewritten: bright = dim + peak * sin²(el*speed + phase).
+      // This makes the ENTIRE cloud sparkle — no separate sparkle layer.
+      // Colors: service icon hues (brighter versions) + teals, randomly
+      // assigned. Contrasting warm/cool against the rings creates depth.
+      const ALL_PAL = [
+        new THREE.Color("#E09B12"), // bright amber  (Apps icon)
+        new THREE.Color("#2A8FD4"), // bright blue   (Cloud icon)
+        new THREE.Color("#C43D6E"), // bright rose   (Security icon)
+        new THREE.Color("#8AB040"), // bright olive  (Talent icon)
+        new THREE.Color("#0E7A90"), // bright teal   (AI/Data)
+        new THREE.Color("#8DC63E"), // signal green
+        new THREE.Color("#0E5A66"), // standard teal
       ];
       const pos = new Float32Array(forms[0]);
-      const colMain = new Float32Array(N * 3);
+      const colBase = new Float32Array(N * 3);  // full-brightness target
+      const colAnim = new Float32Array(N * 3);  // written every frame
+      const phases = new Float32Array(N);
+      const speeds = new Float32Array(N);
       for (let i = 0; i < N; i++) {
-        const c = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-        colMain[i * 3] = c.r; colMain[i * 3 + 1] = c.g; colMain[i * 3 + 2] = c.b;
+        const c = ALL_PAL[Math.floor(Math.random() * ALL_PAL.length)];
+        colBase[i * 3] = c.r; colBase[i * 3 + 1] = c.g; colBase[i * 3 + 2] = c.b;
+        colAnim[i * 3] = c.r; colAnim[i * 3 + 1] = c.g; colAnim[i * 3 + 2] = c.b;
+        phases[i] = Math.random() * Math.PI * 2;
+        speeds[i] = 0.5 + Math.random() * Math.random() * 3.2; // skewed slow
       }
       const geo = new THREE.BufferGeometry();
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      geo.setAttribute("color", new THREE.BufferAttribute(colMain, 3));
+      geo.setAttribute("color", new THREE.BufferAttribute(colAnim, 3));
       grp.add(new THREE.Points(geo, new THREE.PointsMaterial({
-        size: 0.036, sizeAttenuation: true, vertexColors: true,
-        transparent: true, opacity: 0.82, depthWrite: false,
-        blending: THREE.NormalBlending, map: discTex, alphaTest: 0.01,
-      })));
-
-      // ── Sparkle layer ──────────────────────────────────────────────────
-      // Every 8th particle becomes a larger glowing disc whose brightness
-      // is animated per-particle each frame (different phase offsets) for
-      // true per-dot twinkle. NormalBlending on a light bg: we animate
-      // the colour toward white for the "shine" rather than adding light.
-      const sparkN = Math.floor(N / 8);
-      const sparkPos = new Float32Array(sparkN * 3);
-      const sparkBaseCol = new Float32Array(sparkN * 3);
-      const sparkCol = new Float32Array(sparkN * 3);
-      // Sparkle palette: service icon colours — amber, blue, burgundy, olive.
-      // Contrasting warm/cool hues against the teal base create colour-flash
-      // glitter as each dot animates between dim and peak independently.
-      const SPARK_PAL = [
-        new THREE.Color("#B5790C"), // amber — Apps icon
-        new THREE.Color("#1E6FA8"), // blue  — Cloud icon
-        new THREE.Color("#9C3159"), // burgundy — Security icon
-        new THREE.Color("#5F7A2E"), // olive — Talent icon
-        new THREE.Color("#B5790C"), // amber again for weight
-      ];
-      for (let k = 0; k < sparkN; k++) {
-        const c = SPARK_PAL[k % SPARK_PAL.length];
-        sparkBaseCol[k * 3] = c.r; sparkBaseCol[k * 3 + 1] = c.g; sparkBaseCol[k * 3 + 2] = c.b;
-        sparkCol[k * 3] = c.r; sparkCol[k * 3 + 1] = c.g; sparkCol[k * 3 + 2] = c.b;
-        // Init positions from forms[0] so static / reduced-motion frame is correct
-        const src = (k * 8) * 3;
-        sparkPos[k * 3] = forms[0][src]; sparkPos[k * 3 + 1] = forms[0][src + 1]; sparkPos[k * 3 + 2] = forms[0][src + 2];
-      }
-      const sparkGeo = new THREE.BufferGeometry();
-      sparkGeo.setAttribute("position", new THREE.BufferAttribute(sparkPos, 3));
-      sparkGeo.setAttribute("color", new THREE.BufferAttribute(sparkCol, 3));
-      grp.add(new THREE.Points(sparkGeo, new THREE.PointsMaterial({
-        size: 0.072, sizeAttenuation: true, vertexColors: true,
+        size: 0.042, sizeAttenuation: true, vertexColors: true,
         transparent: true, opacity: 1.0, depthWrite: false,
         blending: THREE.NormalBlending, map: discTex, alphaTest: 0.01,
       })));
@@ -294,30 +271,22 @@ export function HeroScene() {
         const e = mix < 0.5 ? 4 * mix * mix * mix : 1 - Math.pow(-2 * mix + 2, 3) / 2;
         const A = forms[phaseIdx], B = forms[nxt], burst = (1 - Math.abs(e - 0.5) * 2);
 
+        // Combined morph + per-particle twinkle in one pass
         for (let i = 0; i < N; i++) {
           const i3 = i * 3;
           const wob = Math.sin(el * 1.15 + i * 0.05) * burst * 0.42;
           pos[i3]     = A[i3]     + (B[i3]     - A[i3])     * e + wob * 0.55;
           pos[i3 + 1] = A[i3 + 1] + (B[i3 + 1] - A[i3 + 1]) * e + wob * 0.42;
           pos[i3 + 2] = A[i3 + 2] + (B[i3 + 2] - A[i3 + 2]) * e + wob * 0.3;
+          // sin² → brief bright flash, long dim — glitter cadence per dot
+          const sv = Math.sin(el * speeds[i] + phases[i]);
+          const bright = 0.10 + 0.90 * sv * sv;
+          colAnim[i3]     = colBase[i3]     * bright;
+          colAnim[i3 + 1] = colBase[i3 + 1] * bright;
+          colAnim[i3 + 2] = colBase[i3 + 2] * bright;
         }
         geo.attributes.position.needsUpdate = true;
-
-        // Sparkle: extract every-8th particle position, animate brightness
-        for (let k = 0; k < sparkN; k++) {
-          const src = (k * 8) * 3;
-          sparkPos[k * 3]     = pos[src];
-          sparkPos[k * 3 + 1] = pos[src + 1];
-          sparkPos[k * 3 + 2] = pos[src + 2];
-          // Squared sine → long dim phase, brief bright flash = glitter cadence
-          const s = Math.abs(Math.sin(el * 2.4 + k * 0.37));
-          const bright = s * s;
-          sparkCol[k * 3]     = sparkBaseCol[k * 3]     * bright;
-          sparkCol[k * 3 + 1] = sparkBaseCol[k * 3 + 1] * bright;
-          sparkCol[k * 3 + 2] = sparkBaseCol[k * 3 + 2] * bright;
-        }
-        sparkGeo.attributes.position.needsUpdate = true;
-        sparkGeo.attributes.color.needsUpdate = true;
+        geo.attributes.color.needsUpdate = true;
 
         for (let j = 0; j < sN; j++) {
           const s = sSeed[j], ang = s.a + el * s.s;
