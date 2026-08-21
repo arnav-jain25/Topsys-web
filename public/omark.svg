@@ -1,27 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="TOPSYS IT O-mark">
   <!--
-    O-mark: filled droplet, pointed top, round bottom, circular counter punched
-    through with fill-rule: evenodd. Colour: teal #0E5A66.
+    O-mark: a capital-O ring where the top pinches to a droplet point.
+    Colour #1C4689 sampled directly from the master logo PNG.
 
-    Outer path — teardrop
-      top point (256, 25), cubic beziers meet the circle tangentially,
-      then a full-radius arc closes the bottom.
-    Inner path — circle
-      concentric with the lower circle of the teardrop; creates the hole.
+    Construction:
+      Outer path: two symmetric cubic beziers from the top point to the
+        left/right tangents of a circle, then a semicircular arc closes
+        the bottom.  CP2 shares the same x as the arc tangent so the
+        bezier arrives with a vertical (downward) tangent — the curve is
+        smooth at the join.
+      Inner path: a perfect circle concentric with the outer arc,
+        punched through with fill-rule: evenodd.
+
+    Key sizing (512×512 canvas):
+      Outer circle  center (256, 315)  radius 185   → bottom y = 500
+      Inner circle  center (256, 315)  radius 115   → ring ≈ 70 px
+      Top point     (256, 25)
+      Outer width   256 ± 185 = 71 → 441  (370 px)
+      Aspect ratio  370 : 475 ≈ 0.78  (matches reference image)
   -->
   <path
-    fill="#0E5A66"
+    fill="#1C4689"
     fill-rule="evenodd"
     d="
       M 256 25
-      C 376 95, 426 258, 426 340
-      A 170 170 0 0 1 86 340
-      C 86 258, 136 95, 256 25
+      C 336 52, 441 208, 441 315
+      A 185 185 0 0 1 71 315
+      C 71 208, 176 52, 256 25
       Z
 
-      M 148 320
-      A 108 108 0 0 1 364 320
-      A 108 108 0 0 1 148 320
+      M 141 315
+      A 115 115 0 0 1 371 315
+      A 115 115 0 0 1 141 315
       Z
     "
   />
