@@ -323,6 +323,10 @@
   position: relative;
   padding: 0 11px 16px;
   font-size: 13.5px;
+  /* Multi-word labels ("Public sector", "Case studies") wrap to two lines
+     without this — the nav-item has no intrinsic width floor, so on a 1280px
+     viewport each item's column is only ~90px wide at the compact tier. */
+  white-space: nowrap;
   color: var(--color-ink-2);
   letter-spacing: -0.005em;
   transition: color var(--duration-fast) var(--ease-standard);
@@ -638,9 +642,22 @@
   }
 }
 
-/* Very wide (≥2200px): one further step, and the container stops chasing the
-   viewport so line lengths stay readable rather than spanning the whole wall. */
+/* Very wide (≥2200px): raise type ceilings one further step, and let the
+   container chase the viewport without a fixed rem cap.
+
+   The ≥1600px rule above caps .wrap at min(95vw, 140rem) = 2240px. On a
+   3440px ultrawide that leaves ~600px of blank on each side — the user sees
+   "everything tiny and in the center." Overriding the max-width here drops
+   the hard cap: the container uses 94vw, so at 3440px it's 3234px wide with
+   ~103px margins. Individual content blocks (paragraphs, headings) still
+   carry their own ch/em max-widths, so line lengths stay readable — the
+   extra room widens grids, grows the map, and expands the hero canvas. */
 @media (width >= 137.5rem) {
+  .wrap {
+    max-width: 94vw;
+    padding-inline: clamp(2rem, 2.5vw, 4rem);
+  }
+
   :root {
     --text-display-1: 7.5rem;  /* 120 */
     --text-hero-h1: 8.25rem;   /* 132 */
