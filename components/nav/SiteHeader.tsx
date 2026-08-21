@@ -404,8 +404,11 @@ export function SiteHeader() {
           Close control. */}
       {mobileOpen && (
           <>
+            {/* iOS Safari does not fire click on a div unless cursor:pointer is set — without it
+                tapping the backdrop does nothing on an iPhone and the only way to dismiss is
+                the Close button. */}
             <div
-              className="hidden max-[1279px]:block fixed inset-x-0 top-[70px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px]"
+              className="hidden max-[1279px]:block fixed inset-x-0 top-[70px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px] cursor-pointer"
               onClick={closeMobile}
               aria-hidden="true"
             />
