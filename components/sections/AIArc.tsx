@@ -46,18 +46,22 @@ export function AIArc() {
 
   return (
     <div>
-      {/* Stage selector */}
-      <div
-        className="grid relative mt-16 before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-field-hairline"
-        /* minmax(0, 1fr) rather than 1fr: a bare `1fr` track carries an implicit
-           `min-width: auto`, so the longest stage label forced the whole row wider
-           than the viewport on phones and made the document scroll sideways.
-           Flooring the track at 0 lets the labels wrap inside their column. */
-        style={{ gridTemplateColumns: `repeat(${STAGES.length}, minmax(0, 1fr))` }}
-      >
+      {/* Stage selector.
+
+          Two layouts. From 700px up: one row of seven equal tracks with a single
+          sliding gradient bar above them — the intended reading of the arc.
+          Below 700px seven tracks leave ~40px each and every label is clipped, so
+          the stages stack two-up and the sliding bar is replaced by a per-item
+          tick. Same gradient, same one permitted use, just not slidable when the
+          items no longer sit in one line.
+
+          minmax(0, 1fr) rather than 1fr on the wide layout: a bare `1fr` track
+          carries an implicit `min-width: auto`, so the longest label forced the
+          row wider than the viewport and made the document scroll sideways. */}
+      <div className="grid relative mt-16 grid-cols-2 min-[700px]:grid-cols-[repeat(7,minmax(0,1fr))] min-[700px]:before:absolute min-[700px]:before:top-0 min-[700px]:before:left-0 min-[700px]:before:right-0 min-[700px]:before:h-px min-[700px]:before:bg-field-hairline">
         {/* Gradient progress indicator — one of the four permitted uses */}
         <span
-          className="absolute top-[-1px] left-0 h-[3px] bg-signature rounded-sm transition-all duration-base ease-standard"
+          className="hidden min-[700px]:block absolute top-[-1px] h-[3px] bg-signature rounded-sm transition-all duration-base ease-standard"
           style={{ width: `${100 / STAGES.length}%`, left: `${pct}%` }}
           aria-hidden="true"
         />
@@ -65,9 +69,17 @@ export function AIArc() {
           <button
             key={label}
             onClick={() => setActive(i)}
-            className={`pt-6 px-2.5 text-left font-mono text-mono-sm tracking-[.05em] transition-colors duration-fast ease-standard ${active === i ? "text-signal" : "text-on-field-2 hover:text-signal"}`}
+            className={`relative pt-6 pb-2 px-2.5 text-left font-mono text-mono-sm tracking-[.05em] transition-colors duration-fast ease-standard border-t border-field-hairline min-[700px]:border-t-0 min-[700px]:pb-0 ${active === i ? "text-signal" : "text-on-field-2 hover:text-signal"}`}
             aria-pressed={active === i}
           >
+            {/* Stacked-layout tick: the sliding bar above cannot track items that
+                are no longer in a single row. */}
+            {active === i && (
+              <span
+                className="min-[700px]:hidden absolute top-[-1px] left-0 right-0 h-[3px] bg-signature rounded-sm"
+                aria-hidden="true"
+              />
+            )}
             {label}
           </button>
         ))}

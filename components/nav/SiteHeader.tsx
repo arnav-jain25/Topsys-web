@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -53,7 +53,7 @@ const CAP_CARDS = [
     href: "/capabilities/ai-and-data",
     title: "AI & data",
     desc: "Data foundations, applied AI, and analytics that change what people decide.",
-    sub: "Advisory · Generative AI · Automation · ML · Data platforms · Analytics · Governance",
+    sub: "Advisory Â· Generative AI Â· Automation Â· ML Â· Data platforms Â· Analytics Â· Governance",
     lead: true,
     Icon: IconAI,
   },
@@ -155,7 +155,7 @@ export function SiteHeader() {
     return () => document.removeEventListener("mousedown", handler);
   }, [panelOpen]);
 
-  /* ⌘K / Ctrl+K shortcut */
+  /* âŒ˜K / Ctrl+K shortcut */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -194,9 +194,9 @@ export function SiteHeader() {
   }, []);
 
   /* Close the drawer if the viewport grows past the mobile breakpoint while it is
-     open — otherwise the fixed sheet stays pinned over the desktop layout. */
+     open â€” otherwise the fixed sheet stays pinned over the desktop layout. */
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia("(min-width: 1280px)");
     const onChange = () => { if (mq.matches) closeMobile(); };
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
@@ -209,11 +209,11 @@ export function SiteHeader() {
         ref={headerRef}
         className="sticky top-0 z-[100] bg-paper/90 backdrop-blur-[10px]"
       >
-        <div className="wrap flex items-end gap-8 h-20 relative max-[1023px]:items-center max-[1023px]:justify-between max-[1023px]:h-[70px]">
+        <div className="wrap flex items-end gap-8 h-20 relative max-[1279px]:items-center max-[1279px]:justify-between max-[1279px]:h-[70px]">
           {/* Logo */}
           <Link
             href="/"
-            className="pb-4 max-[1023px]:pb-0 flex-none"
+            className="pb-4 max-[1279px]:pb-0 flex-none"
             aria-label="TOPSYS IT home"
           >
             <Image
@@ -228,10 +228,10 @@ export function SiteHeader() {
 
           {/* Datum-rule nav (desktop) */}
           <nav
-            className="flex-1 flex items-end relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-hairline max-[1023px]:hidden"
+            className="flex-1 flex items-end relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-hairline max-[1279px]:hidden"
             aria-label="Primary"
           >
-            {/* Services — has panel */}
+            {/* Services â€” has panel */}
             <button
               ref={capBtnRef}
               className="nav-item group"
@@ -240,7 +240,7 @@ export function SiteHeader() {
               onClick={() => setPanelOpen((v) => !v)}
             >
               Services
-              {/* Gradient tick — one of the four permitted uses */}
+              {/* Gradient tick â€” one of the four permitted uses */}
               <span
                 className={`absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${panelOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
                 aria-hidden="true"
@@ -259,13 +259,16 @@ export function SiteHeader() {
           </nav>
 
           {/* Right controls (desktop) */}
-          <div className="flex items-center gap-3.5 pb-3.5 max-[1023px]:hidden">
+          <div className="flex items-center gap-3.5 pb-3.5 max-[1279px]:hidden">
             <button
-              className="flex items-center gap-2.5 h-9 px-3 bg-surface border border-hairline rounded-control font-mono text-mono-sm text-ink-muted hover:border-teal hover:text-teal transition-colors duration-fast ease-standard"
+              /* Hidden in the 1280–1439px band: it is the most expendable item
+                 in the row and dropping it buys the nav ~125px. ⌘K still opens
+                 the same overlay, so nothing becomes unreachable. */
+              className="max-[1439px]:hidden flex items-center gap-2.5 h-9 px-3 bg-surface border border-hairline rounded-control font-mono text-mono-sm text-ink-muted hover:border-teal hover:text-teal transition-colors duration-fast ease-standard"
               onClick={() => setCmdOpen(true)}
               aria-label="Open search"
             >
-              Search <span aria-hidden="true">⌘K</span>
+              Search <span aria-hidden="true">âŒ˜K</span>
             </button>
             <Link
               href="/careers"
@@ -283,7 +286,7 @@ export function SiteHeader() {
 
           {/* Mobile burger */}
           <button
-            className="hidden max-[1023px]:inline-flex items-center justify-center min-h-11 min-w-11 relative z-[96] font-mono text-mono-sm uppercase tracking-[.09em]"
+            className="hidden max-[1279px]:inline-flex items-center justify-center min-h-11 min-w-11 relative z-[96] font-mono text-mono-sm uppercase tracking-[.09em]"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -300,10 +303,10 @@ export function SiteHeader() {
               role="region"
               aria-label="Services"
               /* Desktop only. Its 3-column grid and 3rem padding have no viable
-                 mobile rendering — on a phone the columns collapsed to ~140px and
+                 mobile rendering â€” on a phone the columns collapsed to ~140px and
                  every service title broke mid-word. Mobile gets the inline list
                  in the drawer below instead. */
-              className="hidden min-[1024px]:grid absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              className="hidden min-[1280px]:grid absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 borderTopColor: "transparent",
                 borderImage: "var(--gradient-signature) 1",
@@ -376,7 +379,7 @@ export function SiteHeader() {
                       className="flex justify-between items-center p-4 bg-white border border-hairline rounded-card text-body-xs text-ink hover:border-teal hover:translate-x-[3px] hover:shadow-e1 transition-all duration-fast ease-standard"
                     >
                       {label}
-                      <span className="font-mono text-teal" aria-hidden="true">→</span>
+                      <span className="font-mono text-teal" aria-hidden="true">â†’</span>
                     </Link>
                   ))}
                 </div>
@@ -387,7 +390,7 @@ export function SiteHeader() {
 
       </header>
 
-      {/* Mobile nav drawer — a fixed sheet under the header bar rather than an
+      {/* Mobile nav drawer â€” a fixed sheet under the header bar rather than an
           in-flow block, so it scrolls independently and the page behind it
           cannot be reached by accident. Dismissed by the backdrop, Escape, the
           Close control, or picking any destination.
@@ -396,13 +399,13 @@ export function SiteHeader() {
           `backdrop-blur`, and any filter/backdrop-filter makes an element a
           containing block for `position: fixed` descendants. Nested inside, the
           sheet resolved `top:70px; bottom:0` against the 70px header box and
-          collapsed to a ~49px strip with a zero-height backdrop — which is why
+          collapsed to a ~49px strip with a zero-height backdrop â€” which is why
           the menu looked broken on a phone and could only be dismissed by the
           Close control. */}
       {mobileOpen && (
           <>
             <div
-              className="hidden max-[1023px]:block fixed inset-x-0 top-[70px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px]"
+              className="hidden max-[1279px]:block fixed inset-x-0 top-[70px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px]"
               onClick={closeMobile}
               aria-hidden="true"
             />
@@ -411,9 +414,9 @@ export function SiteHeader() {
               role="dialog"
               aria-modal="true"
               aria-label="Menu"
-              className="hidden max-[1023px]:flex flex-col fixed inset-x-0 top-[70px] bottom-0 z-[95] bg-paper border-t border-hairline overflow-y-auto overscroll-contain px-5 pt-2 pb-10"
+              className="hidden max-[1279px]:flex flex-col fixed inset-x-0 top-[70px] bottom-0 z-[95] bg-paper border-t border-hairline overflow-y-auto overscroll-contain px-5 pt-2 pb-10"
             >
-              {/* Services — inline disclosure, not the desktop mega-panel */}
+              {/* Services â€” inline disclosure, not the desktop mega-panel */}
               <button
                 className="flex w-full items-center justify-between py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink text-left"
                 onClick={() => setMobileServices((v) => !v)}
@@ -454,7 +457,7 @@ export function SiteHeader() {
                       className="flex items-center justify-between gap-3 py-3 border-b border-hairline text-body-sm text-ink-2"
                     >
                       {label}
-                      <span className="font-mono text-teal flex-none" aria-hidden="true">→</span>
+                      <span className="font-mono text-teal flex-none" aria-hidden="true">â†’</span>
                     </Link>
                   ))}
                 </div>

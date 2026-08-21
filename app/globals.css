@@ -306,11 +306,23 @@
   white-space: nowrap;
 }
 
-/* Nav item — datum-rule pattern. Gradient tick is one of the four gradient uses. */
+/* Nav item — datum-rule pattern. Gradient tick is one of the four gradient uses.
+
+   These base values are the COMPACT tier. The desktop nav only exists from
+   1280px up (below that the header switches to the drawer), and the ≥1440px
+   rule further down restores the roomier spacing. So this padding is what the
+   1280–1439px band gets: eight top-level items plus a logo and a CTA do not fit
+   at 17px of side padding in a 1280px viewport — the row overflowed and pushed
+   "Talk to us" off-screen. */
 @utility nav-item {
+  /* `font: inherit` FIRST. It is the button reset, and as a shorthand it resets
+     font-size — declared last (as it was) it silently overrode the font-size
+     below, so every nav item rendered at the inherited 16px instead of the
+     intended value. That is what made the row too wide to fit its own header. */
+  font: inherit;
   position: relative;
-  padding: 0 17px 16px;
-  font-size: 14px;
+  padding: 0 11px 16px;
+  font-size: 13.5px;
   color: var(--color-ink-2);
   letter-spacing: -0.005em;
   transition: color var(--duration-fast) var(--ease-standard);
@@ -319,7 +331,6 @@
   background: none;
   border: none;
   cursor: pointer;
-  font: inherit;
 }
 
 .nav-item:hover {
