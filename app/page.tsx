@@ -36,17 +36,17 @@ export default function HomePage() {
           <span
             className="absolute z-0 pointer-events-none"
             style={{
-              left: "40%", top: "0%", width: "68%", height: "100%",
-              background: "radial-gradient(circle,rgba(14,90,102,.12),rgba(141,198,62,.08) 42%,transparent 68%)",
+              left: "38%", top: "-10%", width: "72%", height: "120%",
+              background: "radial-gradient(circle,rgba(14,90,102,.22),rgba(44,138,110,.14) 38%,rgba(141,198,62,.09) 58%,transparent 72%)",
             }}
             aria-hidden="true"
           />
-          {/* Secondary glow, low-left, balances the composition without added WebGL cost */}
+          {/* Secondary glow, low-left, balances the composition */}
           <span
             className="absolute z-0 pointer-events-none"
             style={{
-              left: "-8%", bottom: "-15%", width: "38%", height: "60%",
-              background: "radial-gradient(circle,rgba(14,90,102,.06),transparent 70%)",
+              left: "-8%", bottom: "-15%", width: "42%", height: "65%",
+              background: "radial-gradient(circle,rgba(14,90,102,.11),transparent 70%)",
             }}
             aria-hidden="true"
           />

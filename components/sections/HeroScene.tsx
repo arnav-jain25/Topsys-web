@@ -119,7 +119,10 @@ export function HeroScene() {
 
       const scene = new THREE.Scene();
       const cam = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
-      cam.position.z = 8.6;
+      /* Pulled in from 8.6 → 6.8: everything appears ~26% larger with no
+         geometry changes. This is the single highest-leverage knob for
+         perceived presence — a subtle scene just looks too far away. */
+      cam.position.z = 6.8;
 
       const renderer = new THREE.WebGLRenderer({ canvas: canvas as HTMLCanvasElement, alpha: true, antialias: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -140,7 +143,7 @@ export function HeroScene() {
       const geo = new THREE.BufferGeometry();
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.05, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 0.93, depthWrite: false })));
+      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.085, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 0.95, depthWrite: false })));
 
       // Satellite points
       const sN = 52, sPos = new Float32Array(sN * 3);
@@ -150,13 +153,16 @@ export function HeroScene() {
       }));
       const sGeo = new THREE.BufferGeometry();
       sGeo.setAttribute("position", new THREE.BufferAttribute(sPos, 3));
-      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.105, color: "#8DC63E", transparent: true, opacity: 0.8, sizeAttenuation: true, depthWrite: false })));
+      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.16, color: "#8DC63E", transparent: true, opacity: 0.9, sizeAttenuation: true, depthWrite: false })));
 
-      // Orbital rings
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.005, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E5A66", transparent: true, opacity: 0.3 }));
+      // Orbital rings — opacity and tube radius raised so they read clearly
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.007, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E5A66", transparent: true, opacity: 0.55 }));
       ring.rotation.x = Math.PI / 2.3; grp.add(ring);
-      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.004, 6, 150), new THREE.MeshBasicMaterial({ color: "#8DC63E", transparent: true, opacity: 0.18 }));
+      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.9, 0.007, 6, 150), new THREE.MeshBasicMaterial({ color: "#8DC63E", transparent: true, opacity: 0.42 }));
       ring2.rotation.x = Math.PI / 1.65; ring2.rotation.y = 0.7; grp.add(ring2);
+      // Third ring — adds depth and a sense of orbital system
+      const ring3 = new THREE.Mesh(new THREE.TorusGeometry(4.4, 0.005, 6, 150), new THREE.MeshBasicMaterial({ color: "#2C8A6E", transparent: true, opacity: 0.28 }));
+      ring3.rotation.x = Math.PI / 3.2; ring3.rotation.y = -0.5; grp.add(ring3);
 
       function resize() {
         const w = canvas!.clientWidth, h = canvas!.clientHeight;
@@ -235,7 +241,7 @@ export function HeroScene() {
         grp.rotation.y += 0.0017;
         grp.rotation.x = mx + Math.sin(el * 0.33) * 0.05;
         grp.rotation.z = my * 0.11;
-        ring.rotation.z += 0.001; ring2.rotation.z -= 0.0007;
+        ring.rotation.z += 0.001; ring2.rotation.z -= 0.0007; ring3.rotation.z += 0.0005;
         const sc = 1 + Math.sin(el * 0.65) * 0.016;
         grp.scale.set(sc, sc, sc);
 
