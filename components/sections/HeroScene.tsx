@@ -127,8 +127,22 @@ export function HeroScene() {
       const grp = new THREE.Group();
       scene.add(grp);
 
-      // Main particle cloud — small crisp points, additive blending makes
-      // dense clusters bloom brighter without any size increase
+      // Soft disc texture — makes every particle a round glowing dot instead
+      // of the default square. Radial gradient: opaque white centre → transparent
+      // edge. Combined with AdditiveBlending this creates natural bloom in clusters.
+      const discCanvas = document.createElement("canvas");
+      discCanvas.width = 64; discCanvas.height = 64;
+      const ctx2d = discCanvas.getContext("2d")!;
+      const grad = ctx2d.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0,   "rgba(255,255,255,1)");
+      grad.addColorStop(0.35,"rgba(255,255,255,0.85)");
+      grad.addColorStop(0.7, "rgba(255,255,255,0.25)");
+      grad.addColorStop(1,   "rgba(255,255,255,0)");
+      ctx2d.fillStyle = grad;
+      ctx2d.fillRect(0, 0, 64, 64);
+      const discTex = new THREE.CanvasTexture(discCanvas);
+
+      // Main particle cloud
       const pos = new Float32Array(forms[0]);
       const col = new Float32Array(N * 3);
       const cA = new THREE.Color("#0E7A8A"), cB = new THREE.Color("#2C8A6E"), cC = new THREE.Color("#8DC63E");
@@ -141,9 +155,9 @@ export function HeroScene() {
       const geo = new THREE.BufferGeometry();
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.052, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false, blending: THREE.AdditiveBlending })));
+      grp.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.062, sizeAttenuation: true, vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false, blending: THREE.AdditiveBlending, map: discTex, alphaTest: 0.01 })));
 
-      // Satellite points — slightly larger accent dots at the periphery
+      // Satellite dots — brighter accent points at the cloud periphery
       const sN = 52, sPos = new Float32Array(sN * 3);
       const sSeed = Array.from({ length: sN }, () => ({
         r: 2.9 + Math.random() * 1.25, a: Math.random() * Math.PI * 2,
@@ -151,7 +165,7 @@ export function HeroScene() {
       }));
       const sGeo = new THREE.BufferGeometry();
       sGeo.setAttribute("position", new THREE.BufferAttribute(sPos, 3));
-      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.10, color: "#8DC63E", transparent: true, opacity: 0.85, sizeAttenuation: true, depthWrite: false, blending: THREE.AdditiveBlending })));
+      grp.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 0.13, color: "#8DC63E", transparent: true, opacity: 0.9, sizeAttenuation: true, depthWrite: false, blending: THREE.AdditiveBlending, map: discTex, alphaTest: 0.01 })));
 
       // Orbital rings
       const ring = new THREE.Mesh(new THREE.TorusGeometry(3.5, 0.006, 6, 150), new THREE.MeshBasicMaterial({ color: "#0E5A66", transparent: true, opacity: 0.45 }));
