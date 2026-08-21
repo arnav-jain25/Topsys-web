@@ -13,7 +13,7 @@ const CAPS: [string, string][] = [
 ];
 
 /* ---- Particle geometry builders ---- */
-const GX = 30, GY = 14, GZ = 18, N = GX * GY * GZ;
+const GX = 25, GY = 12, GZ = 15, N = GX * GY * GZ; // 4500
 
 function fData(): number[] {
   const a: number[] = [], sx = 4.6 / GX, sy = 2.9 / GY, sz = 3.4 / GZ;
@@ -24,38 +24,25 @@ function fData(): number[] {
   return a;
 }
 
-// Trefoil knot — 3-lobed interlocked ring, organic and symmetric
+// Two-lobe dumbbell — top and bottom spheres, fills vertical space like globe
 function fAI(): number[] {
-  const a: number[] = [], R = 2.2, r = 0.75;
+  const a: number[] = [];
   for (let i = 0; i < N; i++) {
-    const t = (i / N) * Math.PI * 2;
-    const x = (R + r * Math.cos(3 * t)) * Math.cos(2 * t);
-    const y = (R + r * Math.cos(3 * t)) * Math.sin(2 * t);
-    const z = r * Math.sin(3 * t) * 0.9;
-    const sp = 0.19;
-    a.push(
-      x + (Math.random() - 0.5) * sp,
-      z + (Math.random() - 0.5) * sp * 0.7,
-      y + (Math.random() - 0.5) * sp,
-    );
+    const lobe = i % 2, oy = lobe === 0 ? 1.5 : -1.5, R = 1.65;
+    const rr = R * Math.pow(Math.random(), 0.33);
+    const theta = Math.random() * Math.PI * 2, phi = Math.acos(2 * Math.random() - 1);
+    a.push(rr * Math.sin(phi) * Math.cos(theta), rr * Math.cos(phi) + oy, rr * Math.sin(phi) * Math.sin(theta));
   }
   return a;
 }
 
-// Galaxy spiral — 3 arms, particles denser toward centre
+// Concentric shells — 5 nested spherical shells, like atomic orbitals
 function fApps(): number[] {
-  const a: number[] = [], arms = 3;
+  const a: number[] = [], radii = [0.7, 1.35, 1.9, 2.5, 3.1], sp = 0.20;
   for (let i = 0; i < N; i++) {
-    const arm = i % arms;
-    const t = Math.pow(Math.random(), 0.55);
-    const angle = (arm / arms) * Math.PI * 2 + t * Math.PI * 3.2;
-    const r = t * 3.1;
-    const spread = 0.18 + t * 0.55;
-    a.push(
-      Math.cos(angle) * r + (Math.random() - 0.5) * spread,
-      (Math.random() - 0.5) * (0.2 + t * 0.5),
-      Math.sin(angle) * r + (Math.random() - 0.5) * spread,
-    );
+    const r = radii[i % radii.length] + (Math.random() - 0.5) * sp;
+    const theta = Math.random() * Math.PI * 2, phi = Math.acos(2 * Math.random() - 1);
+    a.push(r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta));
   }
   return a;
 }
@@ -158,19 +145,18 @@ export function HeroScene() {
       const discTex = new THREE.CanvasTexture(discCanvas);
 
       // ── All-particle twinkle ───────────────────────────────────────────
-      // Every particle gets a unique phase and speed. Each frame the color
-      // buffer is rewritten: bright = dim + peak * sin²(el*speed + phase).
-      // This makes the ENTIRE cloud sparkle — no separate sparkle layer.
-      // Colors: service icon hues (brighter versions) + teals, randomly
-      // assigned. Contrasting warm/cool against the rings creates depth.
+      // Colors tuned for the paper (#F8F7F3) background: deep, saturated
+      // so they read clearly at the 35% dim floor and pop at 100% peak.
+      // Service icon families used as the hue reference; shades pushed
+      // darker so they always contrast against the warm off-white.
       const ALL_PAL = [
-        new THREE.Color("#E09B12"), // bright amber  (Apps icon)
-        new THREE.Color("#2A8FD4"), // bright blue   (Cloud icon)
-        new THREE.Color("#C43D6E"), // bright rose   (Security icon)
-        new THREE.Color("#8AB040"), // bright olive  (Talent icon)
-        new THREE.Color("#0E7A90"), // bright teal   (AI/Data)
-        new THREE.Color("#8DC63E"), // signal green
-        new THREE.Color("#0E5A66"), // standard teal
+        new THREE.Color("#0D4E5E"), // deep teal
+        new THREE.Color("#7A4908"), // deep amber
+        new THREE.Color("#124070"), // deep navy
+        new THREE.Color("#6B1838"), // deep wine
+        new THREE.Color("#345820"), // deep forest green
+        new THREE.Color("#0E5A66"), // teal (lighter accent)
+        new THREE.Color("#8DC63E"), // signal green (contrast pop)
       ];
       const pos = new Float32Array(forms[0]);
       const colBase = new Float32Array(N * 3);  // full-brightness target
@@ -188,7 +174,7 @@ export function HeroScene() {
       geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
       geo.setAttribute("color", new THREE.BufferAttribute(colAnim, 3));
       grp.add(new THREE.Points(geo, new THREE.PointsMaterial({
-        size: 0.042, sizeAttenuation: true, vertexColors: true,
+        size: 0.060, sizeAttenuation: true, vertexColors: true,
         transparent: true, opacity: 1.0, depthWrite: false,
         blending: THREE.NormalBlending, map: discTex, alphaTest: 0.01,
       })));
@@ -278,9 +264,9 @@ export function HeroScene() {
           pos[i3]     = A[i3]     + (B[i3]     - A[i3])     * e + wob * 0.55;
           pos[i3 + 1] = A[i3 + 1] + (B[i3 + 1] - A[i3 + 1]) * e + wob * 0.42;
           pos[i3 + 2] = A[i3 + 2] + (B[i3 + 2] - A[i3 + 2]) * e + wob * 0.3;
-          // sin² → brief bright flash, long dim — glitter cadence per dot
+          // 35% dim floor keeps dots always visible; peak = 100% = vivid pop
           const sv = Math.sin(el * speeds[i] + phases[i]);
-          const bright = 0.10 + 0.90 * sv * sv;
+          const bright = 0.35 + 0.65 * sv * sv;
           colAnim[i3]     = colBase[i3]     * bright;
           colAnim[i3 + 1] = colBase[i3 + 1] * bright;
           colAnim[i3 + 2] = colBase[i3 + 2] * bright;
