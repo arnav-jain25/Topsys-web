@@ -24,38 +24,51 @@ function fData(): number[] {
   return a;
 }
 
+// Double helix — two intertwined spirals, 3 full turns, slight noise
 function fAI(): number[] {
-  const a: number[] = [], C: number[][] = [], ga = Math.PI * (3 - Math.sqrt(5));
-  for (let k = 0; k < 8; k++) {
-    const y = 1 - (k / 7) * 2, r = Math.sqrt(Math.max(0, 1 - y * y)), th = ga * k;
-    C.push([Math.cos(th) * r * 2.0, y * 1.7, Math.sin(th) * r * 2.0]);
-  }
+  const a: number[] = [], turns = 3, H = 3.2, R = 1.5;
   for (let i = 0; i < N; i++) {
-    const c = C[i % 8], s = 0.62;
+    const strand = i % 2, t = i / N;
+    const angle = t * turns * Math.PI * 2 + strand * Math.PI;
+    const y = (t - 0.5) * H;
     a.push(
-      c[0] + (Math.random() + Math.random() + Math.random() - 1.5) * s,
-      c[1] + (Math.random() + Math.random() + Math.random() - 1.5) * s,
-      c[2] + (Math.random() + Math.random() + Math.random() - 1.5) * s,
+      Math.cos(angle) * R + (Math.random() - 0.5) * 0.22,
+      y + (Math.random() - 0.5) * 0.12,
+      Math.sin(angle) * R + (Math.random() - 0.5) * 0.22,
     );
   }
   return a;
 }
 
+// Galaxy spiral — 3 arms, particles denser toward centre
 function fApps(): number[] {
-  const a: number[] = [], M = 6, per = Math.ceil(N / M);
+  const a: number[] = [], arms = 3;
   for (let i = 0; i < N; i++) {
-    const m = Math.floor(i / per) % M, ang = (m / M) * Math.PI * 2;
-    const ox = Math.cos(ang) * 2.05, oz = Math.sin(ang) * 2.05, oy = m % 2 ? 0.55 : -0.55;
-    a.push(ox + (Math.random() - 0.5) * 1.15, oy + (Math.random() - 0.5) * 1.5, oz + (Math.random() - 0.5) * 1.15);
+    const arm = i % arms;
+    const t = Math.pow(Math.random(), 0.55);
+    const angle = (arm / arms) * Math.PI * 2 + t * Math.PI * 3.2;
+    const r = t * 3.1;
+    const spread = 0.18 + t * 0.55;
+    a.push(
+      Math.cos(angle) * r + (Math.random() - 0.5) * spread,
+      (Math.random() - 0.5) * (0.2 + t * 0.5),
+      Math.sin(angle) * r + (Math.random() - 0.5) * spread,
+    );
   }
   return a;
 }
 
+// Torus — solid ring/donut, denser at tube core
 function fCloud(): number[] {
-  const a: number[] = [], L = [-1.75, -0.6, 0.6, 1.75], per = Math.ceil(N / 4);
+  const a: number[] = [], R = 2.3, r = 1.0;
   for (let i = 0; i < N; i++) {
-    const l = L[Math.floor(i / per) % 4], r = Math.sqrt(Math.random()) * (2.9 - Math.abs(l) * 0.42), t = Math.random() * Math.PI * 2;
-    a.push(Math.cos(t) * r, l + (Math.random() - 0.5) * 0.16, Math.sin(t) * r);
+    const phi = Math.random() * Math.PI * 2;
+    const theta = Math.random() * Math.PI * 2;
+    const tube = r * Math.pow(Math.random(), 0.5);
+    const x = (R + tube * Math.cos(theta)) * Math.cos(phi);
+    const z = (R + tube * Math.cos(theta)) * Math.sin(phi);
+    const y = tube * Math.sin(theta);
+    a.push(x, y, z);
   }
   return a;
 }
@@ -143,13 +156,14 @@ export function HeroScene() {
       const discTex = new THREE.CanvasTexture(discCanvas);
 
       // ── Main cloud ─────────────────────────────────────────────────────
-      // Random colour per particle from a 7-stop palette — richer and more
-      // varied than a gradient. Colours are sampled from the full brand range.
+      // Base palette: predominantly dark teals so the cloud has real depth and
+      // contrast against the paper background. The mass reads as dark → sparkle
+      // dots of a contrasting hue register as genuine colour flashes.
       const PALETTE = [
-        new THREE.Color("#0B4D5C"), new THREE.Color("#0E5A66"),
-        new THREE.Color("#196A5A"), new THREE.Color("#2C8A6E"),
-        new THREE.Color("#5CB060"), new THREE.Color("#8DC63E"),
-        new THREE.Color("#1A9080"),
+        new THREE.Color("#0B2F38"), new THREE.Color("#0E5A66"),
+        new THREE.Color("#0A454E"), new THREE.Color("#196A5A"),
+        new THREE.Color("#2C8A6E"), new THREE.Color("#0B2F38"),
+        new THREE.Color("#0E5A66"),
       ];
       const pos = new Float32Array(forms[0]);
       const colMain = new Float32Array(N * 3);
@@ -175,10 +189,15 @@ export function HeroScene() {
       const sparkPos = new Float32Array(sparkN * 3);
       const sparkBaseCol = new Float32Array(sparkN * 3);
       const sparkCol = new Float32Array(sparkN * 3);
+      // Sparkle palette: service icon colours — amber, blue, burgundy, olive.
+      // Contrasting warm/cool hues against the teal base create colour-flash
+      // glitter as each dot animates between dim and peak independently.
       const SPARK_PAL = [
-        new THREE.Color("#8DC63E"), new THREE.Color("#A2D95A"),
-        new THREE.Color("#22D4A0"), new THREE.Color("#5CC8A0"),
-        new THREE.Color("#2CBFD0"),
+        new THREE.Color("#B5790C"), // amber — Apps icon
+        new THREE.Color("#1E6FA8"), // blue  — Cloud icon
+        new THREE.Color("#9C3159"), // burgundy — Security icon
+        new THREE.Color("#5F7A2E"), // olive — Talent icon
+        new THREE.Color("#B5790C"), // amber again for weight
       ];
       for (let k = 0; k < sparkN; k++) {
         const c = SPARK_PAL[k % SPARK_PAL.length];
@@ -290,8 +309,9 @@ export function HeroScene() {
           sparkPos[k * 3]     = pos[src];
           sparkPos[k * 3 + 1] = pos[src + 1];
           sparkPos[k * 3 + 2] = pos[src + 2];
-          // Per-dot phase offset → each sparkle twinkles independently
-          const bright = 0.38 + 0.62 * Math.abs(Math.sin(el * 2.4 + k * 0.37));
+          // Squared sine → long dim phase, brief bright flash = glitter cadence
+          const s = Math.abs(Math.sin(el * 2.4 + k * 0.37));
+          const bright = s * s;
           sparkCol[k * 3]     = sparkBaseCol[k * 3]     * bright;
           sparkCol[k * 3 + 1] = sparkBaseCol[k * 3 + 1] * bright;
           sparkCol[k * 3 + 2] = sparkBaseCol[k * 3 + 2] * bright;
