@@ -569,21 +569,26 @@
 }
 
 .marquee-track {
-  animation: marquee-rtl 55s linear infinite;
+  animation: marquee-rtl 38s linear infinite;
 }
 
 .marquee-track-ltr {
-  animation: marquee-ltr 42s linear infinite;
+  animation: marquee-ltr 28s linear infinite;
 }
 
 .marquee-track-rtl {
-  animation: marquee-rtl 52s linear infinite;
+  animation: marquee-rtl 34s linear infinite;
 }
 
 .marquee-wrap:hover .marquee-track,
 .marquee-wrap:hover .marquee-track-ltr,
 .marquee-wrap:hover .marquee-track-rtl {
   animation-play-state: paused;
+}
+
+@keyframes signalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
 }
 
 @keyframes cert-pulse {

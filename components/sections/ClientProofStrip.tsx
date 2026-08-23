@@ -4,55 +4,147 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const CLIENTS = [
-  { src: "/private-logos/att.png",              alt: "AT&T",              vertical: "Telecom" },
-  { src: "/private-logos/capitalone.jpg",        alt: "Capital One",        vertical: "Financial services" },
-  { src: "/private-logos/IBM.jpg",               alt: "IBM",                vertical: "Enterprise technology" },
-  { src: "/private-logos/T-Mobile.png",          alt: "T-Mobile",           vertical: "Telecom" },
-  { src: "/private-logos/UnitedHealth-Group.png",alt: "UnitedHealth Group",  vertical: "Healthcare" },
-  { src: "/private-logos/wells-fargo.png",       alt: "Wells Fargo",        vertical: "Financial services" },
-  { src: "/private-logos/Deloitte-Logo.png",     alt: "Deloitte",           vertical: "Professional services" },
-  { src: "/private-logos/morganstaley.png",      alt: "Morgan Stanley",     vertical: "Financial services" },
-  { src: "/private-logos/Capgemini.jpg",         alt: "Capgemini",          vertical: "Technology services" },
-  { src: "/private-logos/fredie-mac.png",        alt: "Freddie Mac",        vertical: "Financial services" },
-  { src: "/private-logos/Cognizant.jpg",         alt: "Cognizant",          vertical: "Technology services" },
-  { src: "/private-logos/Blue_Owl_Capital.jpg",  alt: "Blue Owl Capital",   vertical: "Asset management" },
-  { src: "/private-logos/eli.jpg",               alt: "Eli Lilly",          vertical: "Life sciences" },
-  { src: "/private-logos/prada.jpg",             alt: "Prada Group",        vertical: "Luxury retail" },
-  { src: "/private-logos/beyond.png",            alt: "Beyond",             vertical: "Enterprise commerce" },
-  { src: "/private-logos/images.png",            alt: "Enterprise client",  vertical: "Enterprise" },
+  { src: "/private-logos/att.png",                   alt: "AT&T",              vertical: "Telecom" },
+  { src: "/private-logos/capitalone_no_bg.png",       alt: "Capital One",        vertical: "Financial services" },
+  { src: "/private-logos/IBM.jpg",                    alt: "IBM",                vertical: "Enterprise technology" },
+  { src: "/private-logos/T-Mobile.png",               alt: "T-Mobile",           vertical: "Telecom" },
+  { src: "/private-logos/UnitedHealth-Group.png",     alt: "UnitedHealth Group",  vertical: "Healthcare" },
+  { src: "/private-logos/wells-fargo.png",            alt: "Wells Fargo",        vertical: "Financial services" },
+  { src: "/private-logos/Deloitte-Logo.png",          alt: "Deloitte",           vertical: "Professional services" },
+  { src: "/private-logos/morganstaley.png",           alt: "Morgan Stanley",     vertical: "Financial services" },
+  { src: "/private-logos/Capgemini_no_bg.png",        alt: "Capgemini",          vertical: "Technology services" },
+  { src: "/private-logos/fredie-mac.png",             alt: "Freddie Mac",        vertical: "Financial services" },
+  { src: "/private-logos/Cognizant_no_bg.png",        alt: "Cognizant",          vertical: "Technology services" },
+  { src: "/private-logos/Blue_Owl_Capital_no_bg.png", alt: "Blue Owl Capital",   vertical: "Asset management" },
+  { src: "/private-logos/eli.jpg",                    alt: "Eli Lilly",          vertical: "Life sciences" },
+  { src: "/private-logos/prada_no_bg.png",            alt: "Prada Group",        vertical: "Luxury retail" },
+  { src: "/private-logos/beyond.png",                 alt: "Beyond",             vertical: "Enterprise commerce" },
+  { src: "/private-logos/ilabor.png",                 alt: "iLabor",             vertical: "Technology services" },
 ];
 
 const TECH_PARTNERS = [
-  { src: "/credentials/aws.webp",            alt: "Amazon Web Services" },
-  { src: "/credentials/Microsoft-Azure.png", alt: "Microsoft Azure" },
-  { src: "/credentials/oracle.jpg",          alt: "Oracle" },
-  { src: "/credentials/salesforce.png",      alt: "Salesforce" },
-  { src: "/credentials/uipath.png",          alt: "UiPath" },
+  { src: "/credentials/aws.webp",              alt: "Amazon Web Services" },
+  { src: "/credentials/Microsoft-Azure.png",   alt: "Microsoft Azure" },
+  { src: "/credentials/oracle_no_bg.png",      alt: "Oracle" },
+  { src: "/credentials/salesforce_no_bg.png",  alt: "Salesforce" },
+  { src: "/credentials/uipath_no_bg.png",      alt: "UiPath" },
 ];
 
 const CERTS = [
-  { src: "/credentials/mbe.jpg",             alt: "Minority Business Enterprise (MBE) Certified", label: "MBE Certified" },
-  { src: "/credentials/sam.gov.webp",        alt: "SAM.gov Registered",                           label: "SAM.gov" },
-  { src: "/credentials/db-registered.avif",  alt: "Dun & Bradstreet Registered",                  label: "D&B Registered" },
-  { src: "/brand/dir-logo-tx.png",           alt: "Texas DIR Contract Holder",                    label: "DIR Contract" },
+  { src: "/credentials/mbe_no_bg.png",          alt: "Minority Business Enterprise (MBE) Certified", label: "MBE Certified" },
+  { src: "/credentials/sam.gov_no_bg.png",      alt: "SAM.gov Registered",                           label: "SAM.gov" },
+  { src: "/credentials/db-registered_no_bg.png",alt: "Dun & Bradstreet Registered",                  label: "D&B Registered" },
+  { src: "/brand/dir-logo-tx.png",              alt: "Texas DIR Contract Holder",                    label: "DIR Contract" },
 ];
 
 const MARQUEE = [...CLIENTS, ...CLIENTS];
 
-export function ClientProofStrip() {
-  /* Cycles an active "spotlight" across tech platform logos */
-  const [activePlatform, setActivePlatform] = useState(0);
+/* Sequential signal-block tick speeds per platform (ms between steps) */
+const TICK_MS = [310, 430, 270, 380, 320];
+const BLOCKS = 9;
+
+/* ── Signal block bar — illuminated blocks move left→right, looping ── */
+function SignalBar({ tickMs, platformIdx }: { tickMs: number; platformIdx: number }) {
+  const [lit, setLit] = useState(platformIdx % BLOCKS);
+  useEffect(() => {
+    const t = setInterval(() => setLit((i) => (i + 1) % BLOCKS), tickMs);
+    return () => clearInterval(t);
+  }, [tickMs]);
+  return (
+    <div className="flex gap-[2.5px]" aria-hidden="true">
+      {Array.from({ length: BLOCKS }).map((_, i) => {
+        const active = i === lit;
+        const adjacent = i === (lit - 1 + BLOCKS) % BLOCKS || i === (lit + 1) % BLOCKS;
+        return (
+          <span
+            key={i}
+            style={{
+              width: 5,
+              height: 5,
+              borderRadius: 1,
+              display: "inline-block",
+              background: active
+                ? "var(--color-teal)"
+                : adjacent
+                ? "rgba(14,90,102,0.35)"
+                : "var(--color-hairline)",
+              transition: "background 100ms",
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+/* ── Terminal verification loop ── */
+const TERM_LINES = [
+  { txt: "$ audit --verify credentials",             color: "rgba(168,191,190,0.55)" },
+  { txt: "[1/4] MBE Certified .............. ✓",     color: "#8DC63E" },
+  { txt: "[2/4] SAM.gov Registered ......... ✓",     color: "#8DC63E" },
+  { txt: "[3/4] D&B Registered ............. ✓",     color: "#8DC63E" },
+  { txt: "[4/4] DIR Contract Holder ........ ✓",     color: "#8DC63E" },
+  { txt: "All credentials verified.",                color: "#EAF2F1" },
+  { txt: "Rerunning in 2s...",                       color: "rgba(168,191,190,0.4)" },
+];
+const LINE_DELAYS = [0, 600, 1100, 1600, 2100, 2750, 3200];
+const LOOP_MS = 5200; /* last line at ~3.3s + 2s hold = 5.2s */
+
+function TerminalVerifier() {
+  const [visible, setVisible] = useState(0);
+  const [epoch, setEpoch] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(
-      () => setActivePlatform((i) => (i + 1) % TECH_PARTNERS.length),
-      2400
-    );
-    return () => clearInterval(t);
-  }, []);
+    setVisible(0);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    LINE_DELAYS.forEach((delay, i) => {
+      timers.push(setTimeout(() => setVisible(i + 1), delay + 80));
+    });
+    timers.push(setTimeout(() => setEpoch((e) => e + 1), LOOP_MS));
+    return () => timers.forEach(clearTimeout);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [epoch]);
 
   return (
-    <section aria-labelledby="clients-heading" style={{ padding: "2rem 0 7rem" }}>
+    <div
+      className="rounded-[6px] overflow-hidden"
+      style={{ background: "var(--color-field)", padding: "1rem 1.25rem 1.1rem" }}
+    >
+      {/* Terminal chrome */}
+      <div className="flex items-center gap-1.5 mb-3" aria-hidden="true">
+        <span className="inline-block w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
+        <span className="inline-block w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
+        <span className="inline-block w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
+        <span className="ml-2 font-mono text-[9px] tracking-[.08em]" style={{ color: "rgba(168,191,190,0.35)" }}>
+          topsys audit v2
+        </span>
+      </div>
+      {/* Lines */}
+      <div className="space-y-[3px]" aria-label="Credential verification status">
+        {TERM_LINES.map((line, i) => (
+          <p
+            key={i}
+            className="font-mono whitespace-nowrap"
+            style={{
+              fontSize: "10px",
+              letterSpacing: "0.03em",
+              color: line.color,
+              opacity: i < visible ? 1 : 0,
+              transition: "opacity 220ms cubic-bezier(.2,0,0,1)",
+              lineHeight: 1.7,
+            }}
+          >
+            {line.txt}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function ClientProofStrip() {
+  return (
+    <section aria-labelledby="clients-heading" style={{ padding: "0 0 7rem" }}>
 
       {/* ── Section header ── */}
       <div className="wrap mb-8">
@@ -69,15 +161,13 @@ export function ClientProofStrip() {
         </h2>
       </div>
 
-      {/* ── Logo marquee — full color, infinite scroll ── */}
+      {/* ── Logo marquee ── */}
       <div
         className="marquee-wrap relative overflow-hidden"
         aria-hidden="true"
         style={{
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)",
-          maskImage:
-            "linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)",
         }}
       >
         <div
@@ -89,14 +179,14 @@ export function ClientProofStrip() {
               key={i}
               className="flex-none flex items-center justify-center"
               title={`${c.alt} · ${c.vertical}`}
-              style={{ height: "42px", minWidth: "80px" }}
+              style={{ height: "68px", minWidth: "100px" }}
             >
               <Image
                 src={c.src}
                 alt=""
-                width={150}
-                height={42}
-                className="h-full w-auto max-w-[140px] object-contain transition-transform hover:scale-105"
+                width={220}
+                height={68}
+                className="h-full w-auto max-w-[200px] object-contain transition-transform hover:scale-105"
                 style={{ transitionDuration: "280ms", mixBlendMode: "multiply" }}
               />
             </div>
@@ -108,67 +198,58 @@ export function ClientProofStrip() {
       <div className="wrap mt-14">
         <div className="border-t border-hairline pt-10 grid grid-cols-[1fr_auto] gap-x-16 gap-y-10 items-start max-[900px]:grid-cols-1">
 
-          {/* Technology platforms — active logo cycles with spotlight glow */}
+          {/* Technology platforms — sequential signal blocks */}
           <div>
             <p className="font-mono text-mono-xs font-semibold uppercase tracking-[.1em] text-ink-muted mb-6">
               Technology platforms
             </p>
-            <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
-              {TECH_PARTNERS.map((p, i) => {
-                const isActive = activePlatform === i;
-                return (
-                  <div
-                    key={p.alt}
-                    style={{
-                      height: "34px",
-                      transform: isActive ? "scale(1.1)" : "scale(1)",
-                      filter: isActive
-                        ? "drop-shadow(0 0 10px rgba(14,90,102,0.45))"
-                        : "none",
-                      transition: "transform 400ms cubic-bezier(.2,0,0,1), filter 400ms cubic-bezier(.2,0,0,1)",
-                    }}
-                  >
+            <div className="flex flex-wrap items-end gap-x-10 gap-y-8">
+              {TECH_PARTNERS.map((p, i) => (
+                <div key={p.alt} className="flex flex-col items-center gap-3">
+                  <div style={{ height: "52px" }}>
                     <Image
                       src={p.src}
                       alt={p.alt}
-                      width={120}
-                      height={34}
+                      width={180}
+                      height={52}
                       className="h-full w-auto object-contain"
                       style={{ mixBlendMode: "multiply" }}
                     />
                   </div>
-                );
-              })}
+                  <SignalBar tickMs={TICK_MS[i]} platformIdx={i} />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Certifications — staggered border-glow pulse */}
+          {/* Certifications — terminal verification loop */}
           <div>
             <p className="font-mono text-mono-xs font-semibold uppercase tracking-[.1em] text-ink-muted mb-6">
               Credentials & certifications
             </p>
-            <div className="flex flex-wrap gap-3">
-              {CERTS.map((c, i) => (
+
+            {/* Logo badges row */}
+            <div className="flex flex-wrap gap-3 mb-4">
+              {CERTS.map((c) => (
                 <div
                   key={c.label}
-                  className="cert-pulse group flex items-center gap-2.5 border rounded-card px-3.5 py-2.5 cursor-default"
-                  style={{ animationDelay: `${i * 900}ms` }}
+                  className="flex items-center gap-2 border border-hairline rounded-card px-3 py-2"
                 >
-                  <div className="flex-none" style={{ height: "26px", width: "26px" }}>
+                  <div style={{ height: "32px", width: "32px" }}>
                     <Image
-                      src={c.src}
-                      alt={c.alt}
-                      width={26}
-                      height={26}
+                      src={c.src} alt={c.alt}
+                      width={32} height={32}
                       className="h-full w-full object-contain"
                     />
                   </div>
-                  <span className="font-mono text-mono-xs text-ink-2 whitespace-nowrap">
-                    {c.label}
-                  </span>
+                  <span className="font-mono text-mono-xs text-ink-2 whitespace-nowrap">{c.label}</span>
                 </div>
               ))}
             </div>
+
+            {/* Live audit terminal */}
+            <TerminalVerifier />
+
             <p className="mt-4 text-body-sm text-ink-muted max-w-[36ch]">
               Certified minority business enterprise, qualifying for supplier diversity programs at enterprises and government agencies alike.
             </p>

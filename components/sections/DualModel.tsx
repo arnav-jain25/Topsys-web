@@ -47,6 +47,7 @@ function itemRevealStyle(phase: Phase, delay: number): React.CSSProperties {
 export function DualModel() {
   const ref = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<Phase>("hidden");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -58,16 +59,17 @@ export function DualModel() {
       ([e]) => {
         if (e.isIntersecting) {
           setPhase("entering");
-          // After the longest animation finishes, switch to "visible" so
-          // hover-dimming can take over without fighting animation fill-mode.
-          setTimeout(() => setPhase("visible"), 900);
-          io.disconnect();
+          if (timerRef.current) clearTimeout(timerRef.current);
+          timerRef.current = setTimeout(() => setPhase("visible"), 900);
+        } else {
+          if (timerRef.current) clearTimeout(timerRef.current);
+          setPhase("hidden");
         }
       },
       { threshold: 0.2 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => { io.disconnect(); if (timerRef.current) clearTimeout(timerRef.current); };
   }, []);
 
   return (

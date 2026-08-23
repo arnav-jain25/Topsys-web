@@ -6,15 +6,9 @@ interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  /** Override the intersection threshold (default 0.15) */
   threshold?: number;
 }
 
-/**
- * Wraps content in a div that fades in (via topsys-fade-in keyframe) when
- * scrolled into view via IntersectionObserver. Respects prefers-reduced-motion.
- * Pages stay as server components — this is the leaf client boundary.
- */
 export function ScrollReveal({
   children,
   className,
@@ -32,12 +26,7 @@ export function ScrollReveal({
       return;
     }
     const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
-      },
+      ([e]) => setVisible(e.isIntersecting),
       { threshold }
     );
     io.observe(el);

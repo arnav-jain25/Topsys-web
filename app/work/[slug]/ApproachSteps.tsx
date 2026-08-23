@@ -23,10 +23,7 @@ export function ApproachSteps({ steps }: Props) {
     }
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
+        setVisible(e.isIntersecting);
       },
       { threshold: 0.1 }
     );

@@ -6,22 +6,26 @@ interface StatItem {
   value: number | string;
   suffix?: string;
   label: string;
-  /** When true, skips the count-up and renders the value as-is (e.g. "MBE") */
   static?: boolean;
 }
 
 function useCountUp(target: number, active: boolean, duration = 1200) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setCount(0);
+      return;
+    }
     const start = performance.now();
+    let frame: number;
     const raf = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.round(eased * target));
-      if (progress < 1) requestAnimationFrame(raf);
+      if (progress < 1) frame = requestAnimationFrame(raf);
     };
-    requestAnimationFrame(raf);
+    frame = requestAnimationFrame(raf);
+    return () => cancelAnimationFrame(frame);
   }, [active, target, duration]);
   return count;
 }
@@ -36,7 +40,7 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); io.disconnect(); } },
+      ([entry]) => setVisible(entry.isIntersecting),
       { threshold: 0.5 }
     );
     io.observe(el);
@@ -50,14 +54,9 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
     >
       <b
         className="block text-center font-mono font-normal leading-none"
-        style={{
-          fontSize: "clamp(2.125rem, 4.2vw, 4rem)",
-          letterSpacing: "-0.03em",
-        }}
+        style={{ fontSize: "clamp(2.125rem, 4.2vw, 4rem)", letterSpacing: "-0.03em" }}
       >
-        {isStatic
-          ? value
-          : `${visible ? counted : 0}${suffix}`}
+        {isStatic ? value : `${visible ? counted : 0}${suffix}`}
       </b>
       <small
         className="block text-center mt-3 font-mono text-mono-sm uppercase text-ink-muted"

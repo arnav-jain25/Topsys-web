@@ -1,8 +1,61 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { TESTIMONIALS } from "@/lib/testimonials";
 
+/* ── Reveal settings ── */
+const CHAR_INTERVAL_MS = 18;   /* ms between each character appearing */
+const HOLD_MS          = 5500; /* hold fully revealed before rotating */
+
+function useReveal(text: string) {
+  const [count, setCount] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setCount(0);
+    let i = 0;
+    const step = () => {
+      i++;
+      setCount(i);
+      if (i < text.length) {
+        timerRef.current = setTimeout(step, CHAR_INTERVAL_MS);
+      }
+    };
+    timerRef.current = setTimeout(step, 60); /* brief delay before first char */
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [text]);
+
+  return count;
+}
+
 export function TestimonialsStrip() {
-  const [featured, ...rest] = TESTIMONIALS;
+  const [idx, setIdx] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const featured   = TESTIMONIALS[idx];
+  const revealedAt = useReveal(featured.quote);
+
+  /* Advance after reveal completes + hold */
+  const revealTotal = featured.quote.length * CHAR_INTERVAL_MS + 60;
+  useEffect(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(
+      () => setIdx((i) => (i + 1) % TESTIMONIALS.length),
+      revealTotal + HOLD_MS
+    );
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idx]);
+
+  const goTo = (i: number) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setIdx(i);
+  };
+
+  const grid = [0, 1, 2, 3].map((o) =>
+    TESTIMONIALS[(idx + 1 + o) % TESTIMONIALS.length]
+  );
 
   return (
     <section aria-labelledby="testimonials-heading" style={{ padding: "7rem 0 8rem" }}>
@@ -31,31 +84,65 @@ export function TestimonialsStrip() {
           </Link>
         </div>
 
-        {/* ── Featured pull-quote ── */}
+        {/* ── Featured pull-quote — character scramble ── */}
         <div className="relative border-l-[3px] border-teal pl-8 md:pl-12 mb-14">
-          {/* Decorative large quote mark */}
+          {/* Decorative quote mark */}
           <span
             className="absolute -top-4 left-3 font-display leading-none select-none pointer-events-none"
-            style={{ fontSize: "clamp(4rem, 7vw, 7rem)", color: "var(--color-teal-tint)" }}
+            style={{ fontSize: "clamp(4rem, 7vw, 7rem)", color: "rgba(14,90,102,0.22)" }}
             aria-hidden="true"
           >
             &ldquo;
           </span>
 
-          <span className={`inline-flex items-center px-2.5 py-1 rounded-control font-mono text-[10px] uppercase tracking-[.1em] text-white ${featured.accentClass} mb-4`}>
+          <span
+            className={`inline-flex items-center px-2.5 py-1 rounded-control font-mono text-[10px] uppercase tracking-[.1em] text-white ${featured.accentClass} mb-4`}
+          >
             {featured.industry}
           </span>
 
+          {/* Quote — characters reveal left→right; full text always in DOM so no layout shift */}
           <p
             className="font-display font-medium text-ink relative z-[1]"
             style={{ fontSize: "clamp(1.35rem, 2.4vw, 2.1rem)", letterSpacing: "-0.025em", lineHeight: 1.35 }}
           >
-            {featured.quote}
+            {featured.quote.split("").map((c, i) => (
+              <span
+                key={`${idx}-${i}`}
+                style={{
+                  opacity: i < revealedAt ? 1 : 0,
+                  transition: i < revealedAt ? "opacity 160ms ease" : "none",
+                }}
+                aria-hidden={i >= revealedAt}
+              >
+                {c}
+              </span>
+            ))}
+            <span className="sr-only">{featured.quote}</span>
           </p>
 
           <p className="font-mono text-mono-xs text-ink-muted mt-5 tracking-[.04em]">
             {featured.attribution}
           </p>
+
+          {/* Progress dots */}
+          <div className="flex gap-1.5 mt-6" role="tablist" aria-label="Testimonials">
+            {TESTIMONIALS.map((_, i) => (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={i === idx}
+                onClick={() => goTo(i)}
+                className="rounded-full transition-all duration-base ease-standard"
+                style={{
+                  width: i === idx ? "20px" : "6px",
+                  height: "6px",
+                  background: i === idx ? "var(--color-teal)" : "var(--color-hairline-strong)",
+                }}
+                aria-label={`Show testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* ── Hairline divider ── */}
@@ -63,12 +150,11 @@ export function TestimonialsStrip() {
 
         {/* ── 4 compact testimonials in 2×2 ── */}
         <div className="grid grid-cols-2 gap-x-16 gap-y-0 max-[767px]:grid-cols-1">
-          {rest.map((t, i) => (
-            <div
-              key={t.id}
-              className={`py-8 border-b border-hairline ${i % 2 === 0 ? "max-[767px]:border-b" : "max-[767px]:border-b"}`}
-            >
-              <span className={`inline-flex items-center px-2 py-0.5 rounded-control font-mono text-[10px] uppercase tracking-[.1em] text-white ${t.accentClass} mb-3`}>
+          {grid.map((t) => (
+            <div key={t.id} className="py-8 border-b border-hairline">
+              <span
+                className={`inline-flex items-center px-2 py-0.5 rounded-control font-mono text-[10px] uppercase tracking-[.1em] text-white ${t.accentClass} mb-3`}
+              >
                 {t.industry}
               </span>
               <p

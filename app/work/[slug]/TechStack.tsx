@@ -19,10 +19,7 @@ export function TechStack({ tech, metric }: Props) {
     }
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
+        setVisible(e.isIntersecting);
       },
       { threshold: 0.15 }
     );

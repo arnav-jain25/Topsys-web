@@ -18,10 +18,7 @@ export function CapabilitiesBar({ capabilities }: Props) {
     }
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
+        setVisible(e.isIntersecting);
       },
       { threshold: 0.15 }
     );

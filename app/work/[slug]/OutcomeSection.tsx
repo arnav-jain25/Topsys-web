@@ -26,6 +26,7 @@ export function OutcomeSection({ outcome }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [count, setCount] = useState(0);
+  const frameRef = useRef<number | null>(null);
 
   const parsed = parseOutcome(outcome);
 
@@ -33,9 +34,7 @@ export function OutcomeSection({ outcome }: Props) {
     const el = ref.current;
     if (!el) return;
 
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
       setVisible(true);
       if (parsed.number !== null) setCount(parsed.number);
@@ -46,28 +45,29 @@ export function OutcomeSection({ outcome }: Props) {
       ([e]) => {
         if (e.isIntersecting) {
           setVisible(true);
-          io.disconnect();
-
           if (parsed.number !== null) {
+            if (frameRef.current) cancelAnimationFrame(frameRef.current);
             const target = parsed.number;
             const duration = 900;
             const start = performance.now();
             const tick = (now: number) => {
-              const elapsed = now - start;
-              const progress = Math.min(elapsed / duration, 1);
-              // Ease-out cubic — decelerates into the final value
+              const progress = Math.min((now - start) / duration, 1);
               const eased = 1 - Math.pow(1 - progress, 3);
               setCount(Math.round(eased * target));
-              if (progress < 1) requestAnimationFrame(tick);
+              if (progress < 1) frameRef.current = requestAnimationFrame(tick);
             };
-            requestAnimationFrame(tick);
+            frameRef.current = requestAnimationFrame(tick);
           }
+        } else {
+          if (frameRef.current) cancelAnimationFrame(frameRef.current);
+          setVisible(false);
+          setCount(0);
         }
       },
       { threshold: 0.15 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => { io.disconnect(); if (frameRef.current) cancelAnimationFrame(frameRef.current); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parsed.number]);
 

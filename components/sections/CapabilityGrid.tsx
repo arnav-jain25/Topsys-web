@@ -59,7 +59,7 @@ export function CapabilityGrid() {
       return;
     }
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); io.disconnect(); } },
+      ([e]) => setVisible(e.isIntersecting),
       { threshold: 0.1 }
     );
     io.observe(el);

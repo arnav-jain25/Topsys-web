@@ -14,6 +14,7 @@ import {
   TestimonialsStrip,
   ClientProofStrip,
 } from "@/components/sections";
+import { HeroHeading } from "@/components/sections/HeroHeading";
 
 export default function HomePage() {
   return (
@@ -59,16 +60,7 @@ export default function HomePage() {
                 wider than the viewport, so nowrap pushed the line past the edge
                 and made the whole document horizontally scrollable — hence the
                 normal-wrap override at the small end. */}
-            <h1
-              className="font-display font-medium text-ink mb-6"
-              style={{ fontSize: "var(--text-hero-h1)", lineHeight: 1.02, letterSpacing: "-0.035em" }}
-            >
-              <span className="block whitespace-nowrap max-[600px]:whitespace-normal">Technology</span>
-              <span className="block whitespace-nowrap max-[600px]:whitespace-normal">
-                that{" "}
-                <span className="text-signature">has to work.</span>
-              </span>
-            </h1>
+            <HeroHeading />
             <p
               className="text-ink-2 max-w-[54ch] mb-10"
               style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)", lineHeight: 1.6 }}
@@ -94,7 +86,7 @@ export default function HomePage() {
       {/* ================================================================
           PROOF BAR — stats + client grid
           ================================================================ */}
-      <section className="border-t border-hairline" style={{ padding: "4rem 0 3rem" }}>
+      <section className="border-t border-hairline" style={{ padding: "2.5rem 0 0" }}>
         <div className="wrap">
           <StatBar />
           <ServicesShowcase />
@@ -109,7 +101,7 @@ export default function HomePage() {
       {/* ================================================================
           DUAL MODEL — build the solution / build the team
           ================================================================ */}
-      <section style={{ padding: "4rem 0 8rem" }}>
+      <section style={{ padding: "1.5rem 0 6rem" }}>
         <div className="wrap">
           <Eyebrow>The model</Eyebrow>
           <h2
@@ -128,7 +120,7 @@ export default function HomePage() {
       {/* ================================================================
           PUBLIC SECTOR
           ================================================================ */}
-      <section id="public-sector" style={{ padding: "8rem 0" }}>
+      <section id="public-sector" style={{ padding: "3rem 0 8rem" }}>
         <div className="wrap">
           <Eyebrow>Public sector</Eyebrow>
           <h2

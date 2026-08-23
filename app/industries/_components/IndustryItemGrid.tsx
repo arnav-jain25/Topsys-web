@@ -17,10 +17,7 @@ function useReveal(threshold = 0.15) {
     }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
+        setVisible(entry.isIntersecting);
       },
       { threshold }
     );

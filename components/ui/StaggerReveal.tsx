@@ -4,20 +4,11 @@ import type { ReactNode } from "react";
 
 interface StaggerRevealProps {
   children: ReactNode;
-  /** Applied to the container div — put your grid/flex classes here */
   className?: string;
-  /** Delay added per item, in ms (default 80) */
   itemDelay?: number;
-  /** Initial delay before the first item animates, in ms (default 0) */
   baseDelay?: number;
 }
 
-/**
- * Grid/flex container that stagger-reveals its direct children as the section
- * scrolls into view. Each child is wrapped in a transparent div that carries the
- * animation; the child's own styles (border, padding, hover effects) are unaffected.
- * Respects prefers-reduced-motion.
- */
 export function StaggerReveal({
   children,
   className,
@@ -35,12 +26,7 @@ export function StaggerReveal({
       return;
     }
     const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
-      },
+      ([e]) => setVisible(e.isIntersecting),
       { threshold: 0.1 }
     );
     io.observe(el);
@@ -53,9 +39,7 @@ export function StaggerReveal({
         <div
           style={
             visible
-              ? {
-                  animation: `topsys-fade-in 500ms cubic-bezier(.2,0,0,1) ${baseDelay + i * itemDelay}ms both`,
-                }
+              ? { animation: `topsys-fade-in 500ms cubic-bezier(.2,0,0,1) ${baseDelay + i * itemDelay}ms both` }
               : { opacity: 0 }
           }
         >

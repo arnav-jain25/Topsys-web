@@ -71,7 +71,7 @@ export default function IndustriesPage() {
       {/* ================================================================
           HERO
           ================================================================ */}
-      <section style={{ padding: "6rem 0 5rem" }}>
+      <section style={{ padding: "5rem 0 4rem" }}>
         <div className="wrap">
           <Breadcrumb items={[{ label: "Industries" }]} />
           <Eyebrow className="mt-6">Industries</Eyebrow>
@@ -84,19 +84,39 @@ export default function IndustriesPage() {
               maxWidth: "22ch",
             }}
           >
-            The sectors we work in.
+            Where we deliver.
           </h1>
-          <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across six verticals where we&rsquo;ve built programs that run in production.
-          </p>
         </div>
       </section>
 
       {/* ================================================================
+          CLIENT SHOWCASE
+          ================================================================ */}
+      <ClientShowcase />
+
+      {/* ================================================================
           INDUSTRY GRID
           ================================================================ */}
-      <section style={{ paddingBottom: "8rem" }}>
+      <section style={{ padding: "6rem 0 8rem" }}>
         <div className="wrap">
+          <div className="mb-10">
+            <p
+              className="font-mono font-semibold uppercase"
+              style={{ fontSize: "11px", letterSpacing: ".12em", color: "var(--color-ink-muted)" }}
+            >
+              Sectors
+            </p>
+            <h2
+              className="font-display font-medium text-ink mt-3"
+              style={{ fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.025em" }}
+            >
+              The sectors we work in.
+            </h2>
+            <p className="text-body-xs text-ink-2 mt-3 max-w-[58ch]">
+              Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across six verticals where we&rsquo;ve built programs that run in production.
+            </p>
+          </div>
+
           <IndustryIndexGrid industries={INDUSTRIES} />
 
           <div className="mt-10 border-t border-hairline pt-8">
@@ -110,11 +130,6 @@ export default function IndustriesPage() {
           </div>
         </div>
       </section>
-
-      {/* ================================================================
-          CLIENT SHOWCASE — inverted
-          ================================================================ */}
-      <ClientShowcase />
 
       {/* ================================================================
           CROSS-LINKS
