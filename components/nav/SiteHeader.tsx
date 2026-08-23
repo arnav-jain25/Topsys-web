@@ -95,7 +95,7 @@ const NAV_LINKS = [
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Partners & MSP", href: "/capabilities/technology-talent#msp" },
-  { label: "Careers", href: "/careers" },
+  { label: "DIR Contract", href: "/contract-vehicles" },
 ];
 
 const SECTOR_INDUSTRIES = [
@@ -307,10 +307,10 @@ export function SiteHeader() {
           {/* Right controls (desktop) */}
           <div className="flex items-center gap-3.5 pb-3.5 max-[1279px]:hidden">
             <Link
-              href="/contract-vehicles"
+              href="/careers"
               className="max-[1439px]:hidden text-caption text-ink-muted hover:text-ink transition-colors duration-fast ease-standard"
             >
-              DIR Contract
+              Careers
             </Link>
             <Link
               href="/contact"
@@ -729,11 +729,11 @@ export function SiteHeader() {
                   Talk to us
                 </Link>
                 <Link
-                  href="/contract-vehicles"
+                  href="/careers"
                   className="inline-flex items-center justify-center h-12 text-body-sm text-ink-muted"
                   onClick={closeMobile}
                 >
-                  DIR Contract
+                  Careers
                 </Link>
               </div>
             </div>
