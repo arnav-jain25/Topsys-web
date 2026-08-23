@@ -276,7 +276,7 @@ export default function AIAndDataPage() {
       </section>
 
       {/* ================================================================
-          CAPABILITY BLOCKS — paper
+          CAPABILITY BLOCKS — numbered register layout
           ================================================================ */}
       <section style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
@@ -291,50 +291,61 @@ export default function AIAndDataPage() {
             Ten capabilities, one engineering standard
           </h2>
 
-          <StaggerReveal
-            className="grid grid-cols-3 gap-4 mt-10 max-[1023px]:grid-cols-2 max-[599px]:grid-cols-1"
-            itemDelay={70}
-          >
+          <div className="mt-12 border-t border-hairline">
             {CAPS.map(({ title, body, Icon, href }, i) => {
-              const cardInner = (
+              const rowInner = (
                 <>
-                  {/* Gradient top edge on hover — one of the four permitted uses */}
+                  {/* Teal left accent — extends on hover */}
                   <span
-                    className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100"
+                    className="absolute left-0 top-0 bottom-0 w-[3px] bg-teal scale-y-0 origin-top transition-transform duration-base ease-standard group-hover:scale-y-100"
                     aria-hidden="true"
                   />
-                  <div className="flex items-start justify-between">
-                    <span className="text-teal transition-colors duration-fast ease-standard">
-                      <Icon />
-                    </span>
-                    <span className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.08em]">
+                  <div className="py-7 pl-5 max-[767px]:pl-0 flex items-start gap-8 max-[767px]:gap-4">
+                    {/* Ordinal — hidden on mobile */}
+                    <span
+                      className="font-mono leading-none font-medium select-none flex-none w-12 transition-colors duration-fast ease-standard group-hover:text-teal max-[767px]:hidden"
+                      style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)", color: "var(--color-hairline-strong)" }}
+                      aria-hidden="true"
+                    >
                       {String(i + 1).padStart(2, "0")}
                     </span>
+
+                    {/* Icon + title */}
+                    <div className="flex items-start gap-3 pt-1 w-[13rem] flex-none max-[767px]:w-auto max-[767px]:flex-1">
+                      <span className="text-teal flex-none mt-0.5">
+                        <Icon />
+                      </span>
+                      <h3 className="font-display font-medium text-ink group-hover:text-teal transition-colors duration-fast ease-standard" style={{ fontSize: "clamp(1rem, 1.3vw, 1.15rem)", lineHeight: 1.3 }}>
+                        {title}
+                      </h3>
+                    </div>
+
+                    {/* Body */}
+                    <p className="text-body-xs text-ink-2 flex-1 max-[767px]:hidden">{body}</p>
+
+                    {/* Link indicator */}
+                    {href && (
+                      <span className="font-mono text-teal text-mono-xs pt-1 flex-none" aria-hidden="true">→</span>
+                    )}
                   </div>
-                  <h3 className="font-display font-medium text-heading-3 text-ink mt-4 mb-2">
-                    {title}
-                  </h3>
-                  <p className="text-body-xs text-ink-2">{body}</p>
-                  {href && (
-                    <p className="mt-4 font-mono text-mono-xs uppercase tracking-[.06em] text-teal group-hover:underline underline-offset-4">
-                      See it in production →
-                    </p>
-                  )}
+                  {/* Body on mobile — separate row */}
+                  <p className="hidden max-[767px]:block text-body-xs text-ink-2 px-0 pb-5">{body}</p>
                 </>
               );
-              const cardClass =
-                "group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden block";
+
+              const rowClass = "group relative border-b border-hairline transition-colors duration-fast ease-standard hover:bg-surface block";
+
               return href ? (
-                <Link key={title} href={href} className={cardClass}>
-                  {cardInner}
+                <Link key={title} href={href} className={rowClass}>
+                  {rowInner}
                 </Link>
               ) : (
-                <div key={title} className={cardClass}>
-                  {cardInner}
+                <div key={title} className={rowClass}>
+                  {rowInner}
                 </div>
               );
             })}
-          </StaggerReveal>
+          </div>
         </ScrollReveal>
       </section>
 

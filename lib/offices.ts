@@ -42,6 +42,22 @@ export const OFFICES: Office[] = [
     address: "3rd Floor, Eternal Samyuktha, Vittal Rao Nagar Road, Madhapur, Hyderabad 500081, India",
     mapsUrl: "https://maps.google.com/?q=Eternal+Samyuktha+Vittal+Rao+Nagar+Road+Madhapur+Hyderabad+500081",
   },
+  {
+    id: "in-blr",
+    city: "Bengaluru",
+    country: "India",
+    label: "India",
+    address: "Level 7, Outer Ring Rd, MS Ramaiah North City, Manayata Tech Park, Hebbal, Bengaluru, Karnataka 560045, India",
+    mapsUrl: "https://maps.google.com/?q=Manayata+Tech+Park+Hebbal+Bengaluru+Karnataka+560045",
+  },
+  {
+    id: "sg",
+    city: "Singapore",
+    country: "Singapore",
+    label: "Singapore",
+    address: "101 Thomson Rd, #06-01/06 United Square, Singapore 307591",
+    mapsUrl: "https://maps.google.com/?q=101+Thomson+Road+United+Square+Singapore+307591",
+  },
 ];
 
 export interface Contact {

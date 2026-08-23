@@ -131,10 +131,10 @@
   --text-stat--letter-spacing: -0.03em;
   --text-stat--font-weight: 400;
 
-  --text-eyebrow: 0.75rem;          /* 12 · uppercase via text-transform */
+  --text-eyebrow: 0.8125rem;         /* 13 · uppercase via text-transform */
   --text-eyebrow--line-height: 1.4;
   --text-eyebrow--letter-spacing: 0.1em;
-  --text-eyebrow--font-weight: 500;
+  --text-eyebrow--font-weight: 600;
 
   --text-mono: 0.8125rem;           /* 13 */
   --text-mono--line-height: 1.5;
@@ -143,7 +143,7 @@
   --text-mono-sm--line-height: 1.45;
   --text-mono-sm--letter-spacing: 0.04em;
 
-  --text-mono-xs: 0.6875rem;        /* 11 */
+  --text-mono-xs: 0.75rem;           /* 12 */
   --text-mono-xs--line-height: 1.4;
   --text-mono-xs--letter-spacing: 0.09em;
 
@@ -554,6 +554,45 @@
   0%   { r: 7;  opacity: 0.5; }
   70%  { r: 15; opacity: 0; }
   100% { r: 15; opacity: 0; }
+}
+
+/* Left-scrolling marquee (content moves left) */
+@keyframes marquee-rtl {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Right-scrolling marquee (content moves right, for opposing-row effect) */
+@keyframes marquee-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.marquee-track {
+  animation: marquee-rtl 55s linear infinite;
+}
+
+.marquee-track-ltr {
+  animation: marquee-ltr 42s linear infinite;
+}
+
+.marquee-track-rtl {
+  animation: marquee-rtl 52s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track,
+.marquee-wrap:hover .marquee-track-ltr,
+.marquee-wrap:hover .marquee-track-rtl {
+  animation-play-state: paused;
+}
+
+@keyframes cert-pulse {
+  0%, 60%, 100% { box-shadow: 0 0 0 0 rgba(14,90,102,0); border-color: var(--color-hairline); }
+  30%            { box-shadow: 0 0 0 3px rgba(14,90,102,0.14); border-color: var(--color-teal); }
+}
+
+.cert-pulse {
+  animation: cert-pulse 3.6s ease-in-out infinite;
 }
 
 @keyframes panelDrop {

@@ -113,7 +113,7 @@ export function Footer() {
           </div>
 
           <FooterCol heading="Services" links={caps} />
-          <FooterCol heading="Sectors" links={sectors} />
+          <FooterCol heading="Industries" links={sectors} />
           <FooterCol heading="Company" links={company} />
           <FooterCol heading="Connect" links={connect} />
         </div>

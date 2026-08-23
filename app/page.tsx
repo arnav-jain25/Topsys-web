@@ -5,14 +5,14 @@ import {
   StatBar,
   ServicesShowcase,
   DualModel,
-  CapabilityGrid,
-  AIArc,
   USMap,
   CaseStudyGrid,
   HowWeWork,
   InsightsAccordion,
   CareerStrip,
   CTASection,
+  TestimonialsStrip,
+  ClientProofStrip,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -83,7 +83,7 @@ export default function HomePage() {
             </div>
             <div className="mt-10 pt-6 border-t border-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] text-ink-muted uppercase tracking-[.06em]">
               <span>20+ years</span>
-              <span>30 states served</span>
+              <span>30 state engagements</span>
               <span>4 countries</span>
               <span>MBE certified</span>
             </div>
@@ -102,6 +102,11 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
+          CLIENT PROOF STRIP — enterprise clients, tech platforms, certs
+          ================================================================ */}
+      <ClientProofStrip />
+
+      {/* ================================================================
           DUAL MODEL — build the solution / build the team
           ================================================================ */}
       <section style={{ padding: "4rem 0 8rem" }}>
@@ -117,62 +122,6 @@ export default function HomePage() {
             Most firms make you choose. A consultancy scopes your program and staffs it with people you didn't pick. A staffing vendor sends résumés and steps back at onboarding. We do both, with the same engineering standard and the same accountability, as one firm.
           </p>
           <DualModel />
-        </div>
-      </section>
-
-      {/* ================================================================
-          CAPABILITIES
-          ================================================================ */}
-      <section id="services" style={{ paddingBottom: "8rem" }}>
-        <div className="wrap">
-          <Eyebrow>Services</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
-          >
-            What we build
-          </h2>
-          <CapabilityGrid />
-        </div>
-      </section>
-
-      {/* ================================================================
-          AI & DATA — inverted
-          ================================================================ */}
-      <section id="ai" className="on-field" style={{ padding: "8rem 0" }}>
-        <div className="wrap">
-          <Eyebrow>AI & data</Eyebrow>
-          <h2
-            className="font-display font-medium text-on-field mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em", maxWidth: "20ch" }}
-          >
-            AI that survives data contact with production.
-          </h2>
-          <p className="text-lede text-on-field-2 max-w-[64ch] mt-6">
-            Most enterprise AI stalls in the same place: a pilot works in a notebook, then meets real data, real users and real compliance requirements. We start further back. What's the workflow, what does it cost you today, and is the data underneath it good enough to trust?
-          </p>
-
-          <AIArc />
-
-          <div className="grid grid-cols-3 gap-6 mt-24 max-[1023px]:grid-cols-1">
-            {[
-              { title: "Automate knowledge-heavy work", body: "Document-intensive processes, case handling and review workflows where the bottleneck is reading, not deciding." },
-              { title: "Make institutional knowledge searchable", body: "Retrieval systems over the documents, policies and records your teams already can't find." },
-              { title: "Turn data into decisions", body: "Models and analytics tied to a specific decision, with a defined owner and a defined measure." },
-            ].map(({ title, body }) => (
-              <div
-                key={title}
-                className="border-t border-field-hairline pt-4 transition-colors duration-base ease-standard hover:border-signal"
-              >
-                <h4 className="font-display font-medium text-heading-4 text-on-field mb-2">{title}</h4>
-                <p className="text-body-xs text-on-field-2">{body}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16">
-            <Button href="/capabilities/ai-and-data">Discuss your AI use case</Button>
-          </div>
         </div>
       </section>
 
@@ -200,10 +149,10 @@ export default function HomePage() {
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">
-                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · Job and Family Services (JFS)
+                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
                 </dd>
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
-                  States served
+                  State engagements
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">30</dd>
               </dl>
@@ -271,6 +220,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ================================================================
+          CLIENT TESTIMONIALS — light breath after dark Insights
+          ================================================================ */}
+      <TestimonialsStrip />
 
       {/* ================================================================
           CAREERS STRIP

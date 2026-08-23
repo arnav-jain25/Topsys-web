@@ -70,21 +70,25 @@ export function USMap() {
           <g>
             {US_STATES.map(([abbr, name, d, lx, ly]) => {
               const isServed = abbr in SERVED;
+              const isHQ = abbr === "GA";
               return (
                 <path
                   key={abbr}
                   d={d}
                   aria-hidden="true"
                   className={`transition-colors duration-base ease-standard ${
-                    isServed
+                    isHQ
+                      ? "cursor-default"
+                      : isServed
                       ? "fill-field hover:fill-teal cursor-default"
                       : "fill-[#E8E5DC]"
                   }`}
-                  stroke={isServed ? "var(--color-field-deep)" : "#C9C4B4"}
+                  style={isHQ ? { fill: "#F59E0B" } : undefined}
+                  stroke={isHQ ? "#92400E" : isServed ? "var(--color-field-deep)" : "#C9C4B4"}
                   strokeWidth="0.9"
                   onMouseEnter={() => {
                     if (isServed) {
-                      setTooltip({ name, desc: SERVED[abbr], x: lx, y: ly });
+                      setTooltip({ name, desc: isHQ ? "US Headquarters — " + SERVED[abbr] : SERVED[abbr], x: lx, y: ly });
                     }
                   }}
                   onMouseLeave={() => setTooltip(null)}
@@ -97,6 +101,9 @@ export function USMap() {
           <g>
             {servedStates.map(([abbr,, , lx, ly], i) => {
               const cx = lx, cy = ly - 7, R = 6.6;
+              const isHQ = abbr === "GA";
+              const pinColor = "var(--color-signal)";
+              const strokeColor = "var(--color-field-deep)";
               return (
                 <g key={`pin-${abbr}`} aria-hidden="true">
                   {/* Pulse halo */}
@@ -105,17 +112,17 @@ export function USMap() {
                     cy={cy}
                     r={7}
                     fill="none"
-                    stroke="var(--color-signal)"
+                    stroke={pinColor}
                     strokeWidth="1.2"
                     className="animate-[pinHalo_2.8s_cubic-bezier(.2,0,0,1)_infinite]"
                     style={{ animationDelay: `${i * 250}ms` }}
                   />
-                  {/* O-mark droplet — signal fill, field-deep stroke */}
+                  {/* O-mark droplet */}
                   <path
                     d={pinPath(cx, cy, R)}
                     fillRule="evenodd"
-                    fill="var(--color-signal)"
-                    stroke="var(--color-field-deep)"
+                    fill={pinColor}
+                    stroke={strokeColor}
                     strokeWidth="0.7"
                     className="animate-[pinIn_520ms_cubic-bezier(.2,0,0,1)_forwards]"
                     style={{
@@ -131,7 +138,7 @@ export function USMap() {
                     fontFamily="var(--font-ibm-plex-mono)"
                     fontSize="7.5"
                     fontWeight="500"
-                    fill="var(--color-signal)"
+                    fill={pinColor}
                     letterSpacing="0.05em"
                     className="pointer-events-none"
                   >
@@ -159,6 +166,10 @@ export function USMap() {
 
       {/* Legend */}
       <div className="flex gap-6 mt-5 flex-wrap font-mono text-mono-xs uppercase tracking-[.06em] text-ink-muted">
+        <span className="flex items-center gap-2">
+          <span className="inline-block w-[11px] h-[11px] rounded-sm" style={{ backgroundColor: "#F59E0B" }} aria-hidden="true" />
+          US Headquarters (GA)
+        </span>
         <span className="flex items-center gap-2">
           <span className="inline-block w-[11px] h-[11px] rounded-sm bg-field" aria-hidden="true" />
           Direct state engagements

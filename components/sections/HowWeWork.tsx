@@ -101,31 +101,6 @@ export function HowWeWork() {
           </div>
         </div>
       </div>
-
-      {/* Credentials */}
-      <div className="mt-24 pt-8 border-t border-hairline">
-        <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-4">
-          <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
-          Credentials & ecosystem
-        </p>
-        <div className="flex flex-wrap gap-2.5 mt-4">
-          {CREDENTIALS.map(({ label, highlight }) => (
-            <span
-              key={label}
-              className={`font-mono text-mono-sm tracking-[.04em] px-3.5 py-2 border rounded-tag transition-all duration-fast ease-standard ${
-                highlight
-                  ? "border-transparent bg-signature text-white"
-                  : "border-hairline-strong text-ink-2 bg-white hover:border-teal hover:text-teal hover:shadow-e1"
-              }`}
-            >
-              {label}
-            </span>
-          ))}
-        </div>
-        <p className="mt-6 text-body-sm text-ink-2 max-w-[64ch]">
-          Certified minority business enterprise, qualifying for supplier diversity programs at enterprises and government agencies alike.
-        </p>
-      </div>
     </div>
   );
 }

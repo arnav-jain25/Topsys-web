@@ -104,7 +104,7 @@ export default function PublicSectorPage() {
             <div>
               <div className="border-t border-hairline pt-5">
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted">
-                  States served
+                  State engagements
                 </dt>
                 <dd className="font-mono text-stat text-ink mt-2">30</dd>
               </div>
@@ -113,7 +113,7 @@ export default function PublicSectorPage() {
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-2">
-                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · Job and Family Services (JFS)
+                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
                 </dd>
               </div>
               <div className="border-t border-hairline pt-5 mt-6">

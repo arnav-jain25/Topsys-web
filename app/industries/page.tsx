@@ -56,6 +56,13 @@ const INDUSTRIES = [
       "Claims processing systems, underwriting and actuarial data platforms, and policy administration modernization under NAIC and state reporting requirements.",
     tags: ["Java", "Spring Boot", "Kafka", "Snowflake", "NAIC", "SQL"],
   },
+  {
+    slug: "luxury",
+    label: "Luxury",
+    body:
+      "Digital commerce, clienteling platforms, and supply chain visibility for luxury brands managing global operations, brand integrity, and high-value customer relationships.",
+    tags: ["Salesforce", "SAP", "Node.js", "GraphQL", "Azure", "Snowflake"],
+  },
 ];
 
 export default function IndustriesPage() {

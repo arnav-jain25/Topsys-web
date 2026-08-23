@@ -72,7 +72,7 @@ function Stat({ value, suffix = "", label, static: isStatic }: StatItem) {
 const STATS: StatItem[] = [
   { value: 20, suffix: "+", label: "Years experience" },
   { value: 4, label: "Countries" },
-  { value: 30, label: "States served" },
+  { value: 30, label: "State engagements" },
   { value: "MBE", label: "Certified", static: true },
 ];
 

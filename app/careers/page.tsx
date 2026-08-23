@@ -159,7 +159,7 @@ export default function CareersPage() {
           </p>
           <div className="flex gap-3 flex-wrap mt-8">
             <Button href="#open-roles">View open roles</Button>
-            <Button href="mailto:hr@topsysit.com" variant="secondary">
+            <Button href="mailto:info@topsysit.com" variant="secondary">
               Email your resume
             </Button>
           </div>
@@ -380,7 +380,7 @@ export default function CareersPage() {
                     {/* Right: Apply button */}
                     <div className="flex items-start pt-1 max-[700px]:hidden">
                       <Button
-                        href={`mailto:hr@topsysit.com?subject=${encodeURIComponent(
+                        href={`mailto:info@topsysit.com?subject=${encodeURIComponent(
                           `Application: ${role.title}`
                         )}`}
                         variant="secondary"
@@ -393,7 +393,7 @@ export default function CareersPage() {
                   {/* Apply button — mobile only (below content) */}
                   <div className="mt-6 hidden max-[700px]:block">
                     <Button
-                      href={`mailto:hr@topsysit.com?subject=${encodeURIComponent(
+                      href={`mailto:info@topsysit.com?subject=${encodeURIComponent(
                         `Application: ${role.title}`
                       )}`}
                       variant="secondary"
@@ -423,16 +423,15 @@ export default function CareersPage() {
               <p className="text-body-sm text-ink-2 mt-1 max-w-[56ch]">
                 Send your resume, with contact information, to{" "}
                 <a
-                  href="mailto:hr@topsysit.com"
+                  href="mailto:info@topsysit.com"
                   className="text-teal border-b border-current pb-0.5"
                 >
-                  hr@topsysit.com
-                </a>{" "}
-                or by mail to TOPSYS IT Solutions LLC, 1740 Grassland Pkwy, Suite 301, Alpharetta, GA 30004.
+                  info@topsysit.com
+                </a>.
               </p>
             </div>
             <div className="flex gap-3 flex-wrap">
-              <Button href="mailto:hr@topsysit.com">Email your resume</Button>
+              <Button href="mailto:info@topsysit.com">Email your resume</Button>
               <Button
                 href="https://www.linkedin.com/company/topsysitsolutions/"
                 variant="secondary"

@@ -1,4 +1,5 @@
-﻿"use client";
+"use client";
+// SiteHeader
 
 import Image from "next/image";
 import Link from "next/link";
@@ -53,7 +54,7 @@ const CAP_CARDS = [
     href: "/capabilities/ai-and-data",
     title: "AI & data",
     desc: "Data foundations, applied AI, and analytics that change what people decide.",
-    sub: "Advisory Â· Generative AI Â· Automation Â· ML Â· Data platforms Â· Analytics Â· Governance",
+    sub: "Advisory · Generative AI · Automation · ML · Data platforms · Analytics · Governance",
     lead: true,
     Icon: IconAI,
   },
@@ -91,13 +92,19 @@ const INTENT_LINKS = [
 ];
 
 const NAV_LINKS = [
-  { label: "Industries", href: "/industries" },
-  { label: "Public sector", href: "/public-sector" },
-  { label: "Case studies", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Partners & MSP", href: "/capabilities/technology-talent#msp" },
-  { label: "DIR Contract", href: "/contract-vehicles" },
+  { label: "Careers", href: "/careers" },
+];
+
+const SECTOR_INDUSTRIES = [
+  { label: "Financial services", href: "/industries/financial-services", tags: ["Kafka", "Snowflake", "SOX"] },
+  { label: "Telecommunications", href: "/industries/telecommunications", tags: ["OSS/BSS", "Kafka", "Python"] },
+  { label: "Healthcare", href: "/industries/healthcare", tags: ["FHIR", "HL7", "HIPAA"] },
+  { label: "Technology", href: "/industries/technology", tags: ["Kubernetes", "Terraform", "GCP"] },
+  { label: "Retail", href: "/industries/retail", tags: ["GraphQL", "Snowflake", "AWS"] },
+  { label: "Insurance", href: "/industries/insurance", tags: ["Spring Boot", "NAIC", "SQL"] },
 ];
 
 /* ---- Command bar search data ---- */
@@ -107,7 +114,7 @@ const SEARCH_GROUPS = [
     items: [
       { label: "AI & data", href: "/capabilities/ai-and-data" },
       { label: "Legacy & mainframe modernization", href: "/capabilities/applications-and-modernization" },
-      { label: "Data platforms", href: "/capabilities/ai-and-data" },
+      { label: "Data platforms", href: "/capabilities/ai-and-data#data-platforms" },
     ],
   },
   {
@@ -129,31 +136,40 @@ const SEARCH_GROUPS = [
 
 export function SiteHeader() {
   const [panelOpen, setPanelOpen] = useState(false);
+  const [sectorsOpen, setSectorsOpen] = useState(false);
+  const [proofOpen, setProofOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   /* Separate from `panelOpen`: the mobile drawer expands an inline list, it does
      not open the desktop mega-panel, so the two must not share a flag. */
   const [mobileServices, setMobileServices] = useState(false);
+  const [mobileSectors, setMobileSectors] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const capBtnRef = useRef<HTMLButtonElement>(null);
+  const sectorsPanelRef = useRef<HTMLDivElement>(null);
+  const sectorsBtnRef = useRef<HTMLButtonElement>(null);
+  const proofPanelRef = useRef<HTMLDivElement>(null);
+  const proofBtnRef = useRef<HTMLButtonElement>(null);
   const cmdInputRef = useRef<HTMLInputElement>(null);
   const headerRef = useRef<HTMLElement>(null);
 
-  /* Close panel on outside click */
+  /* Close panels on outside click */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (
-        panelOpen &&
-        panelRef.current &&
-        !panelRef.current.contains(e.target as Node) &&
-        !capBtnRef.current?.contains(e.target as Node)
-      ) {
+      const t = e.target as Node;
+      if (panelOpen && panelRef.current && !panelRef.current.contains(t) && !capBtnRef.current?.contains(t)) {
         setPanelOpen(false);
+      }
+      if (sectorsOpen && sectorsPanelRef.current && !sectorsPanelRef.current.contains(t) && !sectorsBtnRef.current?.contains(t)) {
+        setSectorsOpen(false);
+      }
+      if (proofOpen && proofPanelRef.current && !proofPanelRef.current.contains(t) && !proofBtnRef.current?.contains(t)) {
+        setProofOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [panelOpen]);
+  }, [panelOpen, proofOpen]);
 
   /* âŒ˜K / Ctrl+K shortcut */
   useEffect(() => {
@@ -165,6 +181,8 @@ export function SiteHeader() {
       if (e.key === "Escape") {
         setCmdOpen(false);
         setPanelOpen(false);
+        setSectorsOpen(false);
+        setProofOpen(false);
         setMobileOpen(false);
         setMobileServices(false);
       }
@@ -194,7 +212,7 @@ export function SiteHeader() {
   }, []);
 
   /* Close the drawer if the viewport grows past the mobile breakpoint while it is
-     open â€” otherwise the fixed sheet stays pinned over the desktop layout. */
+     open â€" otherwise the fixed sheet stays pinned over the desktop layout. */
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1280px)");
     const onChange = () => { if (mq.matches) closeMobile(); };
@@ -231,50 +249,68 @@ export function SiteHeader() {
             className="flex-1 flex items-end relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-px after:bg-hairline max-[1279px]:hidden"
             aria-label="Primary"
           >
-            {/* Services â€” has panel */}
+            {/* Services — has panel */}
             <button
               ref={capBtnRef}
               className="nav-item group"
               aria-expanded={panelOpen}
               aria-controls="cap-panel"
-              onClick={() => setPanelOpen((v) => !v)}
+              onClick={() => { setPanelOpen((v) => !v); setSectorsOpen(false); setProofOpen(false); }}
             >
               Services
-              {/* Gradient tick â€” one of the four permitted uses */}
+              {/* Gradient tick — one of the four permitted uses */}
               <span
                 className={`absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${panelOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
                 aria-hidden="true"
               />
             </button>
 
+            {/* Industries — merged Industries + Public sector dropdown */}
+            <button
+              ref={sectorsBtnRef}
+              className="nav-item group"
+              aria-expanded={sectorsOpen}
+              aria-controls="sectors-panel"
+              onClick={() => { setSectorsOpen((v) => !v); setPanelOpen(false); setProofOpen(false); }}
+            >
+              Industries
+              <span
+                className={`absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${sectorsOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                aria-hidden="true"
+              />
+            </button>
+
+            {/* Proof — creative split-panel dropdown */}
+            <button
+              ref={proofBtnRef}
+              className="nav-item group"
+              aria-expanded={proofOpen}
+              aria-controls="proof-panel"
+              onClick={() => { setProofOpen((v) => !v); setPanelOpen(false); setSectorsOpen(false); }}
+            >
+              Proof
+              <span
+                className={`absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${proofOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                aria-hidden="true"
+              />
+            </button>
+
+            {/* About, Partners & MSP, Careers */}
             {NAV_LINKS.map(({ label, href }) => (
               <Link key={href} href={href} className="nav-item group">
                 {label}
-                <span
-                  className="absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left scale-x-0 group-hover:scale-x-100"
-                  aria-hidden="true"
-                />
+                <span className="absolute left-[17px] right-[17px] bottom-[-1px] h-0.5 bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left scale-x-0 group-hover:scale-x-100" aria-hidden="true" />
               </Link>
             ))}
           </nav>
 
           {/* Right controls (desktop) */}
           <div className="flex items-center gap-3.5 pb-3.5 max-[1279px]:hidden">
-            <button
-              /* Hidden in the 1280–1439px band: it is the most expendable item
-                 in the row and dropping it buys the nav ~125px. ⌘K still opens
-                 the same overlay, so nothing becomes unreachable. */
-              className="max-[1439px]:hidden flex items-center gap-2.5 h-9 px-3 bg-surface border border-hairline rounded-control font-mono text-mono-sm text-ink-muted hover:border-teal hover:text-teal transition-colors duration-fast ease-standard"
-              onClick={() => setCmdOpen(true)}
-              aria-label="Open search"
-            >
-              Search <span aria-hidden="true">âŒ˜K</span>
-            </button>
             <Link
-              href="/careers"
-              className="text-caption text-ink-muted hover:text-ink transition-colors duration-fast ease-standard"
+              href="/contract-vehicles"
+              className="max-[1439px]:hidden text-caption text-ink-muted hover:text-ink transition-colors duration-fast ease-standard"
             >
-              Careers
+              DIR Contract
             </Link>
             <Link
               href="/contact"
@@ -303,7 +339,7 @@ export function SiteHeader() {
               role="region"
               aria-label="Services"
               /* Desktop only. Its 3-column grid and 3rem padding have no viable
-                 mobile rendering â€” on a phone the columns collapsed to ~140px and
+                 mobile rendering â€" on a phone the columns collapsed to ~140px and
                  every service title broke mid-word. Mobile gets the inline list
                  in the drawer below instead. */
               className="hidden min-[1280px]:grid absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 px-12 py-12 grid-cols-[1.55fr_1px_1fr] gap-12 z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
@@ -314,7 +350,7 @@ export function SiteHeader() {
             >
               {/* Cap cards */}
               <div>
-                <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-4">
+                <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-semibold uppercase tracking-[.1em] text-ink-muted mb-4">
                   <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
                   Service map
                 </p>
@@ -366,7 +402,7 @@ export function SiteHeader() {
 
               {/* Intent links */}
               <div>
-                <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-4">
+                <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-semibold uppercase tracking-[.1em] text-ink-muted mb-4">
                   <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
                   I need to
                 </p>
@@ -379,10 +415,171 @@ export function SiteHeader() {
                       className="flex justify-between items-center p-4 bg-white border border-hairline rounded-card text-body-xs text-ink hover:border-teal hover:translate-x-[3px] hover:shadow-e1 transition-all duration-fast ease-standard"
                     >
                       {label}
-                      <span className="font-mono text-teal" aria-hidden="true">â†’</span>
+                      <span className="font-mono text-teal" aria-hidden="true">→</span>
                     </Link>
                   ))}
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* Sectors panel — public sector dark column + industry tile grid */}
+          {sectorsOpen && (
+            <div
+              id="sectors-panel"
+              ref={sectorsPanelRef}
+              role="region"
+              aria-label="Industries"
+              className="hidden min-[1280px]:flex absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 z-[99] overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              style={{ borderTopColor: "var(--color-teal)" }}
+            >
+              {/* Left column — Public sector (inverted) */}
+              <div className="w-[38%] bg-field-deep px-9 py-9 flex flex-col">
+                <p className="inline-flex items-center gap-2.5 font-mono text-mono-xs font-semibold uppercase tracking-[.12em] text-signal mb-1">
+                  <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
+                  Public sector
+                </p>
+                <p
+                  className="font-display font-medium text-on-field mt-2"
+                  style={{ fontSize: "clamp(1.3rem, 1.8vw, 1.75rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}
+                >
+                  Government programs<br />that ship.
+                </p>
+                <div className="flex gap-4 mt-4 mb-6">
+                  <div className="border-l-2 border-signal pl-3">
+                    <p className="font-mono text-mono-xs text-signal uppercase tracking-[.08em]">30</p>
+                    <p className="text-caption text-on-field-2 mt-0.5">State engagements</p>
+                  </div>
+                  <div className="border-l-2 border-field-hairline pl-3">
+                    <p className="font-mono text-mono-xs text-on-field-2 uppercase tracking-[.08em]">4</p>
+                    <p className="text-caption text-on-field-2 mt-0.5">Countries</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 mt-auto">
+                  <Link href="/public-sector/state-and-local" onClick={() => setSectorsOpen(false)}
+                    className="flex justify-between items-center px-4 py-3 bg-field border border-field-hairline rounded-card text-body-xs text-on-field hover:border-signal/40 hover:translate-x-[3px] transition-all duration-fast ease-standard">
+                    State &amp; local government <span className="text-signal font-mono" aria-hidden="true">&#8594;</span>
+                  </Link>
+                  <Link href="/contract-vehicles" onClick={() => setSectorsOpen(false)}
+                    className="flex justify-between items-center px-4 py-3 bg-field border border-field-hairline rounded-card text-body-xs text-on-field hover:border-signal/40 hover:translate-x-[3px] transition-all duration-fast ease-standard">
+                    DIR Contract <span className="text-signal font-mono" aria-hidden="true">&#8594;</span>
+                  </Link>
+                  <Link href="/public-sector" onClick={() => setSectorsOpen(false)}
+                    className="inline-flex items-center gap-1.5 mt-3 font-mono text-mono-xs uppercase tracking-[.08em] text-on-field-2 hover:text-signal transition-colors duration-fast ease-standard">
+                    Public sector overview <span aria-hidden="true">&#8594;</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right column — Private enterprise (light) */}
+              <div className="flex-1 border-l border-hairline px-9 py-9">
+                <p className="inline-flex items-center gap-2.5 font-mono text-mono-xs font-semibold uppercase tracking-[.12em] text-teal mb-4">
+                  <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
+                  Private enterprise
+                </p>
+                <div className="grid grid-cols-3 gap-3">
+                  {SECTOR_INDUSTRIES.map(({ label, href, tags }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setSectorsOpen(false)}
+                      className="group relative overflow-hidden bg-white border border-hairline rounded-card px-4 py-3.5 hover:border-teal hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-fast ease-standard"
+                    >
+                      <span className="absolute top-0 left-0 right-0 h-[2px] bg-signature scale-x-0 origin-left transition-transform duration-fast ease-standard group-hover:scale-x-100" aria-hidden="true" />
+                      <p className="font-display font-medium text-body-xs text-ink group-hover:text-teal transition-colors duration-fast ease-standard leading-tight">{label}</p>
+                      <p className="font-mono text-[10px] text-ink-muted mt-1.5 tracking-[.04em] truncate">{tags.join(" · ")}</p>
+                    </Link>
+                  ))}
+                </div>
+                <Link href="/industries" onClick={() => setSectorsOpen(false)}
+                  className="inline-flex items-center gap-2 mt-5 font-mono text-mono-xs uppercase tracking-[.08em] text-teal hover:gap-3 transition-all duration-fast ease-standard">
+                  All industries <span aria-hidden="true">&#8594;</span>
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {/* Proof split-panel — dark/light slab, desktop only */}
+          {proofOpen && (
+            <div
+              id="proof-panel"
+              ref={proofPanelRef}
+              role="region"
+              aria-label="Proof"
+              className="hidden min-[1280px]:flex absolute top-20 left-0 right-0 bg-gradient-to-b from-white to-[#F3F1EA] border border-hairline border-t-[2px] rounded-b-panel shadow-e2 z-[99] overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              style={{ borderTopColor: "var(--color-teal)" }}
+            >
+              {/* Left slab — Case Studies (inverted / field) */}
+              <div className="flex-1 bg-field px-10 py-10 flex flex-col">
+                <p className="inline-flex items-center gap-2.5 font-mono text-mono-xs font-semibold uppercase tracking-[.12em] text-signal">
+                  <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
+                  Case studies
+                </p>
+                <p
+                  className="font-display font-medium text-on-field mt-3 mb-6"
+                  style={{ fontSize: "clamp(1.4rem, 2vw, 1.9rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}
+                >
+                  Delivery<br />on record.
+                </p>
+                <Link
+                  href="/work/payments-data"
+                  onClick={() => setProofOpen(false)}
+                  className="group flex items-start gap-3 p-4 bg-field-raised border border-field-hairline rounded-card hover:border-signal/50 hover:-translate-y-[2px] transition-all duration-fast ease-standard mb-3"
+                >
+                  <span className="font-mono text-mono-xs text-signal mt-0.5 flex-none">01</span>
+                  <div>
+                    <p className="text-body-sm font-display font-medium text-on-field group-hover:text-signal transition-colors duration-fast ease-standard leading-snug">
+                      Cross-processor payment intelligence
+                    </p>
+                    <p className="text-caption text-on-field-2 mt-0.5">Financial services</p>
+                  </div>
+                </Link>
+                <Link
+                  href="/work"
+                  onClick={() => setProofOpen(false)}
+                  className="inline-flex items-center gap-2 mt-auto font-mono text-mono-xs uppercase tracking-[.08em] text-signal hover:gap-3 transition-all duration-fast ease-standard"
+                >
+                  All case studies <span aria-hidden="true">&#8594;</span>
+                </Link>
+              </div>
+
+              {/* Right slab — Testimonials (light) */}
+              <div className="flex-1 border-l border-hairline px-10 py-10 flex flex-col">
+                <p className="inline-flex items-center gap-2.5 font-mono text-mono-xs font-semibold uppercase tracking-[.12em] text-teal">
+                  <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
+                  Client testimonials
+                </p>
+                <p
+                  className="font-display font-medium text-ink mt-3 mb-5"
+                  style={{ fontSize: "clamp(1.4rem, 2vw, 1.9rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}
+                >
+                  Clients speak<br />plainly.
+                </p>
+                {/* Three compact testimonial previews */}
+                <div className="flex flex-col gap-3 mb-auto">
+                  {[
+                    { industry: "AI Research", preview: "We needed a team that could build the infrastructure, not just fine-tune a model." },
+                    { industry: "Fintech", preview: "Every payment intelligence project we'd tried before ran aground on data quality and regulatory constraints." },
+                    { industry: "Financial Services", preview: "Our risk data platform had been a priority for four years and never shipped. It shipped in eight months." },
+                  ].map(({ industry, preview }) => (
+                    <Link
+                      key={industry}
+                      href="/testimonials"
+                      onClick={() => setProofOpen(false)}
+                      className="group flex items-start gap-3 p-3.5 border border-hairline rounded-card bg-white hover:border-teal hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-fast ease-standard"
+                    >
+                      <span className="flex-none mt-[3px] px-1.5 py-0.5 bg-teal-tint font-mono text-[9px] uppercase tracking-[.06em] text-teal rounded-control whitespace-nowrap">{industry}</span>
+                      <p className="text-caption text-ink-2 leading-relaxed line-clamp-2">{preview}</p>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/testimonials"
+                  onClick={() => setProofOpen(false)}
+                  className="inline-flex items-center gap-2 mt-5 font-mono text-mono-xs uppercase tracking-[.08em] text-teal hover:gap-3 transition-all duration-fast ease-standard"
+                >
+                  All testimonials <span aria-hidden="true">&#8594;</span>
+                </Link>
               </div>
             </div>
           )}
@@ -390,7 +587,7 @@ export function SiteHeader() {
 
       </header>
 
-      {/* Mobile nav drawer â€” a fixed sheet under the header bar rather than an
+      {/* Mobile nav drawer â€" a fixed sheet under the header bar rather than an
           in-flow block, so it scrolls independently and the page behind it
           cannot be reached by accident. Dismissed by the backdrop, Escape, the
           Close control, or picking any destination.
@@ -399,7 +596,7 @@ export function SiteHeader() {
           `backdrop-blur`, and any filter/backdrop-filter makes an element a
           containing block for `position: fixed` descendants. Nested inside, the
           sheet resolved `top:70px; bottom:0` against the 70px header box and
-          collapsed to a ~49px strip with a zero-height backdrop â€” which is why
+          collapsed to a ~49px strip with a zero-height backdrop â€" which is why
           the menu looked broken on a phone and could only be dismissed by the
           Close control. */}
       {mobileOpen && (
@@ -419,7 +616,7 @@ export function SiteHeader() {
               aria-label="Menu"
               className="hidden max-[1279px]:flex flex-col fixed inset-x-0 top-[70px] bottom-0 z-[95] bg-paper border-t border-hairline overflow-y-auto overscroll-contain px-5 pt-2 pb-10"
             >
-              {/* Services â€” inline disclosure, not the desktop mega-panel */}
+              {/* Services â€" inline disclosure, not the desktop mega-panel */}
               <button
                 className="flex w-full items-center justify-between py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink text-left"
                 onClick={() => setMobileServices((v) => !v)}
@@ -460,19 +657,65 @@ export function SiteHeader() {
                       className="flex items-center justify-between gap-3 py-3 border-b border-hairline text-body-sm text-ink-2"
                     >
                       {label}
-                      <span className="font-mono text-teal flex-none" aria-hidden="true">â†’</span>
+                      <span className="font-mono text-teal flex-none" aria-hidden="true">→</span>
                     </Link>
                   ))}
                 </div>
               )}
 
-              {NAV_LINKS.map(({ label, href }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="block py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink"
-                  onClick={closeMobile}
+              {/* Industries — inline disclosure */}
+              <button
+                className="flex w-full items-center justify-between py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink text-left"
+                onClick={() => setMobileSectors((v) => !v)}
+                aria-expanded={mobileSectors}
+                aria-controls="mobile-sectors"
+              >
+                Industries
+                <svg
+                  width="16" height="16" viewBox="0 0 16 16" fill="none"
+                  aria-hidden="true"
+                  className={`flex-none text-ink-muted transition-transform duration-base ease-standard ${mobileSectors ? "rotate-180" : ""}`}
                 >
+                  <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {mobileSectors && (
+                <div id="mobile-sectors" className="py-2 pl-1">
+                  <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-ink-muted pt-2 pb-1">Public sector</p>
+                  <Link href="/public-sector" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                    Overview <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                  </Link>
+                  <Link href="/public-sector/state-and-local" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                    State &amp; local government <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                  </Link>
+                  <Link href="/contract-vehicles" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                    DIR Contract <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                  </Link>
+                  <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-ink-muted pt-4 pb-1">Industries</p>
+                  {SECTOR_INDUSTRIES.map(({ label, href }) => (
+                    <Link key={href} href={href} onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                      {label} <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                    </Link>
+                  ))}
+                  <Link href="/industries" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                    All industries <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                  </Link>
+                </div>
+              )}
+
+              {/* Proof — flat links with a section label on mobile */}
+              <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-ink-muted pt-5 pb-1">Proof</p>
+              <Link href="/work" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                Case studies <span className="font-mono text-teal" aria-hidden="true">&#8594;</span>
+              </Link>
+              <Link href="/testimonials" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                Client testimonials <span className="font-mono text-teal" aria-hidden="true">&#8594;</span>
+              </Link>
+
+              {/* About, Partners & MSP, Careers */}
+              {NAV_LINKS.map(({ label, href }) => (
+                <Link key={href} href={href} className="block py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink" onClick={closeMobile}>
                   {label}
                 </Link>
               ))}
@@ -486,11 +729,11 @@ export function SiteHeader() {
                   Talk to us
                 </Link>
                 <Link
-                  href="/careers"
+                  href="/contract-vehicles"
                   className="inline-flex items-center justify-center h-12 text-body-sm text-ink-muted"
                   onClick={closeMobile}
                 >
-                  Careers
+                  DIR Contract
                 </Link>
               </div>
             </div>

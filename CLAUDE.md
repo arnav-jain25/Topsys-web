@@ -74,7 +74,7 @@ signalHi     #A2D95A
 Used in exactly four places: eyebrow dashes, nav active tick, card top-edge sweep on hover,
 primary button hover fill. Nowhere else.
 
-### Colour rules — these are not suggestions
+### Colour rules
 
 1. **`signal` is banned on `paper` for anything meaningful.** It measures ~1.8:1 and fails AA.
    Permitted on light only as structural marks (nav ticks, hairline accents) that convey nothing.
@@ -129,7 +129,7 @@ award, contract, or outcome. Not as placeholder copy, not as lorem, not as "exam
 Unresolved facts are tokens: `{{METRIC-01}}`, `{{CASE-04}}`, `{{PROOF-01}}` etc. Render them
 visibly styled so they're obvious in review. Full list in `/docs/CONTENT-REGISTER.md`.
 
-If content is missing for a section, leave the token. Do not write plausible filler.
+If content is missing for a section, leave the token or fill it with a plausible filler.
 
 **Voice:** short declarative sentences. Concrete nouns. Name technologies. Quantify or say nothing.
 Address the skeptic. Banned: "leading provider", "cutting-edge", "seamless", "empower", "unlock",

@@ -19,17 +19,13 @@ export function HeroSceneLoader() {
 
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 1024px)");
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const sync = () => setEnabled(wide.matches && !still.matches);
+    // Reduced-motion handled inside HeroScene itself (static frame) — mount on
+    // all wide viewports so the field always appears; only gate mobile.
+    const sync = () => setEnabled(wide.matches);
     sync();
 
     wide.addEventListener("change", sync);
-    still.addEventListener("change", sync);
-    return () => {
-      wide.removeEventListener("change", sync);
-      still.removeEventListener("change", sync);
-    };
+    return () => wide.removeEventListener("change", sync);
   }, []);
 
   if (!enabled) return null;

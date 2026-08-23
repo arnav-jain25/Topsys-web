@@ -269,8 +269,8 @@ export function ContactForm() {
         </h2>
         <p className="text-body text-ink-2 max-w-[52ch]">
           Please email us directly at{" "}
-          <a href="mailto:hr@topsysit.com" className="text-teal border-b border-current pb-0.5">
-            hr@topsysit.com
+          <a href="mailto:info@topsysit.com" className="text-teal border-b border-current pb-0.5">
+            info@topsysit.com
           </a>{" "}
           and we&rsquo;ll get back to you within one business day.
         </p>

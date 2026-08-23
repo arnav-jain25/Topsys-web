@@ -106,7 +106,7 @@ const HOW_DIFFERENT = [
   "30-day check-in after placement; we manage underperformance alongside you",
 ];
 
-const MSP_PROGRAMS = ["Covendis", "OST Global", "CAI", "Knowledge Services", "Innova Sol", "Dexian", "iLabor", "Upglide"];
+const MSP_PROGRAMS = ["Covendis", "OST Global", "CAI", "Knowledge Services", "Upglide", "eMMA", "iLabor", "Innova Sol"];
 
 /* MSP/VMS program icon — a simple checklist/roster mark, reads as
    "vendor-of-record compliance" rather than a generic tag. Mirrors the

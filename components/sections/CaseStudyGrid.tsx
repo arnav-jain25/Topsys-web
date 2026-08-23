@@ -234,16 +234,29 @@ export function CaseStudyGrid({ limit }: { limit?: number }) {
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    /* Match reference exactly: 14px running dot, duration 3200+i*260ms, infinite linear */
-    const paths = el.querySelectorAll<SVGPathElement>("svg.flow .fp path");
-    paths.forEach((p, i) => {
-      const L = p.getTotalLength();
-      p.style.strokeDasharray = `30 ${L}`;
-      p.animate(
-        [{ strokeDashoffset: "0" }, { strokeDashoffset: `${-L}` }],
-        { duration: 2000, iterations: Infinity, easing: "linear" }
-      );
+    /* requestAnimationFrame ensures the SVG paths are painted and measurable
+       before getTotalLength() is called — without it, paths may return 0. */
+    const anims: Animation[] = [];
+    const raf = requestAnimationFrame(() => {
+      const paths = el.querySelectorAll<SVGPathElement>("svg.flow .fp path");
+      paths.forEach((p, i) => {
+        const L = p.getTotalLength();
+        if (!L) return;
+        // Use SVG presentation attribute (not inline CSS style) so WAAPI
+        // can cleanly own stroke-dashoffset without cascade conflicts.
+        p.setAttribute("stroke-dasharray", `14 ${L}`);
+        anims.push(
+          p.animate(
+            [{ strokeDashoffset: 0 }, { strokeDashoffset: -(L + 14) }],
+            { duration: 3200 + i * 260, iterations: Infinity, easing: "linear" }
+          )
+        );
+      });
     });
+    return () => {
+      cancelAnimationFrame(raf);
+      anims.forEach((a) => a.cancel());
+    };
   }, []);
 
   return (

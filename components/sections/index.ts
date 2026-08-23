@@ -9,3 +9,5 @@ export { HowWeWork } from "./HowWeWork";
 export { InsightsAccordion } from "./InsightsAccordion";
 export { CareerStrip } from "./CareerStrip";
 export { CTASection } from "./CTASection";
+export { TestimonialsStrip } from "./TestimonialsStrip";
+export { ClientProofStrip } from "./ClientProofStrip";
