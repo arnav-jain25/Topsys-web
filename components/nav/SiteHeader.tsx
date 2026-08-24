@@ -219,9 +219,9 @@ export function SiteHeader() {
   return (
     <>
       {/* ---- Header ---- */}
-      <header className="sticky top-0 z-[100] bg-paper/90 backdrop-blur-[10px]">
+      <header className="sticky top-0 z-[100] bg-paper/90 backdrop-blur-[10px] relative">
         <div
-          className="wrap flex items-stretch justify-between relative max-[1279px]:items-center max-[1279px]:h-[64px]"
+          className="wrap flex items-stretch justify-between max-[1279px]:items-center max-[1279px]:h-[64px]"
           style={{ height: "84px" }}
         >
           {/* Logo — bottom-aligned with main nav */}
@@ -332,8 +332,8 @@ export function SiteHeader() {
               className="hidden min-[1280px]:grid absolute z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)] grid-cols-[1fr_1px_1fr] gap-8 rounded-b-panel shadow-e2 px-10 py-8"
               style={{
                 top: "84px",
-                left: 0,
-                width: "min(880px, calc(100vw - 2rem))",
+                left: "clamp(1.25rem, 5vw, 5rem)",
+                width: "min(880px, calc(100vw - clamp(1.25rem, 5vw, 5rem) - 1rem))",
                 background: "linear-gradient(to bottom, #ffffff, #F3F1EA)",
                 border: "1px solid var(--color-hairline)",
                 borderTop: "2.5px solid transparent",
@@ -405,8 +405,8 @@ export function SiteHeader() {
               className="hidden min-[1280px]:flex absolute z-[99] rounded-b-panel shadow-e2 overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 top: "84px",
-                left: 0,
-                width: "min(1060px, calc(100vw - 2rem))",
+                left: "clamp(1.25rem, 5vw, 5rem)",
+                width: "min(1060px, calc(100vw - clamp(1.25rem, 5vw, 5rem) - 1rem))",
                 background: "linear-gradient(to bottom, #ffffff, #F3F1EA)",
                 border: "1px solid var(--color-hairline)",
                 borderTop: "2.5px solid var(--color-teal)",

@@ -110,7 +110,7 @@ export function HeroBg() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none hidden min-[768px]:block"
       style={{ width: "100%", height: "100%", zIndex: 0 }}
     />
   );
