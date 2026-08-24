@@ -20,6 +20,7 @@ const FEATURED = [
   { id: 124, lon: -96,   lat: 60,  label: "Canada"        },
   { id: 356, lon: 78,    lat: 22,  label: "India"         },
   { id: 702, lon: 103.8, lat: 1.3, label: "Singapore"     },
+  { id: 784, lon: 55.3,  lat: 25.2, label: "Dubai, UAE"  },
 ] as const;
 const FEATURED_IDS = new Set<number>(FEATURED.map((f) => f.id));
 
@@ -75,7 +76,7 @@ export function HeroGlobe() {
     <div
       className="absolute"
       style={{
-        right: "3%",
+        right: "12%",
         top: "50%",
         transform: "translateY(-50%)",
         width: GLOBE_D,
@@ -88,7 +89,7 @@ export function HeroGlobe() {
       <div
         className="absolute inset-0 rounded-full"
         style={{
-          background: "radial-gradient(circle at 45% 45%, rgba(14,90,102,0.22) 0%, transparent 70%)",
+          background: "radial-gradient(circle at 45% 45%, rgba(109,40,217,0.18) 0%, transparent 70%)",
           transform: "scale(1.25)",
           filter: "blur(18px)",
         }}
@@ -121,8 +122,8 @@ export function HeroGlobe() {
             <path
               key={f.id ?? i}
               d={d}
-              fill={hi ? "rgba(141,198,62,0.78)" : "rgba(14,90,102,0.48)"}
-              stroke={hi ? "rgba(141,198,62,0.22)" : "rgba(0,0,0,0.12)"}
+              fill={hi ? "rgba(196,181,253,0.82)" : "rgba(14,90,102,0.48)"}
+              stroke={hi ? "rgba(196,181,253,0.35)" : "rgba(0,0,0,0.12)"}
               strokeWidth={hi ? 0.5 : 0.25}
             />
           );
@@ -146,7 +147,7 @@ export function HeroGlobe() {
               <circle
                 cx={0} cy={0} r={11}
                 fill="none"
-                stroke="rgba(141,198,62,0.38)"
+                stroke="rgba(141,198,62,0.35)"
                 strokeWidth={0.8}
                 style={{
                   transformBox: "fill-box",
@@ -158,7 +159,7 @@ export function HeroGlobe() {
               <circle
                 cx={0} cy={0} r={7}
                 fill="none"
-                stroke="rgba(141,198,62,0.7)"
+                stroke="rgba(141,198,62,0.60)"
                 strokeWidth={1}
                 style={{
                   transformBox: "fill-box",
@@ -167,15 +168,19 @@ export function HeroGlobe() {
                 }}
               />
               {/* Core dot */}
-              <circle cx={0} cy={0} r={3.5} fill="#8DC63E" />
-              {/* Label — nudge left for countries near the right edge */}
+              <circle cx={0} cy={0} r={4} fill="#EDE8DC" />
+              {/* Label */}
               <text
-                x={16}
-                y={4.5}
-                fill="rgba(141,198,62,0.92)"
-                fontSize={9.5}
-                fontFamily="'IBM Plex Mono', 'Courier New', monospace"
-                letterSpacing="0.07em"
+                x={18}
+                y={5}
+                fill="#EDE8DC"
+                stroke="rgba(6,35,42,0.85)"
+                strokeWidth={3.5}
+                paintOrder="stroke fill"
+                fontSize={13}
+                fontFamily="var(--font-chakra-petch), 'Arial Narrow', sans-serif"
+                fontWeight={700}
+                letterSpacing="0.1em"
               >
                 {label.toUpperCase()}
               </text>

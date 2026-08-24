@@ -29,12 +29,12 @@ const PaymentsDiagram = () => (
       <path d="M202 45 H230" />
     </g>
     <rect x="120" y="27" width="82" height="36" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="10" y="26">PROCESSOR A</text>
       <text x="10" y="70">PROCESSOR B</text>
       <text x="238" y="48">POWER BI</text>
     </g>
-    <text x="161" y="49" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="8" fill="var(--color-signal)">CANONICAL</text>
+    <text x="161" y="49" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">CANONICAL</text>
   </svg>
 );
 
@@ -57,11 +57,11 @@ const RevenueDiagram = () => (
       <path d="M194 44 H210 V59 H224" />
     </g>
     <rect x="112" y="28" width="82" height="32" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="230" y="34">FORECASTING</text>
       <text x="230" y="62">ANOMALIES</text>
     </g>
-    <text x="153" y="48" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="8" fill="var(--color-signal)">DATA LAKE</text>
+    <text x="153" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">DATA LAKE</text>
   </svg>
 );
 
@@ -81,13 +81,13 @@ const KafkaDiagram = () => (
       <path d="M216 70 H232 V45" />
     </g>
     <rect x="74" y="31" width="58" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="8" y="48">EVENTS</text>
       <text x="156" y="23">DYNAMODB</text>
       <text x="156" y="73">SAGEMAKER</text>
       <text x="254" y="48">SCORED</text>
     </g>
-    <text x="103" y="48" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="8" fill="var(--color-signal)">KAFKA</text>
+    <text x="103" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">KAFKA</text>
   </svg>
 );
 
@@ -104,12 +104,12 @@ const HealthDiagram = () => (
       <path d="M194 45 H230" />
     </g>
     <rect x="112" y="27" width="82" height="36" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="6" y="26">HL7 2.x ADT</text>
       <text x="6" y="70">HL7 2.x ORU</text>
       <text x="234" y="48">SNOWFLAKE</text>
     </g>
-    <text x="153" y="49" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="7.5" fill="var(--color-signal)">FHIR R4</text>
+    <text x="153" y="49" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7.5" fill="var(--color-signal)">FHIR R4</text>
   </svg>
 );
 
@@ -129,7 +129,7 @@ const PlatformDiagram = () => (
       <path d="M114 45 H152" />
     </g>
     <rect x="66" y="31" width="48" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="5" y="48">GIT</text>
       <text x="166" y="31">SVC A</text>
       <text x="207" y="31">SVC B</text>
@@ -138,7 +138,7 @@ const PlatformDiagram = () => (
       <text x="207" y="57">SVC E</text>
       <text x="158" y="74" fontSize="6" fill="var(--color-on-field-2)">KUBERNETES</text>
     </g>
-    <text x="90" y="48" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="7.5" fill="var(--color-signal)">ARGOCD</text>
+    <text x="90" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7.5" fill="var(--color-signal)">ARGOCD</text>
   </svg>
 );
 
@@ -158,13 +158,13 @@ const ConversationalDiagram = () => (
       <path d="M220 76 H232 V45" />
     </g>
     <rect x="74" y="31" width="58" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-on-field-2)">
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="10" y="48">INCIDENT</text>
       <text x="158" y="19">EVIDENCE</text>
       <text x="158" y="79">HUMAN APPROVAL</text>
       <text x="254" y="48">ACTION</text>
     </g>
-    <text x="103" y="48" textAnchor="middle" fontFamily="IBM Plex Mono" fontSize="7" fill="var(--color-signal)">AGENT</text>
+    <text x="103" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-signal)">AGENT</text>
   </svg>
 );
 

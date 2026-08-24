@@ -82,10 +82,24 @@ export function DualModel() {
         className="dual-card relative rounded-panel px-12 py-12 overflow-hidden bg-gradient-to-b from-field-raised to-field text-on-field shadow-e2 hover:-translate-y-[4px] hover:shadow-field transition-[transform,box-shadow] duration-base ease-standard before:absolute before:content-[''] before:top-[-40%] before:right-[-20%] before:w-[70%] before:h-[120%] before:bg-[radial-gradient(circle,rgba(141,198,62,.2),transparent_68%)] before:pointer-events-none"
         style={revealStyle(phase, 0)}
       >
-        <h3 className="font-display font-medium text-heading-1 text-on-field mb-3">
+        <h3
+          className="font-display font-medium text-heading-1 mb-3"
+          style={{
+            background: "linear-gradient(90deg, #EAF2F1 10%, #8DC63E 50%, #EAF2F1 90%)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            ...(phase === "hidden"
+              ? { opacity: 0 }
+              : phase === "entering"
+              ? { animation: "dual-title-shimmer 4s linear infinite, dual-title-rise 560ms cubic-bezier(.2,0,0,1) 120ms both" }
+              : { animation: "dual-title-shimmer 4s linear infinite" }),
+          }}
+        >
           {BUILD_SOLUTION.title}
         </h3>
-        <p className="text-body-sm text-on-field-2">{BUILD_SOLUTION.body}</p>
+        <p className="text-body-sm text-on-field-2 font-medium">{BUILD_SOLUTION.body}</p>
         <ul className="list-none mt-6 space-y-0">
           {BUILD_SOLUTION.items.map((item, i) => (
             <li
@@ -105,7 +119,21 @@ export function DualModel() {
         className="dual-card rounded-panel px-12 py-12 bg-white border border-hairline shadow-e1 hover:-translate-y-[4px] hover:shadow-e2 hover:border-hairline-strong transition-[transform,box-shadow,border-color] duration-base ease-standard"
         style={revealStyle(phase, 150)}
       >
-        <h3 className="font-display font-medium text-heading-1 text-ink mb-3">
+        <h3
+          className="font-display font-medium text-heading-1 mb-3"
+          style={{
+            background: "linear-gradient(90deg, #0E1A1F 10%, #0E5A66 45%, #2C8A6E 55%, #0E1A1F 90%)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            ...(phase === "hidden"
+              ? { opacity: 0 }
+              : phase === "entering"
+              ? { animation: "dual-title-shimmer 4s linear infinite, dual-title-rise 560ms cubic-bezier(.2,0,0,1) 270ms both" }
+              : { animation: "dual-title-shimmer 4s linear infinite" }),
+          }}
+        >
           {BUILD_TEAM.title}
         </h3>
         <p className="text-body-sm text-ink-2">{BUILD_TEAM.body}</p>

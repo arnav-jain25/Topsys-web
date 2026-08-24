@@ -1,13 +1,16 @@
 export function Eyebrow({
   children,
   className = "",
+  dark = false,
 }: {
   children: React.ReactNode;
   className?: string;
+  dark?: boolean;
 }) {
   return (
     <p
-      className={`inline-flex items-center gap-2.5 font-mono text-eyebrow font-semibold uppercase tracking-[.1em] text-ink-muted .on-field &:text-signal .on-field-deep &:text-signal ${className}`}
+      className={`inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] ${className}`}
+      style={{ color: dark ? "#C4B5FD" : "#6D28D9" }}
     >
       {/* Signature gradient dash — one of the four permitted uses */}
       <span

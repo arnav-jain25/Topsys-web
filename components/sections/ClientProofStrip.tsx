@@ -79,13 +79,13 @@ function SignalBar({ tickMs, platformIdx }: { tickMs: number; platformIdx: numbe
 
 /* ── Terminal verification loop ── */
 const TERM_LINES = [
-  { txt: "$ audit --verify credentials",             color: "rgba(168,191,190,0.55)" },
+  { txt: "$ audit --verify credentials",             color: "rgba(234,242,241,0.82)" },
   { txt: "[1/4] MBE Certified .............. ✓",     color: "#8DC63E" },
   { txt: "[2/4] SAM.gov Registered ......... ✓",     color: "#8DC63E" },
   { txt: "[3/4] D&B Registered ............. ✓",     color: "#8DC63E" },
   { txt: "[4/4] DIR Contract Holder ........ ✓",     color: "#8DC63E" },
   { txt: "All credentials verified.",                color: "#EAF2F1" },
-  { txt: "Rerunning in 2s...",                       color: "rgba(168,191,190,0.4)" },
+  { txt: "Rerunning in 2s...",                       color: "rgba(234,242,241,0.52)" },
 ];
 const LINE_DELAYS = [0, 600, 1100, 1600, 2100, 2750, 3200];
 const LOOP_MS = 5200; /* last line at ~3.3s + 2s hold = 5.2s */
@@ -115,8 +115,8 @@ function TerminalVerifier() {
         <span className="inline-block w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
         <span className="inline-block w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
         <span className="inline-block w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }} />
-        <span className="ml-2 font-mono text-[9px] tracking-[.08em]" style={{ color: "rgba(168,191,190,0.35)" }}>
-          topsys audit v2
+        <span className="ml-2 font-mono text-[10px] tracking-[.1em] font-semibold" style={{ color: "rgba(234,242,241,0.65)" }}>
+          TOPSYS IT SOLUTIONS LLC
         </span>
       </div>
       {/* Lines */}
@@ -126,7 +126,7 @@ function TerminalVerifier() {
             key={i}
             className="font-mono whitespace-nowrap"
             style={{
-              fontSize: "10px",
+              fontSize: "12px",
               letterSpacing: "0.03em",
               color: line.color,
               opacity: i < visible ? 1 : 0,
@@ -148,7 +148,7 @@ export function ClientProofStrip() {
 
       {/* ── Section header ── */}
       <div className="wrap mb-8">
-        <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-semibold uppercase tracking-[.12em] text-ink-muted">
+        <p className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em]" style={{ color: "#6D28D9" }}>
           <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
           Trusted by
         </p>
@@ -200,7 +200,8 @@ export function ClientProofStrip() {
 
           {/* Technology platforms — sequential signal blocks */}
           <div>
-            <p className="font-mono text-mono-xs font-semibold uppercase tracking-[.1em] text-ink-muted mb-6">
+            <p className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] mb-6" style={{ color: "#6D28D9" }}>
+              <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full flex-none" aria-hidden="true" />
               Technology platforms
             </p>
             <div className="flex flex-wrap items-end gap-x-10 gap-y-8">
@@ -224,8 +225,9 @@ export function ClientProofStrip() {
 
           {/* Certifications — terminal verification loop */}
           <div>
-            <p className="font-mono text-mono-xs font-semibold uppercase tracking-[.1em] text-ink-muted mb-6">
-              Credentials & certifications
+            <p className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] mb-6" style={{ color: "#6D28D9" }}>
+              <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full flex-none" aria-hidden="true" />
+              Credentials &amp; certifications
             </p>
 
             {/* Logo badges row */}

@@ -1,4 +1,4 @@
-import { Archivo, Public_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Archivo, Public_Sans, Chakra_Petch, Righteous } from "next/font/google";
 
 /**
  * The three faces, wired once and consumed through the Tailwind theme as
@@ -25,15 +25,23 @@ export const publicSans = Public_Sans({
   display: "swap",
 });
 
-export const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
+export const chakraPetch = Chakra_Petch({
+  variable: "--font-chakra-petch",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500"],
+  weight: ["600", "700"],
+});
+
+export const righteous = Righteous({
+  variable: "--font-righteous",
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
 });
 
 export const fontVariables = [
   archivo.variable,
   publicSans.variable,
-  ibmPlexMono.variable,
+  chakraPetch.variable,
+  righteous.variable,
 ].join(" ");

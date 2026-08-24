@@ -6,7 +6,7 @@ import { SERVICES } from "@/components/ui/ServiceIcons";
 
 /* ── Pentagon geometry ── */
 const VW = 600, VH = 500;
-const CX = 190, CY = 220, R = 145;
+const CX = 190, CY = 250, R = 145;
 
 const NODES = SERVICES.map((_, i) => {
   const a = ((-90 + i * 72) * Math.PI) / 180;
@@ -34,7 +34,7 @@ export function ServicesShowcase() {
 
   return (
     <div className="mt-6" role="navigation" aria-label="Service capabilities">
-      <p className="inline-flex items-center gap-2.5 font-mono text-eyebrow font-medium uppercase tracking-[.1em] text-ink-muted mb-0">
+      <p className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] mb-0" style={{ color: "#6D28D9" }}>
         <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
         What we build, end to end
       </p>
@@ -130,7 +130,7 @@ export function ServicesShowcase() {
                   x={x} y={y + 54} textAnchor="middle"
                   fill={lit ? "var(--color-ink)" : "var(--color-ink-muted)"}
                   fontSize="9"
-                  fontFamily="'IBM Plex Mono', 'Courier New', monospace"
+                  fontFamily="var(--font-mono)"
                   letterSpacing="0.09em"
                   style={{ transition: "fill 280ms" }}
                 >
@@ -141,7 +141,7 @@ export function ServicesShowcase() {
                   x={x} y={y + 68} textAnchor="middle"
                   fill={lit ? "var(--color-teal)" : "var(--color-hairline-strong)"}
                   fontSize="7.5"
-                  fontFamily="'IBM Plex Mono', 'Courier New', monospace"
+                  fontFamily="var(--font-mono)"
                   letterSpacing="0.12em"
                   style={{ transition: "fill 280ms" }}
                 >

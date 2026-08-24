@@ -75,7 +75,7 @@ export function HeroHeading({ dark = false }: { dark?: boolean }) {
       <span className="block whitespace-nowrap max-[600px]:whitespace-normal">Technology</span>
       <span className="block whitespace-nowrap max-[600px]:whitespace-normal">
         that{" "}
-        <span className="text-signature" aria-live="polite" aria-label={PHRASES[phraseIdx]}>
+        <span className={dark ? "text-signature-field" : "text-signature"} aria-live="polite" aria-label={PHRASES[phraseIdx]}>
           {displayed}
           <span
             className="inline-block align-middle ml-[2px]"

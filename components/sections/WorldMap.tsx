@@ -163,7 +163,7 @@ export function WorldMap() {
                     x={cx}
                     y={cy - 28}
                     textAnchor="middle"
-                    fontFamily="var(--font-ibm-plex-mono)"
+                    fontFamily="var(--font-mono)"
                     fontSize="8"
                     fontWeight="500"
                     fill="var(--color-signal)"
@@ -175,7 +175,7 @@ export function WorldMap() {
                     x={cx}
                     y={cy - 17}
                     textAnchor="middle"
-                    fontFamily="var(--font-ibm-plex-mono)"
+                    fontFamily="var(--font-mono)"
                     fontSize="6.5"
                     fill="var(--color-on-field-2)"
                     letterSpacing="0.03em"

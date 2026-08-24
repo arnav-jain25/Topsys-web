@@ -23,7 +23,7 @@
   /* --- Colour: ink ------------------------------------------------------ */
   --color-ink: #0e1a1f;             /* primary text — petrol-tinted near-black */
   --color-ink-2: #3c4a50;           /* body text in dense passages */
-  --color-ink-muted: #667279;       /* captions, metadata */
+  --color-ink-muted: #3D5560;       /* captions, metadata */
 
   /* --- Colour: interaction on light ------------------------------------- */
   --color-teal: #0e5a66;            /* links, primary buttons, focus. Interaction only. */
@@ -36,7 +36,7 @@
   --color-field-raised: #123f4a;    /* cards on field */
   --color-field-hairline: rgba(255, 255, 255, 0.14);
   --color-on-field: #eaf2f1;        /* text on field */
-  --color-on-field-2: #a8bfbe;      /* secondary text on field */
+  --color-on-field-2: #c6d9d8;      /* secondary text on field */
 
   /* --- Colour: signal ---------------------------------------------------
      ON FIELD ONLY. Measures 1.91:1 on paper — banned there for anything
@@ -139,11 +139,11 @@
   --text-mono: 0.8125rem;           /* 13 */
   --text-mono--line-height: 1.5;
 
-  --text-mono-sm: 0.75rem;          /* 12 */
+  --text-mono-sm: 0.875rem;          /* 14 */
   --text-mono-sm--line-height: 1.45;
   --text-mono-sm--letter-spacing: 0.04em;
 
-  --text-mono-xs: 0.75rem;           /* 12 */
+  --text-mono-xs: 0.8125rem;           /* 13 */
   --text-mono-xs--line-height: 1.4;
   --text-mono-xs--letter-spacing: 0.09em;
 
@@ -199,8 +199,9 @@
 @theme inline {
   --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-mono: var(--font-righteous), ui-sans-serif, sans-serif;
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-eyebrow: var(--font-righteous), ui-sans-serif, sans-serif;
 }
 
 /* ============================================================================
@@ -225,6 +226,13 @@
 
 @utility text-signature {
   background-image: var(--gradient-signature);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility text-signature-field {
+  background-image: var(--gradient-signature-field);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -742,6 +750,21 @@
 
 @keyframes map-spotlight-in {
   from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes dual-title-shimmer {
+  0%   { background-position: 150% center; }
+  100% { background-position: -50% center; }
+}
+
+@keyframes dual-title-rise {
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
 }
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, TextLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AIArc } from "@/components/sections/AIArc";
 import { CTASection } from "@/components/sections/CTASection";
@@ -395,13 +394,38 @@ export default function AIAndDataPage() {
           </p>
 
           <div className="mt-10 border-t border-hairline">
-            <ContentToken id="CAP-STACK">
-              <div className="py-8">
-                <p className="text-body-xs text-ink-muted">
-                  Platform and tool verification pending: see CONTENT-REGISTER.md.
-                </p>
+            {[
+              {
+                category: "Data platforms",
+                tools: ["Snowflake", "BigQuery", "Databricks", "Redshift", "Azure Synapse"],
+              },
+              {
+                category: "Pipelines & orchestration",
+                tools: ["Apache Kafka", "Apache Spark", "dbt", "Airflow", "Glue"],
+              },
+              {
+                category: "AI / ML",
+                tools: ["OpenAI API", "LangChain", "SageMaker", "Vertex AI", "Hugging Face"],
+              },
+              {
+                category: "Visualization",
+                tools: ["Power BI", "Looker", "Tableau"],
+              },
+            ].map(({ category, tools }) => (
+              <div key={category} className="py-7 border-b border-hairline grid grid-cols-[180px_1fr] gap-8 items-baseline max-[600px]:grid-cols-1 max-[600px]:gap-2">
+                <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-ink-muted">{category}</p>
+                <div className="flex flex-wrap gap-2">
+                  {tools.map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex items-center px-3 py-1 rounded-control border border-hairline font-mono text-mono-xs text-ink-2 tracking-[.04em]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </ContentToken>
+            ))}
           </div>
         </ScrollReveal>
       </section>

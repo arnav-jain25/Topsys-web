@@ -222,7 +222,7 @@ export function USMap() {
                     x={cx}
                     y={cy - 11}
                     textAnchor="middle"
-                    fontFamily="var(--font-ibm-plex-mono)"
+                    fontFamily="var(--font-mono)"
                     fontSize="7.5"
                     fontWeight="500"
                     fill={isActive ? "#8DC63E" : "rgba(141,198,62,0.7)"}
@@ -277,7 +277,7 @@ export function USMap() {
       </div>
 
       {/* Legend */}
-      <div className="flex gap-6 mt-5 flex-wrap font-mono text-mono-xs uppercase tracking-[.06em] text-ink-muted">
+      <div className="flex gap-6 mt-5 flex-wrap font-mono text-[0.875rem] uppercase tracking-[.06em]" style={{ color: "#6D28D9" }}>
         <span className="flex items-center gap-2">
           <span className="inline-block w-[11px] h-[11px] rounded-sm" style={{ backgroundColor: "#F59E0B" }} aria-hidden="true" />
           US Headquarters (GA)

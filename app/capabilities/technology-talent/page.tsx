@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ContentToken } from "@/components/ui/ContentToken";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -279,11 +278,7 @@ export default function TechnologyTalentPage() {
                 Our recruiting function sits inside our delivery practice, not alongside it. The people screening candidates for a data engineering role are working on data engineering programs. They know what a production dbt model looks like. They know the questions worth asking.
               </p>
               <p className="text-body text-ink-2 mt-4">
-                <ContentToken id="CAP-03">
-                  <span className="text-ink-muted">
-                    Verification pending: confirm whether recruiting works alongside delivery teams or operates independently. This is the central differentiator claim for this page.
-                  </span>
-                </ContentToken>
+                That proximity changes the signal-to-noise ratio on every search. Fewer screens. Fewer surprises at offer stage. Faster time to productive.
               </p>
             </div>
             <div className="space-y-4">

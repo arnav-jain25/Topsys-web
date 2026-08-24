@@ -15,6 +15,8 @@ import {
   ClientProofStrip,
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
+import { CyclingModelHeading } from "@/components/sections/CyclingModelHeading";
+import { HeroBg } from "@/components/sections/HeroBg";
 
 export default function HomePage() {
   return (
@@ -27,6 +29,9 @@ export default function HomePage() {
         style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem", background: "var(--color-field-deep)" }}
         aria-label="Hero"
       >
+        {/* Particle constellation background */}
+        <HeroBg />
+
         {/* Revolving globe — highlights USA, Canada, India, Singapore */}
         <HeroGlobe />
 
@@ -34,22 +39,28 @@ export default function HomePage() {
           <div className="hero-copy">
             <HeroHeading dark />
             <p
-              className="text-on-field-2 max-w-[54ch] mb-10"
+              className="text-on-field-2 font-medium max-w-[54ch] mb-10"
               style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)", lineHeight: 1.6 }}
             >
               Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
             </p>
             <div className="flex gap-3 flex-wrap max-[600px]:[&>a]:w-full">
-              <Button href="/contact" className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px]">Talk to us</Button>
+              <Button
+                href="/contact"
+                className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px] !bg-signal !text-field-deep hover:!bg-[#A2D95A] before:!hidden"
+              >
+                Talk to us
+              </Button>
               <Button
                 href="/capabilities"
                 variant="secondary"
-                className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px] !border-on-field-2/40 !text-on-field hover:!border-signal hover:!text-signal"
+                className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px] !border-white/25 !text-on-field hover:!border-signal hover:!text-signal"
+                style={{ background: "rgba(18,63,74,0.80)" }}
               >
                 Explore services
               </Button>
             </div>
-            <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] text-on-field-2 uppercase tracking-[.06em] opacity-70">
+            <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] uppercase tracking-[.06em]" style={{ color: "#C4B5FD" }}>
               <span>20+ years</span>
               <span>30 state engagements</span>
               <span>4 countries</span>
@@ -59,22 +70,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Gradient bridge — field-deep dissolves into the paper body below */}
+      <div
+        aria-hidden="true"
+        style={{
+          height: "260px",
+          background: "linear-gradient(180deg, #06232A 0%, #0b3540 10%, #1a5060 28%, #4a8f95 48%, rgba(168,205,208,0.55) 68%, rgba(220,235,235,0.18) 85%, transparent 100%)",
+        }}
+      />
+
       {/* ================================================================
-          PROOF BAR — pentagon left, stats right, side-by-side
+          PROOF BAR — showcase left, stats right, side-by-side
           ================================================================ */}
-      <section className="border-t border-hairline" style={{ padding: "2.5rem 0 3rem" }}>
+      <section style={{ padding: "2.5rem 0 3rem" }}>
         <div className="wrap">
-          {/*
-            items-start: columns are independently sized.
-            Wider stats column (350px) shifts stats ~50px leftward on the page
-            vs the original 300px column (more px = earlier start position).
-            StatBar uses natural height (tight gap-3) so section height is
-            set by whichever column is taller.
-          */}
-          <div className="grid gap-4 items-start max-[1023px]:block" style={{ gridTemplateColumns: "1fr 380px" }}>
-            {/* Left — capability web */}
+          <div className="grid gap-4 items-center max-[1023px]:block" style={{ gridTemplateColumns: "1fr 380px" }}>
             <ServicesShowcase />
-            {/* Right — pentagon stats, natural height */}
             <div className="max-[1023px]:mt-10 max-[1023px]:pt-8 max-[1023px]:border-t max-[1023px]:border-hairline">
               <StatBar layout="column" />
             </div>
@@ -92,14 +103,9 @@ export default function HomePage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "4rem 0 6rem" }}>
         <div className="wrap">
-          <Eyebrow>The model</Eyebrow>
-          <h2
-            className="font-display font-medium mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em", maxWidth: "18ch" }}
-          >
-            Build the solution. Build the team. Or both.
-          </h2>
-          <p className="text-lede text-on-field-2 max-w-[64ch] mt-6">
+          <Eyebrow dark>The model</Eyebrow>
+          <CyclingModelHeading />
+          <p className="text-lede text-on-field-2 font-medium max-w-[64ch] mt-6">
             Most firms make you choose. A consultancy scopes your program and staffs it with people you didn't pick. A staffing vendor sends résumés and steps back at onboarding. We do both, with the same engineering standard and the same accountability, as one firm.
           </p>
           <DualModel />
@@ -126,7 +132,7 @@ export default function HomePage() {
                 We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we've worked inside all of it.
               </p>
               <dl className="mt-8 space-y-0">
-                <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
+                <dt className="font-mono text-[0.9375rem] uppercase tracking-[.08em] border-t border-hairline pt-4 mt-4" style={{ color: "#6D28D9" }}>
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">
@@ -135,7 +141,7 @@ export default function HomePage() {
                 <dd className="font-mono text-mono-xs text-ink-muted mt-2 tracking-[.04em]">
                   Among many others
                 </dd>
-                <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
+                <dt className="font-mono text-[0.9375rem] uppercase tracking-[.08em] border-t border-hairline pt-4 mt-4" style={{ color: "#6D28D9" }}>
                   State engagements
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">30</dd>
@@ -156,7 +162,7 @@ export default function HomePage() {
           ================================================================ */}
       <section id="work" className="on-field" style={{ padding: "8rem 0" }}>
         <div className="wrap">
-          <Eyebrow>Case studies</Eyebrow>
+          <Eyebrow dark>Case studies</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
@@ -191,7 +197,7 @@ export default function HomePage() {
           ================================================================ */}
       <section id="insights" className="on-field-deep" style={{ padding: "8rem 0" }}>
         <div className="wrap">
-          <Eyebrow>Insights</Eyebrow>
+          <Eyebrow dark>Insights</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}

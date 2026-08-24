@@ -64,7 +64,7 @@ export function TestimonialsStrip() {
         {/* ── Header row ── */}
         <div className="flex items-end justify-between mb-14 max-[767px]:flex-col max-[767px]:items-start max-[767px]:gap-5">
           <div>
-            <p className="inline-flex items-center gap-2.5 font-mono text-mono-xs font-semibold uppercase tracking-[.12em] text-teal mb-3">
+            <p className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] mb-3" style={{ color: "#6D28D9" }}>
               <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
               Client testimonials
             </p>
@@ -78,7 +78,7 @@ export function TestimonialsStrip() {
           </div>
           <Link
             href="/testimonials"
-            className="inline-flex items-center gap-2 font-mono text-mono-xs uppercase tracking-[.08em] text-teal hover:gap-3 transition-all duration-fast ease-standard whitespace-nowrap pb-1"
+            className="inline-flex items-center gap-2 font-mono text-[0.875rem] uppercase tracking-[.08em] hover:gap-3 transition-all duration-fast ease-standard whitespace-nowrap pb-1" style={{ color: "#6D28D9" }}
           >
             All testimonials <span aria-hidden="true">&#8594;</span>
           </Link>
