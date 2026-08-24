@@ -37,7 +37,7 @@ export function HeroBg() {
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseleave", onLeave);
 
-    const N    = 90;
+    const N    = 70;
     const LINK = 250;
     const REPEL_R  = 160;
     const REPEL_F  = 3.5;
@@ -52,7 +52,7 @@ export function HeroBg() {
         y: Math.random() * canvas.height,
         vx: bvx, vy: bvy,
         bvx, bvy,
-        r: Math.random() * 2.0 + 1.5,
+        r: Math.random() * 1.5 + 1.0,
       };
     });
 
@@ -138,7 +138,13 @@ export function HeroBg() {
       ref={canvasRef}
       aria-hidden="true"
       className="absolute inset-0 pointer-events-none"
-      style={{ width: "100%", height: "100%", zIndex: 0 }}
+      style={{
+        width: "100%",
+        height: "100%",
+        zIndex: 0,
+        WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 22%, rgba(0,0,0,0.55) 42%, black 62%)",
+        maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 22%, rgba(0,0,0,0.55) 42%, black 62%)",
+      }}
     />
   );
 }
