@@ -74,7 +74,7 @@ export function HeroGlobe() {
 
   return (
     <div
-      className="absolute"
+      className="absolute hidden min-[768px]:block"
       style={{
         right: "12%",
         top: "50%",
