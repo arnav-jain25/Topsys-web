@@ -333,7 +333,7 @@ export function SiteHeader() {
               style={{
                 top: "84px",
                 left: "clamp(1.25rem, 5vw, 5rem)",
-                width: "min(880px, calc(100vw - clamp(1.25rem, 5vw, 5rem) - 1rem))",
+                width: "min(960px, calc(100vw - clamp(1.25rem, 5vw, 5rem) - 1rem))",
                 background: "linear-gradient(to bottom, #ffffff, #F3F1EA)",
                 border: "1px solid var(--color-hairline)",
                 borderTop: "2.5px solid transparent",
