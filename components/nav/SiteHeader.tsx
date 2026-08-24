@@ -329,7 +329,7 @@ export function SiteHeader() {
               ref={panelRef}
               role="region"
               aria-label="Services"
-              className="hidden min-[1280px]:grid absolute z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)] grid-cols-[1fr_1px_1fr] gap-8 rounded-b-panel shadow-e2 px-10 py-8"
+              className="hidden min-[1280px]:grid fixed z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)] grid-cols-[1fr_1px_1fr] gap-8 rounded-b-panel shadow-e2 px-10 py-8"
               style={{
                 top: "84px",
                 left: "clamp(1.25rem, 5vw, 5rem)",
@@ -402,7 +402,7 @@ export function SiteHeader() {
               ref={sectorsPanelRef}
               role="region"
               aria-label="Industries"
-              className="hidden min-[1280px]:flex absolute z-[99] rounded-b-panel shadow-e2 overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              className="hidden min-[1280px]:flex fixed z-[99] rounded-b-panel shadow-e2 overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 top: "84px",
                 left: "clamp(1.25rem, 5vw, 5rem)",
