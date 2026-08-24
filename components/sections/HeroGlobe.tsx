@@ -21,11 +21,11 @@ const FEATURED = [
   { id: 356, lon: 78,    lat: 22,  label: "India"         },
   { id: 702, lon: 103.8, lat: 1.3, label: "Singapore"     },
 ] as const;
-const FEATURED_IDS = new Set(FEATURED.map((f) => f.id));
+const FEATURED_IDS = new Set<number>(FEATURED.map((f) => f.id));
 
 /* Extract features once at module level (not per-render) */
 const worldCountries = feature(
-  worldTopo as Topology<{ countries: GeometryCollection }>,
+  worldTopo as unknown as Topology<{ countries: GeometryCollection }>,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (worldTopo as any).objects.countries as GeometryCollection
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
