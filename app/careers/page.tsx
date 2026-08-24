@@ -11,8 +11,6 @@ export const metadata: Metadata = {
     "Open roles at TOPSYS IT Solutions LLC. Engineering and delivery positions across enterprise and government technology programs.",
 };
 
-/* Source: https://topsysit.com/careers/ - "Growth / Culture / Opportunity / Impact" cards,
-   lightly tightened for house voice (no hype adjectives, no exclamation marks). Facts unchanged. */
 const WHAT_WE_OFFER = [
   {
     title: "Growth",
@@ -32,13 +30,7 @@ const WHAT_WE_OFFER = [
   },
 ];
 
-/* Source: https://topsysit.com/careers/ accordion listings, retrieved verbatim and lightly
-   copyedited for grammar/consistency only (no facts added or removed). The apply mechanism
-   (email + mailing address, repeated identically on every listing on the source page) is
-   consolidated once in the "How to apply" section below instead of per card. The source page
-   lists two near-identical "Software developer" postings and two "DevOps engineer" postings
-   as separate entries; both are preserved here as they appear on the source page. */
-const ROLES = [
+const GC_ROLES = [
   {
     title: "Software developer",
     jd: "Design, develop, implement, maintain and test business functions and web applications using a variety of languages, tools, methodologies and technologies. Develop, create and modify general computer applications software or specialized utility programs. Analyze user needs and develop software solutions. Design software or customize software for client use with the aim of optimizing operational efficiency.",
@@ -103,27 +95,50 @@ const ROLES = [
       "Master&rsquo;s degree in computer science, engineering, technology, or a related field, and one year of experience. Work location is Alpharetta, GA, which may also require travel to client locations throughout the USA.",
     locations: "United States of America",
   },
-  {
-    title: "Technical project manager",
-    jd: [
-      "Plan, coordinate, and oversee enterprise IT infrastructure and application projects by defining project objectives, developing schedules and milestones, coordinating resources and cross-functional activities, managing dependencies and risks, and monitoring deliverables to ensure projects are completed within approved scope, budget, timeline, and quality requirements.",
-      "Manage the end-to-end execution of strategic enterprise technology initiatives, including project planning, requirements coordination, implementation, testing, deployment, and post-production activities while ensuring alignment with organizational objectives.",
-      "Serve as Scrum Master for Agile delivery teams by facilitating Sprint Planning, Daily Stand-ups, Sprint Reviews, Sprint Retrospectives, backlog refinement, and other Agile ceremonies, while identifying and removing project impediments.",
-      "Coordinate cloud modernization initiatives involving the migration of on-premises applications to multi-cloud environments by managing project schedules, dependencies, deliverables, resources, risks, and stakeholder communications throughout the project lifecycle.",
-      "Coordinate business process automation initiatives by working with business stakeholders and technical teams to identify operational requirements, evaluate automation opportunities, prioritize initiatives, and oversee implementation activities designed to improve operational efficiency.",
-      "Collaborate with engineering, architecture, analytics, operations, compliance, and executive leadership teams to coordinate project activities, resolve issues, manage dependencies, and communicate project progress.",
-      "Monitor project performance against approved schedules, budgets, deliverables, milestones, and quality requirements, identifying variances and coordinating corrective actions when necessary.",
-      "Identify, evaluate, document, and monitor project risks and issues, and develop mitigation and response strategies to minimize potential impacts to project schedules, budgets, resources, and deliverables.",
-      "Maintain comprehensive project records, including project plans, requirements, schedules, risk and issue registers, change management records, meeting minutes, governance artifacts, performance metrics, status reports, and implementation documentation.",
-      "Support staffing and resource allocation decisions by evaluating project requirements, workload, skill requirements, timelines, resource availability, and project priorities.",
-      "Lead project staffing and resource onboarding activities by supporting workforce planning, coordinating candidate sourcing and evaluation, facilitating interview scheduling and offer processes, and overseeing the onboarding of project personnel in alignment with project requirements and timelines.",
-      "Apply analytical, organizational, communication, and problem-solving skills to coordinate multiple IT initiatives, address project challenges, adapt to changing technology requirements, and support successful project delivery.",
-    ],
-    requirements:
-      "The position requires, at minimum, a bachelor&rsquo;s degree in computer science, computer information systems, information technology, or a combination of education and experience equivalent to a U.S. bachelor&rsquo;s degree in one of those fields, and two years of relevant experience. Hours are M&ndash;F, 9am&ndash;5pm.",
-    locations: "United States of America",
-  },
 ];
+
+const H1B_ROLE = {
+  title: "Technical project manager",
+  jd: [
+    "Plan, coordinate, and oversee enterprise IT infrastructure and application projects by defining project objectives, developing schedules and milestones, coordinating resources and cross-functional activities, managing dependencies and risks, and monitoring deliverables to ensure projects are completed within approved scope, budget, timeline, and quality requirements.",
+    "Manage the end-to-end execution of strategic enterprise technology initiatives, including project planning, requirements coordination, implementation, testing, deployment, and post-production activities while ensuring alignment with organizational objectives.",
+    "Serve as Scrum Master for Agile delivery teams by facilitating Sprint Planning, Daily Stand-ups, Sprint Reviews, Sprint Retrospectives, backlog refinement, and other Agile ceremonies, while identifying and removing project impediments.",
+    "Coordinate cloud modernization initiatives involving the migration of on-premises applications to multi-cloud environments by managing project schedules, dependencies, deliverables, resources, risks, and stakeholder communications throughout the project lifecycle.",
+    "Coordinate business process automation initiatives by working with business stakeholders and technical teams to identify operational requirements, evaluate automation opportunities, prioritize initiatives, and oversee implementation activities designed to improve operational efficiency.",
+    "Collaborate with engineering, architecture, analytics, operations, compliance, and executive leadership teams to coordinate project activities, resolve issues, manage dependencies, and communicate project progress.",
+    "Monitor project performance against approved schedules, budgets, deliverables, milestones, and quality requirements, identifying variances and coordinating corrective actions when necessary.",
+    "Identify, evaluate, document, and monitor project risks and issues, and develop mitigation and response strategies to minimize potential impacts to project schedules, budgets, resources, and deliverables.",
+    "Maintain comprehensive project records, including project plans, requirements, schedules, risk and issue registers, change management records, meeting minutes, governance artifacts, performance metrics, status reports, and implementation documentation.",
+    "Support staffing and resource allocation decisions by evaluating project requirements, workload, skill requirements, timelines, resource availability, and project priorities.",
+    "Lead project staffing and resource onboarding activities by supporting workforce planning, coordinating candidate sourcing and evaluation, facilitating interview scheduling and offer processes, and overseeing the onboarding of project personnel in alignment with project requirements and timelines.",
+    "Apply analytical, organizational, communication, and problem-solving skills to coordinate multiple IT initiatives, address project challenges, adapt to changing technology requirements, and support successful project delivery.",
+  ],
+  requirements:
+    "The position requires, at minimum, a bachelor&rsquo;s degree in computer science, computer information systems, information technology, or a combination of education and experience equivalent to a U.S. bachelor&rsquo;s degree in one of those fields, and two years of relevant experience. Hours are M&ndash;F, 9am&ndash;5pm.",
+  locations: "United States of America",
+};
+
+/* Shared chevron SVG */
+function Chevron() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      className="group-open:rotate-180 transition-transform duration-[280ms] ease-[cubic-bezier(.2,0,0,1)]"
+      aria-hidden="true"
+    >
+      <path
+        d="M3 6l5 5 5-5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function CareersPage() {
   return (
@@ -146,10 +161,10 @@ export default function CareersPage() {
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{
-              fontSize: "clamp(2rem, 4.4vw, 3.5rem)",
-              lineHeight: 1.06,
-              letterSpacing: "-0.03em",
-              maxWidth: "22ch",
+              fontSize: "clamp(3.25rem, 7vw, 6rem)",
+              lineHeight: 1.0,
+              letterSpacing: "-0.04em",
+              maxWidth: "16ch",
             }}
           >
             Careers at TOPSYS IT
@@ -168,12 +183,11 @@ export default function CareersPage() {
 
       {/* ================================================================
           WHAT WE OFFER - inverted, 4 columns
-          Source: topsysit.com/careers/ - Growth / Culture / Opportunity / Impact
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <div className="wrap">
           <ScrollReveal>
-            <Eyebrow>Why work here</Eyebrow>
+            <Eyebrow dark>Why work here</Eyebrow>
             <h2
               className="font-display font-medium text-on-field mt-4"
               style={{
@@ -198,33 +212,132 @@ export default function CareersPage() {
       </section>
 
       {/* ================================================================
-          CURRENT OPENINGS - paper, accordion list
-          Source: topsysit.com/careers/ - accordion job listings
+          ELIGIBILITY KEY - paper, two-track overview
           ================================================================ */}
-      <section id="open-roles" style={{ padding: "7rem 0" }}>
+      <section id="open-roles" style={{ padding: "7rem 0 0" }}>
         <div className="wrap">
           <ScrollReveal>
             <Eyebrow>Open roles</Eyebrow>
             <h2
               className="font-display font-medium text-ink mt-4"
               style={{
-                fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-                letterSpacing: "-0.025em",
+                fontSize: "clamp(3rem, 6vw, 5.5rem)",
+                letterSpacing: "-0.035em",
+                lineHeight: 1.0,
               }}
             >
               Current openings
             </h2>
             <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-              All positions run Monday through Friday, 9am to 5pm, and require travel and work from client sites.
+              All positions run Monday through Friday, 9am to 5pm, and require travel and work from client sites. Roles are listed by work authorization eligibility.
             </p>
           </ScrollReveal>
 
-          {/* Accordion list */}
+          {/* Eligibility track key */}
           <div
-            className="mt-10"
-            style={{ borderTop: "1px solid var(--color-hairline)" }}
+            className="grid gap-px mt-10 max-[639px]:grid-cols-1"
+            style={{ gridTemplateColumns: "1fr 1fr", background: "var(--color-hairline)" }}
           >
-            {ROLES.map((role, idx) => (
+            {/* Track A */}
+            <div className="bg-paper p-7 flex items-start gap-5">
+              <span
+                className="shrink-0 w-10 h-10 rounded flex items-center justify-center border border-hairline"
+                aria-hidden="true"
+                style={{ marginTop: "2px" }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <rect x="2" y="3" width="14" height="12" rx="1.5" stroke="var(--color-teal)" strokeWidth="1.5"/>
+                  <path d="M2 7h14" stroke="var(--color-teal)" strokeWidth="1.5"/>
+                  <circle cx="9" cy="3" r="1.5" fill="var(--color-teal)"/>
+                  <path d="M5.5 11h7M5.5 13.5h4" stroke="var(--color-teal)" strokeWidth="1.25" strokeLinecap="round"/>
+                </svg>
+              </span>
+              <div>
+                <p
+                  className="font-mono font-semibold uppercase tracking-[.1em] text-teal"
+                  style={{ fontSize: "0.8125rem" }}
+                >
+                  Track A · Green Card
+                </p>
+                <p className="font-display font-medium text-ink mt-2" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
+                  Permanent residents
+                </p>
+                <p className="text-body-xs text-ink-2 mt-2 max-w-[38ch]">
+                  {GC_ROLES.length} open roles for U.S. permanent residents. No sponsorship involved.
+                </p>
+              </div>
+            </div>
+
+            {/* Track B */}
+            <div
+              className="p-7 flex items-start gap-5"
+              style={{ background: "var(--color-field)", position: "relative", overflow: "hidden" }}
+            >
+              {/* Signature top-edge sweep */}
+              <span
+                className="absolute top-0 left-0 right-0 h-[3px] bg-signature"
+                aria-hidden="true"
+              />
+              <span
+                className="shrink-0 w-10 h-10 rounded flex items-center justify-center"
+                aria-hidden="true"
+                style={{ marginTop: "2px", background: "var(--color-field-raised)" }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <circle cx="9" cy="9" r="6.5" stroke="var(--color-signal)" strokeWidth="1.5"/>
+                  <path d="M6 9l2.5 2.5L12.5 6" stroke="var(--color-signal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <p
+                  className="font-mono font-semibold uppercase tracking-[.1em]"
+                  style={{ fontSize: "0.8125rem", color: "var(--color-signal)" }}
+                >
+                  Track B · H-1B Sponsorship
+                </p>
+                <p className="font-display font-medium mt-2" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "var(--color-on-field)" }}>
+                  Visa sponsorship available
+                </p>
+                <p className="text-body-xs mt-2 max-w-[38ch]" style={{ color: "var(--color-on-field-2)" }}>
+                  1 featured role open to H-1B visa holders. TOPSYS IT sponsors the petition.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          TRACK A — Green Card roles (accordion)
+          ================================================================ */}
+      <section style={{ padding: "5rem 0 0" }}>
+        <div className="wrap">
+
+          {/* Track label */}
+          <div className="flex items-center gap-4 mb-8">
+            <span
+              className="font-mono font-semibold uppercase tracking-[.1em] text-teal"
+              style={{ fontSize: "0.8125rem" }}
+            >
+              Track A
+            </span>
+            <span
+              className="flex-1 h-px"
+              style={{ background: "var(--color-hairline)" }}
+              aria-hidden="true"
+            />
+            <span
+              className="font-mono uppercase tracking-[.08em] border border-hairline rounded px-2 py-0.5"
+              style={{ fontSize: "0.625rem", color: "var(--color-teal)" }}
+            >
+              Green Card
+            </span>
+          </div>
+
+          {/* Accordion */}
+          <div style={{ borderTop: "1px solid var(--color-hairline)" }}>
+            <style>{`details > summary::-webkit-details-marker { display: none; }`}</style>
+            {GC_ROLES.map((role, idx) => (
               <details
                 key={`${role.title}-${idx}`}
                 className="group"
@@ -234,155 +347,63 @@ export default function CareersPage() {
                   className="flex items-center gap-5 py-5 cursor-pointer select-none"
                   style={{ listStyle: "none" }}
                 >
-                  {/* Suppress WebKit default marker */}
-                  <style>{`details > summary::-webkit-details-marker { display: none; }`}</style>
-
-                  {/* Ordinal */}
                   <span
                     className="font-mono text-ink-muted shrink-0"
-                    style={{
-                      fontSize: "0.6875rem",
-                      letterSpacing: ".08em",
-                      textTransform: "uppercase",
-                      width: "2rem",
-                    }}
+                    style={{ fontSize: "0.6875rem", letterSpacing: ".08em", textTransform: "uppercase", width: "2rem" }}
                   >
                     {String(idx + 1).padStart(2, "0")}
                   </span>
-
-                  {/* Title */}
                   <h3
                     className="font-display font-medium text-ink flex-1"
-                    style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}
+                    style={{ fontSize: "clamp(1.375rem, 2.2vw, 1.75rem)" }}
                   >
                     {role.title}
                   </h3>
-
-                  {/* Chevron */}
-                  <span
-                    className="shrink-0 text-ink-muted"
-                    aria-hidden="true"
-                    style={{
-                      transition: "transform 280ms cubic-bezier(.2,0,0,1)",
-                    }}
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      style={{
-                        display: "block",
-                        // rotate is applied via group-open in Tailwind v4
-                      }}
-                      className="group-open:rotate-180 transition-transform duration-[280ms] ease-[cubic-bezier(.2,0,0,1)]"
-                    >
-                      <path
-                        d="M3 6l5 5 5-5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                  <span className="shrink-0 text-ink-muted">
+                    <Chevron />
                   </span>
                 </summary>
 
-                {/* Expanded content */}
-                <div
-                  style={{
-                    paddingLeft: "calc(2rem + 1.25rem)",
-                    paddingBottom: "2rem",
-                  }}
-                >
-                  {/* Signature rule across top of expanded section */}
+                <div style={{ paddingLeft: "calc(2rem + 1.25rem)", paddingBottom: "2rem" }}>
                   <div
                     className="mb-6"
                     style={{
                       height: "2px",
-                      background:
-                        "linear-gradient(90deg,#0E5A66 0%,#2C8A6E 55%,#8DC63E 100%)",
+                      background: "linear-gradient(90deg,#0E5A66 0%,#2C8A6E 55%,#8DC63E 100%)",
                       maxWidth: "6rem",
                     }}
                     aria-hidden="true"
                   />
 
-                  <div
-                    className="grid gap-x-16 gap-y-6"
-                    style={{
-                      gridTemplateColumns: "1fr auto",
-                    }}
-                  >
-                    {/* Left: JD + Requirements */}
+                  <div className="grid gap-x-16 gap-y-6" style={{ gridTemplateColumns: "1fr auto" }}>
                     <div>
-                      <p
-                        className="font-mono text-ink-muted uppercase"
-                        style={{
-                          fontSize: "0.6875rem",
-                          letterSpacing: ".08em",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
+                      <p className="font-mono text-ink-muted uppercase" style={{ fontSize: "0.6875rem", letterSpacing: ".08em", marginBottom: "0.5rem" }}>
                         Job description
                       </p>
-                      {Array.isArray(role.jd) ? (
-                        <ul className="text-body-sm text-ink-2 space-y-2 pl-4" style={{ listStyleType: "disc" }}>
-                          {(role.jd as string[]).map((point, i) => (
-                            <li key={i}>{point}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-body-sm text-ink-2">{role.jd as string}</p>
-                      )}
+                      <p className="text-body-sm text-ink-2">{role.jd as string}</p>
 
-                      <p
-                        className="font-mono text-ink-muted uppercase"
-                        style={{
-                          fontSize: "0.6875rem",
-                          letterSpacing: ".08em",
-                          marginTop: "1.5rem",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
+                      <p className="font-mono text-ink-muted uppercase" style={{ fontSize: "0.6875rem", letterSpacing: ".08em", marginTop: "1.5rem", marginBottom: "0.5rem" }}>
                         Position requirements
                       </p>
-                      <p
-                        className="text-body-xs text-ink-muted"
-                        dangerouslySetInnerHTML={{ __html: role.requirements }}
-                      />
-                      <p
-                        className="font-mono text-ink-muted uppercase"
-                        style={{
-                          fontSize: "0.6875rem",
-                          letterSpacing: ".08em",
-                          marginTop: "1.5rem",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
+                      <p className="text-body-xs text-ink-muted" dangerouslySetInnerHTML={{ __html: role.requirements }} />
+
+                      <p className="font-mono text-ink-muted uppercase" style={{ fontSize: "0.6875rem", letterSpacing: ".08em", marginTop: "1.5rem", marginBottom: "0.5rem" }}>
                         Location
                       </p>
-                      <p
-                        className="text-body-xs text-ink-muted"
-                        dangerouslySetInnerHTML={{ __html: role.locations }}
-                      />
+                      <p className="text-body-xs text-ink-muted" dangerouslySetInnerHTML={{ __html: role.locations }} />
 
-                      {role.note && (
+                      {"note" in role && role.note && (
                         <p
                           className="text-body-xs text-ink-muted mt-3 pt-3"
-                          style={{
-                            borderTop: "1px solid var(--color-hairline)",
-                          }}
-                          dangerouslySetInnerHTML={{ __html: role.note }}
+                          style={{ borderTop: "1px solid var(--color-hairline)" }}
+                          dangerouslySetInnerHTML={{ __html: role.note as string }}
                         />
                       )}
                     </div>
 
-                    {/* Right: Apply button */}
                     <div className="flex items-start pt-1 max-[700px]:hidden">
                       <Button
-                        href={`mailto:info@topsysit.com?subject=${encodeURIComponent(
-                          `Application: ${role.title}`
-                        )}`}
+                        href={`mailto:info@topsysit.com?subject=${encodeURIComponent(`Application: ${role.title}`)}`}
                         variant="secondary"
                       >
                         Apply
@@ -390,12 +411,9 @@ export default function CareersPage() {
                     </div>
                   </div>
 
-                  {/* Apply button — mobile only (below content) */}
                   <div className="mt-6 hidden max-[700px]:block">
                     <Button
-                      href={`mailto:info@topsysit.com?subject=${encodeURIComponent(
-                        `Application: ${role.title}`
-                      )}`}
+                      href={`mailto:info@topsysit.com?subject=${encodeURIComponent(`Application: ${role.title}`)}`}
                       variant="secondary"
                     >
                       Apply
@@ -409,9 +427,168 @@ export default function CareersPage() {
       </section>
 
       {/* ================================================================
+          TRACK B — H-1B featured role (inverted, always-expanded card)
+          ================================================================ */}
+      <section
+        className="on-field"
+        style={{ padding: "5rem 0 7rem", marginTop: "5rem" }}
+      >
+        <div className="wrap">
+
+          {/* Track label */}
+          <div className="flex items-center gap-4 mb-10">
+            <span
+              className="font-mono font-semibold uppercase tracking-[.1em]"
+              style={{ fontSize: "0.8125rem", color: "var(--color-signal)" }}
+            >
+              Track B
+            </span>
+            <span
+              className="flex-1 h-px"
+              style={{ background: "var(--color-field-hairline)" }}
+              aria-hidden="true"
+            />
+            <span
+              className="font-mono uppercase tracking-[.08em] rounded px-2 py-0.5 border"
+              style={{ fontSize: "0.625rem", color: "var(--color-signal)", borderColor: "var(--color-signal)", opacity: 0.8 }}
+            >
+              H-1B Sponsorship
+            </span>
+          </div>
+
+          {/* Featured card */}
+          <div
+            className="relative overflow-hidden rounded-[6px]"
+            style={{ background: "var(--color-field-raised)", border: "1px solid var(--color-field-hairline)" }}
+          >
+            {/* Signature top sweep */}
+            <span className="absolute top-0 left-0 right-0 h-[3px] bg-signature" aria-hidden="true" />
+
+            <div className="p-8 max-[639px]:p-6">
+
+              {/* Header row */}
+              <div className="flex items-start justify-between gap-6 flex-wrap mb-8">
+                <div>
+                  <span
+                    className="inline-flex items-center gap-1.5 font-mono font-semibold uppercase tracking-[.1em] rounded px-2.5 py-1 mb-4"
+                    style={{ fontSize: "0.625rem", color: "var(--color-signal)", background: "rgba(141,198,62,.12)", border: "1px solid rgba(141,198,62,.25)" }}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ background: "var(--color-signal)" }}
+                      aria-hidden="true"
+                    />
+                    Visa sponsorship available
+                  </span>
+                  <h3
+                    className="font-display font-medium"
+                    style={{ fontSize: "clamp(2.75rem, 5vw, 4.5rem)", letterSpacing: "-0.035em", color: "var(--color-on-field)", lineHeight: 1.0 }}
+                  >
+                    {H1B_ROLE.title}
+                  </h3>
+                  <p
+                    className="font-mono uppercase tracking-[.08em] mt-2"
+                    style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
+                  >
+                    {H1B_ROLE.locations}
+                  </p>
+                </div>
+
+                <Button
+                  href={`mailto:info@topsysit.com?subject=${encodeURIComponent(`Application: ${H1B_ROLE.title}`)}`}
+                >
+                  Apply for this role
+                </Button>
+              </div>
+
+              {/* Divider */}
+              <div className="h-px mb-8" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
+
+              {/* Two-column content */}
+              <div className="grid gap-x-16 gap-y-10 max-[800px]:block" style={{ gridTemplateColumns: "1fr 320px" }}>
+
+                {/* JD list */}
+                <div>
+                  <p
+                    className="font-mono uppercase tracking-[.08em] mb-4"
+                    style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
+                  >
+                    Responsibilities
+                  </p>
+                  <ul className="space-y-3" style={{ paddingLeft: "1.1rem", listStyleType: "disc" }}>
+                    {H1B_ROLE.jd.map((point, i) => (
+                      <li
+                        key={i}
+                        className="text-body-xs"
+                        style={{ color: "var(--color-on-field-2)", paddingLeft: "0.25rem" }}
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Right: requirements + sponsorship note */}
+                <div className="max-[800px]:mt-8">
+                  <div
+                    className="rounded-[4px] p-5"
+                    style={{ background: "var(--color-field)", border: "1px solid var(--color-field-hairline)" }}
+                  >
+                    <p
+                      className="font-mono uppercase tracking-[.08em] mb-3"
+                      style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
+                    >
+                      Requirements
+                    </p>
+                    <p
+                      className="text-body-xs"
+                      style={{ color: "var(--color-on-field-2)" }}
+                      dangerouslySetInnerHTML={{ __html: H1B_ROLE.requirements }}
+                    />
+
+                    <div className="h-px my-5" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
+
+                    <p
+                      className="font-mono uppercase tracking-[.08em] mb-3"
+                      style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
+                    >
+                      Visa sponsorship
+                    </p>
+                    <p className="text-body-xs" style={{ color: "var(--color-on-field-2)" }}>
+                      TOPSYS IT Solutions LLC sponsors H-1B petitions for this role. Candidates must be currently authorized or eligible for H-1B status.
+                    </p>
+
+                    <div className="h-px my-5" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
+
+                    <p
+                      className="font-mono uppercase tracking-[.08em] mb-3"
+                      style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
+                    >
+                      Location
+                    </p>
+                    <p
+                      className="text-body-xs"
+                      style={{ color: "var(--color-on-field-2)" }}
+                      dangerouslySetInnerHTML={{ __html: H1B_ROLE.locations }}
+                    />
+                  </div>
+
+                  <div className="mt-4 hidden max-[800px]:block">
+                    <Button
+                      href={`mailto:info@topsysit.com?subject=${encodeURIComponent(`Application: ${H1B_ROLE.title}`)}`}
+                    >
+                      Apply for this role
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
           HOW TO APPLY - surface
-          Source: topsysit.com/careers/ - apply instructions repeated on
-          every listing, consolidated once here
           ================================================================ */}
       <section className="bg-surface" style={{ padding: "5rem 0" }}>
         <div className="wrap">
