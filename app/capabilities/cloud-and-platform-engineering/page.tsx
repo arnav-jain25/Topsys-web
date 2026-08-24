@@ -163,7 +163,7 @@ export default function CloudAndPlatformEngineeringPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>Where cloud programs break down</Eyebrow>
+          <Eyebrow dark>Where cloud programs break down</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{

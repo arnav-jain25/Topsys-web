@@ -97,7 +97,7 @@ export default function RetailPage() {
       {/* CONTEXT — inverted */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <div className="wrap">
-          <Eyebrow>The environment</Eyebrow>
+          <Eyebrow dark>The environment</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{

@@ -172,15 +172,14 @@ export function IndustryIndexGrid({ industries }: { industries: Industry[] }) {
         {/* CTA link */}
         <Link
           href={`/industries/${active.slug}`}
-          className="inline-flex items-center gap-2 mt-8 font-mono text-teal hover:gap-3"
+          className="inline-flex items-center gap-2 mt-8 font-display font-medium text-teal hover:gap-4"
           style={{
-            fontSize: "11px",
-            letterSpacing: ".1em",
-            textTransform: "uppercase",
+            fontSize: "1.0625rem",
+            letterSpacing: "-0.01em",
             transition: "gap 250ms cubic-bezier(.2,0,0,1)",
           }}
         >
-          Explore sector <span aria-hidden="true">→</span>
+          Explore {active.label.toLowerCase()} <span aria-hidden="true" style={{ fontSize: "1.1em" }}>→</span>
         </Link>
       </div>
 

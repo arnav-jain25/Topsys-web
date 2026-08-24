@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -8,6 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { HashScrollFix } from "@/components/ui/HashScrollFix";
+import { PartnerLedger } from "@/components/sections/PartnerLedger";
 
 export const metadata: Metadata = {
   title: "Technology talent",
@@ -16,10 +16,38 @@ export const metadata: Metadata = {
 };
 
 const SKILLS = [
-  { group: "Data & AI", items: ["Python", "Spark", "dbt", "Snowflake", "BigQuery", "Databricks", "PyTorch", "LangChain", "Airflow", "Kafka"] },
-  { group: "Cloud & platform", items: ["AWS", "Azure", "GCP", "Terraform", "Kubernetes", "Helm", "ArgoCD", "GitHub Actions", "Jenkins", "Ansible"] },
-  { group: "Applications", items: ["Java", "Node.js", "React", "TypeScript", "Spring Boot", "FastAPI", ".NET", "Go", "GraphQL", "REST APIs"] },
-  { group: "Cybersecurity", items: ["SIEM", "IAM", "Okta", "CyberArk", "Splunk", "NIST CSF", "CMMC", "penetration testing", "cloud security"] },
+  {
+    group: "Data & AI",
+    items: [
+      "Python", "Spark", "dbt", "Snowflake", "BigQuery", "Databricks",
+      "PyTorch", "TensorFlow", "LangChain", "LlamaIndex", "Airflow", "Kafka",
+      "MLflow", "Vertex AI", "Amazon Bedrock", "Pinecone", "Hugging Face", "OpenAI API",
+    ],
+  },
+  {
+    group: "Cloud & platform",
+    items: [
+      "AWS", "Azure", "GCP", "Terraform", "Kubernetes", "Helm",
+      "ArgoCD", "GitHub Actions", "Jenkins", "Ansible", "Docker",
+      "Pulumi", "Crossplane", "Vault", "Istio", "Prometheus", "Grafana", "Datadog",
+    ],
+  },
+  {
+    group: "Applications",
+    items: [
+      "Java", "Node.js", "React", "TypeScript", "Spring Boot", "FastAPI",
+      ".NET", "Go", "Rust", "GraphQL", "REST APIs", "gRPC",
+      "Next.js", "PostgreSQL", "Redis", "Kafka", "Elasticsearch", "Flutter",
+    ],
+  },
+  {
+    group: "Cybersecurity",
+    items: [
+      "SIEM", "IAM", "Okta", "CyberArk", "Splunk", "NIST CSF",
+      "CMMC", "FedRAMP", "SOC 2", "Zero Trust", "Microsoft Sentinel",
+      "Wiz", "Prisma Cloud", "Snyk", "AWS Security Hub", "penetration testing",
+    ],
+  },
 ];
 
 /* ---- Engagement model icons — thin monoline, 20x20, mirrors the icon set
@@ -107,13 +135,13 @@ const HOW_DIFFERENT = [
 ];
 
 const MSP_LOGOS = [
-  { name: "Covendis",          src: "/msp-partner-logos/covendis.png",               delay: 0 },
-  { name: "OST Global",        src: "/msp-partner-logos/ost-global.png",              delay: 0.5 },
-  { name: "CAI",               src: "/msp-partner-logos/cai.png",                     delay: 1.0 },
-  { name: "Knowledge Services",src: "/msp-partner-logos/Knowledge_Services_no_bg.png",delay: 0.3 },
-  { name: "Upglide",           src: "/msp-partner-logos/upglide_no_bg.png",           delay: 0.8 },
-  { name: "iLabor",            src: "/private-logos/ilabor.png",                      delay: 1.3 },
-  { name: "Innova Sol",        src: "/msp-partner-logos/Innova-sol_no_bg.png",        delay: 0.6 },
+  { name: "Covendis",           label: "Managed services",                 src: "/msp-partner-logos/covendis.png" },
+  { name: "OST Global",         label: "Delivery partner",    src: "/msp-partner-logos/ost-global.png",              logoScale: 2.6 },
+  { name: "CAI",                label: "Managed services",    src: "/msp-partner-logos/cai.png" },
+  { name: "Knowledge Services", label: "State workforce MSP", src: "/msp-partner-logos/Knowledge_Services_no_bg.png", logoScale: 1.7 },
+  { name: "Upglide",            label: "VOR platform",        src: "/msp-partner-logos/upglide_no_bg.png" },
+  { name: "iLabor",             label: "Workforce analytics", src: "/private-logos/ilabor.png",                      logoScale: 1.8 },
+  { name: "Innova Sol",         label: "Program partner",     src: "/msp-partner-logos/Innova-sol_no_bg.png" },
 ];
 
 
@@ -170,7 +198,7 @@ export default function TechnologyTalentPage() {
       {/* ================================================================
           MSP / WORKFORCE PROGRAMS — surface (before "The Problem")
           ================================================================ */}
-      <section id="msp" className="bg-surface" style={{ padding: "6rem 0", scrollMarginTop: "100px" }}>
+      <section id="msp" className="bg-surface overflow-hidden" style={{ padding: "6rem 0", scrollMarginTop: "100px" }}>
         <ScrollReveal className="wrap">
           <Eyebrow>Partner and MSP ecosystem</Eyebrow>
           <h2
@@ -185,43 +213,12 @@ export default function TechnologyTalentPage() {
           <p className="text-body text-ink-2 max-w-[62ch] mt-4">
             We work inside managed service provider programs and workforce management platforms for clients who require vendor-of-record compliance.
           </p>
-          <div className="grid grid-cols-4 gap-4 mt-10 max-[1023px]:grid-cols-3 max-[767px]:grid-cols-2">
-            {MSP_LOGOS.map(({ name, src, delay }) => (
-              <div
-                key={name}
-                className="group relative bg-white border border-hairline rounded-card flex items-center justify-center px-6 py-7 hover:border-teal/50 hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-base ease-standard overflow-hidden"
-              >
-                {/* Status dot + ripple ring */}
-                <span className="absolute top-3 right-3 flex items-center justify-center" aria-hidden="true">
-                  {/* Ripple ring */}
-                  <span
-                    className="absolute rounded-full border border-teal"
-                    style={{
-                      width: "10px",
-                      height: "10px",
-                      animation: `partner-ripple 2.4s ease-out infinite`,
-                      animationDelay: `${delay}s`,
-                    }}
-                  />
-                  {/* Solid dot */}
-                  <span
-                    className="relative rounded-full bg-teal"
-                    style={{ width: "6px", height: "6px", opacity: 0.75 }}
-                  />
-                </span>
-
-                <Image
-                  src={src}
-                  alt={name}
-                  width={160}
-                  height={56}
-                  className="object-contain w-auto"
-                  style={{ maxHeight: "44px" }}
-                />
-              </div>
-            ))}
-          </div>
         </ScrollReveal>
+
+        {/* Partner ledger — live cycling highlight, large logos */}
+        <div className="wrap mt-12">
+          <PartnerLedger partners={MSP_LOGOS} />
+        </div>
       </section>
 
       {/* ================================================================
@@ -229,7 +226,7 @@ export default function TechnologyTalentPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>The problem</Eyebrow>
+          <Eyebrow dark>The problem</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{
@@ -367,17 +364,20 @@ export default function TechnologyTalentPage() {
             Not "IT professionals." Specific technologies, specific domains. If it's not on this list, we'll tell you directly.
           </p>
           <StaggerReveal
-            className="grid grid-cols-4 gap-8 mt-10 max-[767px]:grid-cols-2 max-[479px]:grid-cols-1"
+            className="grid grid-cols-4 gap-10 mt-10 max-[767px]:grid-cols-2 max-[479px]:grid-cols-1"
             itemDelay={80}
           >
             {SKILLS.map(({ group, items }) => (
               <div key={group}>
-                <h3 className="font-mono text-mono-sm uppercase tracking-[.08em] text-ink-muted mb-4">
+                <h3
+                  className="font-mono uppercase tracking-[.08em] text-ink-muted mb-5"
+                  style={{ fontSize: "0.8125rem" }}
+                >
                   {group}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-[0.6rem]">
                   {items.map((item) => (
-                    <li key={item} className="text-body-xs text-ink-2">
+                    <li key={item} className="text-ink-2" style={{ fontSize: "0.9375rem" }}>
                       {item}
                     </li>
                   ))}

@@ -168,7 +168,7 @@ export default function PublicSectorPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <div className="wrap">
-          <Eyebrow>How we're different</Eyebrow>
+          <Eyebrow dark>How we're different</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{

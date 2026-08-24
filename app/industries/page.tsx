@@ -100,19 +100,14 @@ export default function IndustriesPage() {
       <section style={{ padding: "6rem 0 8rem" }}>
         <div className="wrap">
           <div className="mb-10">
-            <p
-              className="font-mono font-semibold uppercase"
-              style={{ fontSize: "11px", letterSpacing: ".12em", color: "var(--color-ink-muted)" }}
-            >
-              Sectors
-            </p>
+            <Eyebrow>Sectors</Eyebrow>
             <h2
-              className="font-display font-medium text-ink mt-3"
-              style={{ fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.025em" }}
+              className="font-display font-medium text-ink mt-4"
+              style={{ fontSize: "clamp(1.875rem, 3.8vw, 3.75rem)", letterSpacing: "-0.028em", lineHeight: 1.1 }}
             >
               The sectors we work in.
             </h2>
-            <p className="text-body-xs text-ink-2 mt-3 max-w-[58ch]">
+            <p className="text-body text-ink-2 mt-5 max-w-[58ch]">
               Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across six verticals where we&rsquo;ve built programs that run in production.
             </p>
           </div>

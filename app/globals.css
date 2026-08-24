@@ -711,6 +711,23 @@
   100% { transform: scale(2.8); opacity: 0;   }
 }
 
+@keyframes partner-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Signal-dispatch board — ping dot travels left→right along the track */
+@keyframes signal-ping {
+  0%   { left: -10px; opacity: 0; }
+  4%   { opacity: 1; }
+  96%  { opacity: 1; }
+  100% { left: calc(100% + 10px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-ping-dot { animation: none !important; left: 50% !important; opacity: 0.35 !important; }
+}
+
 /* =========================================================================
    Hero background — infrastructure topology trace + node pulse
    ========================================================================= */

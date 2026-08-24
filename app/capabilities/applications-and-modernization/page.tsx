@@ -163,7 +163,7 @@ export default function ApplicationsAndModernizationPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>Why migrations fail</Eyebrow>
+          <Eyebrow dark>Why migrations fail</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{

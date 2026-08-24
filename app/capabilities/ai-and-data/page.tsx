@@ -244,7 +244,7 @@ export default function AIAndDataPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "6rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>Where enterprise AI stalls</Eyebrow>
+          <Eyebrow dark>Where enterprise AI stalls</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{
@@ -353,7 +353,7 @@ export default function AIAndDataPage() {
           ================================================================ */}
       <section id="engagement" className="on-field" style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>How AI engagements run</Eyebrow>
+          <Eyebrow dark>How AI engagements run</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{
@@ -481,7 +481,7 @@ export default function AIAndDataPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>Case study</Eyebrow>
+          <Eyebrow dark>Case study</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{

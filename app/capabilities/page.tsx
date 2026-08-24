@@ -199,7 +199,7 @@ export default function CapabilitiesPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>How engagements work</Eyebrow>
+          <Eyebrow dark>How engagements work</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{

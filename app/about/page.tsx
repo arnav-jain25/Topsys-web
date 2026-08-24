@@ -151,7 +151,7 @@ export default function AboutPage() {
           ================================================================ */}
       <section className="on-field" style={{ padding: "7rem 0" }}>
         <div className="wrap">
-          <Eyebrow>Credentials</Eyebrow>
+          <Eyebrow dark>Credentials</Eyebrow>
           <h2
             className="font-display font-medium text-on-field mt-4"
             style={{
