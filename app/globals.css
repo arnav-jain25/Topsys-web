@@ -315,20 +315,15 @@
    at 17px of side padding in a 1280px viewport — the row overflowed and pushed
    "Talk to us" off-screen. */
 @utility nav-item {
-  /* `font: inherit` FIRST. It is the button reset, and as a shorthand it resets
-     font-size — declared last (as it was) it silently overrode the font-size
-     below, so every nav item rendered at the inherited 16px instead of the
-     intended value. That is what made the row too wide to fit its own header. */
+  /* `font: inherit` FIRST — button reset, prevents font-size override. */
   font: inherit;
   position: relative;
-  padding: 0 11px 16px;
-  font-size: 13.5px;
-  /* Multi-word labels ("Public sector", "Case studies") wrap to two lines
-     without this — the nav-item has no intrinsic width floor, so on a 1280px
-     viewport each item's column is only ~90px wide at the compact tier. */
+  padding: 0 14px 13px;
+  font-size: 17px;
+  font-weight: 600;
   white-space: nowrap;
-  color: var(--color-ink-2);
-  letter-spacing: -0.005em;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
   transition: color var(--duration-fast) var(--ease-standard);
   text-decoration: none;
   display: block;
@@ -338,23 +333,8 @@
 }
 
 .nav-item:hover {
-  color: var(--color-ink);
+  color: var(--color-teal);
   text-decoration: none;
-}
-
-/* Vertical divider between nav items */
-.nav-item::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 1px;
-  height: 7px;
-  background: var(--color-hairline-strong);
-}
-
-.nav-item:last-child::after {
-  display: none;
 }
 
 /* ============================================================================
@@ -622,8 +602,8 @@
   }
 
   .nav-item {
-    padding: 0 24px 16px;
-    font-size: 15px;
+    padding: 0 16px 13px;
+    font-size: 17.5px;
   }
 }
 
@@ -638,8 +618,8 @@
   }
 
   .nav-item {
-    padding: 0 30px 16px;
-    font-size: 15.5px;
+    padding: 0 20px 13px;
+    font-size: 18px;
   }
 }
 
@@ -712,6 +692,57 @@
   body {
     font-size: 1.25rem; /* 20px base */
   }
+}
+
+/* ============================================================================
+   MSP partner status dot — ripple ring expands and fades outward
+   ========================================================================= */
+
+@keyframes partner-ripple {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(2.8); opacity: 0;   }
+}
+
+/* =========================================================================
+   Hero background — infrastructure topology trace + node pulse
+   ========================================================================= */
+
+@keyframes hbg-trace {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes hbg-pulse {
+  0%, 100% { opacity: 0.72; }
+  50%       { opacity: 1;    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hbg-edge { animation: none !important; stroke-dashoffset: 0 !important; }
+  .hbg-node { animation: none !important; opacity: 0.8 !important; }
+}
+
+/* =========================================================================
+   Hero globe — country marker pulse rings
+   ========================================================================= */
+
+@keyframes globe-ring-outer {
+  0%   { transform: scale(1);   opacity: 0.45; }
+  100% { transform: scale(2.2); opacity: 0;    }
+}
+
+@keyframes globe-ring-inner {
+  0%   { transform: scale(1);   opacity: 0.70; }
+  100% { transform: scale(1.9); opacity: 0;    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="globe-ring"] { animation: none !important; }
+}
+
+@keyframes map-spotlight-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* ============================================================================

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { US_STATES } from "@/lib/us-states-geometry";
 
 /* States with direct state engagements (30) */
@@ -37,8 +37,10 @@ const SERVED: Record<string, string> = {
   WI: "State agency technology",
 };
 
-/* O-mark pin path — droplet pointing DOWN, circle at top, hole punched through.
-   Used in exactly one place per CLAUDE.md. */
+const SERVED_ABBRS = Object.keys(SERVED);
+const CYCLE_MS = 2200;
+
+/* O-mark pin path — droplet pointing DOWN, circle at top, hole punched through */
 function pinPath(cx: number, cy: number, R: number): string {
   const hr = R * 0.46, ccy = cy - R * 0.1, ty = cy + R * 1.72;
   const outer = `M ${cx} ${ty} C ${cx + R * 0.98} ${ccy + R * 0.62} ${cx + R} ${ccy + R * 0.28} ${cx + R} ${ccy} A ${R} ${R} 0 1 1 ${cx - R} ${ccy} C ${cx - R} ${ccy + R * 0.28} ${cx - R * 0.98} ${ccy + R * 0.62} ${cx} ${ty} Z`;
@@ -46,13 +48,67 @@ function pinPath(cx: number, cy: number, R: number): string {
   return `${outer} ${hole}`;
 }
 
+type PinPhase = "hidden" | "entering" | "done";
+
 export function USMap() {
+  const [activeState, setActiveState] = useState<string | null>(null);
+  const [pinPhase, setPinPhase] = useState<PinPhase>("hidden");
   const [tooltip, setTooltip] = useState<{ name: string; desc: string; x: number; y: number } | null>(null);
 
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const cycleRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const activeIdxRef = useRef(0);
+  const inViewRef = useRef(false);
+
+  const startCycle = useCallback(() => {
+    if (cycleRef.current) clearInterval(cycleRef.current);
+    activeIdxRef.current = 0;
+    setActiveState(SERVED_ABBRS[0]);
+    cycleRef.current = setInterval(() => {
+      activeIdxRef.current = (activeIdxRef.current + 1) % SERVED_ABBRS.length;
+      setActiveState(SERVED_ABBRS[activeIdxRef.current]);
+    }, CYCLE_MS);
+  }, []);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !inViewRef.current) {
+          inViewRef.current = true;
+          /* Re-trigger pin drop every time section enters view */
+          setPinPhase("hidden");
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => {
+              setPinPhase("entering");
+              const ms = 700 + SERVED_ABBRS.length * 72;
+              setTimeout(() => setPinPhase("done"), ms);
+            })
+          );
+          if (!reduced) startCycle();
+        } else if (!e.isIntersecting && inViewRef.current) {
+          inViewRef.current = false;
+          if (cycleRef.current) clearInterval(cycleRef.current);
+          setActiveState(null);
+        }
+      },
+      { threshold: 0.18 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      if (cycleRef.current) clearInterval(cycleRef.current);
+    };
+  }, [startCycle]);
+
   const servedStates = US_STATES.filter(([abbr]) => abbr in SERVED);
+  const activeInfo = activeState ? US_STATES.find(([abbr]) => abbr === activeState) : null;
 
   return (
-    <div className="relative">
+    <div ref={wrapRef} className="relative">
       {/* SR-only list precedes the map */}
       <p className="sr-only-text">
         TOPSYS IT serves state government agencies directly across 30 states:{" "}
@@ -71,24 +127,39 @@ export function USMap() {
             {US_STATES.map(([abbr, name, d, lx, ly]) => {
               const isServed = abbr in SERVED;
               const isHQ = abbr === "GA";
+              const isActive = abbr === activeState;
+
+              const fill = isHQ
+                ? "#F59E0B"
+                : isActive
+                ? "rgba(141,198,62,0.82)"
+                : isServed
+                ? "#0B2F38"
+                : "#E8E5DC";
+
+              const stroke = isHQ
+                ? "#92400E"
+                : isServed
+                ? "var(--color-field-deep)"
+                : "#C9C4B4";
+
               return (
                 <path
                   key={abbr}
                   d={d}
                   aria-hidden="true"
-                  className={`transition-colors duration-base ease-standard ${
-                    isHQ
-                      ? "cursor-default"
-                      : isServed
-                      ? "fill-field hover:fill-teal cursor-default"
-                      : "fill-[#E8E5DC]"
-                  }`}
-                  style={isHQ ? { fill: "#F59E0B" } : undefined}
-                  stroke={isHQ ? "#92400E" : isServed ? "var(--color-field-deep)" : "#C9C4B4"}
+                  fill={fill}
+                  stroke={stroke}
                   strokeWidth="0.9"
+                  style={{ transition: "fill 480ms cubic-bezier(.2,0,0,1)" }}
                   onMouseEnter={() => {
                     if (isServed) {
-                      setTooltip({ name, desc: isHQ ? "US Headquarters — " + SERVED[abbr] : SERVED[abbr], x: lx, y: ly });
+                      setTooltip({
+                        name,
+                        desc: isHQ ? "US Headquarters — " + SERVED[abbr] : SERVED[abbr],
+                        x: lx,
+                        y: ly,
+                      });
                     }
                   }}
                   onMouseLeave={() => setTooltip(null)}
@@ -97,40 +168,56 @@ export function USMap() {
             })}
           </g>
 
-          {/* O-mark pins for served states — point down, circle head up, hole preserved */}
+          {/* O-mark pins */}
           <g>
-            {servedStates.map(([abbr,, , lx, ly], i) => {
+            {servedStates.map(([abbr, , , lx, ly], i) => {
               const cx = lx, cy = ly - 7, R = 6.6;
-              const isHQ = abbr === "GA";
-              const pinColor = "var(--color-signal)";
-              const strokeColor = "var(--color-field-deep)";
+              const isActive = abbr === activeState;
+              const delay = `${i * 72}ms`;
+
               return (
                 <g key={`pin-${abbr}`} aria-hidden="true">
-                  {/* Pulse halo */}
+                  {/* Continuous pulse halo — staggered so all 30 don't fire at once */}
                   <circle
-                    cx={cx}
-                    cy={cy}
-                    r={7}
+                    cx={cx} cy={cy} r={7}
                     fill="none"
-                    stroke={pinColor}
-                    strokeWidth="1.2"
-                    className="animate-[pinHalo_2.8s_cubic-bezier(.2,0,0,1)_infinite]"
-                    style={{ animationDelay: `${i * 250}ms` }}
+                    stroke="var(--color-signal)"
+                    strokeWidth="1"
+                    className="animate-[pinHalo_3.4s_cubic-bezier(.2,0,0,1)_infinite]"
+                    style={{ animationDelay: `${(i * 310) % 3400}ms` }}
                   />
-                  {/* O-mark droplet */}
+                  {/* Active-state: faster, brighter double ring */}
+                  {isActive && (
+                    <>
+                      <circle
+                        cx={cx} cy={cy} r={14}
+                        fill="none"
+                        stroke="rgba(141,198,62,0.45)"
+                        strokeWidth="1.5"
+                        className="animate-[pinHalo_1.5s_cubic-bezier(.2,0,0,1)_infinite]"
+                      />
+                      <circle
+                        cx={cx} cy={cy} r={5}
+                        fill="rgba(141,198,62,0.22)"
+                      />
+                    </>
+                  )}
+                  {/* Pin body */}
                   <path
                     d={pinPath(cx, cy, R)}
                     fillRule="evenodd"
-                    fill={pinColor}
-                    stroke={strokeColor}
+                    fill="var(--color-signal)"
+                    stroke="rgba(6,35,42,0.9)"
                     strokeWidth="0.7"
-                    className="animate-[pinIn_520ms_cubic-bezier(.2,0,0,1)_forwards]"
-                    style={{
-                      opacity: 0,
-                      animationDelay: `${600 + i * 70}ms`,
-                    }}
+                    style={
+                      pinPhase === "entering"
+                        ? { opacity: 0, animation: `pinIn 520ms cubic-bezier(.2,0,0,1) ${delay} forwards` }
+                        : pinPhase === "done"
+                        ? { opacity: 1 }
+                        : { opacity: 0 }
+                    }
                   />
-                  {/* State abbreviation label */}
+                  {/* State abbreviation */}
                   <text
                     x={cx}
                     y={cy - 11}
@@ -138,9 +225,10 @@ export function USMap() {
                     fontFamily="var(--font-ibm-plex-mono)"
                     fontSize="7.5"
                     fontWeight="500"
-                    fill={pinColor}
+                    fill={isActive ? "#8DC63E" : "rgba(141,198,62,0.7)"}
                     letterSpacing="0.05em"
                     className="pointer-events-none"
+                    style={{ transition: "fill 400ms" }}
                   >
                     {abbr}
                   </text>
@@ -149,6 +237,29 @@ export function USMap() {
             })}
           </g>
         </svg>
+
+        {/* Active state spotlight card */}
+        {activeInfo && activeState && (
+          <div
+            key={activeState}
+            className="absolute bottom-3 left-3 border-field-hairline rounded-card pointer-events-none"
+            style={{
+              padding: "10px 14px",
+              animation: "map-spotlight-in 260ms cubic-bezier(.2,0,0,1) both",
+              minWidth: "180px",
+            }}
+          >
+            <p className="font-mono uppercase tracking-[.1em] field-deep" style={{ fontSize: "9px" }}>
+              Active engagement
+            </p>
+            <p className="font-display font-medium field-deep" style={{ fontSize: "13px" }}>
+              {activeInfo[1]}
+            </p>
+            <p className="field-deep" style={{ fontSize: "11px" }}>
+              {SERVED[activeState]}
+            </p>
+          </div>
+        )}
 
         {/* Tooltip */}
         {tooltip && (
@@ -160,6 +271,7 @@ export function USMap() {
             }}
           >
             <b className="text-signal font-normal">{tooltip.name}</b>
+            <span className="text-on-field-2 ml-2">{tooltip.desc}</span>
           </div>
         )}
       </div>
@@ -173,6 +285,10 @@ export function USMap() {
         <span className="flex items-center gap-2">
           <span className="inline-block w-[11px] h-[11px] rounded-sm bg-field" aria-hidden="true" />
           Direct state engagements
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="inline-block w-[8px] h-[8px] rounded-full bg-signal" aria-hidden="true" />
+          Cycling spotlight
         </span>
       </div>
     </div>

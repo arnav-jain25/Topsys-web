@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button, TextLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { CTASection } from "@/components/sections/CTASection";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { StaggerReveal } from "@/components/ui/StaggerReveal";
-import { INSIGHTS } from "@/lib/insights";
+import { InsightsGrid } from "@/components/sections/InsightsGrid";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -50,70 +47,12 @@ export default function InsightsPage() {
       </section>
 
       {/* ================================================================
-          CARD GRID — surface background
+          EDITORIAL GRID — paper background
           ================================================================ */}
-      <section className="bg-surface" style={{ padding: "7rem 0" }}>
-        <ScrollReveal className="wrap">
-          <StaggerReveal
-            className="grid grid-cols-3 gap-8 max-[1023px]:grid-cols-2 max-[639px]:grid-cols-1"
-            itemDelay={80}
-          >
-            {INSIGHTS.map((insight) => (
-              <article
-                key={insight.slug}
-                className="group bg-white border border-hairline rounded-card flex flex-col overflow-hidden transition-all duration-base ease-standard hover:-translate-y-0.5 hover:shadow-e2 hover:border-transparent relative"
-              >
-                {/* Gradient top edge on hover — one of the four permitted uses */}
-                <span
-                  className="absolute top-0 left-0 right-0 h-[3px] bg-signature origin-left scale-x-0 transition-transform duration-base ease-standard group-hover:scale-x-100 z-[1]"
-                  aria-hidden="true"
-                />
-
-                <div className="p-7 flex flex-col flex-1">
-                  {/* Topic */}
-                  <p className="font-mono text-mono-xs uppercase tracking-[.1em] text-teal mb-3">
-                    {insight.topic}
-                  </p>
-
-                  {/* Title */}
-                  <h2
-                    className="font-display font-medium text-ink"
-                    style={{
-                      fontSize: "clamp(1.1rem, 1.6vw, 1.35rem)",
-                      letterSpacing: "-0.015em",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {insight.title}
-                  </h2>
-
-                  {/* Summary */}
-                  <p
-                    className="text-body-xs text-ink-2 mt-3 flex-1"
-                    style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {insight.summary}
-                  </p>
-
-                  {/* Footer */}
-                  <div className="mt-6 pt-5 border-t border-hairline flex items-center justify-between gap-4 flex-wrap">
-                    <p className="font-mono text-mono-xs text-ink-muted">
-                      {insight.readTime} &middot; {insight.published}
-                    </p>
-                    <TextLink href={`/insights/${insight.slug}`}>
-                      Read the full piece &rarr;
-                    </TextLink>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </StaggerReveal>
-        </ScrollReveal>
+      <section style={{ padding: "5rem 0 8rem" }}>
+        <div className="wrap">
+          <InsightsGrid />
+        </div>
       </section>
 
       {/* ================================================================

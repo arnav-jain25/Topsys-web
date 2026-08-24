@@ -79,7 +79,7 @@ export function DualModel() {
     >
       {/* ---- Dark card — build the solution ---- */}
       <div
-        className="dual-card relative rounded-panel px-12 py-12 overflow-hidden bg-gradient-to-b from-field to-field-deep text-on-field shadow-e2 hover:-translate-y-[4px] hover:shadow-field transition-[transform,box-shadow] duration-base ease-standard before:absolute before:content-[''] before:top-[-40%] before:right-[-20%] before:w-[70%] before:h-[120%] before:bg-[radial-gradient(circle,rgba(141,198,62,.16),transparent_68%)] before:pointer-events-none"
+        className="dual-card relative rounded-panel px-12 py-12 overflow-hidden bg-gradient-to-b from-field-raised to-field text-on-field shadow-e2 hover:-translate-y-[4px] hover:shadow-field transition-[transform,box-shadow] duration-base ease-standard before:absolute before:content-[''] before:top-[-40%] before:right-[-20%] before:w-[70%] before:h-[120%] before:bg-[radial-gradient(circle,rgba(141,198,62,.2),transparent_68%)] before:pointer-events-none"
         style={revealStyle(phase, 0)}
       >
         <h3 className="font-display font-medium text-heading-1 text-on-field mb-3">

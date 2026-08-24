@@ -13,7 +13,7 @@ const TYPE_SPEED = 62;   // ms per character typed
 const ERASE_SPEED = 38;  // ms per character erased
 const HOLD_MS = 2400;    // pause after fully typed
 
-export function HeroHeading() {
+export function HeroHeading({ dark = false }: { dark?: boolean }) {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<"typing" | "holding" | "erasing">("typing");
@@ -69,7 +69,7 @@ export function HeroHeading() {
 
   return (
     <h1
-      className="font-display font-medium text-ink mb-6"
+      className={`font-display font-medium mb-6 ${dark ? "text-on-field" : "text-ink"}`}
       style={{ fontSize: "var(--text-hero-h1)", lineHeight: 1.02, letterSpacing: "-0.035em" }}
     >
       <span className="block whitespace-nowrap max-[600px]:whitespace-normal">Technology</span>

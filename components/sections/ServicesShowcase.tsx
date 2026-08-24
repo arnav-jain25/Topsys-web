@@ -5,8 +5,8 @@ import { useState } from "react";
 import { SERVICES } from "@/components/ui/ServiceIcons";
 
 /* ── Pentagon geometry ── */
-const VW = 600, VH = 420;
-const CX = 300, CY = 200, R = 112;
+const VW = 600, VH = 500;
+const CX = 190, CY = 220, R = 145;
 
 const NODES = SERVICES.map((_, i) => {
   const a = ((-90 + i * 72) * Math.PI) / 180;

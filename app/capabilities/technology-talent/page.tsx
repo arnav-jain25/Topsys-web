@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ContentToken } from "@/components/ui/ContentToken";
@@ -106,18 +107,16 @@ const HOW_DIFFERENT = [
   "30-day check-in after placement; we manage underperformance alongside you",
 ];
 
-const MSP_PROGRAMS = ["Covendis", "OST Global", "CAI", "Knowledge Services", "Upglide", "eMMA", "iLabor", "Innova Sol"];
+const MSP_LOGOS = [
+  { name: "Covendis",          src: "/msp-partner-logos/covendis.png",               delay: 0 },
+  { name: "OST Global",        src: "/msp-partner-logos/ost-global.png",              delay: 0.5 },
+  { name: "CAI",               src: "/msp-partner-logos/cai.png",                     delay: 1.0 },
+  { name: "Knowledge Services",src: "/msp-partner-logos/Knowledge_Services_no_bg.png",delay: 0.3 },
+  { name: "Upglide",           src: "/msp-partner-logos/upglide_no_bg.png",           delay: 0.8 },
+  { name: "iLabor",            src: "/private-logos/ilabor.png",                      delay: 1.3 },
+  { name: "Innova Sol",        src: "/msp-partner-logos/Innova-sol_no_bg.png",        delay: 0.6 },
+];
 
-/* MSP/VMS program icon — a simple checklist/roster mark, reads as
-   "vendor-of-record compliance" rather than a generic tag. Mirrors the
-   monoline icon set already established across the site. */
-const IconMSP = () => (
-  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <rect x="3" y="2" width="12" height="14" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
-    <path d="M6 6.5h6M6 9h6M6 11.5h3.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
-    <path d="M5.5 2v-.5a1 1 0 011-1h5a1 1 0 011 1V2" stroke="currentColor" strokeWidth="1.1" />
-  </svg>
-);
 
 export default function TechnologyTalentPage() {
   return (
@@ -165,6 +164,63 @@ export default function TechnologyTalentPage() {
             <Button href="#models" variant="secondary">
               Three engagement models
             </Button>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ================================================================
+          MSP / WORKFORCE PROGRAMS — surface (before "The Problem")
+          ================================================================ */}
+      <section id="msp" className="bg-surface" style={{ padding: "6rem 0", scrollMarginTop: "100px" }}>
+        <ScrollReveal className="wrap">
+          <Eyebrow>Partner and MSP ecosystem</Eyebrow>
+          <h2
+            className="font-display font-medium text-ink mt-4"
+            style={{
+              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
+              letterSpacing: "-0.025em",
+            }}
+          >
+            Vendor-of-record compliance, built in
+          </h2>
+          <p className="text-body text-ink-2 max-w-[62ch] mt-4">
+            We work inside managed service provider programs and workforce management platforms for clients who require vendor-of-record compliance.
+          </p>
+          <div className="grid grid-cols-4 gap-4 mt-10 max-[1023px]:grid-cols-3 max-[767px]:grid-cols-2">
+            {MSP_LOGOS.map(({ name, src, delay }) => (
+              <div
+                key={name}
+                className="group relative bg-white border border-hairline rounded-card flex items-center justify-center px-6 py-7 hover:border-teal/50 hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-base ease-standard overflow-hidden"
+              >
+                {/* Status dot + ripple ring */}
+                <span className="absolute top-3 right-3 flex items-center justify-center" aria-hidden="true">
+                  {/* Ripple ring */}
+                  <span
+                    className="absolute rounded-full border border-teal"
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      animation: `partner-ripple 2.4s ease-out infinite`,
+                      animationDelay: `${delay}s`,
+                    }}
+                  />
+                  {/* Solid dot */}
+                  <span
+                    className="relative rounded-full bg-teal"
+                    style={{ width: "6px", height: "6px", opacity: 0.75 }}
+                  />
+                </span>
+
+                <Image
+                  src={src}
+                  alt={name}
+                  width={160}
+                  height={56}
+                  className="object-contain w-auto"
+                  style={{ maxHeight: "44px" }}
+                />
+              </div>
+            ))}
           </div>
         </ScrollReveal>
       </section>
@@ -331,42 +387,6 @@ export default function TechnologyTalentPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </StaggerReveal>
-        </ScrollReveal>
-      </section>
-
-      {/* ================================================================
-          MSP / WORKFORCE PROGRAMS — surface (here and nowhere else per CLAUDE.md)
-          ================================================================ */}
-      <section id="msp" className="bg-surface" style={{ padding: "6rem 0", scrollMarginTop: "100px" }}>
-        <ScrollReveal className="wrap">
-          <Eyebrow>Partner and MSP ecosystem</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Vendor-of-record compliance, built in
-          </h2>
-          <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-            We work inside managed service provider programs and workforce management platforms for clients who require vendor-of-record compliance.
-          </p>
-          <StaggerReveal className="grid grid-cols-4 gap-4 mt-8 max-[767px]:grid-cols-2 max-[1023px]:grid-cols-3">
-            {MSP_PROGRAMS.map((name) => (
-              <div
-                key={name}
-                className="group relative overflow-hidden flex items-center gap-3 bg-white border border-hairline rounded-card px-5 py-4 transition-all duration-base ease-standard hover:border-teal/40 hover:-translate-y-[2px] hover:shadow-e1"
-              >
-                <span className="flex-none text-teal">
-                  <IconMSP />
-                </span>
-                <span className="font-display font-medium text-body-sm text-ink">
-                  {name}
-                </span>
               </div>
             ))}
           </StaggerReveal>

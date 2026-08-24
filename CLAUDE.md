@@ -24,8 +24,7 @@ Never make that the hero headline. It is the underlying principle.
 - Fonts: `next/font` — Archivo (display), Public Sans (body), IBM Plex Mono (utility)
 
 **Never** add: a UI kit (MUI, Chakra, Bootstrap), a chatbot, a carousel library, a cookie banner
-beyond what law requires, WebGL beyond the single hero scene, or any animation library heavier
-than what's already needed. Framer Motion is permitted only if used in three places or fewer.
+beyond what law requires.. Framer Motion is permitted only if used in three places or fewer.
 
 ---
 

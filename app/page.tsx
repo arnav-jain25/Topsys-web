@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { HeroSceneLoader } from "@/components/sections/HeroSceneLoader";
+import { HeroGlobe } from "@/components/sections/HeroGlobe";
 import {
   StatBar,
   ServicesShowcase,
@@ -24,56 +24,32 @@ export default function HomePage() {
           ================================================================ */}
       <section
         className="relative flex flex-col justify-center overflow-hidden"
-        style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem" }}
+        style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem", background: "var(--color-field-deep)" }}
         aria-label="Hero"
       >
-        {/* Particle canvas — fills the section, pointer-events none.
-            Hidden below 1024px: on a phone the copy spans the full width, so the
-            canvas sits directly behind the text instead of beside it and reads as
-            visual noise. Skipping it on mobile also drops the three.js payload on
-            exactly the devices least able to afford it. */}
-        <div className="absolute inset-0 z-0 pointer-events-none max-[1023px]:hidden">
-          {/* Ambient glow behind the canvas */}
-          <span
-            className="absolute z-0 pointer-events-none"
-            style={{
-              left: "40%", top: "0%", width: "68%", height: "100%",
-              background: "radial-gradient(circle,rgba(14,90,102,.10),rgba(44,138,110,.05) 50%,transparent 72%)",
-            }}
-            aria-hidden="true"
-          />
-          <span
-            className="absolute z-0 pointer-events-none"
-            style={{
-              left: "-8%", bottom: "-15%", width: "38%", height: "60%",
-              background: "radial-gradient(circle,rgba(14,90,102,.06),transparent 70%)",
-            }}
-            aria-hidden="true"
-          />
-          <HeroSceneLoader />
-        </div>
+        {/* Revolving globe — highlights USA, Canada, India, Singapore */}
+        <HeroGlobe />
 
         <div className="wrap relative z-[2] hero-copy-grid w-full">
           <div className="hero-copy">
-            {/* `nowrap` holds the two-line break on desktop, where the 5.4vw size
-                is measured to fit. Below 600px the floor of the clamp (36px) is
-                wider than the viewport, so nowrap pushed the line past the edge
-                and made the whole document horizontally scrollable — hence the
-                normal-wrap override at the small end. */}
-            <HeroHeading />
+            <HeroHeading dark />
             <p
-              className="text-ink-2 max-w-[54ch] mb-10"
+              className="text-on-field-2 max-w-[54ch] mb-10"
               style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)", lineHeight: 1.6 }}
             >
               Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
             </p>
             <div className="flex gap-3 flex-wrap max-[600px]:[&>a]:w-full">
               <Button href="/contact" className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px]">Talk to us</Button>
-              <Button href="/capabilities" variant="secondary" className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px]">
+              <Button
+                href="/capabilities"
+                variant="secondary"
+                className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px] !border-on-field-2/40 !text-on-field hover:!border-signal hover:!text-signal"
+              >
                 Explore services
               </Button>
             </div>
-            <div className="mt-10 pt-6 border-t border-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] text-ink-muted uppercase tracking-[.06em]">
+            <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] text-on-field-2 uppercase tracking-[.06em] opacity-70">
               <span>20+ years</span>
               <span>30 state engagements</span>
               <span>4 countries</span>
@@ -84,12 +60,25 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
-          PROOF BAR — stats + client grid
+          PROOF BAR — pentagon left, stats right, side-by-side
           ================================================================ */}
-      <section className="border-t border-hairline" style={{ padding: "2.5rem 0 0" }}>
+      <section className="border-t border-hairline" style={{ padding: "2.5rem 0 3rem" }}>
         <div className="wrap">
-          <StatBar />
-          <ServicesShowcase />
+          {/*
+            items-start: columns are independently sized.
+            Wider stats column (350px) shifts stats ~50px leftward on the page
+            vs the original 300px column (more px = earlier start position).
+            StatBar uses natural height (tight gap-3) so section height is
+            set by whichever column is taller.
+          */}
+          <div className="grid gap-4 items-start max-[1023px]:block" style={{ gridTemplateColumns: "1fr 380px" }}>
+            {/* Left — capability web */}
+            <ServicesShowcase />
+            {/* Right — pentagon stats, natural height */}
+            <div className="max-[1023px]:mt-10 max-[1023px]:pt-8 max-[1023px]:border-t max-[1023px]:border-hairline">
+              <StatBar layout="column" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -101,16 +90,16 @@ export default function HomePage() {
       {/* ================================================================
           DUAL MODEL — build the solution / build the team
           ================================================================ */}
-      <section style={{ padding: "1.5rem 0 6rem" }}>
+      <section className="on-field" style={{ padding: "4rem 0 6rem" }}>
         <div className="wrap">
           <Eyebrow>The model</Eyebrow>
           <h2
-            className="font-display font-medium text-ink mt-4"
+            className="font-display font-medium mt-4"
             style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em", maxWidth: "18ch" }}
           >
             Build the solution. Build the team. Or both.
           </h2>
-          <p className="text-lede text-ink-2 max-w-[64ch] mt-6">
+          <p className="text-lede text-on-field-2 max-w-[64ch] mt-6">
             Most firms make you choose. A consultancy scopes your program and staffs it with people you didn't pick. A staffing vendor sends résumés and steps back at onboarding. We do both, with the same engineering standard and the same accountability, as one firm.
           </p>
           <DualModel />
@@ -142,6 +131,9 @@ export default function HomePage() {
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">
                   Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
+                </dd>
+                <dd className="font-mono text-mono-xs text-ink-muted mt-2 tracking-[.04em]">
+                  Among many others
                 </dd>
                 <dt className="font-mono text-mono-sm uppercase tracking-[.1em] text-ink-muted border-t border-hairline pt-4 mt-4">
                   State engagements

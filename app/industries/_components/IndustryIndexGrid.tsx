@@ -184,13 +184,6 @@ export function IndustryIndexGrid({ industries }: { industries: Industry[] }) {
         </Link>
       </div>
 
-      {/* ── Mobile accordion fallback ── */}
-      <style>{`
-        @media (max-width: 767px) {
-          .industry-detail-mobile { display: block; }
-        }
-      `}</style>
-
     </div>
   );
 }
