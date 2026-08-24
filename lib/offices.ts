@@ -39,7 +39,7 @@ export const OFFICES: Office[] = [
     city: "Hyderabad",
     country: "India",
     label: "India",
-    address: "3rd Floor, Eternal Samyuktha, Vittal Rao Nagar Road, Madhapur, Hyderabad 500081, India",
+    address: "3rd Floor, Eternal Samyuktha, Vittal Rao Nagar Road, Madhapur, HiTech City, Hyderabad 500081, India",
     mapsUrl: "https://maps.google.com/?q=Eternal+Samyuktha+Vittal+Rao+Nagar+Road+Madhapur+Hyderabad+500081",
   },
   {

@@ -138,7 +138,7 @@ export function Footer() {
 
         <div className="mt-10 pt-5 border-t border-field-hairline flex justify-between gap-6 flex-wrap text-caption text-on-field-2 max-[600px]:flex-col">
           <div>
-            © 2026 TOPSYS IT Solutions LLC · United States · Canada · India
+            © 2026 TOPSYS IT Solutions LLC · United States · Canada · India · Singapore
           </div>
           <div className="flex gap-4 flex-wrap">
             {legal.map(({ label, href }, i) => (
