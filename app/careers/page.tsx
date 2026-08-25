@@ -235,8 +235,8 @@ export default function CareersPage() {
 
           {/* Eligibility track key */}
           <div
-            className="grid gap-px mt-10 max-[639px]:grid-cols-1"
-            style={{ gridTemplateColumns: "1fr 1fr", background: "var(--color-hairline)" }}
+            className="grid grid-cols-2 gap-px mt-10 max-[639px]:grid-cols-1"
+            style={{ background: "var(--color-hairline)" }}
           >
             {/* Track A */}
             <div className="bg-paper p-7 flex items-start gap-5">
