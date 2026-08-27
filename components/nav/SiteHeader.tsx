@@ -104,6 +104,7 @@ const UTILITY_NAV = [
 ];
 
 const SECTOR_INDUSTRIES = [
+  { label: "Fintech",             href: "/industries/fintech",              tags: ["PCI-DSS", "SOC 2", "Kafka"] },
   { label: "Financial services",  href: "/industries/financial-services",  tags: ["Kafka", "Snowflake", "SOX"] },
   { label: "Telecommunications",  href: "/industries/telecommunications",   tags: ["OSS/BSS", "Kafka", "Python"] },
   { label: "Healthcare",          href: "/industries/healthcare",           tags: ["FHIR", "HL7", "HIPAA"] },
@@ -457,12 +458,12 @@ export function SiteHeader() {
                   Private enterprise
                 </p>
                 <div className="grid grid-cols-3 gap-2.5">
-                  {SECTOR_INDUSTRIES.map(({ label, href }, i) => (
+                  {SECTOR_INDUSTRIES.map(({ label, href }) => (
                     <Link
                       key={href}
                       href={href}
                       onClick={() => setSectorsOpen(false)}
-                      className={`group relative overflow-hidden bg-surface border border-hairline rounded-card flex items-center justify-center text-center hover:border-teal hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-fast ease-standard${i === 6 ? " col-start-2" : ""}`}
+                      className="group relative overflow-hidden bg-surface border border-hairline rounded-card flex items-center justify-center text-center hover:border-teal hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-fast ease-standard"
                       style={{ height: "52px" }}
                     >
                       <span className="absolute top-0 left-0 right-0 h-[2px] bg-signature scale-x-0 origin-left transition-transform duration-fast ease-standard group-hover:scale-x-100" aria-hidden="true" />

@@ -10,10 +10,17 @@ import { ClientShowcase } from "./_components/ClientShowcase";
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "TOPSYS IT delivers technology programs across financial services, telecommunications, healthcare, state government, technology, retail, and insurance.",
+    "TOPSYS IT delivers technology programs across fintech, financial services, telecommunications, healthcare, state government, technology, retail, and insurance.",
 };
 
 const INDUSTRIES = [
+  {
+    slug: "fintech",
+    label: "Fintech",
+    body:
+      "Payment infrastructure, fraud and compliance systems, and ledger and reconciliation logic for fintech products operating under PCI-DSS, SOC 2, and money transmitter regulation.",
+    tags: ["Kafka", "PostgreSQL", "Python", "AWS", "PCI-DSS", "SOC 2"],
+  },
   {
     slug: "financial-services",
     label: "Financial services",
@@ -108,7 +115,7 @@ export default function IndustriesPage() {
               The sectors we work in.
             </h2>
             <p className="text-body text-ink-2 mt-5 max-w-[58ch]">
-              Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across six verticals where we&rsquo;ve built programs that run in production.
+              Technology delivery looks different depending on the regulatory environment, the data constraints, and the systems already in place. We work across the verticals below where we&rsquo;ve built programs that run in production.
             </p>
           </div>
 
