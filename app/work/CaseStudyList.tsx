@@ -3,13 +3,14 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { CASE_STUDIES } from "@/lib/case-studies";
 
-const ORDINALS = ["01", "02", "03", "04", "05"];
+const ORDINALS = ["01", "02", "03", "04", "05", "06"];
 const BG_ALTERNATES = [
   "bg-paper",
   "bg-surface",
   "bg-paper",
   "bg-surface",
   "bg-paper",
+  "bg-surface",
 ];
 
 function revealStyle(

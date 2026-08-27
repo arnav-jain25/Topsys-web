@@ -16,8 +16,37 @@ interface CaseStudy {
 /* Flow paths use class="fp" — the useEffect below animates them with Web Animations API,
    matching the reference exactly: 14px running dot, infinite linear, duration 3200+i*260ms. */
 
+// Landing page slot 1 — Conversational AI / Agentforce GTM
+const AgentforceDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="User query entering Agentforce which retrieves from Salesforce and BigQuery to return a contextual response.">
+    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
+      <rect x="2" y="34" width="50" height="22" rx="3" />
+      <rect x="152" y="6" width="72" height="20" rx="3" />
+      <rect x="152" y="66" width="72" height="20" rx="3" />
+      <rect x="250" y="34" width="48" height="22" rx="3" />
+    </g>
+    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
+      <path d="M52 45 H72" />
+      <path d="M130 45 H141 V16 H152" />
+      <path d="M130 45 H141 V76 H152" />
+      <path d="M224 16 H234 V45 H250" />
+      <path d="M224 76 H234 V45" />
+    </g>
+    <rect x="72" y="31" width="58" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
+      <text x="6" y="48">USER</text>
+      <text x="157" y="19">SALESFORCE</text>
+      <text x="158" y="79">BIGQUERY</text>
+      <text x="253" y="48">RESPONSE</text>
+    </g>
+    <text x="101" y="44" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6.5" fill="var(--color-signal)">AGENTFORCE</text>
+    <text x="101" y="54" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6" fill="var(--color-signal)">+ CLAUDE</text>
+  </svg>
+);
+
+// Landing page slot 2 — Fintech / multi-processor payment data
 const PaymentsDiagram = () => (
-  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Two processors feeding a canonical model, then Power BI.">
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Two processors feeding a canonical model, then a reporting layer.">
     <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
       <rect x="2" y="12" width="66" height="22" rx="3" />
       <rect x="2" y="56" width="66" height="22" rx="3" />
@@ -32,14 +61,15 @@ const PaymentsDiagram = () => (
     <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="10" y="26">PROCESSOR A</text>
       <text x="10" y="70">PROCESSOR B</text>
-      <text x="238" y="48">POWER BI</text>
+      <text x="237" y="48">REPORTING</text>
     </g>
     <text x="161" y="49" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">CANONICAL</text>
   </svg>
 );
 
+// Landing page slot 3 — AI frontier / BigQuery + ML + Claude
 const RevenueDiagram = () => (
-  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Five systems consolidating into a data lake feeding forecasting and anomaly detection.">
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Five GTM systems consolidating into a BigQuery data lake feeding ML forecasting and anomaly detection.">
     <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
       <rect x="2" y="8" width="50" height="14" rx="3" />
       <rect x="2" y="27" width="50" height="14" rx="3" />
@@ -59,14 +89,15 @@ const RevenueDiagram = () => (
     <rect x="112" y="28" width="82" height="32" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
     <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
       <text x="230" y="34">FORECASTING</text>
-      <text x="230" y="62">ANOMALIES</text>
+      <text x="232" y="62">ANOMALIES</text>
     </g>
-    <text x="153" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">DATA LAKE</text>
+    <text x="153" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">BIGQUERY</text>
   </svg>
 );
 
-const KafkaDiagram = () => (
-  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Kafka pipeline with DynamoDB and SageMaker inside a 40 millisecond budget.">
+// Full work page — Financial services / wealth management workflow
+const WealthManagementDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Workflow requests entering a Spring Boot backend with federated search across Elasticsearch and Solr, under Kubernetes.">
     <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
       <rect x="2" y="34" width="54" height="22" rx="3" />
       <rect x="150" y="10" width="66" height="20" rx="3" />
@@ -82,15 +113,47 @@ const KafkaDiagram = () => (
     </g>
     <rect x="74" y="31" width="58" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
     <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
-      <text x="8" y="48">EVENTS</text>
-      <text x="156" y="23">DYNAMODB</text>
-      <text x="156" y="73">SAGEMAKER</text>
-      <text x="254" y="48">SCORED</text>
+      <text x="5" y="48">WORKFLOW</text>
+      <text x="156" y="23">ELASTIC</text>
+      <text x="159" y="73">SOLR</text>
+      <text x="252" y="48">RESULT</text>
     </g>
-    <text x="103" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="8" fill="var(--color-signal)">KAFKA</text>
+    <text x="103" y="44" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6.5" fill="var(--color-signal)">SPRING BOOT</text>
+    <text x="103" y="54" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6" fill="var(--color-signal)">KUBERNETES</text>
   </svg>
 );
 
+// Full work page — Telecom / T-Mobile DevOps + Kafka/MSK + Claude
+const TelecomDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="GitLab CI/CD deploying to Kubernetes clusters with Kafka/MSK event streaming and Claude AI assisting vulnerability remediation.">
+    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
+      <rect x="2" y="34" width="46" height="22" rx="3" />
+      <rect x="152" y="10" width="140" height="70" rx="3" />
+      <rect x="162" y="22" width="36" height="16" rx="2" />
+      <rect x="204" y="22" width="36" height="16" rx="2" />
+      <rect x="246" y="22" width="40" height="16" rx="2" />
+      <rect x="162" y="48" width="36" height="16" rx="2" />
+      <rect x="204" y="48" width="38" height="16" rx="2" />
+    </g>
+    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
+      <path d="M48 45 H66" />
+      <path d="M114 45 H152" />
+    </g>
+    <rect x="66" y="31" width="48" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
+      <text x="5" y="48">GITLAB</text>
+      <text x="165" y="31">K8S</text>
+      <text x="207" y="31">MSK</text>
+      <text x="249" y="31">AWS</text>
+      <text x="165" y="57">EC2</text>
+      <text x="205" y="57">CLAUDE</text>
+      <text x="157" y="74" fontSize="6">500+ MICROSERVICES</text>
+    </g>
+    <text x="90" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7.5" fill="var(--color-signal)">CI/CD</text>
+  </svg>
+);
+
+// Full work page — Healthcare / HL7 FHIR
 const HealthDiagram = () => (
   <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="HL7 sources feeding a FHIR conversion layer, then a clinical data warehouse.">
     <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
@@ -113,97 +176,53 @@ const HealthDiagram = () => (
   </svg>
 );
 
-const PlatformDiagram = () => (
-  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Git pushing to ArgoCD which deploys to a Kubernetes cluster with multiple services.">
-    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
-      <rect x="2" y="34" width="46" height="22" rx="3" />
-      <rect x="152" y="10" width="140" height="70" rx="3" />
-      <rect x="162" y="22" width="36" height="16" rx="2" />
-      <rect x="204" y="22" width="36" height="16" rx="2" />
-      <rect x="246" y="22" width="40" height="16" rx="2" />
-      <rect x="162" y="48" width="36" height="16" rx="2" />
-      <rect x="204" y="48" width="36" height="16" rx="2" />
-    </g>
-    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
-      <path d="M48 45 H66" />
-      <path d="M114 45 H152" />
-    </g>
-    <rect x="66" y="31" width="48" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
-      <text x="5" y="48">GIT</text>
-      <text x="166" y="31">SVC A</text>
-      <text x="207" y="31">SVC B</text>
-      <text x="249" y="31">SVC C</text>
-      <text x="166" y="57">SVC D</text>
-      <text x="207" y="57">SVC E</text>
-      <text x="158" y="74" fontSize="6" fill="var(--color-on-field-2)">KUBERNETES</text>
-    </g>
-    <text x="90" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7.5" fill="var(--color-signal)">ARGOCD</text>
-  </svg>
-);
-
-const ConversationalDiagram = () => (
-  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="An incident feeding a conversational agent, which weighs evidence-backed hypotheses and routes a recommendation through human approval.">
-    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
-      <rect x="2" y="34" width="54" height="22" rx="3" />
-      <rect x="150" y="6" width="70" height="20" rx="3" />
-      <rect x="150" y="66" width="70" height="20" rx="3" />
-      <rect x="248" y="34" width="50" height="22" rx="3" />
-    </g>
-    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
-      <path d="M56 45 H74" />
-      <path d="M132 45 H141 V16 H150" />
-      <path d="M132 45 H141 V76 H150" />
-      <path d="M220 16 H232 V45 H248" />
-      <path d="M220 76 H232 V45" />
-    </g>
-    <rect x="74" y="31" width="58" height="28" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
-    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
-      <text x="10" y="48">INCIDENT</text>
-      <text x="158" y="19">EVIDENCE</text>
-      <text x="158" y="79">HUMAN APPROVAL</text>
-      <text x="254" y="48">ACTION</text>
-    </g>
-    <text x="103" y="48" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-signal)">AGENT</text>
-  </svg>
-);
-
 const CASE_STUDIES: CaseStudy[] = [
+  // ── First three appear on the homepage ───────────────────────────────
   {
-    tag: "Financial services · Active",
-    title: "A single source of truth for cross-processor payment intelligence",
-    body: "Payment, interchange, fee, settlement and dispute data lived in separate formats across two merchant processors. We designed a canonical payment data architecture on Snowflake, with automated pipelines, source-to-target mappings and a data quality framework.",
+    tag: "Conversational AI · Enterprise",
+    title: "Conversational access to GTM operations at an AI research company",
+    body: "GTM data across Salesforce, Workday, CPQ, Stripe, and NetSuite — five systems, no unified interface. We deployed Salesforce Agentforce and Claude to give teams natural-language access to pipeline, account, and operational context.",
+    diagram: <AgentforceDiagram />,
+    tech: ["Agentforce", "BigQuery"],
+    metric: null,
+    href: "/work/gtm-conversational-ai",
+  },
+  {
+    tag: "Fintech · Payments",
+    title: "A single source of truth for multi-processor payment analytics",
+    body: "Transaction, fee, and settlement data across two acquiring processors — each with its own formats and codes. We designed a canonical payment data model and evidence-based crosswalk that made cross-processor analytics defensible.",
     diagram: <PaymentsDiagram />,
-    tech: ["Snowflake", "Power BI"],
+    tech: ["Data modeling", "SQL"],
     metric: null,
     href: "/work/payments-data",
   },
   {
-    tag: "Technology · Enterprise",
-    title: "Unified revenue intelligence across five go-to-market systems",
-    body: "CRM, HR, quoting, payments and financials with no single view of revenue. We built a centralized BigQuery data lake with optimized ETL/ELT pipelines, then layered predictive forecasting, anomaly detection and automation on top.",
+    tag: "Technology · AI & ML",
+    title: "GTM data modernization and AI/ML enablement for a high-growth AI company",
+    body: "Five go-to-market systems, no unified revenue view, no systematic early warning. We built a BigQuery data lake with ML forecasting, anomaly detection, and Claude-based generative AI.",
     diagram: <RevenueDiagram />,
-    tech: ["BigQuery", "ETL/ELT"],
-    metric: "5 systems unified",
+    tech: ["BigQuery", "Claude"],
+    metric: null,
     href: "/work/revenue-intelligence",
   },
+  // ── Remaining entries on /work ────────────────────────────────────────
   {
-    tag: "Conversational AI · Financial services",
-    title: "A conversational AI platform for security incident response",
-    body: "Investigation, evidence and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval.",
-    diagram: <ConversationalDiagram />,
-    tech: ["React", "LLM orchestration"],
-    metric: null,
-    href: "/work/conversational-incident-response",
+    tag: "Financial services · Wealth management",
+    title: "Backend modernization for an enterprise wealth management workflow platform",
+    body: "Legacy Linux-hosted backend, ~5,000 users, 3-second dashboard load times. Rewrote in Java 17 / Spring Boot 3.5 on Kubernetes — doubled user capacity, 67% faster load time, and eliminated release dependencies for configuration changes.",
+    diagram: <WealthManagementDiagram />,
+    tech: ["Java 17", "Kubernetes"],
+    metric: "67% faster · 2× capacity",
+    href: "/work/realtime-data-platform",
   },
   {
-    tag: "Financial services · Fortune 500",
-    title: "Real-time card delivery visibility under a 40ms latency budget",
-    body: "A multi-stage Kafka streaming pipeline with DynamoDB persistence, SageMaker models, PII protection and a full audit trail, all inside a strict per-message latency SLA in production. Senior engineers on site within two weeks.",
-    diagram: <KafkaDiagram />,
-    tech: ["Kafka", "SageMaker"],
-    metric: "40ms SLA",
-    href: "/work/realtime-data-platform",
+    tag: "Telecommunications · Fortune 500",
+    title: "Cloud infrastructure modernization and DevOps at telco scale",
+    body: "300+ EC2 instances, 20+ Kubernetes clusters, 500+ microservices, traditional Kafka at scale. We modernized the cloud platform, migrated to AWS MSK, and integrated Claude into security remediation workflows.",
+    diagram: <TelecomDiagram />,
+    tech: ["Kubernetes", "AWS MSK"],
+    metric: "40%+ cost reduction",
+    href: "/work/platform-engineering",
   },
   {
     tag: "Healthcare · Enterprise",
@@ -213,15 +232,6 @@ const CASE_STUDIES: CaseStudy[] = [
     tech: ["FHIR R4", "Snowflake"],
     metric: null,
     href: "/work/health-data-integration",
-  },
-  {
-    tag: "Technology · Platform",
-    title: "Internal developer platform for a distributed engineering organization",
-    body: "Forty microservices, six teams, four different CI/CD approaches. We standardized on Kubernetes with GitOps, Terraform modules, and a centralized observability layer.",
-    diagram: <PlatformDiagram />,
-    tech: ["Kubernetes", "ArgoCD"],
-    metric: null,
-    href: "/work/platform-engineering",
   },
 ];
 

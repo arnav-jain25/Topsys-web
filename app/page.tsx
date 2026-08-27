@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { HeroBg } from "@/components/sections/HeroBg";
 import { HeroGlobe } from "@/components/sections/HeroGlobe";
 import {
   StatBar,
@@ -16,7 +17,6 @@ import {
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
 import { CyclingModelHeading } from "@/components/sections/CyclingModelHeading";
-import { HeroBg } from "@/components/sections/HeroBg";
 
 export default function HomePage() {
   return (
@@ -29,10 +29,8 @@ export default function HomePage() {
         style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem", background: "var(--color-field-deep)" }}
         aria-label="Hero"
       >
-        {/* Particle constellation background */}
+        {/* Purple particle constellation background + orbiting globe */}
         <HeroBg />
-
-        {/* Revolving globe — highlights USA, Canada, India, Singapore */}
         <HeroGlobe />
 
         <div className="wrap relative z-[2] hero-copy-grid w-full">

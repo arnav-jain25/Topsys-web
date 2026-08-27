@@ -13,134 +13,180 @@ export interface CaseStudy {
 }
 
 export const CASE_STUDIES: CaseStudy[] = [
+  // ── Landing page: first three ──────────────────────────────────────────
+
+  {
+    slug: "gtm-conversational-ai",
+    tag: "Conversational AI · Enterprise",
+    title: "Conversational access to GTM operations at an AI research company",
+    lede: "GTM data lived in Salesforce, Workday, CPQ, Stripe, and NetSuite — five systems with no unified interface. We deployed Salesforce Agentforce and Claude to give teams natural-language access to pipeline, account, and operational context without building a separate BI layer.",
+    client: "A high-growth AI research company with a rapidly scaling commercial operation",
+    capabilities: ["AI & data", "Applications & modernization"],
+    problem: [
+      "Rapid growth created a complex GTM environment spanning Salesforce, Workday, CPQ, Stripe, NetSuite, and related enterprise systems. Revenue, customer, sales, billing, and workforce data existed across each platform with no single view of the GTM lifecycle. Business and operations teams navigated multiple applications to answer questions that should have taken one step.",
+      "Beyond access, the team needed intelligent automation. Manual reconciliation between systems slowed decision-making. Repetitive operational workflows were scaling with headcount rather than with automation. As the organization grew, the gap between what the data could tell you and what teams could actually act on in time was widening.",
+    ],
+    approach: [
+      {
+        heading: "Unified GTM data foundation on BigQuery",
+        body: "Built a Google BigQuery-based GTM data lake integrating Salesforce, Workday, CPQ, Stripe, and NetSuite. Optimized ETL/ELT pipelines ingested, transformed, reconciled, and normalized data across these platforms into a consistent entity model — one definition of an opportunity, an account, a recognized revenue event.",
+      },
+      {
+        heading: "Salesforce Agentforce as the conversational interface",
+        body: "Deployed Agentforce as the intelligent interaction layer on top of Salesforce and the GTM data ecosystem. Users interact with pipeline status, customer context, and operational tasks through natural language rather than navigating system UIs. Agentforce surfaces relevant account, opportunity, and operational context based on governed business processes and the underlying data architecture.",
+      },
+      {
+        heading: "Claude for generative AI workflows",
+        body: "Incorporated Claude into GTM workflows to help users interact with complex business information, summarize relevant context, and assist with analysis. Claude complemented rather than replaced the broader architecture: BigQuery provided centralized data, Salesforce served as the system of engagement, Agentforce provided native Salesforce AI interactions, and Claude supported generative AI use cases across workflows.",
+      },
+      {
+        heading: "Intelligent automation of repetitive GTM operations",
+        body: "Identified workflow patterns with high manual overhead and automated them through the AI architecture. Repetitive GTM operations — reconciliation, status updates, exception identification — became guided, AI-assisted processes. As the organization grew, operational capacity scaled with automation rather than headcount.",
+      },
+    ],
+    outcome: "Centralized GTM visibility with intelligent conversational access replacing manual system navigation across Salesforce, Workday, CPQ, Stripe, and NetSuite",
+    tech: ["Salesforce Agentforce", "BigQuery", "Claude", "ETL/ELT", "Python"],
+    metric: null,
+  },
+
   {
     slug: "payments-data",
-    tag: "Financial services · Active",
-    title: "A single source of truth for cross-processor payment intelligence",
-    lede: "Payment, interchange, fee, settlement and dispute data lived in separate formats across two merchant processors. We designed a canonical payment data architecture on Snowflake.",
-    client: "A major payment network operating across multiple merchant processors",
+    tag: "Fintech · Payments",
+    title: "A single source of truth for multi-processor payment analytics",
+    lede: "Transaction, fee, and settlement data across two acquiring processors — each with its own formats, identifiers, and codes. We designed a canonical payment data model and evidence-based crosswalk that made cross-processor analytics defensible.",
+    client: "A large enterprise merchant operating across multiple acquiring processors",
     capabilities: ["Data & analytics", "Data engineering"],
     problem: [
-      "Payment data existed in two separate processor environments, each with its own schema, field naming conventions, and settlement logic. Interchange categories weren’t normalized. Fee structures were defined differently per processor. Dispute workflows produced records that couldn’t be compared without manual reconciliation.",
-      "Business stakeholders had no single view of payment performance across processors. Reports were built by pulling separate exports, aligning them manually, and accepting that the numbers wouldn’t always agree. The root cause wasn’t the reporting layer. It was the absence of a canonical model for what a payment is.",
+      "The client settled transactions through two acquiring processors — a common setup that optimizes cost and redundancy, but creates a significant data challenge. Each processor delivered transaction, fee, and settlement data in its own format, with its own table structures, transaction identifiers, and codes for the same underlying business concepts. Interchange categories weren't normalized. Fee structures were defined differently per processor.",
+      "Finance, operations, and analytics teams were spending significant manual effort reconciling these feeds line by line. Prior integration attempts had quietly assumed relationships between fields that were never confirmed — creating hidden risk in downstream reporting. Confidence in cross-processor analytics was low, and the root cause was the absence of a canonical model.",
     ],
     approach: [
       {
-        heading: "Source analysis and canonical model design",
-        body: "Mapped every field from both processor data feeds. Defined a canonical payment event schema, one definition of payment amount, settlement date, interchange category, and dispute status, that both sources would conform to after transformation. Built the source-to-target mappings and documented every business rule as a testable expectation.",
+        heading: "Evidence-first field mapping",
+        body: "Every mapping, code translation, and join key was validated against source data before being marked production-ready. Anything that could not be confirmed was explicitly flagged for subject-matter-expert review rather than assumed. Evidence over assumption governed the engagement from the first day.",
       },
       {
-        heading: "Pipeline build on Snowflake",
-        body: "Built automated ingestion pipelines for both processors into a Snowflake staging layer. Applied the canonical transformations in dbt, with data quality tests on every critical field. Failed records were quarantined and reported rather than silently dropped.",
+        heading: "Canonical data model with layered architecture",
+        body: "Designed a translation layer between raw processor feeds and the reporting environment. Raw processor data was preserved untouched for audit purposes, with all harmonization logic applied in a clearly separated transformation layer — maintaining traceability while enabling a clean, business-friendly reporting layer on top.",
       },
       {
-        heading: "Data quality framework",
-        body: "Defined quality thresholds for volume, completeness, and referential integrity. Automated alerts when thresholds were breached. Built a reconciliation layer that compared canonical records against processor settlement reports to detect drift.",
+        heading: "Decode and lookup library",
+        body: "Built a library of decode and lookup tables translating hundreds of processor-specific codes — interchange, plan, and downgrade codes — into plain-language business terms. A documented, evidence-based crosswalk identified which data elements could and could not be reliably compared across processors, turning previously invisible risk into a managed one.",
       },
       {
-        heading: "Power BI reporting layer",
-        body: "Built the reporting layer on top of the canonical model. Because the model was stable and tested, the reports derived from it were consistent. Business users could build their own views without worrying about which processor the data came from.",
+        heading: "Semantic layer and decision log",
+        body: "Delivered a semantic layer enabling consistent reporting on authorization performance, interchange cost, and fee attribution regardless of which processor handled a transaction. A formal decision log and gap register gave the client's technical teams a durable reference for how and why key modeling choices were made.",
       },
     ],
-    outcome: null,
-    tech: ["Snowflake", "dbt", "Power BI", "Python", "SQL"],
+    outcome: "A defensible, single source of truth for cross-processor payment analytics, replacing manual reconciliation, with a reusable architecture the client's teams can extend as new processors or data sources are added",
+    tech: ["Data modeling", "SQL", "Python", "ETL/ELT"],
     metric: null,
   },
+
   {
     slug: "revenue-intelligence",
-    tag: "Technology · Enterprise",
-    title: "Unified revenue intelligence across five go-to-market systems",
-    lede: "CRM, HR, quoting, payments and financials with no single view of revenue. We built a centralized BigQuery data lake with ETL/ELT pipelines, predictive forecasting, and anomaly detection.",
-    client: "A technology company with a distributed go-to-market operation",
+    tag: "Technology · AI & ML",
+    title: "GTM data modernization and AI/ML enablement for a high-growth AI company",
+    lede: "Revenue, pipeline, and workforce data spread across Salesforce, Workday, CPQ, Stripe, and NetSuite — no systematic early warning, no unified view. We built a BigQuery data lake with ML forecasting, anomaly detection, and Claude-based generative AI.",
+    client: "A high-growth AI research company with a rapidly scaling commercial operation",
     capabilities: ["Data & analytics", "AI & data"],
     problem: [
-      "Revenue data was distributed across five systems: CRM for opportunity tracking, HR for headcount and cost, a quoting tool for deal structure, a payments platform for actuals, and a financial system for accounting. None of them agreed on what ‘revenue’ meant.",
-      "Forecasting was done in spreadsheets. Anomalies were noticed when someone looked at the right report at the right time. There was no systematic view of where revenue was coming from, whether it was tracking to plan, or where it was likely to go.",
+      "Rapid growth created a GTM environment where critical revenue, customer, sales, billing, and workforce data existed across Salesforce, Workday, CPQ, Stripe, NetSuite, and related systems — with no single view of the GTM lifecycle. Manual reporting required reconciling exports from multiple platforms, and the numbers didn't always agree.",
+      "Beyond reconciliation, there was no systematic early warning when revenue was tracking off-plan, no proactive identification of anomalies, and no scalable way to automate the growing volume of repetitive operational workflows. Decision-making lagged behind the data that should have been informing it.",
     ],
     approach: [
       {
-        heading: "Source system inventory and data contracts",
-        body: "Documented the data model, update cadence, and reliability characteristics of each source system. Defined what each system owned: CRM owned opportunities, HR owned headcount, payments owned actuals. Established contracts for what each would produce.",
+        heading: "BigQuery GTM data lake and ETL/ELT pipelines",
+        body: "Built a Google BigQuery-based GTM data platform integrating Salesforce, Workday, CPQ, Stripe, NetSuite, and related systems. Optimized ETL/ELT pipelines ingested, transformed, reconciled, and normalized data across platforms — creating a unified foundation with one consistent definition of a revenue event.",
       },
       {
-        heading: "BigQuery data lake and ELT pipelines",
-        body: "Built optimized ELT pipelines from all five sources into a BigQuery staging layer. Modeled a unified revenue entity in dbt: one definition of a recognized revenue event that reconciled against both the quoting system and the accounting system.",
+        heading: "Predictive revenue forecasting",
+        body: "Developed revenue forecasting models analyzing historical and current GTM signals to provide improved visibility into expected revenue performance. The shift: from reporting what happened after the quarter closed to understanding where revenue was likely to land before it did.",
       },
       {
-        heading: "Forecasting and anomaly detection",
-        body: "Built predictive forecasting models on top of the unified revenue model. Layered anomaly detection to flag when actuals deviated from expected patterns: early warning rather than month-end surprise.",
+        heading: "Anomaly detection across the GTM lifecycle",
+        body: "Deployed anomaly detection across revenue, transactions, pipeline, billing, and operational data. Unusual patterns — a billing discrepancy, a pipeline concentration risk, a spend anomaly — surface in time for investigation rather than appearing in month-end reconciliation.",
+      },
+      {
+        heading: "Claude-based generative AI and intelligent automation",
+        body: "Incorporated Claude into enterprise GTM workflows to help users interact with complex business information, summarize relevant context, and assist with analysis. Connected the broader AI architecture: BigQuery for centralized data, ML models for prediction, Salesforce for engagement, and Claude for generative AI — each layer complementing the others.",
       },
     ],
-    outcome: "5 systems unified under a single revenue model",
-    tech: ["BigQuery", "dbt", "Python", "ETL/ELT", "Looker"],
-    metric: "5 systems unified",
-  },
-  {
-    slug: "conversational-incident-response",
-    tag: "Conversational AI · Financial services",
-    title: "A conversational AI platform for security incident response",
-    lede: "Investigation, evidence, and decisions lived in separate tools with no shared record of the reasoning behind an action. We built a conversation-first AI platform that investigates, weighs hypotheses against evidence, and routes every recommendation through human approval. Security operations was the first deployment, not the limit of the pattern.",
-    client: "A financial services security operations team",
-    capabilities: ["AI & data", "Applications & modernization", "Cybersecurity"],
-    problem: [
-      "Incident response ran across a patchwork of dashboards, chat threads, and ticketing tools. The investigation an analyst performed, the evidence that supported it, and the reasoning behind a recommended action were rarely captured in one place. Reconstructing why a decision was made meant piecing it back together after the fact.",
-      "Analysts needed a system that could investigate at machine speed without removing the human from the loop. Automating containment actions outright was a non-starter for a regulated environment; the requirement was a system that proposed, explained, and waited to be told yes.",
-    ],
-    approach: [
-      {
-        heading: "Conversation-first incident workspace",
-        body: "Every incident opens directly into a conversation with the agent rather than a separate ticket form. Investigation, evidence, and the decision checkpoint live as tabs inside that one record, so the agent's reasoning stays attached to the transcript that produced it.",
-      },
-      {
-        heading: "Evidence-weighted hypotheses",
-        body: "As the agent works an investigation plan, it tracks competing hypotheses with a live confidence weighting, updated as each tool call returns evidence. Analysts see not just a conclusion but the case for and against it.",
-      },
-      {
-        heading: "Structured agent activity, not chat bubbles",
-        body: "Tool calls render as structured events: a name, a status, a timestamp, a result, and the evidence it produced. An analyst can see exactly what the agent checked and what it found, in an audit-ready format from the start.",
-      },
-      {
-        heading: "Human approval, always",
-        body: "The agent recommends an action; it never executes one unaudited. An analyst can approve, modify, or reject the recommendation, and a modified action is recorded alongside the original rather than silently overwriting it. Every incident closes into a searchable, replayable transcript.",
-      },
-    ],
-    outcome: null,
-    tech: ["React", "LLM orchestration", "State machine architecture", "Audit logging"],
+    outcome: "Centralized GTM visibility across five enterprise systems, predictive revenue forecasting, anomaly detection, and a scalable foundation for enterprise AI adoption connecting traditional analytics, machine learning, and generative AI",
+    tech: ["BigQuery", "Python", "ETL/ELT", "ML forecasting", "Claude"],
     metric: null,
   },
+
+  // ── Full work page: remaining three ───────────────────────────────────
+
   {
     slug: "realtime-data-platform",
-    tag: "Financial services · Fortune 500",
-    title: "Real-time card delivery visibility under a 40ms latency budget",
-    lede: "A multi-stage Kafka streaming pipeline with DynamoDB persistence, SageMaker models, PII protection and a full audit trail, all inside a strict per-message latency SLA.",
-    client: "A Fortune 500 financial institution with a consumer card business",
-    capabilities: ["Data & analytics", "Cloud & platform engineering", "Technology talent"],
+    tag: "Financial services · Wealth management",
+    title: "Backend modernization for an enterprise wealth management workflow platform",
+    lede: "A legacy Linux-hosted backend supporting ~1 million workflow tasks per month, ~5,000 users, and 3-second dashboard load times. We rewrote it in Java 17 / Spring Boot 3.5 on Kubernetes — doubling capacity, cutting load time by 67%, and eliminating release dependencies for configuration changes.",
+    client: "A global financial services and wealth management organization",
+    capabilities: ["Applications & modernization", "Cloud & platform engineering", "Technology talent"],
     problem: [
-      "Card delivery events (production, dispatch, tracking, delivery confirmation) were processed in batch. Operations teams had no real-time view of where cards were in the delivery pipeline. When cards didn’t arrive, the first signal was a customer call.",
-      "The program required real-time event processing at production volume, with PII handling that met compliance requirements, a full audit trail for every record, and a latency budget of 40ms per message end-to-end. Senior engineers who could design to that constraint were needed on site within two weeks.",
+      "A workflow platform supporting approximately 5,000 users across a wealth management operation was hosted on traditional Linux server infrastructure with no path to horizontal scaling. Dashboard page-load times of approximately 3 seconds degraded analyst and advisor experience. Actual workflow volume — around 1 million tasks per month — was growing, and the architecture had no mechanism to handle it.",
+      "Supported configuration changes — tab layouts, role-based view behavior, column configuration — required a two-week release cycle even when no application code changed. The backend needed to be rebuilt around horizontal scalability, distributed coordination, and a configuration-driven deployment model. Patching the existing platform wasn't an option.",
     ],
     approach: [
       {
-        heading: "Architecture design under the latency constraint",
-        body: "Designed the pipeline starting from the latency budget, not the other way around. Each stage (ingest, transform, enrich, persist, score) was profiled against the budget. Kafka was chosen for ingest throughput and ordering guarantees. DynamoDB for persistence latency characteristics. SageMaker endpoints for inference with predictable p99 latency.",
+        heading: "Co-designed target architecture",
+        body: "A TOPSYS backend engineer worked alongside the client's architect to co-design the target architecture before writing production code. The approved design defined the REST API contract, federated search strategy across Elasticsearch and Fusion/Solr, Redis-based distributed coordination, and the Kubernetes deployment model.",
       },
       {
-        heading: "PII protection and audit trail",
-        body: "Built PII tokenization at the ingest boundary: raw identifiers never persisted in intermediate stages. Implemented a replayable audit log for every message transformation, satisfying compliance requirements for data lineage.",
+        heading: "Java 17 / Spring Boot 3.5 backend rewrite",
+        body: "Rewrote the backend using Java 17 and Spring Boot 3.5. Federated search spanned Elasticsearch for active workflows and Fusion/Solr for archived workflows. Redis distributed locking prevented concurrent application instances from claiming the same workflow task. Entitlement and authorization rules enforced before any results returned to users.",
       },
       {
-        heading: "SageMaker model integration",
-        body: "Integrated SageMaker inference into the pipeline for delivery risk scoring. Model invocations were synchronous within the latency budget. Fallback logic handled endpoint cold starts without dropping the latency SLA.",
+        heading: "Kubernetes deployment and CI/CD",
+        body: "Deployed the redesigned application on Kubernetes with horizontal scaling from 4 to up to 15 pods under demand. Blue/green deployment and business-continuity coordination were built into the release process. TeamCity CI/CD and Grafana/Loki observability provided production visibility from day one.",
       },
       {
-        heading: "Staff deployment",
-        body: "Deployed senior engineers on site within the two-week requirement. Engineers joined the client team’s sprint cadence and were accountable to the same delivery milestones.",
+        heading: "Configuration-driven capabilities",
+        body: "Moved tabs, columns, views, filters, and role-related behavior to configuration, eliminating the two-week release cycle for supported changes. Configuration updates that previously required an application deployment can now be introduced independently. AI-assisted engineering supported code analysis, implementation, and refactoring during the six-month rewrite.",
+      },
+    ],
+    outcome: "Dashboard page-load time reduced ~67% (3 seconds to 1 second), supported user capacity doubled from ~5,000 to 10,000+, and actual production workflow volume grew from ~1M to ~2M tasks per month, with a 99.9% production SLA",
+    tech: ["Java 17", "Spring Boot 3.5", "Kubernetes", "Elasticsearch", "Redis", "TeamCity", "Grafana", "Loki", "Fusion/Solr"],
+    metric: "67% faster load · 2× capacity",
+  },
+
+  {
+    slug: "platform-engineering",
+    tag: "Telecommunications · Fortune 500",
+    title: "Cloud infrastructure modernization and DevOps at telco scale",
+    lede: "300+ EC2 instances, 20+ Kubernetes clusters, 500+ microservices, and a self-managed Kafka infrastructure growing harder to operate at scale. We modernized the cloud platform, migrated to AWS MSK, and integrated Claude-based AI into security vulnerability remediation workflows.",
+    client: "A major US telecommunications carrier",
+    capabilities: ["Cloud & platform engineering", "AI & data", "Technology talent"],
+    problem: [
+      "A large-scale, business-critical application environment required reliable cloud infrastructure across 300+ EC2 instances and 20+ Kubernetes clusters supporting 500+ microservices. The environment ran 20+ production deployments per week and ongoing daily non-production deployments — delivery consistency and infrastructure stability had to hold simultaneously.",
+      "Traditional self-managed Apache Kafka infrastructure was generating significant operational overhead as message volumes grew to millions of events per day. Vulnerability identification and remediation was a manual process, creating lag between discovery and resolution that an organization operating at this scale couldn't sustain.",
+    ],
+    approach: [
+      {
+        heading: "Terraform infrastructure as code and Ansible automation",
+        body: "Implemented Terraform for repeatable, standardized AWS infrastructure provisioning across compute, storage, networking, identity, and load balancing. Ansible automated Linux configuration and patching across 300+ EC2 instances. Infrastructure configuration drift became visible and correctable rather than discovered during incidents.",
+      },
+      {
+        heading: "Kubernetes, GitLab CI/CD, and delivery standardization",
+        body: "Managed 20+ Kubernetes clusters using Docker and Helm for containerized workloads. GitLab CI/CD automated application delivery across environments, supporting 20+ production deployments per week alongside daily non-production deployments. Standardized delivery pipelines replaced inconsistent per-service approaches.",
+      },
+      {
+        heading: "Kafka to AWS MSK migration",
+        body: "Migrated traditional self-managed Apache Kafka workloads to Amazon Managed Streaming for Apache Kafka (MSK). The migration reduced the infrastructure and operational overhead of managing Kafka clusters directly — capacity planning, maintenance, patching, cluster administration — and contributed to a broader cost optimization initiative achieving 40%+ overall cost reduction.",
+      },
+      {
+        heading: "Claude-based AI-assisted vulnerability remediation",
+        body: "Integrated Claude and AI agents into selected GitLab-based engineering workflows for vulnerability analysis, patch preparation, and remediation proposals. AI assistance accelerates analysis and fix preparation; CI/CD validation and engineering review remain in the workflow before deployment. Engineers own the decision; the AI handles the first-pass investigation.",
       },
     ],
     outcome: null,
-    tech: ["Kafka", "DynamoDB", "SageMaker", "AWS", "Python", "Java"],
-    metric: "40ms SLA",
+    tech: ["AWS", "Terraform", "Kubernetes", "Helm", "GitLab CI/CD", "Apache Kafka", "AWS MSK", "Ansible", "Prometheus", "Grafana", "Claude"],
+    metric: "40%+ cloud cost reduction",
   },
+
   {
     slug: "health-data-integration",
     tag: "Healthcare · Enterprise",
@@ -149,13 +195,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: "A multi-site health system operating across several facilities",
     capabilities: ["Data & analytics", "Data engineering", "Cybersecurity"],
     problem: [
-      "Clinical data was produced by multiple EMR systems across different facilities. Each system used HL7 2.x messaging with inconsistent field population: the same data element implemented differently across sites. Patient matching across facilities wasn’t automated: a patient who visited two sites existed as two unrelated records.",
+      "Clinical data was produced by multiple EMR systems across different facilities. Each system used HL7 2.x messaging with inconsistent field population: the same data element implemented differently across sites. Patient matching across facilities wasn't automated: a patient who visited two sites existed as two unrelated records.",
       "The absence of a unified patient record meant that population health analysis required manual data pulls from each system. Care gap analysis was running weeks behind. Regulatory reporting took longer than it should because nobody trusted the numbers that came out automatically.",
     ],
     approach: [
       {
         heading: "HL7 2.x ingestion and normalization",
-        body: "Built message handlers for HL7 2.x ADT, ORM, and ORU message types. Normalized inconsistent field usage across sending systems by documenting each site’s implementation and building site-specific transformation rules that produced a consistent intermediate representation.",
+        body: "Built message handlers for HL7 2.x ADT, ORM, and ORU message types. Normalized inconsistent field usage across sending systems by documenting each site's implementation and building site-specific transformation rules that produced a consistent intermediate representation.",
       },
       {
         heading: "FHIR R4 conversion and patient matching",
@@ -172,39 +218,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     outcome: null,
     tech: ["FHIR R4", "HL7 2.x", "dbt", "Snowflake", "Python", "AWS (HIPAA-eligible services)"],
-    metric: null,
-  },
-  {
-    slug: "platform-engineering",
-    tag: "Technology · Platform",
-    title: "Internal developer platform for a distributed engineering organization",
-    lede: "Forty microservices, six teams, four different CI/CD approaches. We standardized on Kubernetes with GitOps, Terraform modules, and a centralized observability layer.",
-    client: "A technology company with a distributed engineering organization",
-    capabilities: ["Cloud & platform engineering", "Technology talent"],
-    problem: [
-      "A growing engineering organization had accumulated infrastructure debt in proportion to its product velocity. Forty microservices were deployed across six teams using four different CI/CD pipelines. Terraform was owned by one person. Infrastructure provisioning was done by hand for anything outside the happy path.",
-      "Deployments were inconsistent. Runbooks differed by service. Observability was partial: some services emitted metrics, others didn’t. When something broke in production, correlating the failure across services was a manual process that depended on knowing who owned what.",
-    ],
-    approach: [
-      {
-        heading: "Standards before tooling",
-        body: "Started with a service catalog: what exists, who owns it, what it depends on. Established standards for service structure, deployment manifests, and observability instrumentation before touching any tooling. Teams could see where their services sat against the standard.",
-      },
-      {
-        heading: "GitOps with ArgoCD",
-        body: "Migrated CI/CD to a GitOps model with ArgoCD managing Kubernetes deployments. Application configuration in Git became the source of truth for what was deployed. Drift between the declared state and the running state became visible and automatically reconciled.",
-      },
-      {
-        heading: "Terraform module library",
-        body: "Built a library of Terraform modules for the infrastructure patterns teams actually used: EKS clusters, RDS instances, S3 buckets with standardized IAM, VPC configurations. Teams provisioned infrastructure by consuming modules with documented inputs, not by writing Terraform from scratch.",
-      },
-      {
-        heading: "Centralized observability",
-        body: "Deployed Prometheus and Grafana with standard dashboards for the service patterns in use. Required every service to emit the four golden signals. Built alert routing so that production failures went to the right team without manual escalation.",
-      },
-    ],
-    outcome: null,
-    tech: ["Kubernetes", "Helm", "ArgoCD", "Terraform", "GitHub Actions", "Prometheus", "Grafana", "AWS EKS"],
     metric: null,
   },
 ];

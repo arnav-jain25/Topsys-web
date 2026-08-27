@@ -40,7 +40,7 @@ export default function WorkPage() {
             Work that runs in production.
           </h1>
           <p className="text-lede text-ink-2 mt-5" style={{ maxWidth: "58ch" }}>
-            Five programs. Three sectors. No positioning, just the architecture,
+            Six programs. Five sectors. No positioning, just the architecture,
             the problem, and what we built.
           </p>
           <p className="text-body-xs text-ink-muted mt-3">
