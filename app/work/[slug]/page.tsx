@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 import { CapabilitiesBar } from "./CapabilitiesBar";
 import { ProblemSection } from "./ProblemSection";
 import { ApproachSteps } from "./ApproachSteps";
-import { OutcomeSection } from "./OutcomeSection";
+import { ImpactSection } from "./ImpactSection";
 import { TechStack } from "./TechStack";
 
 /* ── Static generation ─────────────────────────────────────────────────── */
@@ -115,7 +115,7 @@ export default async function CaseStudyPage({
       {/* ================================================================
           OUTCOME — inverted (only if present), count-up on reveal
           ================================================================ */}
-      {cs.outcome !== null && <OutcomeSection outcome={cs.outcome} />}
+      {cs.impact && <ImpactSection {...cs.impact} />}
 
       {/* ================================================================
           TECH FOOTER — paper, tags stagger on scroll

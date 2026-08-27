@@ -1,3 +1,20 @@
+export interface ImpactMetric {
+  value: string;    // e.g. "67%", "2×", "40%+"
+  label: string;    // e.g. "faster dashboard load"
+  detail?: string;  // e.g. "3 sec → 1 sec"
+}
+
+export interface ImpactStatement {
+  heading: string;
+  body: string;
+}
+
+export interface Impact {
+  headline: string;
+  metrics?: ImpactMetric[];
+  statements?: ImpactStatement[];
+}
+
 export interface CaseStudy {
   slug: string;
   tag: string;          // e.g. "Financial services · Fortune 500"
@@ -8,6 +25,7 @@ export interface CaseStudy {
   problem: string[];    // paragraphs
   approach: { heading: string; body: string }[]; // numbered steps or phases
   outcome: string | null; // null if pending/NDA
+  impact?: Impact;
   tech: string[];
   metric: string | null; // null if not confirmed
 }
@@ -45,6 +63,23 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     outcome: "Centralized GTM visibility with intelligent conversational access replacing manual system navigation across Salesforce, Workday, CPQ, Stripe, and NetSuite",
+    impact: {
+      headline: "GTM operations on a single, intelligent foundation",
+      statements: [
+        {
+          heading: "Five systems, one interface",
+          body: "Salesforce, Workday, CPQ, Stripe, and NetSuite unified under a single BigQuery data foundation. Teams reach pipeline, account, and operational context through natural language rather than navigating each system independently.",
+        },
+        {
+          heading: "Repetitive operations automated",
+          body: "Reconciliation tasks, status updates, and exception identification moved from manual system-hopping to AI-assisted workflows. Operational capacity scales with automation, not headcount, as the organization grows.",
+        },
+        {
+          heading: "Earlier anomaly identification",
+          body: "Revenue, pipeline, and billing anomalies surface in time for investigation rather than appearing in month-end reconciliation — shifting the operating model from reactive to proactive.",
+        },
+      ],
+    },
     tech: ["Salesforce Agentforce", "BigQuery", "Claude", "ETL/ELT", "Python"],
     metric: null,
   },
@@ -79,6 +114,23 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     outcome: "A defensible, single source of truth for cross-processor payment analytics, replacing manual reconciliation, with a reusable architecture the client's teams can extend as new processors or data sources are added",
+    impact: {
+      headline: "Payment analytics the business can trust",
+      statements: [
+        {
+          heading: "Cross-processor analytics made defensible",
+          body: "A single, auditable canonical model replaces manual, ad hoc reconciliation across two acquiring processors. Finance, operations, and analytics teams work from one source of truth — regardless of which processor handled a given transaction.",
+        },
+        {
+          heading: "Previously invisible risk documented",
+          body: "Unverified field assumptions quietly embedded in prior integration attempts are now confirmed, resolved, or explicitly flagged — turning hidden misreporting risk into a managed, visible one.",
+        },
+        {
+          heading: "Architecture built to grow",
+          body: "The canonical model, decode library, and decision log extend to new processors or data sources as the business adds them. The foundation doesn't need to be rebuilt; it gets extended.",
+        },
+      ],
+    },
     tech: ["Data modeling", "SQL", "Python", "ETL/ELT"],
     metric: null,
   },
@@ -113,6 +165,30 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     outcome: "Centralized GTM visibility across five enterprise systems, predictive revenue forecasting, anomaly detection, and a scalable foundation for enterprise AI adoption connecting traditional analytics, machine learning, and generative AI",
+    impact: {
+      headline: "From reporting what happened to knowing what's next",
+      metrics: [
+        {
+          value: "5",
+          label: "GTM systems unified",
+          detail: "Salesforce · Workday · CPQ · Stripe · NetSuite",
+        },
+      ],
+      statements: [
+        {
+          heading: "Revenue intelligence, not just reporting",
+          body: "ML forecasting models analyze historical and current GTM signals to surface where revenue is likely to land — before the quarter closes, not after it has.",
+        },
+        {
+          heading: "Anomaly detection across the full lifecycle",
+          body: "Unusual patterns in revenue, transactions, pipeline, billing, and operational data surface automatically, giving teams time to investigate rather than reconcile.",
+        },
+        {
+          heading: "AI architecture built for scale",
+          body: "BigQuery, ML models, Agentforce, and Claude connected into one coherent architecture. Each layer builds on the others; none operates in isolation.",
+        },
+      ],
+    },
     tech: ["BigQuery", "Python", "ETL/ELT", "ML forecasting", "Claude"],
     metric: null,
   },
@@ -149,6 +225,31 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     outcome: "Dashboard page-load time reduced ~67% (3 seconds to 1 second), supported user capacity doubled from ~5,000 to 10,000+, and actual production workflow volume grew from ~1M to ~2M tasks per month, with a 99.9% production SLA",
+    impact: {
+      headline: "Measurable improvement across every dimension that matters",
+      metrics: [
+        {
+          value: "67%",
+          label: "faster dashboard load",
+          detail: "~3 sec → ~1 sec",
+        },
+        {
+          value: "2×",
+          label: "user capacity",
+          detail: "~5,000 → 10,000+ supported",
+        },
+        {
+          value: "2M",
+          label: "tasks per month",
+          detail: "up from ~1M — actual production volume",
+        },
+        {
+          value: "3.75×",
+          label: "horizontal scale",
+          detail: "4 pods → up to 15 under demand",
+        },
+      ],
+    },
     tech: ["Java 17", "Spring Boot 3.5", "Kubernetes", "Elasticsearch", "Redis", "TeamCity", "Grafana", "Loki", "Fusion/Solr"],
     metric: "67% faster load · 2× capacity",
   },
@@ -183,6 +284,31 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     outcome: null,
+    impact: {
+      headline: "Platform operating at scale — cost and complexity both reduced",
+      metrics: [
+        {
+          value: "40%+",
+          label: "cloud cost reduction",
+          detail: "across the full TFB environment",
+        },
+        {
+          value: "500+",
+          label: "microservices managed",
+          detail: "across 20+ Kubernetes clusters",
+        },
+        {
+          value: "20+",
+          label: "production deployments",
+          detail: "per week, sustained",
+        },
+        {
+          value: "300+",
+          label: "EC2 instances",
+          detail: "standardized under Terraform",
+        },
+      ],
+    },
     tech: ["AWS", "Terraform", "Kubernetes", "Helm", "GitLab CI/CD", "Apache Kafka", "AWS MSK", "Ansible", "Prometheus", "Grafana", "Claude"],
     metric: "40%+ cloud cost reduction",
   },
@@ -217,6 +343,23 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     outcome: null,
+    impact: {
+      headline: "Clinical data unified — analytics and reporting unblocked",
+      statements: [
+        {
+          heading: "One patient record across facilities",
+          body: "Patients who visited multiple sites existed as separate, unrelated records. Probabilistic and deterministic matching linked them while preserving the source record and the rationale for each match.",
+        },
+        {
+          heading: "Regulatory reporting on a trustworthy foundation",
+          body: "Population health analysis and care gap reporting moved from manual, time-lagged data pulls from each EMR to a tested, consistent clinical data warehouse stakeholders could rely on.",
+        },
+        {
+          heading: "HIPAA-aligned by design",
+          body: "PHI access scoped to roles and use cases from the start, with audit logging and encryption at rest and in transit built into the pipeline architecture — not retrofitted after.",
+        },
+      ],
+    },
     tech: ["FHIR R4", "HL7 2.x", "dbt", "Snowflake", "Python", "AWS (HIPAA-eligible services)"],
     metric: null,
   },
