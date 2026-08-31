@@ -28,7 +28,7 @@ export default function HomePage() {
           padding: "5.5rem 0 3.5rem",
           backgroundImage: [
             "linear-gradient(to bottom, transparent 65%, #061C32 100%)",
-            "radial-gradient(ellipse 85% 110% at 88% 72%, rgba(141,198,62,0.16), transparent 100%)",
+            "radial-gradient(ellipse 42% 55% at 100% 100%, rgba(141,198,62,0.28), transparent 100%)",
           ].join(", "),
         }}
         aria-label="Hero"
@@ -69,8 +69,9 @@ export default function HomePage() {
         aria-hidden="true"
         style={{
           height: "260px",
+          marginTop: "-2px",
           backgroundImage: [
-            "radial-gradient(ellipse 70% 55% at 72% 0%, rgba(141,198,62,0.09), transparent 65%)",
+            "radial-gradient(ellipse 42% 55% at 100% 0%, rgba(141,198,62,0.10), transparent 65%)",
             "linear-gradient(180deg, #061C32 0%, #0C2D48 12%, #163D5C 25%, #234E72 38%, rgba(40,95,135,0.80) 50%, rgba(80,150,185,0.42) 64%, rgba(165,210,225,0.15) 80%, transparent 100%)",
           ].join(", "),
         }}
