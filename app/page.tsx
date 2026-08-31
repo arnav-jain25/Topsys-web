@@ -27,10 +27,8 @@ export default function HomePage() {
           minHeight: "78vh",
           padding: "5.5rem 0 3.5rem",
           backgroundImage: [
-            "linear-gradient(to bottom, transparent 60%, #061C32 100%)",
-            "radial-gradient(ellipse 75% 90% at 100% 100%, rgba(13,82,120,0.55), transparent 100%)",
-            "radial-gradient(ellipse 65% 55% at 85% 5%, rgba(13,82,120,0.22), transparent 100%)",
-            "linear-gradient(125deg, #0B2742 0%, #061C32 45%, #0C2D48 100%)",
+            "linear-gradient(to bottom, transparent 65%, #061C32 100%)",
+            "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
         }}
         aria-label="Hero"
