@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { INSIGHTS } from "@/lib/insights";
 
 interface Props {
@@ -130,7 +129,6 @@ export default async function InsightPage({ params }: Props) {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { US_STATES } from "@/lib/us-states-geometry";
@@ -134,7 +134,7 @@ export function USMap() {
                 : isActive
                 ? "rgba(141,198,62,0.82)"
                 : isServed
-                ? "#0B2F38"
+                ? "#0B2742"
                 : "#E8E5DC";
 
               const stroke = isHQ

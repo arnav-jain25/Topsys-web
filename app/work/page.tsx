@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { CaseStudyList } from "./CaseStudyList";
 
 export const metadata: Metadata = {
@@ -76,7 +75,6 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

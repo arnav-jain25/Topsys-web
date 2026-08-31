@@ -14,11 +14,11 @@
 
 @theme {
   /* --- Colour: light ground -------------------------------------------- */
-  --color-paper: #f4efe3;           /* page background — warm beige, never pure white */
-  --color-surface: #ece3d0;         /* raised regions */
-  --color-sunken: #e0d4b8;          /* input fills */
-  --color-hairline: #d6c9ab;        /* default 1px borders */
-  --color-hairline-strong: #b7a67f; /* hover borders, emphasis rules */
+  --color-paper: #FEFEFE;           /* page background — near-pure white, barely warm */
+  --color-surface: #F5F4F3;         /* raised regions */
+  --color-sunken: #EBEBEA;          /* input fills */
+  --color-hairline: #E1DFDD;        /* default 1px borders */
+  --color-hairline-strong: #C5C3BF; /* hover borders, emphasis rules */
 
   /* --- Colour: ink ------------------------------------------------------ */
   --color-ink: #0e1a1f;             /* primary text — petrol-tinted near-black */
@@ -26,14 +26,14 @@
   --color-ink-muted: #3D5560;       /* captions, metadata */
 
   /* --- Colour: interaction on light ------------------------------------- */
-  --color-teal: #0e5a66;            /* links, primary buttons, focus. Interaction only. */
-  --color-teal-hover: #0a454e;
-  --color-teal-tint: #e2eeef;       /* selected states, subtle fills */
+  --color-teal: #0d5278;            /* links, primary buttons, focus. Interaction only. */
+  --color-teal-hover: #0a3f62;
+  --color-teal-tint: #e0eef4;       /* selected states, subtle fills */
 
   /* --- Colour: inverted ground ------------------------------------------ */
-  --color-field-deep: #06232a;      /* deepest ground — footer, closing CTA */
-  --color-field: #0b2f38;           /* standard inverted section */
-  --color-field-raised: #123f4a;    /* cards on field */
+  --color-field-deep: #061C32;      /* deepest ground — footer, closing CTA */
+  --color-field: #0B2742;           /* standard inverted section */
+  --color-field-raised: #113652;    /* cards on field */
   --color-field-hairline: rgba(255, 255, 255, 0.14);
   --color-on-field: #eaf2f1;        /* text on field */
   --color-on-field-2: #c6d9d8;      /* secondary text on field */
@@ -43,6 +43,13 @@
      meaningful. Permitted on light only as structural marks conveying nothing. */
   --color-signal: #8dc63e;
   --color-signal-hi: #a2d95a;
+
+  /* --- Colour: lavender ---------------------------------------------------
+     ON FIELD-DEEP ONLY. Client-requested accent, not part of the documented
+     CLAUDE.md palette — added deliberately for the hero fork copy and stat
+     rail, at the client's direction. Do not extend to new surfaces without
+     the same sign-off this one had. */
+  --color-lavender: #c4b5fd;
 
   /* --- Type: display scale (Archivo) ------------------------------------ */
   --text-display-1: clamp(2.25rem, 4.9vw, 5.5rem);    /* 36 -> 88 · hero h1 */
@@ -212,7 +219,7 @@
    ========================================================================= */
 
 :root {
-  --gradient-signature: linear-gradient(90deg, #0e5a66 0%, #2c8a6e 55%, #8dc63e 100%);
+  --gradient-signature: linear-gradient(90deg, #0d5278 0%, #2c8a6e 55%, #8dc63e 100%);
   --gradient-signature-field: linear-gradient(90deg, #8dc63e, #b6e86a);
 }
 
@@ -728,43 +735,6 @@
   .signal-ping-dot { animation: none !important; left: 50% !important; opacity: 0.35 !important; }
 }
 
-/* =========================================================================
-   Hero background — infrastructure topology trace + node pulse
-   ========================================================================= */
-
-@keyframes hbg-trace {
-  from { stroke-dashoffset: 1; }
-  to   { stroke-dashoffset: 0; }
-}
-
-@keyframes hbg-pulse {
-  0%, 100% { opacity: 0.72; }
-  50%       { opacity: 1;    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hbg-edge { animation: none !important; stroke-dashoffset: 0 !important; }
-  .hbg-node { animation: none !important; opacity: 0.8 !important; }
-}
-
-/* =========================================================================
-   Hero globe — country marker pulse rings
-   ========================================================================= */
-
-@keyframes globe-ring-outer {
-  0%   { transform: scale(1);   opacity: 0.45; }
-  100% { transform: scale(2.2); opacity: 0;    }
-}
-
-@keyframes globe-ring-inner {
-  0%   { transform: scale(1);   opacity: 0.70; }
-  100% { transform: scale(1.9); opacity: 0;    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [style*="globe-ring"] { animation: none !important; }
-}
-
 @keyframes map-spotlight-in {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: none; }
@@ -783,6 +753,221 @@
 @keyframes dual-title-rise {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
+}
+
+/* =========================================================================
+   Hero fork — the positioning as structure.
+
+   A spine enters at the left and a rule extends from each label toward the
+   door it opens: build the system, build the team, or both. Lines extend once
+   on load and stop; nothing here loops. Hover dims the branch you are not
+   pointing at, using the same :has() sibling-dim as the dual model below.
+   ========================================================================= */
+
+.hero-fork {
+  margin-top: clamp(2rem, 3.6vw, 3.25rem);
+  max-width: 64rem;
+}
+
+.hero-fork-branches {
+  border-left: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.hero-branch {
+  display: grid;
+  grid-template-columns: 2.25rem auto 1fr auto;
+  align-items: center;
+  gap: 0 1.25rem;
+  min-height: 56px;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--color-field-hairline);
+  text-decoration: none;
+}
+
+.hero-branch:first-child {
+  border-top: 1px solid var(--color-field-hairline);
+}
+
+.hero-branch:hover {
+  text-decoration: none;
+}
+
+/* The short connector off the spine. */
+.hero-branch-stub {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.hero-branch-label {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1.9vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-lavender);
+}
+
+/* The rule that extends toward the door. Draws once, 500ms, staggered. */
+.hero-branch-rule {
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(141, 198, 62, 0.62) 100%
+  );
+  animation: topsys-rule-extend var(--duration-slow) var(--ease-standard) both;
+}
+
+.hero-branch:nth-child(1) .hero-branch-rule {
+  animation-delay: 260ms;
+}
+
+.hero-branch:nth-child(2) .hero-branch-rule {
+  animation-delay: 540ms;
+}
+
+/* The global reduced-motion rule zeroes duration but not delay. The hero has
+   to render its finished state, not pop in half a second late. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-branch-rule {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+.hero-branch-cta {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-signal);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.hero-branch:hover .hero-branch-cta {
+  color: var(--color-signal-hi);
+}
+
+/* Only the branch you are not pointing at recedes. */
+.hero-fork-branches:has(.hero-branch:hover) .hero-branch {
+  opacity: 0.5;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.hero-fork-branches:has(.hero-branch:hover) .hero-branch:hover {
+  opacity: 1;
+}
+
+.hero-fork-both {
+  margin-top: 1.1rem;
+  padding-left: 3.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+@media (width < 48rem) {
+  .hero-branch {
+    grid-template-columns: 1.25rem 1fr;
+    row-gap: 0.55rem;
+    align-items: start;
+  }
+
+  /* The extending rule needs a row of its own to read at this width. */
+  .hero-branch-rule {
+    grid-column: 2;
+  }
+
+  .hero-branch-cta {
+    grid-column: 2;
+  }
+
+  .hero-branch-stub {
+    margin-top: 0.75rem;
+  }
+
+  .hero-fork-both {
+    padding-left: 2.5rem;
+  }
+}
+
+/* =========================================================================
+   Hero ground — the stack, set as a near-silent field behind the hero.
+
+   Ordered legacy to modern, left to right, so the field states the
+   modernization thesis on its own. Masked from the upper right so it never
+   competes with the headline or the fork, and dropped entirely below 64rem
+   where the copy needs the full width.
+   ========================================================================= */
+
+/* Sized and positioned to the headline + lede only (measured against the
+   copy, not guessed) — it ends well above the fork, it never becomes a
+   second background for the whole hero. */
+.hero-ground {
+  position: absolute;
+  inset: 11% 5% auto auto;
+  width: 44%;
+  height: 34%;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(
+    120% 130% at 85% 15%,
+    #000 0%,
+    #000 45%,
+    transparent 92%
+  );
+  -webkit-mask-image: radial-gradient(
+    120% 130% at 85% 15%,
+    #000 0%,
+    #000 45%,
+    transparent 92%
+  );
+}
+
+.hero-ground-field {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-content: center;
+  justify-items: start;
+  gap: 1.5rem 1rem;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-mono);
+  font-size: clamp(0.6875rem, 0.85vw, 0.9375rem);
+  line-height: 1.4;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.hero-ground-field span {
+  display: inline-block;
+  max-width: 100%;
+  color: rgba(234, 242, 241, 0.18);
+  animation-name: hero-ground-glow;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hero-ground-glow {
+  0%, 84%, 100% {
+    color: rgba(234, 242, 241, 0.18);
+    text-shadow: none;
+  }
+  90% {
+    color: var(--color-lavender);
+    text-shadow: 0 0 10px rgba(196, 181, 253, 0.4);
+  }
+}
+
+@media (width < 64rem) {
+  .hero-ground {
+    display: none;
+  }
 }
 
 /* ============================================================================

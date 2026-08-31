@@ -1,17 +1,14 @@
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { HeroBg } from "@/components/sections/HeroBg";
-import { HeroGlobe } from "@/components/sections/HeroGlobe";
+import { HeroFork } from "@/components/sections/HeroFork";
+import { HeroGround } from "@/components/sections/HeroGround";
 import {
   StatBar,
   ServicesShowcase,
   DualModel,
   USMap,
-  CaseStudyGrid,
   HowWeWork,
-  InsightsAccordion,
   CareerStrip,
-  CTASection,
   TestimonialsStrip,
   ClientProofStrip,
 } from "@/components/sections";
@@ -25,44 +22,43 @@ export default function HomePage() {
           HERO
           ================================================================ */}
       <section
-        className="relative flex flex-col justify-center overflow-hidden"
-        style={{ minHeight: "78vh", padding: "5.5rem 0 3.5rem", background: "var(--color-field-deep)" }}
+        className="on-field-deep relative flex flex-col justify-center overflow-hidden"
+        style={{
+          minHeight: "78vh",
+          padding: "5.5rem 0 3.5rem",
+          backgroundImage: [
+            "linear-gradient(to bottom, transparent 65%, #061C32 100%)",
+            "radial-gradient(circle 42vw at 90% 95%, rgba(141,198,62,0.22), transparent 100%)",
+          ].join(", "),
+        }}
         aria-label="Hero"
       >
-        {/* Purple particle constellation background + orbiting globe */}
-        <HeroBg />
-        <HeroGlobe />
+        {/* The stack we work in, legacy to modern — silent ground, upper right */}
+        <HeroGround />
 
-        <div className="wrap relative z-[2] hero-copy-grid w-full">
-          <div className="hero-copy">
+        <div className="wrap relative z-[2] w-full">
+          <div className="max-w-[72rem]">
             <HeroHeading dark />
-            <p
-              className="text-on-field-2 font-medium max-w-[54ch] mb-10"
-              style={{ fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)", lineHeight: 1.6 }}
-            >
+            <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
               Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
             </p>
-            <div className="flex gap-3 flex-wrap max-[600px]:[&>a]:w-full">
+
+            {/* Build the solution, build the team, or both — the two doors */}
+            <HeroFork />
+
+            <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
+              <div className="flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm uppercase tracking-[.06em] text-lavender">
+                <span>20+ years</span>
+                <span>30 state engagements</span>
+                <span>4 countries</span>
+                <span>MBE certified</span>
+              </div>
               <Button
                 href="/contact"
-                className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px] !bg-signal !text-field-deep hover:!bg-[#A2D95A] before:!hidden"
+                className="max-[600px]:w-full !bg-signal !text-field-deep hover:!bg-signal-hi before:!hidden"
               >
                 Talk to us
               </Button>
-              <Button
-                href="/capabilities"
-                variant="secondary"
-                className="min-[1440px]:h-[56px] min-[1440px]:px-8 min-[1440px]:text-[16px] !border-white/25 !text-on-field hover:!border-signal hover:!text-signal"
-                style={{ background: "rgba(18,63,74,0.80)" }}
-              >
-                Explore services
-              </Button>
-            </div>
-            <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm min-[1440px]:text-[15px] uppercase tracking-[.06em]" style={{ color: "#C4B5FD" }}>
-              <span>20+ years</span>
-              <span>30 state engagements</span>
-              <span>4 countries</span>
-              <span>MBE certified</span>
             </div>
           </div>
         </div>
@@ -73,7 +69,7 @@ export default function HomePage() {
         aria-hidden="true"
         style={{
           height: "260px",
-          background: "linear-gradient(180deg, #06232A 0%, #0b3540 10%, #1a5060 28%, #4a8f95 48%, rgba(168,205,208,0.55) 68%, rgba(220,235,235,0.18) 85%, transparent 100%)",
+          background: "linear-gradient(180deg, #061C32 0%, #0A2B48 10%, #143B60 28%, #3D82A0 48%, rgba(168,205,208,0.55) 68%, rgba(220,235,235,0.18) 85%, transparent 100%)",
         }}
       />
 
@@ -104,16 +100,32 @@ export default function HomePage() {
           <Eyebrow dark>The model</Eyebrow>
           <CyclingModelHeading />
           <p className="text-lede text-on-field-2 font-medium max-w-[64ch] mt-6">
-            Most firms make you choose. A consultancy scopes your program and staffs it with people you didn't pick. A staffing vendor sends résumés and steps back at onboarding. We do both, with the same engineering standard and the same accountability, as one firm.
+            Most firms make you choose. A consultancy scopes and staffs with people you didn't pick. A staffing vendor sends résumés and disappears at onboarding. We do both — and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
           </p>
           <DualModel />
         </div>
       </section>
 
       {/* ================================================================
+          HOW WE WORK
+          ================================================================ */}
+      <section style={{ padding: "8rem 0" }}>
+        <div className="wrap">
+          <Eyebrow>How we work</Eyebrow>
+          <h2
+            className="font-display font-medium text-ink mt-4"
+            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
+          >
+            How engagements run
+          </h2>
+          <HowWeWork />
+        </div>
+      </section>
+
+      {/* ================================================================
           PUBLIC SECTOR
           ================================================================ */}
-      <section id="public-sector" style={{ padding: "3rem 0 8rem" }}>
+      <section id="public-sector" className="bg-surface" style={{ padding: "5rem 0 8rem" }}>
         <div className="wrap">
           <Eyebrow>Public sector</Eyebrow>
           <h2
@@ -156,61 +168,7 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
-          CASE STUDIES — inverted
-          ================================================================ */}
-      <section id="work" className="on-field" style={{ padding: "8rem 0" }}>
-        <div className="wrap">
-          <Eyebrow dark>Case studies</Eyebrow>
-          <h2
-            className="font-display font-medium text-on-field mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
-          >
-            Proof, not positioning.
-          </h2>
-          <CaseStudyGrid limit={3} />
-          <div className="mt-10 flex justify-end">
-            <Button href="/work" variant="secondary" className="!border-on-field-2/40 !text-on-field hover:!border-signal hover:!text-signal">View all case studies →</Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          HOW WE WORK
-          ================================================================ */}
-      <section style={{ padding: "8rem 0" }}>
-        <div className="wrap">
-          <Eyebrow>How we work</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
-          >
-            How engagements run
-          </h2>
-          <HowWeWork />
-        </div>
-      </section>
-
-      {/* ================================================================
-          INSIGHTS — inverted (deep)
-          ================================================================ */}
-      <section id="insights" className="on-field-deep" style={{ padding: "8rem 0" }}>
-        <div className="wrap">
-          <Eyebrow dark>Insights</Eyebrow>
-          <h2
-            className="font-display font-medium text-on-field mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
-          >
-            What we're arguing about internally
-          </h2>
-          <InsightsAccordion limit={3} />
-          <div className="mt-10 flex justify-end">
-            <Button href="/insights" variant="secondary" className="!border-on-field-2/40 !text-on-field hover:!border-signal hover:!text-signal">View all insights →</Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          CLIENT TESTIMONIALS — light breath after dark Insights
+          CLIENT TESTIMONIALS
           ================================================================ */}
       <TestimonialsStrip />
 
@@ -223,10 +181,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================================================================
-          CLOSING CTA — deep inverted
-          ================================================================ */}
-      <CTASection />
     </>
   );
 }

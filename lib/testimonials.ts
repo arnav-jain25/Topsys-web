@@ -15,7 +15,7 @@ export const TESTIMONIALS: Testimonial[] = [
     industrySlug: "ai-research",
     accentClass: "bg-teal",
     quote: "We needed a team that could build the infrastructure, not just fine-tune a model. TOPSYS built the data pipeline, the evaluation framework, and the deployment architecture. It's running in production and it's running correctly.",
-    attribution: "Chief AI Officer",
+    attribution: "Senior Director",
     engagement: "Agentic AI platform build",
   },
   {
@@ -33,7 +33,7 @@ export const TESTIMONIALS: Testimonial[] = [
     industrySlug: "telecom",
     accentClass: "bg-teal",
     quote: "OSS/BSS modernization at this scale has too many integration points to hand to a generalist integrator. They knew the protocols, they knew the vendors, and they kept the legacy systems running while we migrated.",
-    attribution: "Director of Network Operations",
+    attribution: "Senior Director",
     engagement: "OSS/BSS modernization",
   },
   {

@@ -1,4 +1,4 @@
-/* Shared service icon set + colors — single source of truth.
+﻿/* Shared service icon set + colors — single source of truth.
    Originally duplicated across SiteHeader's mega-panel and the homepage
    ServicesShowcase; now imported everywhere a service needs its mark,
    including each capability page's own hero. Geometry stays constant;
@@ -58,7 +58,7 @@ export interface ServiceMeta {
 }
 
 export const SERVICES: ServiceMeta[] = [
-  { slug: "ai-and-data", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#0E5A66", hoverBg: "#0A454E" },
+  { slug: "ai-and-data", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#0D5278", hoverBg: "#0A3F62" },
   { slug: "applications-and-modernization", href: "/capabilities/applications-and-modernization", title: "Applications & modernization", Icon: IconApps, bg: "#B5790C", hoverBg: "#96650F" },
   { slug: "cloud-and-platform-engineering", href: "/capabilities/cloud-and-platform-engineering", title: "Cloud & platform", Icon: IconCloud, bg: "#1E6FA8", hoverBg: "#185A87" },
   { slug: "cybersecurity", href: "/capabilities/cybersecurity", title: "Cybersecurity", Icon: IconSecurity, bg: "#9C3159", hoverBg: "#812748" },

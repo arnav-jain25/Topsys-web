@@ -1,6 +1,7 @@
 export { StatBar } from "./StatBar";
 export { ServicesShowcase } from "./ServicesShowcase";
 export { DualModel } from "./DualModel";
+export { FDETable } from "./FDETable";
 export { CapabilityGrid } from "./CapabilityGrid";
 export { AIArc } from "./AIArc";
 export { USMap } from "./USMap";
@@ -8,6 +9,5 @@ export { CaseStudyGrid } from "./CaseStudyGrid";
 export { HowWeWork } from "./HowWeWork";
 export { InsightsAccordion } from "./InsightsAccordion";
 export { CareerStrip } from "./CareerStrip";
-export { CTASection } from "./CTASection";
 export { TestimonialsStrip } from "./TestimonialsStrip";
 export { ClientProofStrip } from "./ClientProofStrip";

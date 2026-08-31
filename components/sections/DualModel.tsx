@@ -1,6 +1,19 @@
-"use client";
+﻿"use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+
+const FDE = {
+  title: "Deploy forward.",
+  eyebrow: "Forward Deployed Engineer",
+  body: "Neither consultant nor contractor. A TOPSYS engineer embedded at your site with commit access, architectural authority, and accountability for whether the system works in production — not whether the engagement closed.",
+  items: [
+    "Owns architecture decisions in the room where they happen",
+    "Accountable to production outcomes, not ticket velocity",
+    "Designed to end: your team runs what we leave behind",
+  ],
+  href: "/capabilities/forward-deployed",
+};
 
 const BUILD_SOLUTION = {
   title: "Build the solution",
@@ -73,6 +86,7 @@ export function DualModel() {
   }, []);
 
   return (
+    <>
     <div
       ref={ref}
       className="dual-model-grid grid grid-cols-2 gap-4 mt-12 max-[1023px]:grid-cols-1"
@@ -122,7 +136,7 @@ export function DualModel() {
         <h3
           className="font-display font-medium text-heading-1 mb-3"
           style={{
-            background: "linear-gradient(90deg, #0E1A1F 10%, #0E5A66 45%, #2C8A6E 55%, #0E1A1F 90%)",
+            background: "linear-gradient(90deg, #0E1A1F 10%, #0D5278 45%, #2C8A6E 55%, #0E1A1F 90%)",
             backgroundSize: "200% auto",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -151,5 +165,78 @@ export function DualModel() {
         </ul>
       </div>
     </div>
+
+    {/* ---- FDE card — full width, the third model, visually dominant ---- */}
+    <Link
+      href={FDE.href}
+      className="dual-card block relative rounded-panel overflow-hidden mt-4 group"
+      style={{
+        background: "linear-gradient(105deg, #061C32 0%, #0D3150 42%, #113652 72%, #0A2840 100%)",
+        ...revealStyle(phase, 300),
+      }}
+    >
+      {/* Signature gradient top edge */}
+      <span
+        className="absolute top-0 left-0 right-0 h-[3px] bg-signature"
+        aria-hidden="true"
+      />
+      {/* Ambient signal glow — bottom right */}
+      <span
+        className="absolute bottom-[-30%] right-[-5%] w-[45%] h-[200%] pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity duration-base ease-standard"
+        style={{ background: "radial-gradient(circle, rgba(141,198,62,0.18), transparent 65%)" }}
+        aria-hidden="true"
+      />
+      <div className="relative px-12 py-10 grid grid-cols-[1fr_auto] gap-12 items-center max-[900px]:grid-cols-1 max-[900px]:gap-6">
+        <div>
+          {/* Eyebrow */}
+          <p
+            className="font-mono uppercase tracking-[.12em] text-signal mb-4"
+            style={{ fontSize: "0.8125rem" }}
+          >
+            {FDE.eyebrow}
+          </p>
+          <h3
+            className="font-display font-medium text-on-field mb-3"
+            style={{
+              fontSize: "clamp(1.5rem, 2.6vw, 2.25rem)",
+              letterSpacing: "-0.025em",
+              background: "linear-gradient(90deg, #EAF2F1 15%, #8DC63E 50%, #EAF2F1 85%)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              ...(phase === "hidden"
+                ? { opacity: 0 }
+                : phase === "entering"
+                ? { animation: "dual-title-shimmer 5s linear infinite, dual-title-rise 560ms cubic-bezier(.2,0,0,1) 420ms both" }
+                : { animation: "dual-title-shimmer 5s linear infinite" }),
+            }}
+          >
+            {FDE.title}
+          </h3>
+          <p className="text-body-sm text-on-field-2 max-w-[72ch]">{FDE.body}</p>
+        </div>
+        <ul className="list-none space-y-0 min-w-[260px] max-[900px]:min-w-0 max-[900px]:w-full border-l border-field-hairline pl-10 max-[900px]:border-l-0 max-[900px]:pl-0 max-[900px]:border-t max-[900px]:pt-6">
+          {FDE.items.map((item, i) => (
+            <li
+              key={item}
+              className="flex gap-2.5 py-[11px] border-t border-field-hairline font-mono text-mono text-on-field-2 first:border-0 group-hover:text-on-field transition-colors duration-fast ease-standard"
+              style={itemRevealStyle(phase, 500 + i * 80)}
+            >
+              <span className="text-signal flex-none" aria-hidden="true">—</span>
+              {item}
+            </li>
+          ))}
+          <li
+            className="flex gap-2 items-center pt-8 font-mono text-mono text-signal"
+            style={itemRevealStyle(phase, 750)}
+          >
+            Learn about the FDE model
+            <span aria-hidden="true" className="transition-transform duration-fast ease-standard group-hover:translate-x-1">→</span>
+          </li>
+        </ul>
+      </div>
+    </Link>
+    </>
   );
 }

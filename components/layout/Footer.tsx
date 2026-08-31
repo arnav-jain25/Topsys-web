@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { OFFICES } from "@/lib/offices";
 
 const caps = [
@@ -68,8 +69,37 @@ function FooterCol({
 
 export function Footer() {
   return (
-    <footer className="bg-field-deep text-on-field pt-24 pb-6">
-      <div className="wrap">
+    <footer
+      id="contact"
+      className="relative overflow-hidden bg-field-deep text-on-field pb-6"
+      style={{
+        backgroundImage:
+          "radial-gradient(60% 45% at 14% 8%, rgba(141,198,62,0.14), transparent 100%)",
+      }}
+    >
+      {/* Tell us what you're trying to build — the footer's own opening line,
+          not a separate section, so the glow above reads as one field rather
+          than stopping at a seam. */}
+      <div className="wrap relative py-24 max-[640px]:py-16">
+        <h2
+          className="font-display font-medium text-on-field mb-6"
+          style={{
+            fontSize: "clamp(2rem, 4.4vw, 3.5rem)",
+            letterSpacing: "-0.03em",
+            maxWidth: "20ch",
+          }}
+        >
+          Tell us what you&apos;re trying to build.
+        </h2>
+        <p className="text-lede text-on-field-2 mb-12 max-w-[60ch]">
+          A modernization program, an AI use case, a system that keeps breaking, or a team you can&apos;t hire fast enough. We&apos;ll put the right people on the call, not a salesperson.
+        </p>
+        <Button href="/contact" variant="primary">
+          Talk to us
+        </Button>
+      </div>
+
+      <div className="wrap relative pt-16 max-[640px]:pt-10">
         <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-6 max-[1023px]:grid-cols-2">
           {/* Brand column */}
           <div>

@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { HowWeWork } from "@/components/sections/HowWeWork";
-import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
@@ -123,7 +122,7 @@ export default function CapabilitiesPage() {
             <Link
               href={CAPS[0].href}
               className="block rounded-panel relative overflow-hidden transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-field group"
-              style={{ background: "linear-gradient(135deg,#0B2F38 0%,#06232A 60%,#0E3A44 100%)", padding: "3rem" }}
+              style={{ background: "linear-gradient(135deg,#0B2742 0%,#061C32 60%,#0D3150 100%)", padding: "3rem" }}
               aria-label={`${CAPS[0].title}: ${CAPS[0].lead}`}
             >
               {/* Ambient glow */}
@@ -269,7 +268,6 @@ export default function CapabilitiesPage() {
         </ScrollReveal>
       </section>
 
-      <CTASection />
     </>
   );
 }

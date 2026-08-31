@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
@@ -407,7 +406,6 @@ export default function TechnologyTalentPage() {
         </ScrollReveal>
       </section>
 
-      <CTASection />
     </>
   );
 }

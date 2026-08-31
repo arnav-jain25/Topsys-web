@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -176,7 +176,7 @@ function StatColumn() {
       <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute", overflow: "hidden" }}>
         <defs>
           <linearGradient id="stat-pent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%"   stopColor="#0E5A66" />
+            <stop offset="0%"   stopColor="#0D5278" />
             <stop offset="55%"  stopColor="#2C8A6E" />
             <stop offset="100%" stopColor="#8DC63E" />
           </linearGradient>

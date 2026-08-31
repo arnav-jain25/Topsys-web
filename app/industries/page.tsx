@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { IndustryIndexGrid } from "./_components/IndustryIndexGrid";
 import { ClientShowcase } from "./_components/ClientShowcase";
 
@@ -145,7 +144,6 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

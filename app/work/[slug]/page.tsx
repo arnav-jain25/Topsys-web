@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CASE_STUDIES } from "@/lib/case-studies";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { CapabilitiesBar } from "./CapabilitiesBar";
 import { ProblemSection } from "./ProblemSection";
 import { ApproachSteps } from "./ApproachSteps";
@@ -122,7 +121,6 @@ export default async function CaseStudyPage({
           ================================================================ */}
       <TechStack tech={cs.tech} metric={cs.metric} />
 
-      <CTASection />
     </>
   );
 }

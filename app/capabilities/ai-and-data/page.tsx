@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, TextLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { AIArc } from "@/components/sections/AIArc";
-import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
@@ -497,7 +496,7 @@ export default function AIAndDataPage() {
           >
             <div
               className="rounded-panel border border-field-hairline px-8 py-8 flex flex-col"
-              style={{ background: "linear-gradient(160deg,#123F4A,#0B2F38)" }}
+              style={{ background: "linear-gradient(160deg,#113652,#0B2742)" }}
             >
               <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-signal mb-4">
                 Financial services · Conversational AI
@@ -518,7 +517,7 @@ export default function AIAndDataPage() {
             </div>
             <div
               className="rounded-panel border border-field-hairline px-8 py-8 flex flex-col"
-              style={{ background: "linear-gradient(160deg,#123F4A,#0B2F38)" }}
+              style={{ background: "linear-gradient(160deg,#113652,#0B2742)" }}
             >
               <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-signal mb-4">
                 Technology · Enterprise
@@ -547,7 +546,6 @@ export default function AIAndDataPage() {
         </ScrollReveal>
       </section>
 
-      <CTASection />
     </>
   );
 }

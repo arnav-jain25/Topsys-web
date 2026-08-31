@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -76,7 +76,7 @@ export function CapabilityGrid() {
             href={cap.href}
             className="group col-span-2 relative rounded-panel px-16 py-16 overflow-hidden border-0 shadow-e2 hover:-translate-y-[3px] transition-all duration-base ease-standard hover:shadow-field max-[1023px]:col-span-1"
             style={{
-              background: "linear-gradient(135deg,#0B2F38 0%,#06232A 60%,#0E3A44 100%)",
+              background: "linear-gradient(135deg,#0B2742 0%,#061C32 60%,#0D3150 100%)",
               ...(visible
                 ? { animation: `topsys-fade-in 500ms cubic-bezier(.2,0,0,1) ${idx * 90}ms both` }
                 : { opacity: 0 }),

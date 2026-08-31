@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
@@ -161,10 +160,10 @@ export default function CareersPage() {
           <h1
             className="font-display font-medium text-ink mt-4"
             style={{
-              fontSize: "clamp(3.25rem, 7vw, 6rem)",
-              lineHeight: 1.0,
-              letterSpacing: "-0.04em",
-              maxWidth: "16ch",
+              fontSize: "clamp(2rem, 4.4vw, 3.5rem)",
+              lineHeight: 1.06,
+              letterSpacing: "-0.03em",
+              maxWidth: "22ch",
             }}
           >
             Careers at TOPSYS IT
@@ -221,9 +220,9 @@ export default function CareersPage() {
             <h2
               className="font-display font-medium text-ink mt-4"
               style={{
-                fontSize: "clamp(3rem, 6vw, 5.5rem)",
-                letterSpacing: "-0.035em",
-                lineHeight: 1.0,
+                fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)",
+                letterSpacing: "-0.028em",
+                lineHeight: 1.1,
               }}
             >
               Current openings
@@ -369,7 +368,7 @@ export default function CareersPage() {
                     className="mb-6"
                     style={{
                       height: "2px",
-                      background: "linear-gradient(90deg,#0E5A66 0%,#2C8A6E 55%,#8DC63E 100%)",
+                      background: "linear-gradient(90deg,#0D5278 0%,#2C8A6E 55%,#8DC63E 100%)",
                       maxWidth: "6rem",
                     }}
                     aria-hidden="true"
@@ -620,7 +619,6 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

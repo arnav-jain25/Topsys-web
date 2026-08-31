@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
@@ -302,7 +301,6 @@ export default function ApplicationsAndModernizationPage() {
         </ScrollReveal>
       </section>
 
-      <CTASection />
     </>
   );
 }

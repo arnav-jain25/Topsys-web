@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const CLOSING = "Or both.";
+const CLOSING = "Deploy forward.";
 
 export function CyclingModelHeading() {
   const ref = useRef<HTMLHeadingElement>(null);

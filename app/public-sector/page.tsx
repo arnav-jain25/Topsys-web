@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { USMap } from "@/components/sections/USMap";
-import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
   title: "Public sector",
@@ -259,7 +258,6 @@ export default function PublicSectorPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

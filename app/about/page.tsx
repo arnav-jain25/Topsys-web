@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { OFFICES } from "@/lib/offices";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import {
@@ -100,7 +99,7 @@ export default function AboutPage() {
             <div>
               <div
                 className="w-full aspect-[3/4] rounded-card overflow-hidden relative flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg,#0B2F38 0%,#06232A 60%,#0E3A44 100%)" }}
+                style={{ background: "linear-gradient(135deg,#0B2742 0%,#061C32 60%,#0D3150 100%)" }}
                 role="img"
                 aria-label="Monogram for Abhishek Reddy Baddam"
               >
@@ -208,7 +207,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

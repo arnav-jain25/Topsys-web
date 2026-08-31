@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { TextLink } from "@/components/ui/Button";
@@ -11,6 +11,7 @@ interface CaseStudy {
   tech: string[];
   metric: string | null;
   href: string;
+  fde?: boolean; // Forward Deployed Engineer engagement
 }
 
 /* Flow paths use class="fp" — the useEffect below animates them with Web Animations API,
@@ -24,6 +25,13 @@ const AgentforceDiagram = () => (
       <rect x="152" y="6" width="72" height="20" rx="3" />
       <rect x="152" y="66" width="72" height="20" rx="3" />
       <rect x="250" y="34" width="48" height="22" rx="3" />
+    </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M52 45 H72" />
+      <path d="M130 45 H141 V16 H152" />
+      <path d="M130 45 H141 V76 H152" />
+      <path d="M224 16 H234 V45 H250" />
+      <path d="M224 76 H234 V45" />
     </g>
     <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
       <path d="M52 45 H72" />
@@ -52,6 +60,11 @@ const PaymentsDiagram = () => (
       <rect x="2" y="56" width="66" height="22" rx="3" />
       <rect x="230" y="34" width="68" height="22" rx="3" />
     </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M68 23 H100 V45 H120" />
+      <path d="M68 67 H100 V45" />
+      <path d="M202 45 H230" />
+    </g>
     <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
       <path d="M68 23 H100 V45 H120" />
       <path d="M68 67 H100 V45" />
@@ -78,6 +91,14 @@ const RevenueDiagram = () => (
       <rect x="224" y="22" width="74" height="18" rx="3" />
       <rect x="224" y="50" width="74" height="18" rx="3" />
     </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M52 15 H84 V44 H112" />
+      <path d="M52 34 H84" />
+      <path d="M52 53 H84" />
+      <path d="M52 72 H84 V44" />
+      <path d="M194 44 H210 V31 H224" />
+      <path d="M194 44 H210 V59 H224" />
+    </g>
     <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
       <path d="M52 15 H84 V44 H112" />
       <path d="M52 34 H84" />
@@ -103,6 +124,13 @@ const WealthManagementDiagram = () => (
       <rect x="150" y="10" width="66" height="20" rx="3" />
       <rect x="150" y="60" width="66" height="20" rx="3" />
       <rect x="248" y="34" width="50" height="22" rx="3" />
+    </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M56 45 H74" />
+      <path d="M132 45 H141 V20 H150" />
+      <path d="M132 45 H141 V70 H150" />
+      <path d="M216 20 H232 V45 H248" />
+      <path d="M216 70 H232 V45" />
     </g>
     <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
       <path d="M56 45 H74" />
@@ -135,6 +163,10 @@ const TelecomDiagram = () => (
       <rect x="162" y="48" width="36" height="16" rx="2" />
       <rect x="204" y="48" width="38" height="16" rx="2" />
     </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M48 45 H66" />
+      <path d="M114 45 H152" />
+    </g>
     <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
       <path d="M48 45 H66" />
       <path d="M114 45 H152" />
@@ -161,6 +193,11 @@ const HealthDiagram = () => (
       <rect x="2" y="56" width="60" height="22" rx="3" />
       <rect x="230" y="34" width="68" height="22" rx="3" />
     </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M62 23 H90 V45 H112" />
+      <path d="M62 67 H90 V45" />
+      <path d="M194 45 H230" />
+    </g>
     <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
       <path d="M62 23 H90 V45 H112" />
       <path d="M62 67 H90 V45" />
@@ -186,6 +223,7 @@ const CASE_STUDIES: CaseStudy[] = [
     tech: ["Agentforce", "BigQuery"],
     metric: null,
     href: "/work/gtm-conversational-ai",
+    fde: true,
   },
   {
     tag: "Fintech · Payments",
@@ -195,15 +233,17 @@ const CASE_STUDIES: CaseStudy[] = [
     tech: ["Data modeling", "SQL"],
     metric: null,
     href: "/work/payments-data",
+    fde: true,
   },
   {
-    tag: "Technology · AI & ML",
-    title: "GTM data modernization and AI/ML enablement for a high-growth AI company",
-    body: "Five go-to-market systems, no unified revenue view, no systematic early warning. We built a BigQuery data lake with ML forecasting, anomaly detection, and Claude-based generative AI.",
-    diagram: <RevenueDiagram />,
-    tech: ["BigQuery", "Claude"],
-    metric: null,
-    href: "/work/revenue-intelligence",
+    tag: "Telecommunications · Fortune 500",
+    title: "Cloud infrastructure modernization and DevOps at telco scale",
+    body: "300+ EC2 instances, 20+ Kubernetes clusters, 500+ microservices, traditional Kafka at scale. We modernized the cloud platform, migrated to AWS MSK, and integrated Claude into security remediation workflows.",
+    diagram: <TelecomDiagram />,
+    tech: ["Kubernetes", "AWS MSK"],
+    metric: "40%+ cost reduction",
+    href: "/work/platform-engineering",
+    fde: true,
   },
   // ── Remaining entries on /work ────────────────────────────────────────
   {
@@ -216,13 +256,13 @@ const CASE_STUDIES: CaseStudy[] = [
     href: "/work/realtime-data-platform",
   },
   {
-    tag: "Telecommunications · Fortune 500",
-    title: "Cloud infrastructure modernization and DevOps at telco scale",
-    body: "300+ EC2 instances, 20+ Kubernetes clusters, 500+ microservices, traditional Kafka at scale. We modernized the cloud platform, migrated to AWS MSK, and integrated Claude into security remediation workflows.",
-    diagram: <TelecomDiagram />,
-    tech: ["Kubernetes", "AWS MSK"],
-    metric: "40%+ cost reduction",
-    href: "/work/platform-engineering",
+    tag: "Technology · AI & ML",
+    title: "GTM data modernization and AI/ML enablement for a high-growth AI company",
+    body: "Five go-to-market systems, no unified revenue view, no systematic early warning. We built a BigQuery data lake with ML forecasting, anomaly detection, and Claude-based generative AI.",
+    diagram: <RevenueDiagram />,
+    tech: ["BigQuery", "Claude"],
+    metric: null,
+    href: "/work/revenue-intelligence",
   },
   {
     tag: "Healthcare · Enterprise",
@@ -234,6 +274,16 @@ const CASE_STUDIES: CaseStudy[] = [
     href: "/work/health-data-integration",
   },
 ];
+
+/** Slug → diagram component map — imported by CaseStudyList for the /work page */
+export const DIAGRAM_COMPONENTS: Record<string, React.ComponentType> = {
+  "gtm-conversational-ai": AgentforceDiagram,
+  "payments-data": PaymentsDiagram,
+  "platform-engineering": TelecomDiagram,
+  "realtime-data-platform": WealthManagementDiagram,
+  "revenue-intelligence": RevenueDiagram,
+  "health-data-integration": HealthDiagram,
+};
 
 export function CaseStudyGrid({ limit }: { limit?: number }) {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -275,7 +325,7 @@ export function CaseStudyGrid({ limit }: { limit?: number }) {
         <article
           key={cs.href}
           className="flex flex-col rounded-panel border border-field-hairline px-8 py-8 transition-all duration-base ease-standard hover:border-signal/35 hover:shadow-field hover:-translate-y-[3px]"
-          style={{ background: "linear-gradient(160deg,#123F4A,#0B2F38)" }}
+          style={{ background: "linear-gradient(160deg,#113652,#0B2742)" }}
         >
           <p className="font-mono text-mono-xs uppercase tracking-[.09em] text-signal mb-4">
             {cs.tag}

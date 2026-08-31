@@ -1,4 +1,4 @@
-import { Archivo, Public_Sans, Chakra_Petch, Righteous } from "next/font/google";
+import { Archivo, Public_Sans, Righteous } from "next/font/google";
 
 /**
  * The three faces, wired once and consumed through the Tailwind theme as
@@ -9,8 +9,8 @@ import { Archivo, Public_Sans, Chakra_Petch, Righteous } from "next/font/google"
  * else in the codebase names the face.
  *
  * Archivo and Public Sans are variable fonts, so no weight array: the full
- * 400-600 range CLAUDE.md calls for comes down in one file. IBM Plex Mono ships
- * static instances, so its two weights are listed explicitly.
+ * 400-600 range CLAUDE.md calls for comes down in one file. Righteous ships a
+ * single static weight, so it is listed explicitly.
  */
 
 export const archivo = Archivo({
@@ -25,13 +25,6 @@ export const publicSans = Public_Sans({
   display: "swap",
 });
 
-export const chakraPetch = Chakra_Petch({
-  variable: "--font-chakra-petch",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["600", "700"],
-});
-
 export const righteous = Righteous({
   variable: "--font-righteous",
   subsets: ["latin"],
@@ -42,6 +35,5 @@ export const righteous = Righteous({
 export const fontVariables = [
   archivo.variable,
   publicSans.variable,
-  chakraPetch.variable,
   righteous.variable,
 ].join(" ");

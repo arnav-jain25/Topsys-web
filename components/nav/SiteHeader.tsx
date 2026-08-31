@@ -39,6 +39,17 @@ const IconSecurity = () => (
   </svg>
 );
 
+/* FDE icon: person + commit arrow, suggesting embedded + deployment */
+const IconFDE = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
+    <circle cx="6.5" cy="5.5" r="2" stroke="currentColor" strokeWidth="1.3"/>
+    <path d="M2.5 14c0-2.5 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+    <path d="M12 5h4M14 3l2 2-2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="12" cy="11" r="1.5" stroke="currentColor" strokeWidth="1.2"/>
+    <path d="M13.5 11h2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+  </svg>
+);
+
 const IconTalent = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="flex-none">
     <circle cx="7" cy="6" r="2.5" stroke="currentColor" strokeWidth="1.3"/>
@@ -81,18 +92,25 @@ const CAP_CARDS = [
     desc: "Specialists and full delivery pods",
     Icon: IconTalent,
   },
+  {
+    href: "/capabilities/forward-deployed",
+    title: "Forward Deployed Engineer",
+    desc: "Embedded. Accountable to production. Designed to transfer.",
+    Icon: IconFDE,
+    badge: "FDE" as const,
+  },
 ];
 
 const INTENT_LINKS = [
   { label: "Modernize a legacy system", href: "/capabilities/applications-and-modernization" },
   { label: "Apply AI to a workflow", href: "/capabilities/ai-and-data" },
+  { label: "Deploy a Forward Deployed Engineer", href: "/capabilities/forward-deployed" },
   { label: "Staff a delivery team", href: "/capabilities/technology-talent" },
   { label: "Buy through the DIR Contract", href: "/contract-vehicles" },
 ];
 
-/* Main nav: Services + Industries have dropdowns; these are plain links */
+/* Main nav: Services + Industries + Knowledge Hub have dropdowns; About is a plain link */
 const MAIN_NAV = [
-  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
 ];
 
@@ -144,14 +162,19 @@ const SEARCH_GROUPS = [
 export function SiteHeader() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [sectorsOpen, setSectorsOpen] = useState(false);
+  const [knowledgeOpen, setKnowledgeOpen] = useState(false);
+  const [knowledgePanelLeft, setKnowledgePanelLeft] = useState(0);
   const [cmdOpen, setCmdOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
   const [mobileSectors, setMobileSectors] = useState(false);
+  const [mobileKnowledge, setMobileKnowledge] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const capBtnRef = useRef<HTMLButtonElement>(null);
   const sectorsPanelRef = useRef<HTMLDivElement>(null);
   const sectorsBtnRef = useRef<HTMLButtonElement>(null);
+  const knowledgePanelRef = useRef<HTMLDivElement>(null);
+  const knowledgeBtnRef = useRef<HTMLButtonElement>(null);
   const cmdInputRef = useRef<HTMLInputElement>(null);
 
   /* Close panels on outside click */
@@ -164,10 +187,13 @@ export function SiteHeader() {
       if (sectorsOpen && sectorsPanelRef.current && !sectorsPanelRef.current.contains(t) && !sectorsBtnRef.current?.contains(t)) {
         setSectorsOpen(false);
       }
+      if (knowledgeOpen && knowledgePanelRef.current && !knowledgePanelRef.current.contains(t) && !knowledgeBtnRef.current?.contains(t)) {
+        setKnowledgeOpen(false);
+      }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [panelOpen, sectorsOpen]);
+  }, [panelOpen, sectorsOpen, knowledgeOpen]);
 
   /* ⌘K / Ctrl+K shortcut */
   useEffect(() => {
@@ -180,9 +206,11 @@ export function SiteHeader() {
         setCmdOpen(false);
         setPanelOpen(false);
         setSectorsOpen(false);
+        setKnowledgeOpen(false);
         setMobileOpen(false);
         setMobileServices(false);
         setMobileSectors(false);
+        setMobileKnowledge(false);
       }
     };
     document.addEventListener("keydown", handler);
@@ -208,6 +236,7 @@ export function SiteHeader() {
     setMobileOpen(false);
     setMobileServices(false);
     setMobileSectors(false);
+    setMobileKnowledge(false);
   }, []);
 
   useEffect(() => {
@@ -252,7 +281,7 @@ export function SiteHeader() {
               className="nav-item group"
               aria-expanded={panelOpen}
               aria-controls="cap-panel"
-              onClick={() => { setPanelOpen((v) => !v); setSectorsOpen(false); }}
+              onClick={() => { setPanelOpen((v) => !v); setSectorsOpen(false); setKnowledgeOpen(false); }}
             >
               Services
               <span
@@ -267,7 +296,7 @@ export function SiteHeader() {
               className="nav-item group"
               aria-expanded={sectorsOpen}
               aria-controls="sectors-panel"
-              onClick={() => { setSectorsOpen((v) => !v); setPanelOpen(false); }}
+              onClick={() => { setSectorsOpen((v) => !v); setPanelOpen(false); setKnowledgeOpen(false); }}
             >
               Industries
               <span
@@ -276,7 +305,32 @@ export function SiteHeader() {
               />
             </button>
 
-            {/* Plain links: Insights, About */}
+            {/* Knowledge Hub dropdown */}
+            <button
+              ref={knowledgeBtnRef}
+              className="nav-item group"
+              aria-expanded={knowledgeOpen}
+              aria-controls="knowledge-panel"
+              onClick={() => {
+                if (knowledgeBtnRef.current) {
+                  const r = knowledgeBtnRef.current.getBoundingClientRect();
+                  const panelW = Math.min(480, window.innerWidth - 32);
+                  const centered = r.left + r.width / 2 - panelW / 2;
+                  setKnowledgePanelLeft(Math.max(16, Math.min(centered, window.innerWidth - panelW - 16)));
+                }
+                setKnowledgeOpen((v) => !v);
+                setPanelOpen(false);
+                setSectorsOpen(false);
+              }}
+            >
+              Knowledge Hub
+              <span
+                className={`absolute left-[11px] right-[11px] top-0 h-[2.5px] bg-signature rounded-sm z-[2] transition-transform duration-base ease-standard origin-left ${knowledgeOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+                aria-hidden="true"
+              />
+            </button>
+
+            {/* Plain links: About */}
             {MAIN_NAV.map(({ label, href }) => (
               <Link key={href} href={href} className="nav-item group">
                 {label}
@@ -358,9 +412,14 @@ export function SiteHeader() {
                       <span className={`flex-none transition-colors duration-fast ease-standard ${c.lead ? "text-teal" : "text-ink-muted group-hover/row:text-teal"}`}>
                         <c.Icon />
                       </span>
-                      <div className="min-w-0">
-                        <p className="font-display font-medium text-ink group-hover/row:text-teal transition-colors duration-fast ease-standard leading-tight" style={{ fontSize: "14px" }}>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-display font-medium text-ink group-hover/row:text-teal transition-colors duration-fast ease-standard leading-tight flex items-center gap-2" style={{ fontSize: "14px" }}>
                           {c.title}
+                          {"badge" in c && c.badge && (
+                            <span className="font-mono text-[10px] tracking-[.1em] text-signal border border-signal/40 rounded-full px-1.5 py-0.5 leading-none flex-none">
+                              {c.badge}
+                            </span>
+                          )}
                         </p>
                         <p className="text-caption text-ink-muted leading-snug mt-0.5 truncate">{c.desc}</p>
                       </div>
@@ -385,12 +444,85 @@ export function SiteHeader() {
                       key={href}
                       href={href}
                       onClick={() => setPanelOpen(false)}
-                      className="flex justify-between items-center gap-4 py-3 px-4 bg-surface border border-hairline rounded-card text-body-xs text-ink hover:border-teal hover:translate-x-[3px] transition-all duration-fast ease-standard whitespace-nowrap"
+                      className="flex justify-between items-center gap-4 py-3 px-4 bg-surface border border-hairline rounded-card text-body-xs text-ink hover:border-teal hover:translate-x-[3px] transition-all duration-fast ease-standard"
                     >
                       {label}
                       <span className="font-mono text-teal flex-none" aria-hidden="true">→</span>
                     </Link>
                   ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Knowledge Hub panel */}
+          {knowledgeOpen && (
+            <div
+              id="knowledge-panel"
+              ref={knowledgePanelRef}
+              role="region"
+              aria-label="Knowledge Hub"
+              className="hidden min-[1280px]:block fixed z-[99] rounded-b-panel shadow-e2 animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              style={{
+                top: "84px",
+                left: knowledgePanelLeft,
+                width: "min(480px, calc(100vw - 2rem))",
+                background: "linear-gradient(to bottom, #ffffff, #F3F1EA)",
+                border: "1px solid var(--color-hairline)",
+                borderTop: "2.5px solid transparent",
+                borderImage: "var(--gradient-signature) 1",
+              }}
+            >
+              <div className="px-10 py-8">
+                <p className="inline-flex items-center gap-2 font-mono text-eyebrow font-semibold uppercase tracking-[.1em] text-ink-muted mb-5">
+                  <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
+                  Knowledge Hub
+                </p>
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href="/work"
+                    onClick={() => setKnowledgeOpen(false)}
+                    className="group flex items-start gap-5 p-4 bg-surface border border-hairline rounded-card hover:border-teal hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-fast ease-standard"
+                  >
+                    <span className="absolute top-0 left-0 right-0 h-[2px] bg-signature scale-x-0 origin-left transition-transform duration-fast ease-standard group-hover:scale-x-100 rounded-t-card" aria-hidden="true" />
+                    <div className="flex-none mt-0.5 text-teal">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                        <rect x="2" y="4" width="14" height="2" rx="1" fill="currentColor" opacity=".5"/>
+                        <rect x="2" y="8" width="10" height="2" rx="1" fill="currentColor" opacity=".8"/>
+                        <rect x="2" y="12" width="12" height="2" rx="1" fill="currentColor"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-display font-medium text-ink group-hover:text-teal transition-colors duration-fast ease-standard" style={{ fontSize: "14px" }}>
+                        Case studies
+                      </p>
+                      <p className="text-caption text-ink-muted leading-snug mt-0.5">
+                        Real engagements, real outcomes — not positioning
+                      </p>
+                    </div>
+                    <span className="ml-auto font-mono text-teal opacity-0 group-hover:opacity-100 transition-opacity duration-fast ease-standard flex-none self-center" aria-hidden="true">→</span>
+                  </Link>
+                  <Link
+                    href="/insights"
+                    onClick={() => setKnowledgeOpen(false)}
+                    className="group flex items-start gap-5 p-4 bg-surface border border-hairline rounded-card hover:border-teal hover:-translate-y-[2px] hover:shadow-e1 transition-all duration-fast ease-standard"
+                  >
+                    <div className="flex-none mt-0.5 text-teal">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                        <circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.3"/>
+                        <path d="M9 6v4M9 12.5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-display font-medium text-ink group-hover:text-teal transition-colors duration-fast ease-standard" style={{ fontSize: "14px" }}>
+                        Insights
+                      </p>
+                      <p className="text-caption text-ink-muted leading-snug mt-0.5">
+                        What we're arguing about — AI, architecture, delivery
+                      </p>
+                    </div>
+                    <span className="ml-auto font-mono text-teal opacity-0 group-hover:opacity-100 transition-opacity duration-fast ease-standard flex-none self-center" aria-hidden="true">→</span>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -569,7 +701,31 @@ export function SiteHeader() {
               </div>
             )}
 
-            {/* Insights, About */}
+            {/* Knowledge Hub */}
+            <button
+              className="flex w-full items-center justify-between py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink text-left"
+              onClick={() => setMobileKnowledge((v) => !v)}
+              aria-expanded={mobileKnowledge}
+              aria-controls="mobile-knowledge"
+            >
+              Knowledge Hub
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+                className={`flex-none text-ink-muted transition-transform duration-base ease-standard ${mobileKnowledge ? "rotate-180" : ""}`}>
+                <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {mobileKnowledge && (
+              <div id="mobile-knowledge" className="py-2 pl-1">
+                <Link href="/work" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                  Case studies <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                </Link>
+                <Link href="/insights" onClick={closeMobile} className="flex items-center justify-between py-3 border-b border-hairline text-body-sm text-ink-2">
+                  Insights <span className="font-mono text-teal flex-none" aria-hidden="true">&#8594;</span>
+                </Link>
+              </div>
+            )}
+
+            {/* About */}
             {MAIN_NAV.map(({ label, href }) => (
               <Link key={href} href={href} className="block py-4 border-b border-hairline font-display font-medium text-heading-4 text-ink" onClick={closeMobile}>
                 {label}

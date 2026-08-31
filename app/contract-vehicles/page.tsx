@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { CONTRACT_CONTACTS, OFFICES } from "@/lib/offices";
 
@@ -283,7 +282,6 @@ export default function ContractVehiclesPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

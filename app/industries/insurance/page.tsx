@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { IndustryItemGrid } from "../_components/IndustryItemGrid";
 import { IndustryCapabilityGrid } from "../_components/IndustryCapabilityGrid";
 
@@ -162,7 +161,6 @@ export default function InsurancePage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }

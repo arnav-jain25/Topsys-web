@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { CTASection } from "@/components/sections/CTASection";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 
 export const metadata: Metadata = {
@@ -274,7 +273,6 @@ export default function HowToWorkWithUsPage() {
         </div>
       </section>
 
-      <CTASection />
     </>
   );
 }
