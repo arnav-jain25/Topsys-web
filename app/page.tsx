@@ -64,15 +64,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Gradient bridge — field-deep dissolves into the paper body below */}
+      {/* Gradient bridge — overlaps the hero bottom so there is never a seam */}
       <div
         aria-hidden="true"
         style={{
-          height: "260px",
-          marginTop: "-2px",
+          height: "320px",
+          marginTop: "-60px",
+          position: "relative",
+          zIndex: 1,
           backgroundImage: [
-            "radial-gradient(ellipse 42% 55% at 100% 0%, rgba(141,198,62,0.10), transparent 65%)",
-            "linear-gradient(180deg, #061C32 0%, #0C2D48 12%, #163D5C 25%, #234E72 38%, rgba(40,95,135,0.80) 50%, rgba(80,150,185,0.42) 64%, rgba(165,210,225,0.15) 80%, transparent 100%)",
+            "radial-gradient(ellipse 42% 50% at 100% 0%, rgba(141,198,62,0.09), transparent 60%)",
+            "linear-gradient(180deg, rgba(6,28,50,0) 0%, #061C32 14%, #0C2D48 26%, #163D5C 38%, #234E72 50%, rgba(40,95,135,0.75) 62%, rgba(80,150,185,0.35) 76%, rgba(165,210,225,0.12) 88%, transparent 100%)",
           ].join(", "),
         }}
       />
