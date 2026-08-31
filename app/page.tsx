@@ -71,7 +71,7 @@ export default function HomePage() {
           height: "260px",
           backgroundImage: [
             "radial-gradient(ellipse 70% 55% at 72% 0%, rgba(141,198,62,0.09), transparent 65%)",
-            "linear-gradient(180deg, #061C32 0%, #0A2B48 10%, #143B60 28%, #3D82A0 48%, rgba(168,205,208,0.55) 68%, rgba(220,235,235,0.18) 85%, transparent 100%)",
+            "linear-gradient(180deg, #061C32 0%, #0C2D48 12%, #163D5C 25%, #234E72 38%, rgba(40,95,135,0.80) 50%, rgba(80,150,185,0.42) 64%, rgba(165,210,225,0.15) 80%, transparent 100%)",
           ].join(", "),
         }}
       />
