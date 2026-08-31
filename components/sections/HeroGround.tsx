@@ -27,7 +27,7 @@ const POOL = [
   "AI & Data", "Cloud", "Cybersecurity",
 ];
 
-const DISPLAY_COUNT = 22;
+const DISPLAY_COUNT = 24;
 const SWAP_INTERVAL_MS = 2000; // one word cycles every ~2s
 const FADE_MS = 220;
 
