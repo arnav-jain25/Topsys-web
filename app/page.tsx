@@ -25,9 +25,9 @@ export default function HomePage() {
         className="on-field-deep relative flex flex-col justify-center overflow-hidden"
         style={{
           minHeight: "78vh",
-          padding: "5.5rem 0 3.5rem",
+          padding: "5.5rem 0 0",
           backgroundImage: [
-            "linear-gradient(to bottom, transparent 65%, #061C32 100%)",
+            "linear-gradient(to bottom, transparent 55%, #061C32 68%, #0C2D48 78%, #0E2F3A 88%, #FEFEFE 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
         }}
@@ -46,13 +46,7 @@ export default function HomePage() {
             {/* Build the solution, build the team, or both — the two doors */}
             <HeroFork />
 
-            <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
-              <div className="flex flex-wrap gap-x-8 gap-y-2 font-mono text-mono-sm uppercase tracking-[.06em] text-lavender">
-                <span>20+ years</span>
-                <span>30 state engagements</span>
-                <span>4 countries</span>
-                <span>MBE certified</span>
-              </div>
+            <div className="mt-10">
               <Button
                 href="/contact"
                 className="max-[600px]:w-full !bg-signal !text-field-deep hover:!bg-signal-hi before:!hidden"
@@ -62,19 +56,11 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Gradient bridge — overlaps the hero bottom so there is never a seam */}
-      <div
-        aria-hidden="true"
-        style={{
-          height: "320px",
-          marginTop: "-60px",
-          position: "relative",
-          zIndex: 1,
-          background: "linear-gradient(180deg, rgba(6,28,50,0) 0%, #061C32 14%, #0C2D48 26%, #163D5C 38%, #234E72 50%, rgba(40,95,135,0.75) 62%, rgba(80,150,185,0.35) 76%, rgba(165,210,225,0.12) 88%, transparent 100%)",
-        }}
-      />
+        {/* Empty run-out so the fade above resolves to paper within this
+            same box — no seam from stacking a second gradient element. */}
+        <div aria-hidden="true" style={{ height: "130px", flexShrink: 0 }} />
+      </section>
 
       {/* ================================================================
           PROOF BAR — showcase left, stats right, side-by-side
@@ -94,36 +80,6 @@ export default function HomePage() {
           CLIENT PROOF STRIP — enterprise clients, tech platforms, certs
           ================================================================ */}
       <ClientProofStrip />
-
-      {/* ================================================================
-          DUAL MODEL — build the solution / build the team
-          ================================================================ */}
-      <section className="on-field" style={{ padding: "4rem 0 6rem" }}>
-        <div className="wrap">
-          <Eyebrow dark>The model</Eyebrow>
-          <CyclingModelHeading />
-          <p className="text-lede text-on-field-2 font-medium max-w-[64ch] mt-6">
-            Most firms make you choose. A consultancy scopes and staffs with people you didn't pick. A staffing vendor sends résumés and disappears at onboarding. We do both — and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
-          </p>
-          <DualModel />
-        </div>
-      </section>
-
-      {/* ================================================================
-          HOW WE WORK
-          ================================================================ */}
-      <section style={{ padding: "8rem 0" }}>
-        <div className="wrap">
-          <Eyebrow>How we work</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
-          >
-            How engagements run
-          </h2>
-          <HowWeWork />
-        </div>
-      </section>
 
       {/* ================================================================
           PUBLIC SECTOR
@@ -167,6 +123,36 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          DUAL MODEL — build the solution / build the team
+          ================================================================ */}
+      <section className="on-field" style={{ padding: "4rem 0 6rem" }}>
+        <div className="wrap">
+          <Eyebrow dark>The model</Eyebrow>
+          <CyclingModelHeading />
+          <p className="text-lede text-on-field-2 font-medium max-w-[64ch] mt-6">
+            Most firms make you choose. A consultancy scopes and staffs with people you didn't pick. A staffing vendor sends résumés and disappears at onboarding. We do both — and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
+          </p>
+          <DualModel />
+        </div>
+      </section>
+
+      {/* ================================================================
+          HOW WE WORK
+          ================================================================ */}
+      <section style={{ padding: "8rem 0" }}>
+        <div className="wrap">
+          <Eyebrow>How we work</Eyebrow>
+          <h2
+            className="font-display font-medium text-ink mt-4"
+            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
+          >
+            How engagements run
+          </h2>
+          <HowWeWork />
         </div>
       </section>
 
