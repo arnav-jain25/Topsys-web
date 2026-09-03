@@ -45,7 +45,10 @@ export function HeroFork() {
           </Link>
         ))}
       </div>
-      <p className="hero-fork-both">Or both — from one firm, to one standard</p>
+      <Link href="/approach" className="hero-fork-both hero-fork-both-link">
+        Or both — from one firm, to one standard
+        <span aria-hidden="true"> &rarr;</span>
+      </Link>
     </div>
   );
 }

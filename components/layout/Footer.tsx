@@ -22,6 +22,7 @@ const sectors = [
 const company = [
   { label: "About", href: "/about" },
   { label: "Leadership", href: "/about/leadership" },
+  { label: "How we work", href: "/approach" },
   { label: "Case studies", href: "/work" },
   { label: "Insights", href: "/insights" },
   { label: "Careers", href: "/careers" },
@@ -80,18 +81,18 @@ export function Footer() {
       {/* Tell us what you're trying to build — the footer's own opening line,
           not a separate section, so the glow above reads as one field rather
           than stopping at a seam. */}
-      <div className="wrap relative py-24 max-[640px]:py-16">
+      <div className="wrap relative py-16 max-[640px]:py-12">
         <h2
-          className="font-display font-medium text-on-field mb-6"
+          className="font-display font-medium text-on-field mb-4"
           style={{
-            fontSize: "clamp(2rem, 4.4vw, 3.5rem)",
+            fontSize: "clamp(1.75rem, 3.6vw, 2.75rem)",
             letterSpacing: "-0.03em",
             maxWidth: "20ch",
           }}
         >
           Tell us what you&apos;re trying to build.
         </h2>
-        <p className="text-lede text-on-field-2 mb-12 max-w-[60ch]">
+        <p className="text-lede text-on-field-2 mb-8 max-w-[60ch]">
           A modernization program, an AI use case, a system that keeps breaking, or a team you can&apos;t hire fast enough. We&apos;ll put the right people on the call, not a salesperson.
         </p>
         <Button href="/contact" variant="primary">
@@ -99,7 +100,7 @@ export function Footer() {
         </Button>
       </div>
 
-      <div className="wrap relative pt-16 max-[640px]:pt-10">
+      <div className="wrap relative pt-10 max-[640px]:pt-8">
         <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr] gap-6 max-[1023px]:grid-cols-2">
           {/* Brand column */}
           <div>
@@ -148,25 +149,21 @@ export function Footer() {
           <FooterCol heading="Connect" links={connect} />
         </div>
 
-        <div className="mt-16 pt-8 border-t border-field-hairline grid grid-cols-4 gap-6 max-[1023px]:grid-cols-2">
-          {OFFICES.map(({ id, label, address, mapsUrl }) => (
-            <div key={id}>
-              <h5 className="font-mono text-mono-xs uppercase tracking-[.08em] text-signal mb-1.5">
-                {label}
-              </h5>
-              <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-caption text-on-field-2 hover:text-on-field transition-colors duration-fast ease-standard"
-              >
-                {address}
-              </a>
-            </div>
+        <div className="mt-10 pt-6 border-t border-field-hairline flex flex-wrap gap-x-8 gap-y-2.5">
+          {OFFICES.map(({ id, city, mapsUrl }) => (
+            <a
+              key={id}
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-caption text-on-field-2 hover:text-signal transition-colors duration-fast ease-standard"
+            >
+              {city}
+            </a>
           ))}
         </div>
 
-        <div className="mt-10 pt-5 border-t border-field-hairline flex justify-between gap-6 flex-wrap text-caption text-on-field-2 max-[600px]:flex-col">
+        <div className="mt-8 pt-4 border-t border-field-hairline flex justify-between gap-6 flex-wrap text-caption text-on-field-2 max-[600px]:flex-col">
           <div>
             © 2026 TOPSYS IT Solutions LLC · United States · Canada · India · Singapore
           </div>

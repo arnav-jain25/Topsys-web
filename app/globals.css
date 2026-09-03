@@ -870,6 +870,24 @@
   color: var(--color-signal);
 }
 
+.hero-fork-both-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.hero-fork-both-link span {
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.hero-fork-both-link:hover {
+  color: var(--color-signal-hi);
+}
+
+.hero-fork-both-link:hover span {
+  transform: translateX(3px);
+}
+
 @media (width < 48rem) {
   .hero-branch {
     grid-template-columns: 1.25rem 1fr;

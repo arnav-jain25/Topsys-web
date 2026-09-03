@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroFork } from "@/components/sections/HeroFork";
@@ -5,15 +6,12 @@ import { HeroGround } from "@/components/sections/HeroGround";
 import {
   StatBar,
   ServicesShowcase,
-  DualModel,
   USMap,
-  HowWeWork,
   CareerStrip,
   TestimonialsStrip,
   ClientProofStrip,
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
-import { CyclingModelHeading } from "@/components/sections/CyclingModelHeading";
 
 export default function HomePage() {
   return (
@@ -127,32 +125,36 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
-          DUAL MODEL — build the solution / build the team
+          THE MODEL — compact teaser; full detail lives on /approach
           ================================================================ */}
-      <section className="on-field" style={{ padding: "4rem 0 6rem" }}>
-        <div className="wrap">
-          <Eyebrow dark>The model</Eyebrow>
-          <CyclingModelHeading />
-          <p className="text-lede text-on-field-2 font-medium max-w-[64ch] mt-6">
-            Most firms make you choose. A consultancy scopes and staffs with people you didn't pick. A staffing vendor sends résumés and disappears at onboarding. We do both — and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
-          </p>
-          <DualModel />
-        </div>
-      </section>
-
-      {/* ================================================================
-          HOW WE WORK
-          ================================================================ */}
-      <section style={{ padding: "8rem 0" }}>
-        <div className="wrap">
-          <Eyebrow>How we work</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em" }}
-          >
-            How engagements run
-          </h2>
-          <HowWeWork />
+      <section className="on-field relative overflow-hidden" style={{ padding: "5rem 0" }}>
+        <span
+          className="absolute bottom-[-40%] right-[-8%] w-[40%] h-[180%] pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(141,198,62,0.1), transparent 65%)" }}
+          aria-hidden="true"
+        />
+        <div className="wrap relative">
+          <div className="grid grid-cols-[1fr_auto] gap-12 items-end max-[767px]:grid-cols-1 max-[767px]:items-start max-[767px]:gap-6">
+            <div>
+              <Eyebrow dark>The model</Eyebrow>
+              <h2
+                className="font-display font-medium text-on-field mt-4"
+                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)", letterSpacing: "-0.028em", maxWidth: "28ch" }}
+              >
+                Build the solution. Build the team. Or both.
+              </h2>
+              <p className="text-lede text-on-field-2 font-medium max-w-[60ch] mt-4">
+                Most firms make you choose. We do both — and embed a forward deployed engineer who owns the outcome in your environment, not ours.
+              </p>
+            </div>
+            <Link
+              href="/approach"
+              className="group inline-flex items-center gap-2.5 font-mono text-mono uppercase tracking-[.08em] text-signal whitespace-nowrap pb-1"
+            >
+              See how we work
+              <span aria-hidden="true" className="transition-transform duration-fast ease-standard group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
