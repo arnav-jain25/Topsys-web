@@ -23,12 +23,12 @@ const CLIENTS = [
 ];
 
 const TECH_PARTNERS = [
-  { src: "/credentials/aws.webp",                 alt: "Amazon Web Services" },
-  { src: "/credentials/salesforce_no_bg.png",     alt: "Salesforce" },
-  { src: "/credentials/Adobe_Corporate_Logo.png", alt: "Adobe" },
-  { src: "/credentials/Microsoft-Azure.png",      alt: "Microsoft Azure" },
-  { src: "/credentials/oracle_no_bg.png",         alt: "Oracle" },
-  { src: "/credentials/uipath_no_bg.png",         alt: "UiPath" },
+  { src: "/credentials/aws.webp",                 alt: "Amazon Web Services", category: "Cloud & infrastructure" },
+  { src: "/credentials/salesforce_no_bg.png",     alt: "Salesforce",          category: "CRM & field ops" },
+  { src: "/credentials/Adobe_Corporate_Logo.png", alt: "Adobe",               category: "Creative & content" },
+  { src: "/credentials/Microsoft-Azure.png",      alt: "Microsoft Azure",     category: "Productivity & AI" },
+  { src: "/credentials/oracle_no_bg.png",         alt: "Oracle",              category: "ERP & database" },
+  { src: "/credentials/uipath_no_bg.png",         alt: "UiPath",              category: "Automation & RPA" },
 ];
 
 const CERTS = [
@@ -40,43 +40,8 @@ const CERTS = [
 
 const MARQUEE = [...CLIENTS, ...CLIENTS];
 
-/* Sequential signal-block tick speeds per platform (ms between steps) */
-const TICK_MS = [350, 310, 430, 270, 380, 320];
-const BLOCKS = 9;
-
-/* ── Signal block bar — illuminated blocks move left→right, looping ── */
-function SignalBar({ tickMs, platformIdx }: { tickMs: number; platformIdx: number }) {
-  const [lit, setLit] = useState(platformIdx % BLOCKS);
-  useEffect(() => {
-    const t = setInterval(() => setLit((i) => (i + 1) % BLOCKS), tickMs);
-    return () => clearInterval(t);
-  }, [tickMs]);
-  return (
-    <div className="flex gap-[2.5px]" aria-hidden="true">
-      {Array.from({ length: BLOCKS }).map((_, i) => {
-        const active = i === lit;
-        const adjacent = i === (lit - 1 + BLOCKS) % BLOCKS || i === (lit + 1) % BLOCKS;
-        return (
-          <span
-            key={i}
-            style={{
-              width: 5,
-              height: 5,
-              borderRadius: 1,
-              display: "inline-block",
-              background: active
-                ? "var(--color-teal)"
-                : adjacent
-                ? "rgba(14,90,102,0.35)"
-                : "var(--color-hairline)",
-              transition: "background 100ms",
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-}
+/* Breathing durations (s) — staggered so dots pulse independently */
+const BREATHE_S = [2.0, 2.6, 1.8, 2.3, 2.9, 2.1];
 
 /* ── Terminal verification loop ── */
 const TERM_LINES = [
@@ -205,11 +170,17 @@ export function ClientProofStrip() {
               <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full flex-none" aria-hidden="true" />
               Technology platforms
             </p>
+            <style>{`
+              @keyframes partner-breathe {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.3; transform: scale(0.75); }
+              }
+            `}</style>
             <div className="grid grid-cols-2 gap-3">
               {TECH_PARTNERS.map((p, i) => (
                 <div
                   key={p.alt}
-                  className="group relative flex flex-col items-center justify-between gap-4 rounded-[6px] overflow-hidden px-5 py-5"
+                  className="group relative flex flex-col items-start gap-4 rounded-[6px] overflow-hidden px-5 py-5"
                   style={{ border: "1px solid var(--color-hairline)", transition: "border-color 280ms cubic-bezier(.2,0,0,1)" }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-hairlineStrong)")}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-hairline)")}
@@ -220,7 +191,7 @@ export function ClientProofStrip() {
                     style={{ transition: "opacity 280ms cubic-bezier(.2,0,0,1)" }}
                     aria-hidden="true"
                   />
-                  <div style={{ height: "44px" }} className="flex items-center justify-center w-full">
+                  <div style={{ height: "44px" }} className="flex items-center justify-start w-full">
                     <Image
                       src={p.src}
                       alt={p.alt}
@@ -230,7 +201,25 @@ export function ClientProofStrip() {
                       style={{ mixBlendMode: "multiply" }}
                     />
                   </div>
-                  <SignalBar tickMs={TICK_MS[i]} platformIdx={i} />
+                  {/* Live status: breathing dot + category label */}
+                  <div className="flex items-center gap-1.5" aria-hidden="true">
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: "var(--color-teal)",
+                        animation: `partner-breathe ${BREATHE_S[i]}s ease-in-out infinite`,
+                      }}
+                    />
+                    <span
+                      className="font-mono uppercase"
+                      style={{ fontSize: "0.625rem", letterSpacing: ".08em", color: "var(--color-ink-muted)" }}
+                    >
+                      {p.category}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
