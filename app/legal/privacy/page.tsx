@@ -35,11 +35,7 @@ export default function PrivacyPage() {
             not sell personal data to third parties. We do not use third-party
             advertising trackers on this site.
           </p>
-          <p>
-            The effective date of this policy will be noted when the full
-            document is published. If you have questions in the meantime, reach
-            out directly using the contact below.
-          </p>
+
           <p className="text-body-sm text-ink-muted border-t border-hairline pt-6">
             This document is being finalized. Contact{" "}
             <a

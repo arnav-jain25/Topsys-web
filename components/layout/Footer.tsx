@@ -37,7 +37,6 @@ const legal = [
   { label: "Privacy", href: "/legal/privacy" },
   { label: "Terms", href: "/legal/terms" },
   { label: "Security overview", href: "/legal/security" },
-  { label: "Subprocessors", href: "/legal/subprocessors" },
 ];
 
 function FooterCol({

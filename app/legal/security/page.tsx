@@ -41,11 +41,7 @@ export default function SecurityPage() {
             at the address below. We will acknowledge security reports within 48
             business hours and work to address confirmed issues promptly.
           </p>
-          <p>
-            A comprehensive security overview covering our delivery practice,
-            data handling procedures, and subprocessor relationships is being
-            prepared and will be published here.
-          </p>
+
           <p className="text-body-sm text-ink-muted border-t border-hairline pt-6">
             This document is being finalized. Contact{" "}
             <a
