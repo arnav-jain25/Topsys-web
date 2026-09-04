@@ -180,7 +180,7 @@ export function ClientProofStrip() {
               {TECH_PARTNERS.map((p, i) => (
                 <div
                   key={p.alt}
-                  className="group relative flex flex-col items-start gap-4 rounded-[6px] overflow-hidden px-5 py-5"
+                  className="group relative flex flex-col items-center justify-between gap-4 rounded-[6px] overflow-hidden px-5 py-5"
                   style={{ border: "1px solid var(--color-hairline)", transition: "border-color 280ms cubic-bezier(.2,0,0,1)" }}
                   onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-hairlineStrong)")}
                   onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-hairline)")}
@@ -191,7 +191,7 @@ export function ClientProofStrip() {
                     style={{ transition: "opacity 280ms cubic-bezier(.2,0,0,1)" }}
                     aria-hidden="true"
                   />
-                  <div style={{ height: "44px" }} className="flex items-center justify-start w-full">
+                  <div style={{ height: "44px" }} className="flex items-center justify-center w-full">
                     <Image
                       src={p.src}
                       alt={p.alt}
@@ -202,7 +202,7 @@ export function ClientProofStrip() {
                     />
                   </div>
                   {/* Live status: breathing dot + category label */}
-                  <div className="flex items-center gap-1.5" aria-hidden="true">
+                  <div className="flex items-center justify-center gap-1.5" aria-hidden="true">
                     <span
                       style={{
                         display: "inline-block",
