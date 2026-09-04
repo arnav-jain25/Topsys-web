@@ -235,7 +235,7 @@ export default function CareersPage() {
               Current openings
             </h2>
             <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-              {ALL_ROLES.length} open roles across software development, DevOps, cloud, and project delivery. All positions run Monday through Friday, 9am to 5pm, and require travel and work from client sites.
+              {ALL_ROLES.length} open roles across software development, DevOps, cloud, and project delivery.
             </p>
           </ScrollReveal>
 
