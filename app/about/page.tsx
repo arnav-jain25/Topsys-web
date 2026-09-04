@@ -21,7 +21,7 @@ const CREDENTIALS = [
   { label: "SAM.gov registration", value: "UEI & CAGE code on file" },
   { label: "D&B registration", value: "Registered" },
   { label: "Years in operation", value: "20+" },
-  { label: "Countries of operation", value: "3" },
+  { label: "Countries of operation", value: "4" },
   { label: "State engagements", value: "30" },
 ];
 
