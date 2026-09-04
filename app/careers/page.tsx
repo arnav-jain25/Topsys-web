@@ -262,7 +262,7 @@ export default function CareersPage() {
                   Permanent residents
                 </p>
                 <p className="text-body-xs text-ink-2 mt-2 max-w-[38ch]">
-                  {GC_ROLES.length} open roles for U.S. permanent residents. No sponsorship involved.
+                  {GC_ROLES.length} open roles for U.S. permanent residents.
                 </p>
               </div>
             </div>
@@ -295,7 +295,7 @@ export default function CareersPage() {
                   Track B · H-1B Sponsorship
                 </p>
                 <p className="font-display font-medium mt-2" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "var(--color-on-field)" }}>
-                  Visa sponsorship available
+                  Open to H-1B holders
                 </p>
                 <p className="text-body-xs mt-2 max-w-[38ch]" style={{ color: "var(--color-on-field-2)" }}>
                   1 featured role open to H-1B visa holders. TOPSYS IT sponsors the petition.
@@ -477,7 +477,7 @@ export default function CareersPage() {
                       style={{ background: "var(--color-signal)" }}
                       aria-hidden="true"
                     />
-                    Visa sponsorship available
+                    H-1B eligible role
                   </span>
                   <h3
                     className="font-display font-medium"
@@ -544,18 +544,6 @@ export default function CareersPage() {
                       style={{ color: "var(--color-on-field-2)" }}
                       dangerouslySetInnerHTML={{ __html: H1B_ROLE.requirements }}
                     />
-
-                    <div className="h-px my-5" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
-
-                    <p
-                      className="font-mono uppercase tracking-[.08em] mb-3"
-                      style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
-                    >
-                      Visa sponsorship
-                    </p>
-                    <p className="text-body-xs" style={{ color: "var(--color-on-field-2)" }}>
-                      TOPSYS IT Solutions LLC sponsors H-1B petitions for this role. Candidates must be currently authorized or eligible for H-1B status.
-                    </p>
 
                     <div className="h-px my-5" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
 
