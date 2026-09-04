@@ -240,7 +240,7 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1280px)");
+    const mq = window.matchMedia("(min-width: 1220px)");
     const onChange = () => { if (mq.matches) closeMobile(); };
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
@@ -251,13 +251,13 @@ export function SiteHeader() {
       {/* ---- Header ---- */}
       <header className="sticky top-0 z-[100] bg-paper/90 backdrop-blur-[10px] relative">
         <div
-          className="wrap flex items-stretch justify-between max-[1279px]:items-center max-[1279px]:h-[64px]"
+          className="wrap flex items-stretch justify-between max-[1219px]:items-center max-[1219px]:h-[64px]"
           style={{ height: "84px" }}
         >
           {/* Logo — bottom-aligned with main nav */}
           <Link
             href="/"
-            className="flex items-end self-end flex-none pr-10 pb-[13px] max-[1279px]:pb-0 max-[1279px]:pr-0 max-[1279px]:self-auto max-[1279px]:items-center"
+            className="flex items-end self-end flex-none pr-10 pb-[13px] max-[1219px]:pb-0 max-[1219px]:pr-0 max-[1219px]:self-auto max-[1219px]:items-center"
             aria-label="TOPSYS IT home"
           >
             <Image
@@ -272,7 +272,7 @@ export function SiteHeader() {
 
           {/* Main nav — bottom-aligned (desktop) */}
           <nav
-            className="flex items-end self-end flex-1 max-[1279px]:hidden"
+            className="flex items-end self-end flex-1 max-[1219px]:hidden"
             aria-label="Primary"
           >
             {/* Services */}
@@ -340,7 +340,7 @@ export function SiteHeader() {
           </nav>
 
           {/* Right utility row — floats at the top of the header */}
-          <div className="flex items-center self-start gap-5 pt-[10px] max-[1279px]:hidden">
+          <div className="flex items-center self-start gap-5 pt-[10px] max-[1219px]:hidden">
             {UTILITY_NAV.map(({ label, href }, i) => (
               <span key={href} className="flex items-center gap-5">
                 <Link
@@ -368,7 +368,7 @@ export function SiteHeader() {
 
           {/* Mobile burger */}
           <button
-            className="hidden max-[1279px]:inline-flex items-center justify-center min-h-11 min-w-11 relative z-[96] font-mono text-mono-sm uppercase tracking-[.09em]"
+            className="hidden max-[1219px]:inline-flex items-center justify-center min-h-11 min-w-11 relative z-[96] font-mono text-mono-sm uppercase tracking-[.09em]"
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -384,7 +384,7 @@ export function SiteHeader() {
               ref={panelRef}
               role="region"
               aria-label="Services"
-              className="hidden min-[1280px]:grid fixed z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)] grid-cols-[1fr_1px_1fr] gap-8 rounded-b-panel shadow-e2 px-10 py-8"
+              className="hidden min-[1220px]:grid fixed z-[99] animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)] grid-cols-[1fr_1px_1fr] gap-8 rounded-b-panel shadow-e2 px-10 py-8"
               style={{
                 top: "84px",
                 left: "clamp(1.25rem, 5vw, 5rem)",
@@ -462,7 +462,7 @@ export function SiteHeader() {
               ref={knowledgePanelRef}
               role="region"
               aria-label="Knowledge Hub"
-              className="hidden min-[1280px]:block fixed z-[99] rounded-b-panel shadow-e2 animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              className="hidden min-[1220px]:block fixed z-[99] rounded-b-panel shadow-e2 animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 top: "84px",
                 left: knowledgePanelLeft,
@@ -535,7 +535,7 @@ export function SiteHeader() {
               ref={sectorsPanelRef}
               role="region"
               aria-label="Industries"
-              className="hidden min-[1280px]:flex fixed z-[99] rounded-b-panel shadow-e2 overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
+              className="hidden min-[1220px]:flex fixed z-[99] rounded-b-panel shadow-e2 overflow-hidden animate-[panelDrop_280ms_cubic-bezier(.2,0,0,1)]"
               style={{
                 top: "84px",
                 left: "clamp(1.25rem, 5vw, 5rem)",
@@ -617,7 +617,7 @@ export function SiteHeader() {
       {mobileOpen && (
         <>
           <div
-            className="hidden max-[1279px]:block fixed inset-x-0 top-[64px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px] cursor-pointer"
+            className="hidden max-[1219px]:block fixed inset-x-0 top-[64px] bottom-0 z-[90] bg-field-deep/40 backdrop-blur-[2px] cursor-pointer"
             onClick={closeMobile}
             aria-hidden="true"
           />
@@ -626,7 +626,7 @@ export function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="hidden max-[1279px]:flex flex-col fixed inset-x-0 top-[64px] bottom-0 z-[95] bg-paper border-t border-hairline overflow-y-auto overscroll-contain px-5 pt-2 pb-10"
+            className="hidden max-[1219px]:flex flex-col fixed inset-x-0 top-[64px] bottom-0 z-[95] bg-paper border-t border-hairline overflow-y-auto overscroll-contain px-5 pt-2 pb-10"
           >
             {/* Services */}
             <button
