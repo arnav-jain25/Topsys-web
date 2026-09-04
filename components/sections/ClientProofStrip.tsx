@@ -23,12 +23,12 @@ const CLIENTS = [
 ];
 
 const TECH_PARTNERS = [
+  { src: "/credentials/aws.webp",                 alt: "Amazon Web Services" },
+  { src: "/credentials/salesforce_no_bg.png",     alt: "Salesforce" },
   { src: "/credentials/Adobe_Corporate_Logo.png", alt: "Adobe" },
-  { src: "/credentials/aws.webp",              alt: "Amazon Web Services" },
-  { src: "/credentials/Microsoft-Azure.png",   alt: "Microsoft Azure" },
-  { src: "/credentials/oracle_no_bg.png",      alt: "Oracle" },
-  { src: "/credentials/salesforce_no_bg.png",  alt: "Salesforce" },
-  { src: "/credentials/uipath_no_bg.png",      alt: "UiPath" },
+  { src: "/credentials/Microsoft-Azure.png",      alt: "Microsoft Azure" },
+  { src: "/credentials/oracle_no_bg.png",         alt: "Oracle" },
+  { src: "/credentials/uipath_no_bg.png",         alt: "UiPath" },
 ];
 
 const CERTS = [
