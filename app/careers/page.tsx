@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -29,7 +29,35 @@ const WHAT_WE_OFFER = [
   },
 ];
 
-const GC_ROLES = [
+interface Role {
+  title: string;
+  jd: string | string[];
+  requirements: string;
+  locations: string;
+  note?: string;
+}
+
+const ALL_ROLES: Role[] = [
+  {
+    title: "Technical project manager",
+    jd: [
+      "Plan, coordinate, and oversee enterprise IT infrastructure and application projects by defining project objectives, developing schedules and milestones, coordinating resources and cross-functional activities, managing dependencies and risks, and monitoring deliverables to ensure projects are completed within approved scope, budget, timeline, and quality requirements.",
+      "Manage the end-to-end execution of strategic enterprise technology initiatives, including project planning, requirements coordination, implementation, testing, deployment, and post-production activities while ensuring alignment with organizational objectives.",
+      "Serve as Scrum Master for Agile delivery teams by facilitating Sprint Planning, Daily Stand-ups, Sprint Reviews, Sprint Retrospectives, backlog refinement, and other Agile ceremonies, while identifying and removing project impediments.",
+      "Coordinate cloud modernization initiatives involving the migration of on-premises applications to multi-cloud environments by managing project schedules, dependencies, deliverables, resources, risks, and stakeholder communications throughout the project lifecycle.",
+      "Coordinate business process automation initiatives by working with business stakeholders and technical teams to identify operational requirements, evaluate automation opportunities, prioritize initiatives, and oversee implementation activities designed to improve operational efficiency.",
+      "Collaborate with engineering, architecture, analytics, operations, compliance, and executive leadership teams to coordinate project activities, resolve issues, manage dependencies, and communicate project progress.",
+      "Monitor project performance against approved schedules, budgets, deliverables, milestones, and quality requirements, identifying variances and coordinating corrective actions when necessary.",
+      "Identify, evaluate, document, and monitor project risks and issues, and develop mitigation and response strategies to minimize potential impacts to project schedules, budgets, resources, and deliverables.",
+      "Maintain comprehensive project records, including project plans, requirements, schedules, risk and issue registers, change management records, meeting minutes, governance artifacts, performance metrics, status reports, and implementation documentation.",
+      "Support staffing and resource allocation decisions by evaluating project requirements, workload, skill requirements, timelines, resource availability, and project priorities.",
+      "Lead project staffing and resource onboarding activities by supporting workforce planning, coordinating candidate sourcing and evaluation, facilitating interview scheduling and offer processes, and overseeing the onboarding of project personnel in alignment with project requirements and timelines.",
+      "Apply analytical, organizational, communication, and problem-solving skills to coordinate multiple IT initiatives, address project challenges, adapt to changing technology requirements, and support successful project delivery.",
+    ],
+    requirements:
+      "The position requires, at minimum, a bachelor&rsquo;s degree in computer science, computer information systems, information technology, or a combination of education and experience equivalent to a U.S. bachelor&rsquo;s degree in one of those fields, and two years of relevant experience. Hours are M&ndash;F, 9am&ndash;5pm.",
+    locations: "United States of America",
+  },
   {
     title: "Software developer",
     jd: "Design, develop, implement, maintain and test business functions and web applications using a variety of languages, tools, methodologies and technologies. Develop, create and modify general computer applications software or specialized utility programs. Analyze user needs and develop software solutions. Design software or customize software for client use with the aim of optimizing operational efficiency.",
@@ -95,27 +123,6 @@ const GC_ROLES = [
     locations: "United States of America",
   },
 ];
-
-const H1B_ROLE = {
-  title: "Technical project manager",
-  jd: [
-    "Plan, coordinate, and oversee enterprise IT infrastructure and application projects by defining project objectives, developing schedules and milestones, coordinating resources and cross-functional activities, managing dependencies and risks, and monitoring deliverables to ensure projects are completed within approved scope, budget, timeline, and quality requirements.",
-    "Manage the end-to-end execution of strategic enterprise technology initiatives, including project planning, requirements coordination, implementation, testing, deployment, and post-production activities while ensuring alignment with organizational objectives.",
-    "Serve as Scrum Master for Agile delivery teams by facilitating Sprint Planning, Daily Stand-ups, Sprint Reviews, Sprint Retrospectives, backlog refinement, and other Agile ceremonies, while identifying and removing project impediments.",
-    "Coordinate cloud modernization initiatives involving the migration of on-premises applications to multi-cloud environments by managing project schedules, dependencies, deliverables, resources, risks, and stakeholder communications throughout the project lifecycle.",
-    "Coordinate business process automation initiatives by working with business stakeholders and technical teams to identify operational requirements, evaluate automation opportunities, prioritize initiatives, and oversee implementation activities designed to improve operational efficiency.",
-    "Collaborate with engineering, architecture, analytics, operations, compliance, and executive leadership teams to coordinate project activities, resolve issues, manage dependencies, and communicate project progress.",
-    "Monitor project performance against approved schedules, budgets, deliverables, milestones, and quality requirements, identifying variances and coordinating corrective actions when necessary.",
-    "Identify, evaluate, document, and monitor project risks and issues, and develop mitigation and response strategies to minimize potential impacts to project schedules, budgets, resources, and deliverables.",
-    "Maintain comprehensive project records, including project plans, requirements, schedules, risk and issue registers, change management records, meeting minutes, governance artifacts, performance metrics, status reports, and implementation documentation.",
-    "Support staffing and resource allocation decisions by evaluating project requirements, workload, skill requirements, timelines, resource availability, and project priorities.",
-    "Lead project staffing and resource onboarding activities by supporting workforce planning, coordinating candidate sourcing and evaluation, facilitating interview scheduling and offer processes, and overseeing the onboarding of project personnel in alignment with project requirements and timelines.",
-    "Apply analytical, organizational, communication, and problem-solving skills to coordinate multiple IT initiatives, address project challenges, adapt to changing technology requirements, and support successful project delivery.",
-  ],
-  requirements:
-    "The position requires, at minimum, a bachelor&rsquo;s degree in computer science, computer information systems, information technology, or a combination of education and experience equivalent to a U.S. bachelor&rsquo;s degree in one of those fields, and two years of relevant experience. Hours are M&ndash;F, 9am&ndash;5pm.",
-  locations: "United States of America",
-};
 
 /* Shared chevron SVG */
 function Chevron() {
@@ -211,9 +218,9 @@ export default function CareersPage() {
       </section>
 
       {/* ================================================================
-          ELIGIBILITY KEY - paper, two-track overview
+          OPEN ROLES — unified accordion, all 10 roles
           ================================================================ */}
-      <section id="open-roles" style={{ padding: "7rem 0 0" }}>
+      <section id="open-roles" style={{ padding: "7rem 0 5rem" }}>
         <div className="wrap">
           <ScrollReveal>
             <Eyebrow>Open roles</Eyebrow>
@@ -228,115 +235,14 @@ export default function CareersPage() {
               Current openings
             </h2>
             <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-              All positions run Monday through Friday, 9am to 5pm, and require travel and work from client sites. Roles are listed by work authorization eligibility.
+              {ALL_ROLES.length} open roles across software development, DevOps, cloud, and project delivery. All positions run Monday through Friday, 9am to 5pm, and require travel and work from client sites.
             </p>
           </ScrollReveal>
 
-          {/* Eligibility track key */}
-          <div
-            className="grid grid-cols-2 gap-px mt-10 max-[639px]:grid-cols-1"
-            style={{ background: "var(--color-hairline)" }}
-          >
-            {/* Track A */}
-            <div className="bg-paper p-7 flex items-start gap-5">
-              <span
-                className="shrink-0 w-10 h-10 rounded flex items-center justify-center border border-hairline"
-                aria-hidden="true"
-                style={{ marginTop: "2px" }}
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                  <rect x="2" y="3" width="14" height="12" rx="1.5" stroke="var(--color-teal)" strokeWidth="1.5"/>
-                  <path d="M2 7h14" stroke="var(--color-teal)" strokeWidth="1.5"/>
-                  <circle cx="9" cy="3" r="1.5" fill="var(--color-teal)"/>
-                  <path d="M5.5 11h7M5.5 13.5h4" stroke="var(--color-teal)" strokeWidth="1.25" strokeLinecap="round"/>
-                </svg>
-              </span>
-              <div>
-                <p
-                  className="font-mono font-semibold uppercase tracking-[.1em] text-teal"
-                  style={{ fontSize: "0.8125rem" }}
-                >
-                  Track A · Green Card
-                </p>
-                <p className="font-display font-medium text-ink mt-2" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
-                  Permanent residents
-                </p>
-                <p className="text-body-xs text-ink-2 mt-2 max-w-[38ch]">
-                  {GC_ROLES.length} open roles for U.S. permanent residents.
-                </p>
-              </div>
-            </div>
-
-            {/* Track B */}
-            <div
-              className="p-7 flex items-start gap-5"
-              style={{ background: "var(--color-field)", position: "relative", overflow: "hidden" }}
-            >
-              {/* Signature top-edge sweep */}
-              <span
-                className="absolute top-0 left-0 right-0 h-[3px] bg-signature"
-                aria-hidden="true"
-              />
-              <span
-                className="shrink-0 w-10 h-10 rounded flex items-center justify-center"
-                aria-hidden="true"
-                style={{ marginTop: "2px", background: "var(--color-field-raised)" }}
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                  <circle cx="9" cy="9" r="6.5" stroke="var(--color-signal)" strokeWidth="1.5"/>
-                  <path d="M6 9l2.5 2.5L12.5 6" stroke="var(--color-signal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-              <div>
-                <p
-                  className="font-mono font-semibold uppercase tracking-[.1em]"
-                  style={{ fontSize: "0.8125rem", color: "var(--color-signal)" }}
-                >
-                  Track B · H-1B Sponsorship
-                </p>
-                <p className="font-display font-medium mt-2" style={{ fontSize: "clamp(1.75rem, 2.8vw, 2.5rem)", letterSpacing: "-0.025em", lineHeight: 1.1, color: "var(--color-on-field)" }}>
-                  Open to H-1B holders
-                </p>
-                <p className="text-body-xs mt-2 max-w-[38ch]" style={{ color: "var(--color-on-field-2)" }}>
-                  1 featured role open to H-1B visa holders. TOPSYS IT sponsors the petition.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          TRACK A — Green Card roles (accordion)
-          ================================================================ */}
-      <section style={{ padding: "5rem 0 0" }}>
-        <div className="wrap">
-
-          {/* Track label */}
-          <div className="flex items-center gap-4 mb-8">
-            <span
-              className="font-mono font-semibold uppercase tracking-[.1em] text-teal"
-              style={{ fontSize: "0.8125rem" }}
-            >
-              Track A
-            </span>
-            <span
-              className="flex-1 h-px"
-              style={{ background: "var(--color-hairline)" }}
-              aria-hidden="true"
-            />
-            <span
-              className="font-mono uppercase tracking-[.08em] border border-hairline rounded px-2 py-0.5"
-              style={{ fontSize: "0.625rem", color: "var(--color-teal)" }}
-            >
-              Green Card
-            </span>
-          </div>
-
           {/* Accordion */}
-          <div style={{ borderTop: "1px solid var(--color-hairline)" }}>
+          <div style={{ borderTop: "1px solid var(--color-hairline)", marginTop: "3rem" }}>
             <style>{`details > summary::-webkit-details-marker { display: none; }`}</style>
-            {GC_ROLES.map((role, idx) => (
+            {ALL_ROLES.map((role, idx) => (
               <details
                 key={`${role.title}-${idx}`}
                 className="group"
@@ -379,7 +285,18 @@ export default function CareersPage() {
                       <p className="font-mono text-ink-muted uppercase" style={{ fontSize: "0.6875rem", letterSpacing: ".08em", marginBottom: "0.5rem" }}>
                         Job description
                       </p>
-                      <p className="text-body-sm text-ink-2">{role.jd as string}</p>
+
+                      {Array.isArray(role.jd) ? (
+                        <ul className="space-y-2.5" style={{ paddingLeft: "1.1rem", listStyleType: "disc" }}>
+                          {role.jd.map((point, i) => (
+                            <li key={i} className="text-body-sm text-ink-2" style={{ paddingLeft: "0.25rem" }}>
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-body-sm text-ink-2">{role.jd}</p>
+                      )}
 
                       <p className="font-mono text-ink-muted uppercase" style={{ fontSize: "0.6875rem", letterSpacing: ".08em", marginTop: "1.5rem", marginBottom: "0.5rem" }}>
                         Position requirements
@@ -391,11 +308,11 @@ export default function CareersPage() {
                       </p>
                       <p className="text-body-xs text-ink-muted" dangerouslySetInnerHTML={{ __html: role.locations }} />
 
-                      {"note" in role && role.note && (
+                      {role.note && (
                         <p
                           className="text-body-xs text-ink-muted mt-3 pt-3"
                           style={{ borderTop: "1px solid var(--color-hairline)" }}
-                          dangerouslySetInnerHTML={{ __html: role.note as string }}
+                          dangerouslySetInnerHTML={{ __html: role.note }}
                         />
                       )}
                     </div>
@@ -421,155 +338,6 @@ export default function CareersPage() {
                 </div>
               </details>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          TRACK B — H-1B featured role (inverted, always-expanded card)
-          ================================================================ */}
-      <section
-        className="on-field"
-        style={{ padding: "5rem 0 7rem", marginTop: "5rem" }}
-      >
-        <div className="wrap">
-
-          {/* Track label */}
-          <div className="flex items-center gap-4 mb-10">
-            <span
-              className="font-mono font-semibold uppercase tracking-[.1em]"
-              style={{ fontSize: "0.8125rem", color: "var(--color-signal)" }}
-            >
-              Track B
-            </span>
-            <span
-              className="flex-1 h-px"
-              style={{ background: "var(--color-field-hairline)" }}
-              aria-hidden="true"
-            />
-            <span
-              className="font-mono uppercase tracking-[.08em] rounded px-2 py-0.5 border"
-              style={{ fontSize: "0.625rem", color: "var(--color-signal)", borderColor: "var(--color-signal)", opacity: 0.8 }}
-            >
-              H-1B Sponsorship
-            </span>
-          </div>
-
-          {/* Featured card */}
-          <div
-            className="relative overflow-hidden rounded-[6px]"
-            style={{ background: "var(--color-field-raised)", border: "1px solid var(--color-field-hairline)" }}
-          >
-            {/* Signature top sweep */}
-            <span className="absolute top-0 left-0 right-0 h-[3px] bg-signature" aria-hidden="true" />
-
-            <div className="p-8 max-[639px]:p-6">
-
-              {/* Header row */}
-              <div className="flex items-start justify-between gap-6 flex-wrap mb-8">
-                <div>
-                  <span
-                    className="inline-flex items-center gap-1.5 font-mono font-semibold uppercase tracking-[.1em] rounded px-2.5 py-1 mb-4"
-                    style={{ fontSize: "0.625rem", color: "var(--color-signal)", background: "rgba(141,198,62,.12)", border: "1px solid rgba(141,198,62,.25)" }}
-                  >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ background: "var(--color-signal)" }}
-                      aria-hidden="true"
-                    />
-                    H-1B eligible role
-                  </span>
-                  <h3
-                    className="font-display font-medium"
-                    style={{ fontSize: "clamp(2.75rem, 5vw, 4.5rem)", letterSpacing: "-0.035em", color: "var(--color-on-field)", lineHeight: 1.0 }}
-                  >
-                    {H1B_ROLE.title}
-                  </h3>
-                  <p
-                    className="font-mono uppercase tracking-[.08em] mt-2"
-                    style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
-                  >
-                    {H1B_ROLE.locations}
-                  </p>
-                </div>
-
-                <Button
-                  href={`mailto:info@topsysit.com?subject=${encodeURIComponent(`Application: ${H1B_ROLE.title}`)}`}
-                >
-                  Apply for this role
-                </Button>
-              </div>
-
-              {/* Divider */}
-              <div className="h-px mb-8" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
-
-              {/* Two-column content */}
-              <div className="grid gap-x-16 gap-y-10 max-[800px]:block" style={{ gridTemplateColumns: "1fr 320px" }}>
-
-                {/* JD list */}
-                <div>
-                  <p
-                    className="font-mono uppercase tracking-[.08em] mb-4"
-                    style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
-                  >
-                    Responsibilities
-                  </p>
-                  <ul className="space-y-3" style={{ paddingLeft: "1.1rem", listStyleType: "disc" }}>
-                    {H1B_ROLE.jd.map((point, i) => (
-                      <li
-                        key={i}
-                        className="text-body-xs"
-                        style={{ color: "var(--color-on-field-2)", paddingLeft: "0.25rem" }}
-                      >
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Right: requirements + sponsorship note */}
-                <div className="max-[800px]:mt-8">
-                  <div
-                    className="rounded-[4px] p-5"
-                    style={{ background: "var(--color-field)", border: "1px solid var(--color-field-hairline)" }}
-                  >
-                    <p
-                      className="font-mono uppercase tracking-[.08em] mb-3"
-                      style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
-                    >
-                      Requirements
-                    </p>
-                    <p
-                      className="text-body-xs"
-                      style={{ color: "var(--color-on-field-2)" }}
-                      dangerouslySetInnerHTML={{ __html: H1B_ROLE.requirements }}
-                    />
-
-                    <div className="h-px my-5" style={{ background: "var(--color-field-hairline)" }} aria-hidden="true" />
-
-                    <p
-                      className="font-mono uppercase tracking-[.08em] mb-3"
-                      style={{ fontSize: "0.6875rem", color: "var(--color-on-field-2)" }}
-                    >
-                      Location
-                    </p>
-                    <p
-                      className="text-body-xs"
-                      style={{ color: "var(--color-on-field-2)" }}
-                      dangerouslySetInnerHTML={{ __html: H1B_ROLE.locations }}
-                    />
-                  </div>
-
-                  <div className="mt-4 hidden max-[800px]:block">
-                    <Button
-                      href={`mailto:info@topsysit.com?subject=${encodeURIComponent(`Application: ${H1B_ROLE.title}`)}`}
-                    >
-                      Apply for this role
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
