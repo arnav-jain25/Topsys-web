@@ -23,6 +23,7 @@ const CLIENTS = [
 ];
 
 const TECH_PARTNERS = [
+  { src: "/credentials/Adobe_Corporate_Logo.png", alt: "Adobe" },
   { src: "/credentials/aws.webp",              alt: "Amazon Web Services" },
   { src: "/credentials/Microsoft-Azure.png",   alt: "Microsoft Azure" },
   { src: "/credentials/oracle_no_bg.png",      alt: "Oracle" },
@@ -40,7 +41,7 @@ const CERTS = [
 const MARQUEE = [...CLIENTS, ...CLIENTS];
 
 /* Sequential signal-block tick speeds per platform (ms between steps) */
-const TICK_MS = [310, 430, 270, 380, 320];
+const TICK_MS = [350, 310, 430, 270, 380, 320];
 const BLOCKS = 9;
 
 /* ── Signal block bar — illuminated blocks move left→right, looping ── */
