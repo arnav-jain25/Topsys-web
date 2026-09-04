@@ -205,16 +205,28 @@ export function ClientProofStrip() {
               <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full flex-none" aria-hidden="true" />
               Technology platforms
             </p>
-            <div className="flex flex-wrap items-end gap-x-10 gap-y-8">
+            <div className="grid grid-cols-2 gap-3">
               {TECH_PARTNERS.map((p, i) => (
-                <div key={p.alt} className="flex flex-col items-center gap-3">
-                  <div style={{ height: "52px" }}>
+                <div
+                  key={p.alt}
+                  className="group relative flex flex-col items-center justify-between gap-4 rounded-[6px] overflow-hidden px-5 py-5"
+                  style={{ border: "1px solid var(--color-hairline)", transition: "border-color 280ms cubic-bezier(.2,0,0,1)" }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--color-hairlineStrong)")}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--color-hairline)")}
+                >
+                  {/* Signature sweep on hover */}
+                  <span
+                    className="absolute top-0 left-0 right-0 h-[2px] bg-signature opacity-0 group-hover:opacity-100"
+                    style={{ transition: "opacity 280ms cubic-bezier(.2,0,0,1)" }}
+                    aria-hidden="true"
+                  />
+                  <div style={{ height: "44px" }} className="flex items-center justify-center w-full">
                     <Image
                       src={p.src}
                       alt={p.alt}
-                      width={180}
-                      height={52}
-                      className="h-full w-auto object-contain"
+                      width={160}
+                      height={44}
+                      className="h-full w-auto max-w-[140px] object-contain"
                       style={{ mixBlendMode: "multiply" }}
                     />
                   </div>
