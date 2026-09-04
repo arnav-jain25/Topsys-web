@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           </p>
 
           <p className="text-body-sm text-ink-muted border-t border-hairline pt-6">
-            This document is being finalized. Contact{" "}
+            Contact{" "}
             <a
               href="mailto:contact@topsysit.com"
               className="text-teal hover:underline underline-offset-4"
