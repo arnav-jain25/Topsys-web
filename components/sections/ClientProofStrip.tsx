@@ -23,12 +23,13 @@ const CLIENTS = [
 ];
 
 const TECH_PARTNERS = [
-  { src: "/credentials/aws.webp",                 alt: "Amazon Web Services", category: "Cloud & infrastructure" },
-  { src: "/credentials/salesforce_no_bg.png",     alt: "Salesforce",          category: "CRM & field ops" },
-  { src: "/credentials/Adobe_Corporate_Logo.png", alt: "Adobe",               category: "Creative & content" },
-  { src: "/credentials/Microsoft-Azure.png",      alt: "Microsoft Azure",     category: "Productivity & AI" },
-  { src: "/credentials/oracle_no_bg.png",         alt: "Oracle",              category: "ERP & database" },
-  { src: "/credentials/uipath_no_bg.png",         alt: "UiPath",              category: "Automation & RPA" },
+  { src: "/credentials/aws.webp",                  alt: "Amazon Web Services", category: "Cloud & infrastructure" },
+  { src: "/credentials/salesforce_no_bg.png",      alt: "Salesforce",          category: "CRM & field ops" },
+  { src: "/credentials/databricks_no_bg.png",      alt: "Databricks",          category: "Data & AI platform" },
+  { src: "/credentials/Adobe_Corporate_Logo.png",  alt: "Adobe",               category: "Creative & content" },
+  { src: "/credentials/Microsoft-Azure.png",       alt: "Microsoft Azure",     category: "Productivity & AI" },
+  { src: "/credentials/oracle_no_bg.png",          alt: "Oracle",              category: "ERP & database" },
+  { src: "/credentials/uipath_no_bg.png",          alt: "UiPath",              category: "Automation & RPA" },
 ];
 
 const CERTS = [
@@ -41,7 +42,7 @@ const CERTS = [
 const MARQUEE = [...CLIENTS, ...CLIENTS];
 
 /* Breathing durations (s) — staggered so dots pulse independently */
-const BREATHE_S = [2.0, 2.6, 1.8, 2.3, 2.9, 2.1];
+const BREATHE_S = [2.0, 2.6, 1.8, 2.4, 2.3, 2.9, 2.1];
 
 /* ── Terminal verification loop ── */
 const TERM_LINES = [
