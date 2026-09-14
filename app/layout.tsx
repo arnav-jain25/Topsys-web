@@ -32,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fontVariables}>
-      <body className="min-h-dvh flex flex-col">
+    <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <body className="min-h-dvh flex flex-col" suppressHydrationWarning>
         <a
           href="#main"
           className="sr-only-text focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:h-auto focus:w-auto focus:overflow-visible focus:whitespace-normal focus:rounded-control focus:bg-teal focus:px-5 focus:py-3 focus:text-[15px] focus:font-semibold focus:text-white"

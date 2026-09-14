@@ -13,13 +13,13 @@ import { SERVICES } from "@/components/ui/ServiceIcons";
    R and the node radii are sized to use nearly the full VW=600 width —
    the previous R=185 left roughly a quarter of the box as unused margin
    on both sides. */
-const VW = 600, VH = 535;
-const CX = 300, CY = 266, R = 225;
+const VW = 600, VH = 620;
+const CX = 300, CY = 301, R = 255;
 
 /* Node circle radii scale with R so they read proportionate to the wider
    spread instead of looking small inside it. */
-const NODE_R = 41, NODE_R_HALO = 56, NODE_R_LIT = 50, NODE_R_HALO_LIT = 70;
-const LABEL_OFFSET = 75, ORDINAL_OFFSET = 96, LABEL_SIZE = 14, ORDINAL_SIZE = 11.5;
+const NODE_R = 46, NODE_R_HALO = 62, NODE_R_LIT = 56, NODE_R_HALO_LIT = 78;
+const LABEL_OFFSET = 80, ORDINAL_OFFSET = 103, LABEL_SIZE = 16, ORDINAL_SIZE = 12.5;
 
 const NODES = SERVICES.map((_, i) => {
   const a = ((-90 + i * 72) * Math.PI) / 180;
@@ -76,7 +76,7 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
       <p
         className="inline-flex items-center gap-2.5 font-mono uppercase mb-0"
         style={{
-          fontSize: dark ? "0.6875rem" : "1.0625rem",
+          fontSize: dark ? "0.8125rem" : "1.0625rem",
           letterSpacing: ".12em",
           color: dark ? "#C4B5FD" : "#6D28D9",
         }}

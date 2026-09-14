@@ -40,7 +40,7 @@ const CERTS = [
 ];
 
 const MARQUEE = [...CLIENTS, ...CLIENTS];
-const DWELL_MS = 2800;
+const DWELL_MS = 1800;
 
 /* ── Platform spotlight — one partner holds focus at a time, the rest
    recede to greyscale. A rule fills beneath the active plate for the
@@ -69,7 +69,7 @@ function PlatformSpotlight() {
             key={p.alt}
             className="flex flex-col gap-3"
             onMouseEnter={() => { setPaused(true); setActive(i); }}
-            onMouseLeave={() => setPaused(false)}
+            onMouseLeave={() => { setActive((prev) => (prev + 1) % PLATFORMS.length); setPaused(false); }}
           >
             <div
               className="flex items-center justify-center rounded-[6px] px-4"
@@ -288,9 +288,10 @@ export function ClientProofStrip() {
       <div className="wrap">
         <div className="border-t border-hairline mt-10 pt-8">
           <p
-            className="font-mono uppercase mb-5"
-            style={{ fontSize: "0.6875rem", letterSpacing: ".12em", color: "var(--color-ink-muted)" }}
+            className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] mb-5"
+            style={{ color: "#6D28D9" }}
           >
+            <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
             Technology platforms
           </p>
           <PlatformSpotlight />
@@ -299,9 +300,10 @@ export function ClientProofStrip() {
         <div className="border-t border-hairline mt-9 pt-8">
           <div className="flex items-baseline justify-between gap-6 mb-5 flex-wrap">
             <p
-              className="font-mono uppercase"
-              style={{ fontSize: "0.6875rem", letterSpacing: ".12em", color: "var(--color-ink-muted)" }}
+              className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em]"
+              style={{ color: "#6D28D9" }}
             >
+              <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
               Credentials &amp; certifications
             </p>
             <p className="text-body-sm text-ink-muted" style={{ maxWidth: "52ch" }}>

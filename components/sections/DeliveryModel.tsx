@@ -26,7 +26,7 @@ export function DeliveryModel() {
       return;
     }
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setReady(true); },
+      ([e]) => { setReady(e.isIntersecting); },
       { threshold: 0.3 }
     );
     io.observe(el);
@@ -49,16 +49,16 @@ export function DeliveryModel() {
         <div className="flex items-end justify-between gap-10 flex-wrap">
           <div>
             <p
-              className="inline-flex items-center gap-2.5 font-mono uppercase"
-              style={{ fontSize: "0.75rem", letterSpacing: ".12em", color: "var(--color-on-field-2)" }}
+              className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em]"
+              style={{ color: "#C4B5FD" }}
             >
-              <span className="inline-block h-0.5 w-[26px] bg-signature rounded-full" aria-hidden="true" />
+              <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
               How we deliver
             </p>
             <h2
               id="delivery-heading"
               className="font-display font-medium text-on-field mt-3"
-              style={{ fontSize: "clamp(1.625rem, 3vw, 2.25rem)", letterSpacing: "-0.028em", maxWidth: "26ch" }}
+              style={{ fontSize: "clamp(1.875rem, 3.4vw, 2.6rem)", letterSpacing: "-0.03em", maxWidth: "26ch" }}
             >
               Build the solution. Build the team. Or both.
             </h2>
