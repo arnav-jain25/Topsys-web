@@ -28,13 +28,9 @@ const FLOWS: FlowDot[][] = EDGES.map((_, ei) => [
 
 const SHORT = ["AI & data", "Applications", "Cloud", "Security", "Talent"];
 
-/* On the inverted hero the nodes carry the hero's own lavender rather than
-   five separate hues — one accent reads as a system. Lavender measures
-   9.3:1 on the hero navy, so the icon inside has to be ink (9.6:1);
-   white on lavender is 1.85:1 and would disappear. */
-const LAVENDER = "#C4B5FD";
-const LAVENDER_ICON = "#0E1A1F";
-
+/* Node fills stay each capability's own color on every ground — only the
+   label text under the nodes picks up the hero's lavender on the inverted
+   hero, echoing the fork labels beside it. */
 const PALETTE = {
   light: {
     edge: "rgba(14,90,102,0.10)",
@@ -47,10 +43,10 @@ const PALETTE = {
     ordLit: "#0E5A66",
   },
   dark: {
-    edge: "rgba(196,181,253,0.20)",
-    edgeLit: "rgba(196,181,253,0.55)",
-    dotA: "rgba(196,181,253,0.85)",
-    dotB: "rgba(141,198,62,0.55)",
+    edge: "rgba(234,242,241,0.13)",
+    edgeLit: "rgba(141,198,62,0.42)",
+    dotA: "rgba(141,198,62,0.75)",
+    dotB: "rgba(168,191,190,0.45)",
     label: "#C4B5FD",
     labelLit: "#FFFFFF",
     ord: "rgba(196,181,253,0.55)",
@@ -90,12 +86,8 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
               style={{ outlineColor: dark ? "#C4B5FD" : "var(--color-teal)" }}
             >
               <span
-                className="flex items-center justify-center rounded-full"
-                style={{
-                  background: dark ? LAVENDER : bg,
-                  color: dark ? LAVENDER_ICON : "#FFFFFF",
-                  width: 46, height: 46,
-                }}
+                className="flex items-center justify-center rounded-full text-white"
+                style={{ background: bg, width: 46, height: 46 }}
               >
                 <Icon />
               </span>
@@ -152,7 +144,7 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
 
           {SERVICES.map(({ bg }, i) => {
             const { x, y } = NODES[i];
-            const fill = dark ? LAVENDER : bg;
+            const fill = bg;
             const lit = hov === i;
             return (
               <g key={i} style={{ pointerEvents: "none" }}>
@@ -198,7 +190,7 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
               key={href}
               href={href}
               aria-label={title}
-              className="absolute flex items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="absolute flex items-center justify-center text-white rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 left: `${(x / VW) * 100}%`,
                 top: `${(y / VH) * 100}%`,
@@ -206,7 +198,6 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
                 width: "11.5%", height: "13.2%",
                 zIndex: 10,
                 background: "transparent",
-                color: dark ? LAVENDER_ICON : "#FFFFFF",
                 outlineColor: dark ? "#C4B5FD" : "var(--color-teal)",
               }}
               onMouseEnter={() => setHov(i)}
