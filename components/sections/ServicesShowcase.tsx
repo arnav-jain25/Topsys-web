@@ -120,7 +120,7 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
            fr-based track (not tied to the headline's own width) so the web
            never resizes as the headline cycles phrases. ── */}
       <div
-        className="max-[767px]:hidden relative w-full"
+        className="max-[767px]:hidden relative w-full mt-8"
         style={{ aspectRatio: `${VW} / ${VH}` }}
       >
         <svg

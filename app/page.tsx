@@ -21,19 +21,21 @@ export default function HomePage() {
       <section
         className="on-field-deep relative flex flex-col justify-center overflow-hidden"
         style={{
-          minHeight: "78vh",
+          /* Bounded instead of a bare 78vh: an unclamped vh min-height
+             vertically centers the content block (justify-center) inside
+             whatever the viewport's height happens to be, and on a tall
+             window the leftover space collects as a dead gap between the
+             button and the fade band below. The clamp keeps the hero
+             feeling substantial on typical screens without that runaway. */
+          minHeight: "clamp(620px, 74vh, 760px)",
           padding: "5.5rem 0 0",
           backgroundImage: [
-            /* Cross-fades the paper color in over the navy ground rather than
-               interpolating between hex stops — a hue ramp through a handful
-               of waypoints reads as a visible seam where the steps are large.
-               Sized to a fixed 240px physical band (see backgroundSize/
-               backgroundPosition below) instead of a percentage of the whole
-               section: tying the fade's PHYSICAL length to a percentage of a
-               ~700-800px section only gave it ~85px of real screen distance
-               to complete in, which reads as an edge no matter how the alpha
-               curve is shaped — the eye needs actual pixels to see "gradual". */
-            "linear-gradient(to bottom, rgba(248,247,243,0) 0%, rgba(248,247,243,0.1) 20%, rgba(248,247,243,0.35) 40%, rgba(248,247,243,0.65) 60%, rgba(248,247,243,0.9) 80%, rgba(248,247,243,1) 100%)",
+            /* A plain two-stop alpha ramp — no hand-placed easing waypoints.
+               Every intermediate stop is itself a place the interpolation
+               slope can change, and each of those reads as a faint seam once
+               stretched across a full-width band; a straight two-stop ramp
+               has nothing to kink. */
+            "linear-gradient(to bottom, rgba(248,247,243,0) 0%, rgba(248,247,243,1) 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
           backgroundSize: ["100% 240px", "100% 100%"].join(", "),
@@ -76,7 +78,7 @@ export default function HomePage() {
                 headline's cap-height. The node-to-headline alignment itself
                 is now baked into the SVG's viewBox (see ServicesShowcase),
                 so this fixed offset stays correct at any column width. */}
-            <div className="min-[1180px]:-mt-7">
+            <div className="min-[1180px]:-mt-16">
               <ServicesShowcase dark />
             </div>
           </div>
