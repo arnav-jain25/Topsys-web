@@ -386,7 +386,6 @@
   html {
     /* Focus rings must never be clipped by the sticky header. */
     scroll-padding-top: 100px;
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     /* Last-resort guard against horizontal scroll. `clip` rather than `hidden`
        because `hidden` on the root establishes a scroll container and breaks
@@ -1002,9 +1001,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 }
