@@ -11,3 +11,4 @@ export { InsightsAccordion } from "./InsightsAccordion";
 export { CareerStrip } from "./CareerStrip";
 export { TestimonialsStrip } from "./TestimonialsStrip";
 export { ClientProofStrip } from "./ClientProofStrip";
+export { DeliveryModel } from "./DeliveryModel";

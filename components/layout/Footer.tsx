@@ -104,10 +104,12 @@ export function Footer() {
           {/* Brand column */}
           <div>
             <div className="inline-block bg-white rounded-card px-4 py-3 mb-4">
+              {/* width/height matches the file's real 320:68 ratio — see
+                  the note on the same logo in SiteHeader. */}
               <Image
                 src="/brand/topsys-logo.png"
                 alt="TOPSYS IT"
-                width={120}
+                width={122}
                 height={26}
                 className="h-[26px] w-auto"
               />

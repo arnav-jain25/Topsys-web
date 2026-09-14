@@ -766,7 +766,10 @@
 
 .hero-fork {
   margin-top: clamp(2rem, 3.6vw, 3.25rem);
-  max-width: 64rem;
+  /* No max-width: the hero's left grid column already bounds this — a fixed
+     cap left over from the single-column hero was stopping the rule/CTA
+     short of the column's actual edge on wide screens, opening a dead gap
+     before the capability web that read as "the web isn't pushed right". */
 }
 
 .hero-fork-branches {

@@ -79,14 +79,19 @@ function StatRow({ value, suffix = "", label, static: isStatic }: StatItem) {
   );
 }
 
-/* ── Individual pentagon stat — number inside, label to the right ── */
+/* ── Individual pentagon stat — number inside, label beside or below ── */
 function PentagonStat({
   value, suffix = "", label, static: isStatic,
-  ready, delay, rotDeg,
+  ready, delay, rotDeg, stacked = false, size = 165, gradId = "stat-pent-grad",
 }: StatItem & {
   ready: boolean;
   delay: number;
   rotDeg: number;
+  /** Label sits under the pentagon instead of to its right. */
+  stacked?: boolean;
+  size?: number;
+  /** id of the <linearGradient> the owning layout defined. */
+  gradId?: string;
 }) {
   const numeric = typeof value === "number" ? value : 0;
   const counted = useCountUp(numeric, ready && !isStatic, 1500);
@@ -94,10 +99,10 @@ function PentagonStat({
   const pts = pPts(rotDeg);
 
   return (
-    <div className="flex items-center gap-5">
+    <div className={stacked ? "flex flex-col items-center gap-1" : "flex items-center gap-5"}>
       {/* Pentagon with number inside */}
-      <div className="relative flex-none" style={{ width: 165, height: 165 }}>
-        <svg width="165" height="165" viewBox="0 0 110 110" aria-hidden="true">
+      <div className="relative flex-none" style={{ width: size, height: size }}>
+        <svg width={size} height={size} viewBox="0 0 110 110" aria-hidden="true">
           <polygon points={pts} fill="var(--color-surface)" />
           {/*
             strokeDashoffset ONLY in style (not as a prop) so the CSS
@@ -107,7 +112,7 @@ function PentagonStat({
           <polygon
             points={pts}
             fill="none"
-            stroke="url(#stat-pent-grad)"
+            stroke={`url(#${gradId})`}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -129,13 +134,68 @@ function PentagonStat({
         </div>
       </div>
 
-      {/* Label to the right — bold mono */}
+      {/* Label — bold mono, beside the pentagon or centred under it */}
       <p
-        className="font-mono uppercase font-bold text-ink leading-snug"
-        style={{ fontSize: "13px", letterSpacing: ".09em", maxWidth: "10ch" }}
+        className={`font-mono uppercase font-bold text-ink leading-snug ${stacked ? "text-center" : ""}`}
+        style={{ fontSize: "13px", letterSpacing: ".09em", maxWidth: stacked ? "14ch" : "10ch" }}
       >
         {label}
       </p>
+    </div>
+  );
+}
+
+/* ── Horizontal band — four pentagons spread evenly across the page width ── */
+function StatBand() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => setReady(true))
+          );
+        } else {
+          setReady(false);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      <svg width="0" height="0" aria-hidden="true" style={{ position: "absolute", overflow: "hidden" }}>
+        <defs>
+          <linearGradient id="stat-band-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stopColor="#0D5278" />
+            <stop offset="55%"  stopColor="#2C8A6E" />
+            <stop offset="100%" stopColor="#8DC63E" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div className="grid grid-cols-4 gap-6 max-[767px]:grid-cols-2 max-[767px]:gap-y-10">
+        {STATS.map((stat, i) => (
+          <div key={stat.label} className="flex justify-center">
+            <PentagonStat
+              {...stat}
+              ready={ready}
+              delay={i * 180}
+              rotDeg={i * 36}
+              stacked
+              size={172}
+              gradId="stat-band-grad"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -200,7 +260,8 @@ function StatColumn() {
 }
 
 /* ── Public export ── */
-export function StatBar({ layout = "row" }: { layout?: "row" | "column" }) {
+export function StatBar({ layout = "row" }: { layout?: "row" | "column" | "band" }) {
+  if (layout === "band") return <StatBand />;
   if (layout === "column") return <StatColumn />;
   return (
     <div className="grid grid-cols-4 gap-8 max-[1023px]:grid-cols-2 max-[600px]:grid-cols-1">

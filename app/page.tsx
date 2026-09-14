@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroFork } from "@/components/sections/HeroFork";
-import { HeroGround } from "@/components/sections/HeroGround";
 import {
   StatBar,
   ServicesShowcase,
@@ -10,6 +8,7 @@ import {
   CareerStrip,
   TestimonialsStrip,
   ClientProofStrip,
+  DeliveryModel,
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
 
@@ -17,93 +16,137 @@ export default function HomePage() {
   return (
     <>
       {/* ================================================================
-          HERO
+          HERO — claim and fork at left, the capability web at right
           ================================================================ */}
       <section
         className="on-field-deep relative flex flex-col justify-center overflow-hidden"
         style={{
-          minHeight: "78vh",
+          /* Bounded instead of a bare 78vh: an unclamped vh min-height
+             vertically centers the content block (justify-center) inside
+             whatever the viewport's height happens to be, and on a tall
+             window the leftover space collects as a dead gap between the
+             button and the fade band below. The clamp keeps the hero
+             feeling substantial on typical screens without that runaway. */
+          minHeight: "clamp(620px, 74vh, 760px)",
           padding: "5.5rem 0 0",
           backgroundImage: [
-            "linear-gradient(to bottom, transparent 55%, #061C32 68%, #0C2D48 78%, #0E2F3A 88%, #FEFEFE 100%)",
+            /* A plain two-stop alpha ramp — no hand-placed easing waypoints.
+               Every intermediate stop is itself a place the interpolation
+               slope can change, and each of those reads as a faint seam once
+               stretched across a full-width band; a straight two-stop ramp
+               has nothing to kink.
+
+               The endpoint color must be the SITE'S ACTUAL --color-paper
+               (#FEFEFE), not the #F8F7F3 the design doc lists — the two
+               visible sections below this one both resolve to #FEFEFE via
+               that token, and ending the fade on a different white than
+               what it hands off to is a real, visible seam no amount of
+               easing fixes. Flagged to the user separately; not changed
+               site-wide here since --color-paper is used everywhere. */
+            "linear-gradient(to bottom, rgba(254,254,254,0) 0%, rgba(254,254,254,1) 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
+          backgroundSize: ["100% 130px", "100% 100%"].join(", "),
+          backgroundPosition: ["left bottom", "left top"].join(", "),
+          backgroundRepeat: "no-repeat",
         }}
         aria-label="Hero"
       >
-        {/* The stack we work in, legacy to modern — silent ground, upper right */}
-        <HeroGround />
-
         <div className="wrap relative z-[2] w-full">
-          <div className="max-w-[72rem]">
-            <HeroHeading dark />
-            <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
-              Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
-            </p>
+          {/* Both tracks are minmax(0, Nfr) — a 60/40 split of the row that
+              holds at any viewport width (a fixed right-hand px column drifts
+              toward giving the text MORE than 60% as the viewport widens,
+              since the left track keeps growing while a fixed one doesn't).
+              The 0 floor is what keeps it immune to content: a track can't
+              grow past its fr share to fit a sibling's content, so the
+              headline cycling through phrases of different lengths never
+              resizes the capability web. */}
+          <div className="grid grid-cols-1 gap-10 items-center min-[1180px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] min-[1180px]:items-start min-[1180px]:gap-16">
+            <div>
+              <HeroHeading dark />
+              <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
+                Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
+              </p>
 
-            {/* Build the solution, build the team, or both — the two doors */}
-            <HeroFork />
+              {/* Build the solution, build the team, or both — the two doors */}
+              <HeroFork />
 
-            <div className="mt-10">
-              <Button
-                href="/contact"
-                className="max-[600px]:w-full !bg-signal !text-field-deep hover:!bg-signal-hi before:!hidden"
-              >
-                Talk to us
-              </Button>
+              <div className="mt-10">
+                <Button
+                  href="/contact"
+                  className="max-[600px]:w-full !bg-signal !text-field-deep hover:!bg-signal-hi before:!hidden"
+                >
+                  Talk to us
+                </Button>
+              </div>
+            </div>
+
+            {/* Nudged up to cancel the eyebrow row's own height, which sits
+                above the SVG and would otherwise push the top node below the
+                headline's cap-height. The node-to-headline alignment itself
+                is now baked into the SVG's viewBox (see ServicesShowcase),
+                so this fixed offset stays correct at any column width. */}
+            <div className="min-[1180px]:-mt-16">
+              <ServicesShowcase dark />
             </div>
           </div>
         </div>
 
-        {/* Empty run-out so the fade above resolves to paper within this
-            same box — no seam from stacking a second gradient element. */}
+        {/* Run-out matched to the 130px fade band above, sized so the band
+            starts right where content ends rather than washing over the
+            button. */}
         <div aria-hidden="true" style={{ height: "130px", flexShrink: 0 }} />
       </section>
 
       {/* ================================================================
-          PROOF BAR — showcase left, stats right, side-by-side
+          METRICS BAND — four figures spread across the full width
           ================================================================ */}
-      <section style={{ padding: "2.5rem 0 3rem" }}>
+      <section aria-label="Track record" style={{ padding: "2.25rem 0 2.5rem" }}>
         <div className="wrap">
-          <div className="grid gap-4 items-center max-[1023px]:block" style={{ gridTemplateColumns: "1fr 380px" }}>
-            <ServicesShowcase />
-            <div className="max-[1023px]:mt-10 max-[1023px]:pt-8 max-[1023px]:border-t max-[1023px]:border-hairline">
-              <StatBar layout="column" />
-            </div>
-          </div>
+          <StatBar layout="band" />
         </div>
       </section>
 
       {/* ================================================================
-          CLIENT PROOF STRIP — enterprise clients, tech platforms, certs
+          TRUSTED BY — enterprise clients
           ================================================================ */}
       <ClientProofStrip />
 
       {/* ================================================================
+          HOW WE DELIVER — the model, given a section
+          ================================================================ */}
+      <DeliveryModel />
+
+      {/* ================================================================
+          CLIENT TESTIMONIALS
+          ================================================================ */}
+      <TestimonialsStrip />
+
+      {/* ================================================================
           PUBLIC SECTOR
           ================================================================ */}
-      <section id="public-sector" className="bg-surface" style={{ padding: "5rem 0 8rem" }}>
+      <section id="public-sector" className="bg-surface" style={{ padding: "3.5rem 0 4rem" }}>
         <div className="wrap">
           <Eyebrow>Public sector</Eyebrow>
           <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em", maxWidth: "22ch" }}
+            className="font-display font-medium text-ink mt-3"
+            style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)", letterSpacing: "-0.028em", maxWidth: "22ch" }}
           >
             Government technology, delivered to the standard it demands.
           </h2>
 
-          <div className="grid grid-cols-[1.35fr_.65fr] gap-16 items-start mt-12 max-[1023px]:grid-cols-1">
+          <div className="grid grid-cols-[1.35fr_.65fr] gap-12 items-start mt-8 max-[1023px]:grid-cols-1">
             <USMap />
             <div>
               <p className="text-body text-ink-2">
-                We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we've worked inside all of it.
+                We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we&apos;ve worked inside all of it.
               </p>
               <dl className="mt-8 space-y-0">
                 <dt className="font-mono text-[0.9375rem] uppercase tracking-[.08em] border-t border-hairline pt-4 mt-4" style={{ color: "#6D28D9" }}>
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">
-                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
+                  Health &amp; human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
                 </dd>
                 <dd className="font-mono text-mono-xs text-ink-muted mt-2 tracking-[.04em]">
                   Among many others
@@ -123,45 +166,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ================================================================
-          THE MODEL — compact teaser; full detail lives on /approach
-          ================================================================ */}
-      <section className="on-field relative overflow-hidden" style={{ padding: "5rem 0" }}>
-        <span
-          className="absolute bottom-[-40%] right-[-8%] w-[40%] h-[180%] pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(141,198,62,0.1), transparent 65%)" }}
-          aria-hidden="true"
-        />
-        <div className="wrap relative">
-          <div className="grid grid-cols-[1fr_auto] gap-12 items-end max-[767px]:grid-cols-1 max-[767px]:items-start max-[767px]:gap-6">
-            <div>
-              <Eyebrow dark>The model</Eyebrow>
-              <h2
-                className="font-display font-medium text-on-field mt-4"
-                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)", letterSpacing: "-0.028em", maxWidth: "28ch" }}
-              >
-                Build the solution. Build the team. Or both.
-              </h2>
-              <p className="text-lede text-on-field-2 font-medium max-w-[60ch] mt-4">
-                Most firms make you choose. We do both — and embed a forward deployed engineer who owns the outcome in your environment, not ours.
-              </p>
-            </div>
-            <Link
-              href="/approach"
-              className="group inline-flex items-center gap-2.5 font-mono text-mono uppercase tracking-[.08em] text-signal whitespace-nowrap pb-1"
-            >
-              See how we work
-              <span aria-hidden="true" className="transition-transform duration-fast ease-standard group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          CLIENT TESTIMONIALS
-          ================================================================ */}
-      <TestimonialsStrip />
 
       {/* ================================================================
           CAREERS STRIP

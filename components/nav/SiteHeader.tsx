@@ -260,10 +260,15 @@ export function SiteHeader() {
             className="flex items-end self-end flex-none pr-10 pb-[13px] max-[1219px]:pb-0 max-[1219px]:pr-0 max-[1219px]:self-auto max-[1219px]:items-center"
             aria-label="TOPSYS IT home"
           >
+            {/* width/height must match the file's real 320:68 ratio — a
+                mismatched pair here is what the "either width or height
+                modified" Next.js warning is actually about: the browser
+                computes width from height via w-auto using the TRUE ratio,
+                which then disagrees with whatever the props claimed. */}
             <Image
               src="/brand/topsys-logo.png"
               alt="TOPSYS IT"
-              width={140}
+              width={169}
               height={36}
               className="h-[36px] w-auto"
               priority
