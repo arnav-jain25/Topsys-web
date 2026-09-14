@@ -35,10 +35,15 @@ export default function HomePage() {
         aria-label="Hero"
       >
         <div className="wrap relative z-[2] w-full">
-          {/* The right track is a fixed width, not a fraction — the headline
-              above cycles through phrases of different lengths and a fractional
-              track would resize the capability web on every cycle. */}
-          <div className="grid grid-cols-1 gap-10 items-center min-[1180px]:grid-cols-[minmax(0,1fr)_620px] min-[1180px]:items-start min-[1180px]:gap-16">
+          {/* Both tracks are minmax(0, Nfr) — a 60/40 split of the row that
+              holds at any viewport width (a fixed right-hand px column drifts
+              toward giving the text MORE than 60% as the viewport widens,
+              since the left track keeps growing while a fixed one doesn't).
+              The 0 floor is what keeps it immune to content: a track can't
+              grow past its fr share to fit a sibling's content, so the
+              headline cycling through phrases of different lengths never
+              resizes the capability web. */}
+          <div className="grid grid-cols-1 gap-10 items-center min-[1180px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] min-[1180px]:items-start min-[1180px]:gap-16">
             <div>
               <HeroHeading dark />
               <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
@@ -58,10 +63,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Nudged up so the top node lines up with the cap-height of
-                "Technology" at left — the eyebrow row and the SVG's own
-                internal padding above the top node otherwise push it down. */}
-            <div className="min-[1180px]:-mt-16">
+            {/* Nudged up to cancel the eyebrow row's own height, which sits
+                above the SVG and would otherwise push the top node below the
+                headline's cap-height. The node-to-headline alignment itself
+                is now baked into the SVG's viewBox (see ServicesShowcase),
+                so this fixed offset stays correct at any column width. */}
+            <div className="min-[1180px]:-mt-7">
               <ServicesShowcase dark />
             </div>
           </div>

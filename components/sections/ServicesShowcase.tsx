@@ -4,9 +4,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { SERVICES } from "@/components/ui/ServiceIcons";
 
-/* ── Pentagon geometry ── */
-const VW = 600, VH = 520;
-const CX = 300, CY = 255, R = 185;
+/* ── Pentagon geometry ──
+   CY is set so the top node's resting top edge sits at y=0 — i.e. baked
+   into the viewBox itself, so alignment with the hero headline holds at
+   any rendered width instead of only at the one width an external pixel
+   margin was tuned for. VH is trimmed to the pentagon's actual footprint
+   (bottom extent + hover headroom) rather than an arbitrary square-ish box,
+   which removes the dead canvas that used to sit below the last row. */
+const VW = 600, VH = 445;
+const CX = 300, CY = 219, R = 185;
 
 const NODES = SERVICES.map((_, i) => {
   const a = ((-90 + i * 72) * Math.PI) / 180;
@@ -103,16 +109,16 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
         </div>
       </div>
 
-      {/* ── Desktop: capability web. The box is sized by its container, which
-           the hero pins to a fixed width so the web never resizes as the
-           headline above it changes length. ── */}
+      {/* ── Desktop: capability web. Sized by its grid column, which is a
+           fr-based track (not tied to the headline's own width) so the web
+           never resizes as the headline cycles phrases. ── */}
       <div
         className="max-[767px]:hidden relative w-full"
         style={{ aspectRatio: `${VW} / ${VH}` }}
       >
         <svg
           viewBox={`0 0 ${VW} ${VH}`}
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full overflow-visible"
           aria-hidden="true"
         >
           {EDGES.map(([a, b], ei) => {
