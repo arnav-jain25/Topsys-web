@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroFork } from "@/components/sections/HeroFork";
-import { HeroGround } from "@/components/sections/HeroGround";
 import {
   StatBar,
   ServicesShowcase,
@@ -10,6 +8,8 @@ import {
   CareerStrip,
   TestimonialsStrip,
   ClientProofStrip,
+  PlatformsCredentials,
+  DeliveryModel,
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
 
@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <>
       {/* ================================================================
-          HERO
+          HERO — claim and fork at left, the capability web at right
           ================================================================ */}
       <section
         className="on-field-deep relative flex flex-col justify-center overflow-hidden"
@@ -25,33 +25,34 @@ export default function HomePage() {
           minHeight: "78vh",
           padding: "5.5rem 0 0",
           backgroundImage: [
-            "linear-gradient(to bottom, transparent 55%, #061C32 68%, #0C2D48 78%, #0E2F3A 88%, #FEFEFE 100%)",
+            "linear-gradient(to bottom, transparent 55%, #061C32 68%, #0C2D48 78%, #0E2F3A 88%, #F8F7F3 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
         }}
         aria-label="Hero"
       >
-        {/* The stack we work in, legacy to modern — silent ground, upper right */}
-        <HeroGround />
-
         <div className="wrap relative z-[2] w-full">
-          <div className="max-w-[72rem]">
-            <HeroHeading dark />
-            <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
-              Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
-            </p>
+          <div className="grid grid-cols-[1.02fr_.98fr] gap-14 items-center max-[1023px]:grid-cols-1 max-[1023px]:gap-10">
+            <div>
+              <HeroHeading dark />
+              <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
+                Modernization, AI, and the engineers who ship it. TOPSYS IT builds and runs critical systems for enterprises and government agencies across the United States.
+              </p>
 
-            {/* Build the solution, build the team, or both — the two doors */}
-            <HeroFork />
+              {/* Build the solution, build the team, or both — the two doors */}
+              <HeroFork />
 
-            <div className="mt-10">
-              <Button
-                href="/contact"
-                className="max-[600px]:w-full !bg-signal !text-field-deep hover:!bg-signal-hi before:!hidden"
-              >
-                Talk to us
-              </Button>
+              <div className="mt-10">
+                <Button
+                  href="/contact"
+                  className="max-[600px]:w-full !bg-signal !text-field-deep hover:!bg-signal-hi before:!hidden"
+                >
+                  Talk to us
+                </Button>
+              </div>
             </div>
+
+            <ServicesShowcase dark />
           </div>
         </div>
 
@@ -61,23 +62,33 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
-          PROOF BAR — showcase left, stats right, side-by-side
+          METRICS BAND — four figures spread across the full width
           ================================================================ */}
-      <section style={{ padding: "2.5rem 0 3rem" }}>
+      <section aria-label="Track record" style={{ padding: "4rem 0 4.5rem" }}>
         <div className="wrap">
-          <div className="grid gap-4 items-center max-[1023px]:block" style={{ gridTemplateColumns: "1fr 380px" }}>
-            <ServicesShowcase />
-            <div className="max-[1023px]:mt-10 max-[1023px]:pt-8 max-[1023px]:border-t max-[1023px]:border-hairline">
-              <StatBar layout="column" />
-            </div>
-          </div>
+          <StatBar layout="band" />
         </div>
       </section>
 
       {/* ================================================================
-          CLIENT PROOF STRIP — enterprise clients, tech platforms, certs
+          TRUSTED BY — enterprise clients
           ================================================================ */}
       <ClientProofStrip />
+
+      {/* ================================================================
+          PLATFORMS & CREDENTIALS — inverted; the things a buyer verifies
+          ================================================================ */}
+      <PlatformsCredentials />
+
+      {/* ================================================================
+          HOW WE DELIVER — the model, given a section
+          ================================================================ */}
+      <DeliveryModel />
+
+      {/* ================================================================
+          CLIENT TESTIMONIALS
+          ================================================================ */}
+      <TestimonialsStrip />
 
       {/* ================================================================
           PUBLIC SECTOR
@@ -96,14 +107,14 @@ export default function HomePage() {
             <USMap />
             <div>
               <p className="text-body text-ink-2">
-                We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we've worked inside all of it.
+                We work with state agencies on modernization, data, security and the specialized staff these programs run on. Long procurement cycles, accessibility requirements, audit exposure, systems older than the people maintaining them: we&apos;ve worked inside all of it.
               </p>
               <dl className="mt-8 space-y-0">
                 <dt className="font-mono text-[0.9375rem] uppercase tracking-[.08em] border-t border-hairline pt-4 mt-4" style={{ color: "#6D28D9" }}>
                   Agency types served
                 </dt>
                 <dd className="text-body-sm text-ink-2 mt-1">
-                  Health & human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
+                  Health &amp; human services · Corrections · Transportation · General services · Department of Homeland Security (DHS) · Department of Administrative Services (DOAS) · Department of Labor (DOL) · DOR (Revenue) · DOIT · DOE (Education) · D.O.Tech (Technology)
                 </dd>
                 <dd className="font-mono text-mono-xs text-ink-muted mt-2 tracking-[.04em]">
                   Among many others
@@ -123,45 +134,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ================================================================
-          THE MODEL — compact teaser; full detail lives on /approach
-          ================================================================ */}
-      <section className="on-field relative overflow-hidden" style={{ padding: "5rem 0" }}>
-        <span
-          className="absolute bottom-[-40%] right-[-8%] w-[40%] h-[180%] pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(141,198,62,0.1), transparent 65%)" }}
-          aria-hidden="true"
-        />
-        <div className="wrap relative">
-          <div className="grid grid-cols-[1fr_auto] gap-12 items-end max-[767px]:grid-cols-1 max-[767px]:items-start max-[767px]:gap-6">
-            <div>
-              <Eyebrow dark>The model</Eyebrow>
-              <h2
-                className="font-display font-medium text-on-field mt-4"
-                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)", letterSpacing: "-0.028em", maxWidth: "28ch" }}
-              >
-                Build the solution. Build the team. Or both.
-              </h2>
-              <p className="text-lede text-on-field-2 font-medium max-w-[60ch] mt-4">
-                Most firms make you choose. We do both — and embed a forward deployed engineer who owns the outcome in your environment, not ours.
-              </p>
-            </div>
-            <Link
-              href="/approach"
-              className="group inline-flex items-center gap-2.5 font-mono text-mono uppercase tracking-[.08em] text-signal whitespace-nowrap pb-1"
-            >
-              See how we work
-              <span aria-hidden="true" className="transition-transform duration-fast ease-standard group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          CLIENT TESTIMONIALS
-          ================================================================ */}
-      <TestimonialsStrip />
 
       {/* ================================================================
           CAREERS STRIP

@@ -55,14 +55,22 @@ export interface ServiceMeta {
   bg: string;
   /** Deeper shade used on hover/focus. */
   hoverBg: string;
+  /**
+   * Fill for the same tile on the inverted hero ground (#061C32).
+   * The light-ground values sit too close to that navy to register as a
+   * component boundary, so each is lifted into a luminance band that clears
+   * 4.2:1 against the ground while keeping the white icon above 3:1 on the
+   * tile. Hue separation between AI and cloud is widened for the same reason.
+   */
+  bgDark: string;
 }
 
 export const SERVICES: ServiceMeta[] = [
-  { slug: "ai-and-data", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#0D5278", hoverBg: "#0A3F62" },
-  { slug: "applications-and-modernization", href: "/capabilities/applications-and-modernization", title: "Applications & modernization", Icon: IconApps, bg: "#B5790C", hoverBg: "#96650F" },
-  { slug: "cloud-and-platform-engineering", href: "/capabilities/cloud-and-platform-engineering", title: "Cloud & platform", Icon: IconCloud, bg: "#1E6FA8", hoverBg: "#185A87" },
-  { slug: "cybersecurity", href: "/capabilities/cybersecurity", title: "Cybersecurity", Icon: IconSecurity, bg: "#9C3159", hoverBg: "#812748" },
-  { slug: "technology-talent", href: "/capabilities/technology-talent", title: "Technology talent", Icon: IconTalent, bg: "#5F7A2E", hoverBg: "#4C6224" },
+  { slug: "ai-and-data", href: "/capabilities/ai-and-data", title: "AI & data", Icon: IconAI, bg: "#0D5278", hoverBg: "#0A3F62", bgDark: "#4A7FD0" },
+  { slug: "applications-and-modernization", href: "/capabilities/applications-and-modernization", title: "Applications & modernization", Icon: IconApps, bg: "#B5790C", hoverBg: "#96650F", bgDark: "#C08327" },
+  { slug: "cloud-and-platform-engineering", href: "/capabilities/cloud-and-platform-engineering", title: "Cloud & platform", Icon: IconCloud, bg: "#1E6FA8", hoverBg: "#185A87", bgDark: "#2E9BB5" },
+  { slug: "cybersecurity", href: "/capabilities/cybersecurity", title: "Cybersecurity", Icon: IconSecurity, bg: "#9C3159", hoverBg: "#812748", bgDark: "#D1628C" },
+  { slug: "technology-talent", href: "/capabilities/technology-talent", title: "Technology talent", Icon: IconTalent, bg: "#5F7A2E", hoverBg: "#4C6224", bgDark: "#6F9433" },
 ];
 
 /** Convenience lookup by slug for individual capability pages. */

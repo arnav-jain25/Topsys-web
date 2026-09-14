@@ -6,7 +6,7 @@ import { TESTIMONIALS } from "@/lib/testimonials";
 
 /* ── Reveal settings ── */
 const CHAR_INTERVAL_MS = 18;   /* ms between each character appearing */
-const HOLD_MS          = 5500; /* hold fully revealed before rotating */
+const HOLD_MS          = 10000; /* hold fully revealed before rotating */
 
 function useReveal(text: string) {
   const [count, setCount] = useState(0);
