@@ -8,7 +8,6 @@ import {
   CareerStrip,
   TestimonialsStrip,
   ClientProofStrip,
-  PlatformsCredentials,
   DeliveryModel,
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
@@ -32,7 +31,10 @@ export default function HomePage() {
         aria-label="Hero"
       >
         <div className="wrap relative z-[2] w-full">
-          <div className="grid grid-cols-[1.02fr_.98fr] gap-14 items-center max-[1023px]:grid-cols-1 max-[1023px]:gap-10">
+          {/* The right track is a fixed width, not a fraction — the headline
+              above cycles through phrases of different lengths and a fractional
+              track would resize the capability web on every cycle. */}
+          <div className="grid grid-cols-1 gap-10 items-center min-[1180px]:grid-cols-[minmax(0,1fr)_620px] min-[1180px]:gap-16">
             <div>
               <HeroHeading dark />
               <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
@@ -58,13 +60,13 @@ export default function HomePage() {
 
         {/* Empty run-out so the fade above resolves to paper within this
             same box — no seam from stacking a second gradient element. */}
-        <div aria-hidden="true" style={{ height: "130px", flexShrink: 0 }} />
+        <div aria-hidden="true" style={{ height: "72px", flexShrink: 0 }} />
       </section>
 
       {/* ================================================================
           METRICS BAND — four figures spread across the full width
           ================================================================ */}
-      <section aria-label="Track record" style={{ padding: "4rem 0 4.5rem" }}>
+      <section aria-label="Track record" style={{ padding: "2.25rem 0 2.5rem" }}>
         <div className="wrap">
           <StatBar layout="band" />
         </div>
@@ -74,11 +76,6 @@ export default function HomePage() {
           TRUSTED BY — enterprise clients
           ================================================================ */}
       <ClientProofStrip />
-
-      {/* ================================================================
-          PLATFORMS & CREDENTIALS — inverted; the things a buyer verifies
-          ================================================================ */}
-      <PlatformsCredentials />
 
       {/* ================================================================
           HOW WE DELIVER — the model, given a section
@@ -93,17 +90,17 @@ export default function HomePage() {
       {/* ================================================================
           PUBLIC SECTOR
           ================================================================ */}
-      <section id="public-sector" className="bg-surface" style={{ padding: "5rem 0 8rem" }}>
+      <section id="public-sector" className="bg-surface" style={{ padding: "3.5rem 0 4rem" }}>
         <div className="wrap">
           <Eyebrow>Public sector</Eyebrow>
           <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{ fontSize: "clamp(1.875rem, 3.8vw, 2.875rem)", letterSpacing: "-0.028em", maxWidth: "22ch" }}
+            className="font-display font-medium text-ink mt-3"
+            style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)", letterSpacing: "-0.028em", maxWidth: "22ch" }}
           >
             Government technology, delivered to the standard it demands.
           </h2>
 
-          <div className="grid grid-cols-[1.35fr_.65fr] gap-16 items-start mt-12 max-[1023px]:grid-cols-1">
+          <div className="grid grid-cols-[1.35fr_.65fr] gap-12 items-start mt-8 max-[1023px]:grid-cols-1">
             <USMap />
             <div>
               <p className="text-body text-ink-2">

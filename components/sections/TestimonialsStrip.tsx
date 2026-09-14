@@ -58,11 +58,11 @@ export function TestimonialsStrip() {
   );
 
   return (
-    <section aria-labelledby="testimonials-heading" style={{ padding: "7rem 0 8rem" }}>
+    <section aria-labelledby="testimonials-heading" style={{ padding: "3.5rem 0 4rem" }}>
       <div className="wrap">
 
         {/* ── Header row ── */}
-        <div className="flex items-end justify-between mb-14 max-[767px]:flex-col max-[767px]:items-start max-[767px]:gap-5">
+        <div className="flex items-end justify-between mb-9 max-[767px]:flex-col max-[767px]:items-start max-[767px]:gap-5">
           <div>
             <p className="inline-flex items-center gap-2.5 font-eyebrow text-[1.0625rem] uppercase tracking-[.12em] mb-3" style={{ color: "#6D28D9" }}>
               <span className="inline-block h-0.5 w-[22px] bg-signature rounded-full" aria-hidden="true" />
@@ -85,7 +85,7 @@ export function TestimonialsStrip() {
         </div>
 
         {/* ── Featured pull-quote — character scramble ── */}
-        <div className="relative border-l-[3px] border-teal pl-8 md:pl-12 mb-14">
+        <div className="relative border-l-[3px] border-teal pl-8 md:pl-12 mb-9">
           {/* Decorative quote mark */}
           <span
             className="absolute -top-4 left-3 font-display leading-none select-none pointer-events-none"
@@ -146,12 +146,12 @@ export function TestimonialsStrip() {
         </div>
 
         {/* ── Hairline divider ── */}
-        <div className="border-t border-hairline mb-10" />
+        <div className="border-t border-hairline mb-6" />
 
         {/* ── 4 compact testimonials in 2×2 ── */}
-        <div className="grid grid-cols-2 gap-x-16 gap-y-0 max-[767px]:grid-cols-1">
+        <div className="grid grid-cols-2 gap-x-14 gap-y-0 max-[767px]:grid-cols-1">
           {grid.map((t) => (
-            <div key={t.id} className="py-8 border-b border-hairline">
+            <div key={t.id} className="py-6 border-b border-hairline">
               <span
                 className={`inline-flex items-center px-2 py-0.5 rounded-control font-mono text-[10px] uppercase tracking-[.1em] text-white ${t.accentClass} mb-3`}
               >

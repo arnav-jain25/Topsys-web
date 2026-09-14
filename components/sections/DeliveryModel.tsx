@@ -3,31 +3,15 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-/* The differentiator, given a section instead of a teaser. Rules extend
-   between the stages on entry — the motion vocabulary is "lines extend",
-   not fade-up. Under reduced motion the rules are simply already drawn. */
+/* One continuous rule runs the width of the section and the four stage
+   markers sit on it. The rule extends once on entry — "lines extend" is
+   the motion vocabulary; nothing fades up. */
 
 const STAGES = [
-  {
-    n: "01",
-    title: "Scope",
-    body: "We size the work with your team, inside your constraints — your stack, your compliance posture, your procurement calendar.",
-  },
-  {
-    n: "02",
-    title: "Embed",
-    body: "A forward deployed engineer works in your environment. Your repositories, your standups, your definition of done. Not a status call from ours.",
-  },
-  {
-    n: "03",
-    title: "Ship",
-    body: "The system reaches production with the people who built it still on it. Ownership does not change hands at go-live.",
-  },
-  {
-    n: "04",
-    title: "Continue",
-    body: "The team stays embedded, or it becomes yours. That is the fork: build the solution, build the team, or both.",
-  },
+  { n: "01", title: "Scope",    body: "We size the work inside your constraints." },
+  { n: "02", title: "Embed",    body: "Our engineer works in your environment, not ours." },
+  { n: "03", title: "Ship",     body: "It reaches production with the people who built it." },
+  { n: "04", title: "Continue", body: "The team stays embedded, or it becomes yours." },
 ];
 
 export function DeliveryModel() {
@@ -43,7 +27,7 @@ export function DeliveryModel() {
     }
     const io = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) setReady(true); },
-      { threshold: 0.25 }
+      { threshold: 0.3 }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -53,26 +37,16 @@ export function DeliveryModel() {
     <section
       aria-labelledby="delivery-heading"
       className="on-field relative overflow-hidden"
-      style={{ background: "var(--color-field)", padding: "6rem 0 6.5rem" }}
+      style={{ background: "var(--color-field)", padding: "3.75rem 0 4rem" }}
     >
-      <span
-        className="absolute bottom-[-40%] right-[-8%] w-[40%] h-[180%] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(141,198,62,0.1), transparent 65%)" }}
-        aria-hidden="true"
-      />
-
       <style>{`
-        .stage-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 2.5rem;
-        }
-        @media (max-width: 1023px) { .stage-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 2rem; } }
-        @media (max-width: 600px)  { .stage-grid { grid-template-columns: 1fr; gap: 2rem; } }
+        .stage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        @media (max-width: 1023px) { .stage-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.75rem; } }
+        @media (max-width: 600px)  { .stage-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
       `}</style>
 
       <div className="wrap relative" ref={ref}>
-        <div className="grid grid-cols-[1fr_auto] gap-12 items-end max-[767px]:grid-cols-1 max-[767px]:items-start max-[767px]:gap-6">
+        <div className="flex items-end justify-between gap-10 flex-wrap">
           <div>
             <p
               className="inline-flex items-center gap-2.5 font-mono uppercase"
@@ -83,15 +57,11 @@ export function DeliveryModel() {
             </p>
             <h2
               id="delivery-heading"
-              className="font-display font-medium text-on-field mt-4"
-              style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)", letterSpacing: "-0.028em", maxWidth: "24ch" }}
+              className="font-display font-medium text-on-field mt-3"
+              style={{ fontSize: "clamp(1.625rem, 3vw, 2.25rem)", letterSpacing: "-0.028em", maxWidth: "26ch" }}
             >
               Build the solution. Build the team. Or both.
             </h2>
-            <p className="text-lede text-on-field-2 font-medium max-w-[58ch] mt-4">
-              Most firms make you choose. We do both — and the engineer who owns the outcome
-              works in your environment, not ours.
-            </p>
           </div>
           <Link
             href="/approach"
@@ -102,22 +72,19 @@ export function DeliveryModel() {
           </Link>
         </div>
 
-        {/* ── The four stages ── */}
-        <ol className="stage-grid list-none p-0 mt-16">
+        {/* The rule the stages sit on */}
+        <span
+          className="block h-0.5 rounded-full bg-signature origin-left mt-10"
+          style={{
+            transform: ready ? "scaleX(1)" : "scaleX(0)",
+            transition: "transform 900ms cubic-bezier(.2,0,0,1)",
+          }}
+          aria-hidden="true"
+        />
+
+        <ol className="stage-grid list-none p-0 mt-7">
           {STAGES.map((s, i) => (
             <li key={s.n}>
-              {/* Connector rule — extends left to right, staggered down the row */}
-              <span
-                className="block h-[2px] rounded-full origin-left mb-5"
-                style={{
-                  background: i === 0
-                    ? "var(--color-signal)"
-                    : "linear-gradient(90deg, rgba(141,198,62,.55), rgba(255,255,255,.16))",
-                  transform: ready ? "scaleX(1)" : "scaleX(0)",
-                  transition: `transform 700ms ${i * 160}ms cubic-bezier(.2,0,0,1)`,
-                }}
-                aria-hidden="true"
-              />
               <span
                 className="font-mono block"
                 style={{ fontSize: "0.75rem", letterSpacing: ".12em", color: "var(--color-signal)" }}
@@ -125,14 +92,14 @@ export function DeliveryModel() {
                 {s.n}
               </span>
               <h3
-                className="font-display font-medium text-on-field mt-2"
-                style={{ fontSize: "1.25rem", letterSpacing: "-0.02em" }}
+                className="font-display font-medium text-on-field mt-1.5"
+                style={{ fontSize: "1.1875rem", letterSpacing: "-0.02em" }}
               >
                 {s.title}
               </h3>
               <p
-                className="mt-2"
-                style={{ fontSize: "0.9375rem", lineHeight: 1.6, color: "var(--color-on-field-2)" }}
+                className="mt-1.5"
+                style={{ fontSize: "0.9375rem", lineHeight: 1.55, color: "var(--color-on-field-2)" }}
               >
                 {s.body}
               </p>
