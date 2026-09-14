@@ -9,10 +9,17 @@ import { SERVICES } from "@/components/ui/ServiceIcons";
    into the viewBox itself, so alignment with the hero headline holds at
    any rendered width instead of only at the one width an external pixel
    margin was tuned for. VH is trimmed to the pentagon's actual footprint
-   (bottom extent + hover headroom) rather than an arbitrary square-ish box,
-   which removes the dead canvas that used to sit below the last row. */
-const VW = 600, VH = 445;
-const CX = 300, CY = 219, R = 185;
+   (bottom extent + hover headroom) rather than an arbitrary square-ish box.
+   R and the node radii are sized to use nearly the full VW=600 width —
+   the previous R=185 left roughly a quarter of the box as unused margin
+   on both sides. */
+const VW = 600, VH = 535;
+const CX = 300, CY = 266, R = 225;
+
+/* Node circle radii scale with R so they read proportionate to the wider
+   spread instead of looking small inside it. */
+const NODE_R = 41, NODE_R_HALO = 56, NODE_R_LIT = 50, NODE_R_HALO_LIT = 70;
+const LABEL_OFFSET = 75, ORDINAL_OFFSET = 96, LABEL_SIZE = 14, ORDINAL_SIZE = 11.5;
 
 const NODES = SERVICES.map((_, i) => {
   const a = ((-90 + i * 72) * Math.PI) / 180;
@@ -154,19 +161,19 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
             const lit = hov === i;
             return (
               <g key={i} style={{ pointerEvents: "none" }}>
-                <circle cx={x} cy={y} r={lit ? 58 : 46}
+                <circle cx={x} cy={y} r={lit ? NODE_R_HALO_LIT : NODE_R_HALO}
                   fill={fill} opacity={lit ? 0.16 : 0.07}
                   style={{ transition: "r 280ms cubic-bezier(.2,0,0,1), opacity 280ms" }} />
-                <circle cx={x} cy={y} r={lit ? 41 : 34}
+                <circle cx={x} cy={y} r={lit ? NODE_R_LIT : NODE_R}
                   fill={fill}
                   style={{
                     transition: "r 280ms cubic-bezier(.2,0,0,1)",
                     filter: lit ? `drop-shadow(0 0 18px ${fill}88)` : "none",
                   }} />
                 <text
-                  x={x} y={y + 62} textAnchor="middle"
+                  x={x} y={y + LABEL_OFFSET} textAnchor="middle"
                   fill={lit ? c.labelLit : c.label}
-                  fontSize="12"
+                  fontSize={LABEL_SIZE}
                   fontFamily="var(--font-mono)"
                   letterSpacing="0.09em"
                   style={{ transition: "fill 280ms" }}
@@ -174,9 +181,9 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
                   {SHORT[i].toUpperCase()}
                 </text>
                 <text
-                  x={x} y={y + 79} textAnchor="middle"
+                  x={x} y={y + ORDINAL_OFFSET} textAnchor="middle"
                   fill={lit ? c.ordLit : c.ord}
-                  fontSize="9.5"
+                  fontSize={ORDINAL_SIZE}
                   fontFamily="var(--font-mono)"
                   letterSpacing="0.12em"
                   style={{ transition: "fill 280ms" }}
@@ -201,7 +208,8 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
                 left: `${(x / VW) * 100}%`,
                 top: `${(y / VH) * 100}%`,
                 transform: "translate(-50%, -50%)",
-                width: "11.5%", height: "13.2%",
+                width: `${((NODE_R * 2) / VW) * 100}%`,
+                height: `${((NODE_R * 2) / VH) * 100}%`,
                 zIndex: 10,
                 background: "transparent",
                 outlineColor: dark ? "#C4B5FD" : "var(--color-teal)",

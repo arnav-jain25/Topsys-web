@@ -26,11 +26,19 @@ export default function HomePage() {
           backgroundImage: [
             /* Cross-fades the paper color in over the navy ground rather than
                interpolating between hex stops — a hue ramp through a handful
-               of waypoints reads as a visible seam where the steps are large;
-               a smoothstep alpha curve on one color has no seam to see. */
-            "linear-gradient(to bottom, rgba(248,247,243,0) 0%, rgba(248,247,243,0) 88%, rgba(248,247,243,0.07) 90%, rgba(248,247,243,0.26) 92%, rgba(248,247,243,0.5) 94%, rgba(248,247,243,0.74) 96%, rgba(248,247,243,0.93) 98%, rgba(248,247,243,1) 100%)",
+               of waypoints reads as a visible seam where the steps are large.
+               Sized to a fixed 240px physical band (see backgroundSize/
+               backgroundPosition below) instead of a percentage of the whole
+               section: tying the fade's PHYSICAL length to a percentage of a
+               ~700-800px section only gave it ~85px of real screen distance
+               to complete in, which reads as an edge no matter how the alpha
+               curve is shaped — the eye needs actual pixels to see "gradual". */
+            "linear-gradient(to bottom, rgba(248,247,243,0) 0%, rgba(248,247,243,0.1) 20%, rgba(248,247,243,0.35) 40%, rgba(248,247,243,0.65) 60%, rgba(248,247,243,0.9) 80%, rgba(248,247,243,1) 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
+          backgroundSize: ["100% 240px", "100% 100%"].join(", "),
+          backgroundPosition: ["left bottom", "left top"].join(", "),
+          backgroundRepeat: "no-repeat",
         }}
         aria-label="Hero"
       >
@@ -74,9 +82,11 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Empty run-out so the fade above resolves to paper within this
-            same box — no seam from stacking a second gradient element. */}
-        <div aria-hidden="true" style={{ height: "72px", flexShrink: 0 }} />
+        {/* Run-out matched to the 240px fade band above — long enough that
+            the transition has real physical distance to read as gradual,
+            and sized so the band starts right where content ends rather
+            than washing over the button. */}
+        <div aria-hidden="true" style={{ height: "240px", flexShrink: 0 }} />
       </section>
 
       {/* ================================================================
