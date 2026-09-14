@@ -24,7 +24,11 @@ export default function HomePage() {
           minHeight: "78vh",
           padding: "5.5rem 0 0",
           backgroundImage: [
-            "linear-gradient(to bottom, transparent 55%, #061C32 68%, #0C2D48 78%, #0E2F3A 88%, #F8F7F3 100%)",
+            /* Cross-fades the paper color in over the navy ground rather than
+               interpolating between hex stops — a hue ramp through a handful
+               of waypoints reads as a visible seam where the steps are large;
+               a smoothstep alpha curve on one color has no seam to see. */
+            "linear-gradient(to bottom, rgba(248,247,243,0) 0%, rgba(248,247,243,0) 88%, rgba(248,247,243,0.07) 90%, rgba(248,247,243,0.26) 92%, rgba(248,247,243,0.5) 94%, rgba(248,247,243,0.74) 96%, rgba(248,247,243,0.93) 98%, rgba(248,247,243,1) 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
         }}
@@ -34,7 +38,7 @@ export default function HomePage() {
           {/* The right track is a fixed width, not a fraction — the headline
               above cycles through phrases of different lengths and a fractional
               track would resize the capability web on every cycle. */}
-          <div className="grid grid-cols-1 gap-10 items-center min-[1180px]:grid-cols-[minmax(0,1fr)_620px] min-[1180px]:gap-16">
+          <div className="grid grid-cols-1 gap-10 items-center min-[1180px]:grid-cols-[minmax(0,1fr)_620px] min-[1180px]:items-start min-[1180px]:gap-16">
             <div>
               <HeroHeading dark />
               <p className="text-lede-lg text-on-field-2 font-medium max-w-[54ch]">
@@ -54,7 +58,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            <ServicesShowcase dark />
+            {/* Nudged up so the top node lines up with the cap-height of
+                "Technology" at left — the eyebrow row and the SVG's own
+                internal padding above the top node otherwise push it down. */}
+            <div className="min-[1180px]:-mt-16">
+              <ServicesShowcase dark />
+            </div>
           </div>
         </div>
 
