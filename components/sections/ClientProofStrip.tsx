@@ -256,13 +256,19 @@ export function ClientProofStrip() {
               className="flex-none flex flex-col items-center justify-start gap-2.5"
               style={{ minWidth: "120px" }}
             >
-              <div className="flex items-center justify-center" style={{ height: "58px" }}>
+              {/* fill instead of a hardcoded width/height: every client
+                  logo file has its own intrinsic ratio, so one fixed pair
+                  is wrong for all but one of them — this was the source
+                  of the Next.js "width or height modified" warnings. fill
+                  plus object-contain lets each logo size itself correctly
+                  inside a common box regardless of its native dimensions. */}
+              <div className="relative" style={{ height: "58px", width: "180px" }}>
                 <Image
                   src={c.src}
                   alt=""
-                  width={220}
-                  height={58}
-                  className="h-full w-auto max-w-[180px] object-contain"
+                  fill
+                  sizes="180px"
+                  className="object-contain"
                   style={{ mixBlendMode: "multiply" }}
                 />
               </div>

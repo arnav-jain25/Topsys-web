@@ -34,11 +34,19 @@ export default function HomePage() {
                Every intermediate stop is itself a place the interpolation
                slope can change, and each of those reads as a faint seam once
                stretched across a full-width band; a straight two-stop ramp
-               has nothing to kink. */
-            "linear-gradient(to bottom, rgba(248,247,243,0) 0%, rgba(248,247,243,1) 100%)",
+               has nothing to kink.
+
+               The endpoint color must be the SITE'S ACTUAL --color-paper
+               (#FEFEFE), not the #F8F7F3 the design doc lists — the two
+               visible sections below this one both resolve to #FEFEFE via
+               that token, and ending the fade on a different white than
+               what it hands off to is a real, visible seam no amount of
+               easing fixes. Flagged to the user separately; not changed
+               site-wide here since --color-paper is used everywhere. */
+            "linear-gradient(to bottom, rgba(254,254,254,0) 0%, rgba(254,254,254,1) 100%)",
             "radial-gradient(ellipse 55% 70% at 100% 100%, rgba(13,82,120,0.35), transparent 100%)",
           ].join(", "),
-          backgroundSize: ["100% 240px", "100% 100%"].join(", "),
+          backgroundSize: ["100% 130px", "100% 100%"].join(", "),
           backgroundPosition: ["left bottom", "left top"].join(", "),
           backgroundRepeat: "no-repeat",
         }}
@@ -84,11 +92,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Run-out matched to the 240px fade band above — long enough that
-            the transition has real physical distance to read as gradual,
-            and sized so the band starts right where content ends rather
-            than washing over the button. */}
-        <div aria-hidden="true" style={{ height: "240px", flexShrink: 0 }} />
+        {/* Run-out matched to the 130px fade band above, sized so the band
+            starts right where content ends rather than washing over the
+            button. */}
+        <div aria-hidden="true" style={{ height: "130px", flexShrink: 0 }} />
       </section>
 
       {/* ================================================================
