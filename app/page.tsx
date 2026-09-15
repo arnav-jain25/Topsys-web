@@ -128,7 +128,7 @@ export default function HomePage() {
           <CaseStudyGrid limit={3} />
           <div className="mt-10">
             <Button href="/work" variant="secondary" className="!border-field-hairline !text-on-field hover:!border-signal hover:!text-signal">
-              See all programs
+              See all case studies
             </Button>
           </div>
         </div>

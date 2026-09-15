@@ -1,14 +1,9 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
-import { OFFICES } from "@/lib/offices";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import {
-  AboutValuesGrid,
-  AboutCredentialsGrid,
-  AboutOfficesGrid,
-} from "./AboutSections";
+import { PrinciplesGrid, type Principle } from "./AboutSections";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,19 +11,69 @@ export const metadata: Metadata = {
     "TOPSYS IT Solutions LLC is a minority-owned technology delivery firm with offices across the United States, Canada, and India. Founded by Abhishek Reddy Baddam.",
 };
 
-const CREDENTIALS = [
-  { label: "Minority Business Enterprise (MBE)", value: "Certified" },
-  { label: "SAM.gov registration", value: "UEI & CAGE code on file" },
-  { label: "D&B registration", value: "Registered" },
-  { label: "Years in operation", value: "20+" },
-  { label: "Countries of operation", value: "4" },
-  { label: "State engagements", value: "30" },
-];
+/* ---- Principle icons — thin monoline, 20x20, matches the icon set already
+   established across ServiceIcons and each capability page's own hero ---- */
+const IconOwnership = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="6.5" r="4" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M6.5 9.8L5.5 16l3.5-2 3.5 2-1-6.2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconLive = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="1.6" fill="currentColor" />
+    <path d="M5.8 5.8a4.5 4.5 0 000 6.4M12.2 5.8a4.5 4.5 0 010 6.4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    <path d="M3.3 3.3a8.5 8.5 0 000 11.4M14.7 3.3a8.5 8.5 0 010 11.4" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" opacity="0.55" />
+  </svg>
+);
+const IconVerified = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <rect x="4" y="3" width="10" height="13" rx="1.3" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M6.5 3V2.3a1 1 0 011-1h3a1 1 0 011 1V3" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M6.3 9.3l1.8 1.8 3.4-3.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const IconOneTeam = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="6.5" cy="6" r="2.3" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M2 16c0-2.8 2-4.8 4.5-4.8S11 13.2 11 16" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    <circle cx="12.5" cy="5.5" r="1.7" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M10.7 16c0-2 1-3.6 2.5-4.2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+const IconCertified = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <circle cx="9" cy="9" r="6.5" stroke="currentColor" strokeWidth="1.3" />
+    <path d="M6 9l2 2 4-4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
-const VALUES = [
-  "We build for the second engineer, not just the first.",
-  "Accountability ends when the client does. Not when the contract does.",
-  "We say what's not possible as clearly as we say what is.",
+const PRINCIPLES: Principle[] = [
+  {
+    title: "Professional ownership",
+    body: "The architects who scope your program are the ones who build it.",
+    icon: <IconOwnership />,
+  },
+  {
+    title: "Production, not pilots",
+    body: "Every engagement we run ships to production. None of it is a pilot.",
+    icon: <IconLive />,
+  },
+  {
+    title: "High-quality delivery",
+    body: "Nothing ships until it's verified against source, not guessed.",
+    icon: <IconVerified />,
+  },
+  {
+    title: "One team, always on",
+    body: "One accountable team, reachable from kickoff to go-live.",
+    icon: <IconOneTeam />,
+  },
+  {
+    title: "Diverse-supplier advantage",
+    body: "MBE certified. Spend with TOPSYS IT counts toward supplier-diversity goals.",
+    icon: <IconCertified />,
+  },
 ];
 
 export default function AboutPage() {
@@ -61,137 +106,150 @@ export default function AboutPage() {
             Technology delivery for complex environments.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-6">
-            TOPSYS IT Solutions LLC is a minority-owned technology firm that builds and runs critical systems for enterprise and government clients. We&rsquo;ve been doing this for over twenty years across three countries.
+            TOPSYS IT Solutions LLC is a minority-owned technology firm that builds and runs critical systems for enterprise and government clients. We&rsquo;ve been doing this for years across multiple countries.
           </p>
         </div>
       </section>
 
       {/* ================================================================
-          MISSION — three lines maximum
+          OPERATING PRINCIPLES — five concrete standards, rendered as
+          pillars sharing one foundation line on desktop
           ================================================================ */}
-      <section className="bg-surface" style={{ padding: "5rem 0" }}>
-        <div className="wrap">
-          <AboutValuesGrid values={VALUES} />
-        </div>
-      </section>
-
-      {/* ================================================================
-          FOUNDER — paper
-          ================================================================ */}
-      <section style={{ padding: "7rem 0" }}>
+      <section className="bg-surface" style={{ padding: "4.5rem 0" }}>
         <ScrollReveal className="wrap">
-          <Eyebrow>Leadership</Eyebrow>
+          <Eyebrow>Our standard</Eyebrow>
           <h2
             className="font-display font-medium text-ink mt-4"
             style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
+              fontSize: "clamp(1.5rem, 2.6vw, 2rem)",
               letterSpacing: "-0.025em",
             }}
           >
-            Founder
+            Five principles. One engagement standard.
           </h2>
-
-          <div className="grid grid-cols-[280px_1fr] gap-12 mt-10 items-start max-[767px]:grid-cols-1">
-            {/* Monogram mark, standing in for a founder photo we don't have
-                a real one for yet. Never substitute stock or AI-generated
-                photography per CLAUDE.md — this is a deliberate brand
-                treatment, not a placeholder. */}
-            <div>
-              <div
-                className="w-full aspect-[3/4] rounded-card overflow-hidden relative flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg,#0B2742 0%,#061C32 60%,#0D3150 100%)" }}
-                role="img"
-                aria-label="Monogram for Abhishek Reddy Baddam"
-              >
-                <span
-                  className="absolute top-[-20%] right-[-15%] w-[70%] h-[70%] pointer-events-none"
-                  style={{ background: "radial-gradient(circle,rgba(141,198,62,.18),transparent 65%)" }}
-                  aria-hidden="true"
-                />
-                <span
-                  className="absolute bottom-0 left-0 right-0 h-[3px]"
-                  style={{ background: "var(--gradient-signature)" }}
-                  aria-hidden="true"
-                />
-                <span
-                  className="relative font-display font-medium"
-                  style={{ fontSize: "5.5rem", letterSpacing: "-0.03em", color: "rgba(234,242,241,0.92)" }}
-                >
-                  AB
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-display font-medium text-heading-2 text-ink">
-                Abhishek Reddy Baddam
-              </h3>
-              <p className="font-mono text-mono-sm text-ink-muted uppercase tracking-[.06em] mt-1">
-                Founder & CEO
-              </p>
-              <div className="mt-6 space-y-4 text-body text-ink-2 max-w-[62ch]">
-                <p>
-                  Abhishek founded TOPSYS IT with a specific conviction: that the gap between enterprise technology strategy and execution is mostly an engineering problem, and that the people who close it are senior practitioners, not project managers with a managed service.
-                </p>
-                <p>
-                  With over 25 years of technology delivery experience and an M.S. in Computer Science from CUNY, he has led programs across financial services, telecommunications, healthcare, and state government, building teams and systems that run in production, not in decks.
-                </p>
-                <p>
-                  TOPSYS IT is minority-owned and MBE certified. The firm operates across the United States, Canada, and India, with regional presence in the UAE, and delivery teams embedded in enterprise and government programs nationwide.
-                </p>
-              </div>
-            </div>
+          <div className="mt-12">
+            <PrinciplesGrid principles={PRINCIPLES} />
           </div>
         </ScrollReveal>
       </section>
 
       {/* ================================================================
-          CREDENTIALS — inverted
+          OUR STORY — a CEO letter, quietly typeset. Light background, no
+          panel, no watermark: the words carry it, not the graphic.
           ================================================================ */}
-      <section className="on-field" style={{ padding: "7rem 0" }}>
-        <div className="wrap">
-          <Eyebrow dark>Credentials</Eyebrow>
-          <h2
-            className="font-display font-medium text-on-field mt-4"
-            style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Certifications and registrations
-          </h2>
+      <section style={{ padding: "6rem 0 6.5rem" }}>
+        <ScrollReveal className="wrap">
+          <div className="grid gap-x-16 gap-y-10 min-[1024px]:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+            {/* Left column — eyebrow, headline, and the signature moved up
+                to read as a byline, giving the section a real editorial
+                width instead of one narrow column stranded on the left */}
+            <div>
+              <Eyebrow>Our story</Eyebrow>
+              <h2
+                className="font-display font-medium text-ink mt-4"
+                style={{
+                  fontSize: "clamp(1.875rem, 3.6vw, 2.75rem)",
+                  letterSpacing: "-0.028em",
+                  maxWidth: "14ch",
+                }}
+              >
+                Where conviction{" "}
+                <span style={{ color: "var(--color-signal)" }}>meets execution</span>.
+              </h2>
 
-          <AboutCredentialsGrid credentials={CREDENTIALS} />
+              <div
+                className="mt-9 pt-6 flex items-center gap-3.5 max-[1023px]:hidden"
+                style={{ borderTop: "1px solid var(--color-hairline)" }}
+              >
+                <span
+                  className="flex-none flex items-center justify-center rounded-full font-display font-medium"
+                  style={{ width: 40, height: 40, fontSize: "0.9375rem", background: "#0D3150", color: "var(--color-signal)" }}
+                  aria-hidden="true"
+                >
+                  AB
+                </span>
+                <div>
+                  <p className="text-body-xs text-ink font-semibold">Abhishek Reddy Baddam</p>
+                  <p className="font-mono text-mono-xs uppercase tracking-[.06em]" style={{ color: "var(--color-signal)" }}>
+                    Founder &amp; CEO
+                  </p>
+                  <p className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.06em]" style={{ opacity: 0.75 }}>
+                    25+ yrs delivery · M.S. CS, CUNY
+                  </p>
+                </div>
+              </div>
+            </div>
 
-          <div className="mt-12 border-t border-field-hairline pt-8">
-            <p className="text-body-xs text-on-field-2 max-w-[60ch]">
-              MBE certification qualifies TOPSYS IT for supplier diversity mandates in enterprise procurement programs and preference requirements in state government contracting.
-            </p>
+            {/* Right column — the letter itself, measure capped for
+                readability even though the section now spans full width */}
+            <div className="max-w-[62ch]">
+              <p
+                className="font-display font-medium text-ink"
+                style={{ fontSize: "clamp(1.1875rem, 2.1vw, 1.4375rem)", letterSpacing: "-0.016em", lineHeight: 1.4 }}
+              >
+                I founded TOPSYS IT with a simple belief: the gap between technology strategy and
+                execution is ultimately an engineering problem.
+              </p>
+
+              <div className="mt-6 space-y-4 text-body text-ink-2">
+                <p>
+                  Great ideas are only valuable when they can be built, deployed, and made to work
+                  in the real world. That requires experienced practitioners who understand the
+                  business challenge, know the technology, and take ownership of the outcome.
+                </p>
+                <p>That belief has shaped TOPSYS IT from day one.</p>
+                <p>
+                  For more than twenty years, we have brought senior engineers, architects, and
+                  delivery leaders into complex enterprise and government environments to solve
+                  problems where scale, security, reliability, and execution matter. Our teams
+                  have delivered across financial services, telecommunications, healthcare, and
+                  state government, working alongside our clients from the initial challenge
+                  through production and beyond.
+                </p>
+                <p>
+                  Today, TOPSYS IT is a minority-owned, MBE-certified technology company with
+                  delivery capabilities across four countries. While technology has evolved
+                  dramatically since we began, our approach has remained remarkably consistent in
+                  evolving with the technology.
+                </p>
+              </div>
+
+              {/* Closing imperative — a quiet blockquote, not a graphic panel */}
+              <div className="mt-8 pl-5" style={{ borderLeft: "2px solid var(--color-teal)" }}>
+                <p
+                  className="font-display font-medium text-ink"
+                  style={{ fontSize: "1.1875rem", letterSpacing: "-0.014em", lineHeight: 1.35 }}
+                >
+                  Put the right people close to the problem. Give them ownership. Build
+                  technology that delivers.
+                </p>
+                <p className="text-body-sm text-ink-2 mt-3">
+                  That is the conviction TOPSYS IT was founded on. It is still how we work today.
+                </p>
+              </div>
+
+              {/* Signature — mobile/tablet only; desktop shows it in the left column */}
+              <div
+                className="mt-9 pt-6 flex items-center gap-3.5 min-[1024px]:hidden"
+                style={{ borderTop: "1px solid var(--color-hairline)" }}
+              >
+                <span
+                  className="flex-none flex items-center justify-center rounded-full font-display font-medium"
+                  style={{ width: 40, height: 40, fontSize: "0.9375rem", background: "#0D3150", color: "var(--color-signal)" }}
+                  aria-hidden="true"
+                >
+                  AB
+                </span>
+                <div>
+                  <p className="text-body-xs text-ink font-semibold">Abhishek Reddy Baddam</p>
+                  <p className="font-mono text-mono-xs text-ink-muted uppercase tracking-[.06em]">
+                    <span style={{ color: "var(--color-signal)" }}>Founder &amp; CEO</span> · 25+ years in technology delivery · M.S. Computer Science, CUNY
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          OFFICES — paper, world map + addresses
-          ================================================================ */}
-      <section style={{ padding: "7rem 0" }}>
-        <div className="wrap">
-          <Eyebrow>Locations</Eyebrow>
-          <h2
-            className="font-display font-medium text-ink mt-4"
-            style={{
-              fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Where we operate
-          </h2>
-          <p className="text-body text-ink-2 max-w-[62ch] mt-4">
-            Three countries, four offices, with regional presence in the UAE. Delivery teams work across time zones to stay embedded with client teams wherever they sit.
-          </p>
-
-          <AboutOfficesGrid offices={OFFICES} />
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ================================================================
