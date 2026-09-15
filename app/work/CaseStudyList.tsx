@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CASE_STUDIES } from "@/lib/case-studies";
 import { DIAGRAM_COMPONENTS } from "@/components/sections/CaseStudyGrid";
 
-const ORDINALS = ["01", "02", "03", "04", "05", "06"];
+const ORDINALS = ["01", "02", "03", "04", "05", "06", "07", "08", "09"];
 const BG_ALTERNATES = [
   "bg-paper",
   "bg-surface",
@@ -12,6 +12,9 @@ const BG_ALTERNATES = [
   "bg-surface",
   "bg-paper",
   "bg-surface",
+  "bg-paper",
+  "bg-surface",
+  "bg-paper",
 ];
 
 function revealStyle(visible: boolean, delay: number): React.CSSProperties {

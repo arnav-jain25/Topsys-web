@@ -38,6 +38,11 @@ const CAPABILITIES = [
     tech: ["Python", "Kafka", "Snowflake", "SOC 2", "AML/KYC"],
   },
   {
+    title: "Digital content & experience platforms",
+    body: "Content architecture for regulated products. Rates, disclosures, and product terms compose at the service layer, so legally-reviewed content and real-time data stay on separate update cycles. Headless delivery to web, mobile, and app channels from one governed source.",
+    tech: ["Adobe AEM", "Contentstack", "GraphQL", "MuleSoft", "Next.js"],
+  },
+  {
     title: "Technology staff",
     body: "Engineers who've shipped inside payments and lending platforms know the difference between a race condition in a checkout flow and one in a content feed. That distinction is the job.",
     tech: ["Java", "Python", "Kubernetes", "AWS", "Terraform"],
@@ -131,7 +136,7 @@ export default function FintechPage() {
           >
             Where we work in fintech
           </h2>
-          <IndustryCapabilityGrid capabilities={CAPABILITIES} />
+          <IndustryCapabilityGrid capabilities={CAPABILITIES} columns={2} />
         </div>
       </section>
 

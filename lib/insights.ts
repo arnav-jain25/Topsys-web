@@ -14,6 +14,50 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "aem-to-contentstack-migration",
+    topic: "Content platforms",
+    title: "What actually breaks in an AEM to Contentstack migration",
+    summary:
+      "The page templates migrate fine. What breaks is everything wired to Adobe underneath them: the DAM, the workflow engine, the dynamic data injected at render time, and the assumption that content and presentation were ever separate to begin with.",
+    readTime: "8 min read",
+    published: "September 2025",
+    defaultOpen: true,
+    content: [
+      {
+        heading: "The part everyone scopes correctly",
+        body: "Page-level content — the copy, the images, the layout of a landing page — maps to Contentstack reasonably well. It’s structured, it’s visible, and it shows up in every demo. Most AEM to Contentstack proposals scope this part accurately, because it’s the part that’s easy to see. It is also, in our experience, less than half the actual migration.",
+      },
+      {
+        heading: "The part everyone underscopes: what AEM does besides hold content",
+        body: "AEM isn’t just a content repository. It’s frequently the DAM, the workflow and approval engine, the personalization layer, and the integration point for dynamic enterprise data — rates, disclosures, inventory, pricing — that gets composed into the page at render time. A migration scoped as \"move the content\" discovers, partway through, that it also has to answer what replaces DAM governance, what replaces the approval workflow, and where the dynamic data composition now happens. None of that is a Contentstack problem. All of it has to be solved before the migration can ship.",
+      },
+      {
+        heading: "Content Fragments don’t map to Contentstack entries automatically",
+        body: "AEM’s Content Fragments and Experience Fragments are structured, but they’re structured around AEM’s component model — resource types, dialog definitions, Sling paths. Contentstack’s content types and modular blocks are a different structure with a different authoring model. A direct field-by-field export produces a working migration and a broken authoring experience: editors get a content type shaped like the old CMS, not one shaped like how the business actually publishes. The redesign of the content model is the real work. The data transfer is the mechanical part.",
+      },
+      {
+        heading: "Separate the DAM decision from the CMS decision",
+        body: "Teams often assume the DAM migration is a side effect of the CMS migration. It isn’t. AEM Assets carries its own metadata schema, its own taxonomy, its own approval and expiration workflows, and — in our experience — a multi-terabyte footprint of assets with inconsistent or embedded-in-filename metadata. If the target architecture keeps AEM Assets as the governed DAM while content delivery moves to Contentstack, that's a legitimate hybrid outcome, but it has to be a decision made on day one, not discovered in week eight when someone asks where the hero images are supposed to live now.",
+      },
+      {
+        heading: "Dynamic data has to leave the content model, not travel with it",
+        body: "In financial services and fintech specifically, pages compose managed content with data that changes on its own schedule — rates, disclosures, account terms. In AEM, that composition sometimes happens inside a component at render time, coupling the editorial content to a system that updates hourly. Migrating that coupling as-is into Contentstack just relocates the problem. The correct move is to push dynamic data composition to an API mediation layer — MuleSoft, a BFF, whatever the target architecture uses — so managed content stays stable and dynamic data stays owned by the system that actually owns it.",
+      },
+      {
+        heading: "The ETL script is not the risk. The mapping decisions are.",
+        body: "Writing a script to pull content out of AEM's JCR repository via the Query/REST API and push it into Contentstack's Management API is a known problem with known tools. What determines whether the migration succeeds is upstream of the script: which AEM component types map to which Contentstack content types, how rich text and embedded HTL logic translate to portable JSON, how binary assets get re-tagged with governed taxonomy instead of inherited folder structure. Get the mapping wrong and the ETL script faithfully migrates the wrong model at scale.",
+      },
+      {
+        heading: "Multi-brand or multi-property estates compound every decision",
+        body: "If the AEM instance serves more than one brand or site, siloed component libraries usually exist per property — the same button, built three separate times with three separate quirks. Contentstack doesn't fix that automatically. The payoff of a migration like this is a shared, token-driven component library (Storybook is the common choice) that lets one presentation layer render every brand correctly. Skip that step and you've moved the CMS without solving the problem the CMS migration was supposed to solve.",
+      },
+      {
+        heading: "What to ask a vendor proposing this migration",
+        body: "Ask what happens to the DAM, specifically — not \"assets migrate,\" but where they live afterward and who governs them. Ask how dynamic data composition is re-architected, not just relocated. Ask to see the content model redesign, not the field-mapping spreadsheet. Ask how many brands or properties share the target component library. If the answers are vague on any of these, the estimate is optimistic in the same place every underscoped AEM migration is optimistic — the parts that aren't the page content.",
+      },
+    ],
+  },
+  {
     slug: "agent-auditability",
     topic: "Agentic AI",
     title: "The agent that ships is the one you can audit",
@@ -21,7 +65,6 @@ export const INSIGHTS: Insight[] = [
       "Agent demos clear the bar easily and production clears nothing. The gap isn’t model capability. It’s that nobody can answer what the agent did, on whose authority, and with which credentials.",
     readTime: "8 min read",
     published: "August 2025",
-    defaultOpen: true,
     content: [
       {
         heading: "Why demos succeed and production fails",

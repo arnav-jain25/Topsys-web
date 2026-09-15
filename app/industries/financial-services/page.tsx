@@ -38,6 +38,11 @@ const CAPABILITIES = [
     tech: ["Java", "Spring Boot", "REST APIs", "AWS", "Azure"],
   },
   {
+    title: "Digital content & experience platforms",
+    body: "Content architecture for member- and customer-facing digital properties. Adobe Experience Manager and Contentstack implementations that separate governed editorial content from dynamic data — rates, disclosures, account terms — so compliance review and content publishing run on different clocks.",
+    tech: ["Adobe AEM", "Contentstack", "MuleSoft", "GraphQL", "Next.js"],
+  },
+  {
     title: "Technology staff",
     body: "Senior engineers and architects who understand the regulatory context, not just the stack. Engineers who have worked inside compliance-gated delivery know how to move fast within real constraints.",
     tech: ["Java", "Python", "Spark", "SQL", "AWS"],
@@ -131,7 +136,7 @@ export default function FinancialServicesPage() {
           >
             Where we work in financial services
           </h2>
-          <IndustryCapabilityGrid capabilities={CAPABILITIES} />
+          <IndustryCapabilityGrid capabilities={CAPABILITIES} columns={2} />
         </div>
       </section>
 

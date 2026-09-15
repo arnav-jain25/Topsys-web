@@ -17,7 +17,105 @@ interface CaseStudy {
 /* Flow paths use class="fp" — the useEffect below animates them with Web Animations API,
    matching the reference exactly: 14px running dot, infinite linear, duration 3200+i*260ms. */
 
-// Landing page slot 1 — Conversational AI / Agentforce GTM
+// Slot 1 — CPG multi-brand CMS: Sitecore → Contentstack → Next.js / Edge CDN
+const CPGDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Sitecore legacy CMS feeding an ETL pipeline into Contentstack, then a Next.js frontend delivered via Edge CDN.">
+    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
+      <rect x="2" y="34" width="60" height="22" rx="3" />
+      <rect x="228" y="12" width="68" height="20" rx="3" />
+      <rect x="228" y="60" width="68" height="20" rx="3" />
+    </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M62 45 H106" />
+      <path d="M182 45 H200 V22 H228" />
+      <path d="M182 45 H200 V70 H228" />
+    </g>
+    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
+      <path d="M62 45 H106" />
+      <path d="M182 45 H200 V22 H228" />
+      <path d="M182 45 H200 V70 H228" />
+    </g>
+    <rect x="106" y="28" width="76" height="36" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
+      <text x="6" y="48">SITECORE</text>
+      <text x="232" y="25">NEXT.JS</text>
+      <text x="232" y="73">EDGE CDN</text>
+    </g>
+    <text x="144" y="49" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-signal)">CONTENTSTACK</text>
+  </svg>
+);
+
+// Slot 2 — AEM omnichannel: AEM/AEC → MuleSoft mediation → Web / Mobile / Email
+const AEMOmnichannelDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="Content authors writing to Adobe Experience Manager, then MuleSoft API layer routing structured content to web, mobile, and email channels.">
+    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
+      <rect x="2" y="34" width="44" height="22" rx="3" />
+      <rect x="168" y="34" width="56" height="22" rx="3" />
+      <rect x="252" y="10" width="46" height="16" rx="3" />
+      <rect x="252" y="36" width="46" height="16" rx="3" />
+      <rect x="252" y="62" width="46" height="16" rx="3" />
+    </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M46 45 H72" />
+      <path d="M138 45 H168" />
+      <path d="M224 45 H238 V18 H252" />
+      <path d="M224 45 H252" />
+      <path d="M224 45 H238 V70 H252" />
+    </g>
+    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
+      <path d="M46 45 H72" />
+      <path d="M138 45 H168" />
+      <path d="M224 45 H238 V18 H252" />
+      <path d="M224 45 H252" />
+      <path d="M224 45 H238 V70 H252" />
+    </g>
+    <rect x="72" y="28" width="66" height="36" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
+      <text x="5" y="48">AUTHORS</text>
+      <text x="172" y="48">MULESOFT</text>
+      <text x="255" y="21">WEB</text>
+      <text x="255" y="47">MOBILE</text>
+      <text x="255" y="73">EMAIL</text>
+    </g>
+    <text x="105" y="44" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6.5" fill="var(--color-signal)">AEM / AEC</text>
+    <text x="105" y="54" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6" fill="var(--color-signal)">HEADLESS</text>
+  </svg>
+);
+
+// Slot 3 — AEM Assets DAM: LAN storage + Workfront → AEM Assets → Dynamic Media / channels
+const AEMAssetsDiagram = () => (
+  <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="LAN file shares and Workfront feeding into AEM Assets as a governed DAM, then distributing via Dynamic Media to web, email, and mobile channels.">
+    <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
+      <rect x="2" y="10" width="58" height="20" rx="3" />
+      <rect x="2" y="62" width="58" height="20" rx="3" />
+      <rect x="224" y="10" width="72" height="20" rx="3" />
+      <rect x="224" y="62" width="72" height="20" rx="3" />
+    </g>
+    <g fill="none" stroke="var(--color-field-hairline)" strokeWidth="1">
+      <path d="M60 20 H80 V46 H96" />
+      <path d="M60 72 H80 V46" />
+      <path d="M174 46 H200 V20 H224" />
+      <path d="M174 46 H200 V72 H224" />
+    </g>
+    <g className="fp" fill="none" stroke="var(--color-signal)" strokeWidth="1.4">
+      <path d="M60 20 H80 V46 H96" />
+      <path d="M60 72 H80 V46" />
+      <path d="M174 46 H200 V20 H224" />
+      <path d="M174 46 H200 V72 H224" />
+    </g>
+    <rect x="96" y="26" width="78" height="40" rx="3" fill="rgba(141,198,62,.08)" stroke="var(--color-signal)" />
+    <g fontFamily="var(--font-mono)" fontSize="7" fill="var(--color-on-field-2)">
+      <text x="6" y="23">LAN FILES</text>
+      <text x="5" y="75">WORKFRONT</text>
+      <text x="228" y="23">CHANNELS</text>
+      <text x="224" y="75">DYNAMIC MEDIA</text>
+    </g>
+    <text x="135" y="44" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6.5" fill="var(--color-signal)">AEM ASSETS</text>
+    <text x="135" y="54" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="6" fill="var(--color-signal)">DAM</text>
+  </svg>
+);
+
+// Work page — Conversational AI / Agentforce GTM
 const AgentforceDiagram = () => (
   <svg className="flow w-full" viewBox="0 0 300 92" role="img" aria-label="User query entering Agentforce which retrieves from Salesforce and BigQuery to return a contextual response.">
     <g fill="none" stroke="var(--color-on-field-2)" strokeWidth=".8">
@@ -214,7 +312,35 @@ const HealthDiagram = () => (
 );
 
 const CASE_STUDIES: CaseStudy[] = [
-  // ── First three appear on the homepage ───────────────────────────────
+  // ── First three — Adobe / digital content platform ────────────────────
+  {
+    tag: "Consumer goods · CMS modernization",
+    title: "Multi-brand web platform migration from Sitecore to Contentstack for a global CPG enterprise",
+    body: "A Sitecore MVC monolith driving a multi-brand website portfolio, blocking every campaign behind developer deployments. Migrated to Contentstack with Next.js and a shared Storybook design system — campaign launch from 3 weeks to under 2 days.",
+    diagram: <CPGDiagram />,
+    tech: ["Contentstack", "Next.js"],
+    metric: "68% perf gain · 4× faster",
+    href: "/work/cpg-cms-modernization",
+  },
+  {
+    tag: "Financial services · Adobe AEM",
+    title: "Omnichannel content architecture on Adobe Experience Cloud for a US credit union",
+    body: "Content trapped in a tightly coupled CMS with no headless delivery path. Architected AEM/AEC with Content Fragments, MuleSoft API mediation, and CDN caching to serve web, mobile, email, and API consumers from a single governed source.",
+    diagram: <AEMOmnichannelDiagram />,
+    tech: ["Adobe AEM", "MuleSoft"],
+    metric: null,
+    href: "/work/aem-omnichannel-content",
+  },
+  {
+    tag: "Financial services · Adobe AEM Assets",
+    title: "Marketing asset migration from fragmented LAN storage to enterprise DAM on Adobe Experience Cloud",
+    body: "3.4 TB of marketing assets distributed across LAN folders — no taxonomy, no governed workflows, distribution by manual copy. Migrated into AEM Assets with metadata governance, Workfront integration, and Creative Cloud connectivity.",
+    diagram: <AEMAssetsDiagram />,
+    tech: ["AEM Assets", "Workfront"],
+    metric: null,
+    href: "/work/aem-dam-migration",
+  },
+  // ── Remaining entries ─────────────────────────────────────────────────
   {
     tag: "Conversational AI · Enterprise",
     title: "Conversational access to GTM operations at an AI research company",
@@ -245,7 +371,6 @@ const CASE_STUDIES: CaseStudy[] = [
     href: "/work/platform-engineering",
     fde: true,
   },
-  // ── Remaining entries on /work ────────────────────────────────────────
   {
     tag: "Financial services · Wealth management",
     title: "Backend modernization for an enterprise wealth management workflow platform",
@@ -277,6 +402,9 @@ const CASE_STUDIES: CaseStudy[] = [
 
 /** Slug → diagram component map — imported by CaseStudyList for the /work page */
 export const DIAGRAM_COMPONENTS: Record<string, React.ComponentType> = {
+  "cpg-cms-modernization": CPGDiagram,
+  "aem-omnichannel-content": AEMOmnichannelDiagram,
+  "aem-dam-migration": AEMAssetsDiagram,
   "gtm-conversational-ai": AgentforceDiagram,
   "payments-data": PaymentsDiagram,
   "platform-engineering": TelecomDiagram,

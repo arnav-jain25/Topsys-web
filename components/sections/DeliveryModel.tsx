@@ -37,7 +37,7 @@ export function DeliveryModel() {
     <section
       aria-labelledby="delivery-heading"
       className="on-field relative overflow-hidden"
-      style={{ background: "var(--color-field)", padding: "3.75rem 0 4rem" }}
+      style={{ background: "var(--color-field)", padding: "0 0 4rem" }}
     >
       <style>{`
         .stage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
@@ -45,7 +45,13 @@ export function DeliveryModel() {
         @media (max-width: 600px)  { .stage-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
       `}</style>
 
-      <div className="wrap relative" ref={ref}>
+      {/* Divider sits right at the seam with the section above (same
+          field-color background) instead of floating in a blank gap. */}
+      <div className="wrap">
+        <div className="border-t border-field-hairline" aria-hidden="true" />
+      </div>
+
+      <div className="wrap relative" ref={ref} style={{ marginTop: "2rem" }}>
         <div className="flex items-end justify-between gap-10 flex-wrap">
           <div>
             <p

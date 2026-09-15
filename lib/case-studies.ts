@@ -28,10 +28,177 @@ export interface CaseStudy {
   impact?: Impact;
   tech: string[];
   metric: string | null; // null if not confirmed
+  related?: string[]; // slugs of related case studies, shown as a cluster
 }
 
 export const CASE_STUDIES: CaseStudy[] = [
-  // ── Landing page: first three ──────────────────────────────────────────
+  // ── First three — Adobe / digital content platform ─────────────────────
+
+  {
+    slug: "cpg-cms-modernization",
+    tag: "Consumer goods · CMS modernization",
+    title: "Multi-brand web platform migration from Sitecore to Contentstack for a global CPG enterprise",
+    lede: "A Sitecore MVC monolith driving a multi-brand website portfolio, blocking every campaign behind developer deployments. We migrated to Contentstack with a Next.js headless frontend and a shared Storybook design system — cutting campaign launch time from 3 weeks to under 2 days and lifting mobile Lighthouse scores from ~38 to 92+.",
+    client: "A global consumer packaged goods enterprise managing a multi-brand website portfolio across North America",
+    capabilities: ["Applications & modernization", "Cloud & platform engineering"],
+    problem: [
+      "A legacy Sitecore Experience Platform (MVC) served as the CMS for a portfolio of brand websites across North America. The monolithic architecture required expensive licensing, developer-managed deployment pipelines for content changes that should have been editorial, and a substantial ongoing infrastructure footprint. Every seasonal campaign, product launch, or landing page update depended on the same deployment cycle as application code changes — delays measured in weeks, not hours.",
+      "Web performance had degraded to the point where mobile Lighthouse scores were averaging around 38, well below competitive benchmarks for organic search. Siloed codebases across brand properties created redundant development work and prevented reuse of UI components or design systems across the portfolio. Adding a new regional brand site required months of work that should have taken days.",
+    ],
+    approach: [
+      {
+        heading: "Composable content architecture on Contentstack",
+        body: "Converted rigid Sitecore templates into structured Contentstack Content Types and dynamic Modular Blocks, giving marketing teams drag-and-drop layout control within guardrails. Built custom Node.js ETL scripts using the Sitecore Query/REST API to extract legacy content, transform Sitecore Rich Text and HTL into Contentstack JSON format, and auto-map binary assets into the new repository with proper taxonomy tags.",
+      },
+      {
+        heading: "Multi-brand token-driven UI with Storybook and Next.js",
+        body: "Developed a unified React component library in Storybook mapped 1:1 to Contentstack Modular Blocks. Brand-level CSS variables — colors, typography, border radii — let a single React codebase render distinct visual identities across multiple brand domains automatically, eliminating the siloed per-brand codebases that had accumulated over years.",
+      },
+      {
+        heading: "Edge delivery with Next.js App Router and ISR",
+        body: "Implemented Next.js App Router with Static Site Generation for high-traffic pages and Incremental Static Regeneration via Contentstack Webhooks for instant content updates without full site rebuilds. Content that previously required a build pipeline now updates in seconds.",
+      },
+      {
+        heading: "Node.js BFF layer for enterprise API aggregation",
+        body: "Standardized a lightweight Node.js Backend-for-Frontend layer to aggregate enterprise backend services — .NET APIs, product information, loyalty programs — separately from the content delivery pipeline. This preserved the CMS as a clean content system while composing data from enterprise sources at the service boundary.",
+      },
+    ],
+    outcome: "Mobile Lighthouse performance scores from ~38 to 92+, campaign launch cycles from 3 weeks to under 2 days, 42% reduction in operating costs by eliminating Sitecore licensing and legacy hosting overhead, and new regional brand site onboarding from months to days using shared Storybook components and design token swaps",
+    impact: {
+      headline: "Monolith replaced. Every dimension improved.",
+      metrics: [
+        {
+          value: "68%",
+          label: "performance improvement",
+          detail: "Mobile Lighthouse ~38 → 92+",
+        },
+        {
+          value: "4×",
+          label: "faster content velocity",
+          detail: "Campaign launch 3 weeks → under 2 days",
+        },
+        {
+          value: "42%",
+          label: "operating cost reduction",
+          detail: "Sitecore licensing and legacy hosting eliminated",
+        },
+        {
+          value: "70%",
+          label: "faster brand onboarding",
+          detail: "New regional sites in days, not months",
+        },
+      ],
+    },
+    tech: ["Contentstack", "Next.js", "React", "Storybook", "Node.js", "Edge CDN", "ISR"],
+    metric: "68% perf gain · 4× faster",
+    related: ["aem-omnichannel-content", "aem-dam-migration"],
+  },
+
+  {
+    slug: "aem-omnichannel-content",
+    tag: "Financial services · Adobe AEM",
+    title: "Omnichannel content architecture on Adobe Experience Cloud for a US credit union",
+    lede: "Content locked in a tightly coupled CMS with no headless delivery path. We architected an AEM/AEC foundation — Content Fragments, MuleSoft API mediation, persisted queries, and CDN caching — that serves web, mobile, email, and API consumers from a single governed content source.",
+    client: "A US financial services credit union managing a digital member experience across web, mobile, and API channels",
+    capabilities: ["Applications & modernization", "Cloud & platform engineering"],
+    problem: [
+      "The organization's digital content strategy was constrained by a tightly coupled CMS delivery model. Web, mobile, email, and other API-consuming applications each required the same managed content — rates, disclosures, product information, and member-facing copy — but had distinct presentation and data requirements that a single delivery pattern could not satisfy. Replicating and maintaining content per channel increased cost and the risk of inconsistency across the digital member experience.",
+      "Controlled API access was absent. Consuming applications were constructing unrestricted queries, creating unpredictable request patterns, poor cacheability, and unnecessary processing overhead on the content platform. Dynamic enterprise data — rates and disclosures — was embedded in editorial content structures, coupling its update cycle to managed content workflows rather than the real-time data systems that owned it.",
+    ],
+    approach: [
+      {
+        heading: "AEM/AEC as the centralized content foundation",
+        body: "Established Adobe Experience Cloud and AEM as the single managed content source. Content Fragments provided reusable structured content for headless consumers; Experience Fragments extended reuse to broader experience blocks needed across web, email, and campaign channels. Both headless API delivery and conventional AEM-managed web presentation operate from the same content repository — channel requirements no longer dictate content structure.",
+      },
+      {
+        heading: "MuleSoft API mediation and persisted queries",
+        body: "Deployed MuleSoft as a controlled service boundary between digital applications and AEC. Persisted queries stored on the AEC server give consuming applications predefined, governed retrieval patterns rather than unrestricted full queries — supporting predictable request behavior and efficient caching. Only the data a consuming application needs is retrieved; the content platform is shielded from unbounded query load.",
+      },
+      {
+        heading: "Dynamic data composition at the service layer",
+        body: "Rates, disclosures, and other frequently changing enterprise data are composed at the MuleSoft layer before delivery, combining managed editorial content with live data from enterprise systems. This keeps time-sensitive information outside the CMS content model entirely — its freshness and ownership belong to the systems that produce it, not the content management workflow.",
+      },
+      {
+        heading: "CDN delivery, caching, and Cloud Manager automation",
+        body: "Applied response caching to transformed content and suitable read-oriented AEC outputs, reducing repeated upstream processing. Adobe Cloud Manager provided automated DevOps, integrated CDN delivery, auto-scaling, and continuous security scanning — giving the organization repeatable deployments and resilient delivery without manual infrastructure management.",
+      },
+    ],
+    outcome: "A single governed content foundation serving web, mobile, email, and API channels from one AEM/AEC ecosystem — headless and conventional delivery supported simultaneously, with controlled API access, dynamic data composition, and cloud-oriented operations",
+    impact: {
+      headline: "One content source, every channel",
+      statements: [
+        {
+          heading: "Headless and conventional delivery from one platform",
+          body: "AEM/AEC serves both API-driven consumers — mobile applications, single-page applications, email — and conventional web properties from the same managed content repository. Each channel controls its own presentation; AEC controls the content.",
+        },
+        {
+          heading: "Dynamic data composed at the boundary",
+          body: "Rates, disclosures, and other frequently changing enterprise information are injected at the MuleSoft service layer rather than embedded in editorial content — keeping managed content stable and dynamic data current without coupling their update cycles.",
+        },
+        {
+          heading: "Controlled access, improved cacheability",
+          body: "Persisted queries replace unrestricted full queries across all consuming applications. Request patterns are predictable and governed; responses are cacheable. The content platform processes less while serving more.",
+        },
+      ],
+    },
+    tech: ["Adobe Experience Cloud", "AEM", "Content Fragments", "Experience Fragments", "MuleSoft", "GraphQL", "CDN", "Adobe Cloud Manager"],
+    metric: null,
+    related: ["aem-dam-migration", "cpg-cms-modernization"],
+  },
+
+  {
+    slug: "aem-dam-migration",
+    tag: "Financial services · Adobe AEM Assets",
+    title: "Marketing asset migration from fragmented LAN storage to enterprise DAM on Adobe Experience Cloud",
+    lede: "3.4 TB of marketing assets distributed across LAN file shares with no taxonomy, no governed workflows, and distribution by manual copy. We migrated into AEM Assets as the governed repository and connected the asset lifecycle across Workfront, Creative Cloud, Frame.io, and Dynamic Media.",
+    client: "A US financial services credit union with a marketing and creative team managing assets across campaign, web, email, and media channels",
+    capabilities: ["Applications & modernization", "Cloud & platform engineering"],
+    problem: [
+      "The existing marketing asset environment was distributed across LAN folders and multiple systems, creating a fragmented content supply chain with an asset footprint of approximately 3.4 TB. Users depended on folder structures and filenames rather than rich metadata, filters, and facets — making asset discovery slow and inconsistent. Important context was embedded in filenames rather than structured metadata fields, limiting organization, search, and reuse.",
+      "Expiration reminders, approvals, and lifecycle governance were not consistently automated. Personas and controlled access were not systematically applied across asset activities. Multiple copies of the same asset could exist across folders and systems, weakening the source of truth. Assets were shared as physical copies rather than governed links or reusable collections — every distribution created another uncontrolled copy with no lifecycle attached to it.",
+    ],
+    approach: [
+      {
+        heading: "Asset audit and controlled migration",
+        body: "Structured the migration as a controlled asset modernization rather than a lift-and-shift. Conducted an asset audit and keep/kill analysis, followed by inventory analysis, metadata mapping and taxonomy assignment, and pattern identification from existing filenames. Automated and manual migration executed in sequence, with validation and user acceptance before delta migration, onboarding, and handover.",
+      },
+      {
+        heading: "AEM Assets as the governed DAM",
+        body: "Established AEM Assets as the governed repository for approved final marketing assets. Created target folder structures and mapped metadata and taxonomy. Applied role-based personas, version control, lifecycle workflows, and asset expiration controls. Shareable links and governed collections replaced uncontrolled copy distribution — one source of truth, not many copies.",
+      },
+      {
+        heading: "Workfront integration for campaign orchestration",
+        body: "Connected Workfront for project, task, review, status, and approval orchestration across the marketing workflow. Campaign and job metadata initialized in Workfront; assignments, reviews, and approvals managed there. AEM Assets receives approved final assets from the Workfront workflow rather than manual handoff — project state and asset state are connected.",
+      },
+      {
+        heading: "Creative Cloud, Frame.io, and Dynamic Media",
+        body: "Validated Creative Cloud and Frame.io connectivity for creative production, collaboration, and review workflows. Assets produced in Creative Cloud are linked to Workfront tasks and land in AEM Assets as governed records. Dynamic Media and CDN delivery distribute optimized renditions downstream to web, email, mobile, and media channels — on-brand assets, consistently delivered.",
+      },
+    ],
+    outcome: "Centralized governance of approximately 3.4 TB of marketing assets in AEM Assets, with standardized metadata and taxonomy, persona-based access, lifecycle workflows, integrated project and approval processes via Workfront, and an extensible foundation for Dynamic Media delivery and future Content Hub capabilities",
+    impact: {
+      headline: "One governed source for every marketing asset",
+      statements: [
+        {
+          heading: "Discovery through metadata, not folder memory",
+          body: "Standardized metadata, taxonomy, folders, and facets replace dependence on folder structures and embedded filename conventions. Assets are findable by content, campaign, channel, or status — not by who knows where to look.",
+        },
+        {
+          heading: "Marketing work and assets connected",
+          body: "Workfront project and approval workflows connect directly to AEM Assets. Campaign intake, review, approval, and asset activation follow a governed path rather than disconnected handoffs across tools and inboxes.",
+        },
+        {
+          heading: "Governed distribution, not copy proliferation",
+          body: "Shareable links, versioned collections, and Dynamic Media delivery replace manual copy distribution. One approved asset serves all downstream channels; lifecycle controls expire it when it should no longer be in use.",
+        },
+      ],
+    },
+    tech: ["Adobe Experience Cloud", "AEM Assets", "Workfront", "Creative Cloud", "Frame.io", "Dynamic Media", "CDN"],
+    metric: null,
+    related: ["aem-omnichannel-content", "cpg-cms-modernization"],
+  },
+
+  // ── Remaining entries ──────────────────────────────────────────────────
 
   {
     slug: "gtm-conversational-ai",

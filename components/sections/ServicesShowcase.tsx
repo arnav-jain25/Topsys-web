@@ -39,7 +39,17 @@ const FLOWS: FlowDot[][] = EDGES.map((_, ei) => [
   { dur: `${3.3 + ei * 0.28}s`, begin: `${-(ei * 0.72 + 1.2)}s`,  rev: true,  r: 2.0, op: 0.60 },
 ]);
 
-const SHORT = ["AI & data", "Applications", "Cloud", "Security", "Talent"];
+/* Two entries here ("Applications &" / "modernization") render as a
+   two-line label on the desktop pentagon (see LABEL_LINE_GAP below) and
+   join with a space for the mobile icon grid's single-line caption. */
+const SHORT: string[][] = [
+  ["AI & data"],
+  ["Applications &", "modernization"],
+  ["Cloud"],
+  ["Security"],
+  ["Talent"],
+];
+const LABEL_LINE_GAP = 15;
 
 /* Node fills stay each capability's own color on every ground — only the
    label text under the nodes picks up the hero's lavender on the inverted
@@ -108,7 +118,7 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
                 className="font-mono uppercase"
                 style={{ fontSize: "8.5px", letterSpacing: ".09em", color: c.label }}
               >
-                {SHORT[i]}
+                {SHORT[i].join(" ")}
               </span>
               <span className="sr-only">{title}</span>
             </Link>
@@ -159,6 +169,10 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
             const { x, y } = NODES[i];
             const fill = bg;
             const lit = hov === i;
+            const lines = SHORT[i];
+            const multiline = lines.length > 1;
+            const labelY = y + LABEL_OFFSET - (multiline ? LABEL_LINE_GAP / 2 : 0);
+            const ordinalY = y + ORDINAL_OFFSET + (multiline ? LABEL_LINE_GAP : 0);
             return (
               <g key={i} style={{ pointerEvents: "none" }}>
                 <circle cx={x} cy={y} r={lit ? NODE_R_HALO_LIT : NODE_R_HALO}
@@ -171,17 +185,23 @@ export function ServicesShowcase({ dark = false }: { dark?: boolean }) {
                     filter: lit ? `drop-shadow(0 0 18px ${fill}88)` : "none",
                   }} />
                 <text
-                  x={x} y={y + LABEL_OFFSET} textAnchor="middle"
+                  x={x} y={labelY} textAnchor="middle"
                   fill={lit ? c.labelLit : c.label}
                   fontSize={LABEL_SIZE}
                   fontFamily="var(--font-mono)"
                   letterSpacing="0.09em"
                   style={{ transition: "fill 280ms" }}
                 >
-                  {SHORT[i].toUpperCase()}
+                  {multiline
+                    ? lines.map((line, li) => (
+                        <tspan key={li} x={x} dy={li === 0 ? 0 : LABEL_LINE_GAP}>
+                          {line.toUpperCase()}
+                        </tspan>
+                      ))
+                    : lines[0].toUpperCase()}
                 </text>
                 <text
-                  x={x} y={y + ORDINAL_OFFSET} textAnchor="middle"
+                  x={x} y={ordinalY} textAnchor="middle"
                   fill={lit ? c.ordLit : c.ord}
                   fontSize={ORDINAL_SIZE}
                   fontFamily="var(--font-mono)"

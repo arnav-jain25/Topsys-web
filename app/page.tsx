@@ -9,6 +9,7 @@ import {
   TestimonialsStrip,
   ClientProofStrip,
   DeliveryModel,
+  CaseStudyGrid,
 } from "@/components/sections";
 import { HeroHeading } from "@/components/sections/HeroHeading";
 
@@ -111,6 +112,27 @@ export default function HomePage() {
           TRUSTED BY — enterprise clients
           ================================================================ */}
       <ClientProofStrip />
+
+      {/* ================================================================
+          PROOF OF WORK — inverted, three programs, architecture over pitch
+          ================================================================ */}
+      <section className="on-field" style={{ padding: "3.5rem 0 4rem" }}>
+        <div className="wrap">
+          <Eyebrow dark>What we&apos;ve built</Eyebrow>
+          <h2
+            className="font-display font-medium text-on-field mt-4"
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", letterSpacing: "-0.025em", maxWidth: "26ch" }}
+          >
+            The architecture, the problem, and what we built. No positioning.
+          </h2>
+          <CaseStudyGrid limit={3} />
+          <div className="mt-10">
+            <Button href="/work" variant="secondary" className="!border-field-hairline !text-on-field hover:!border-signal hover:!text-signal">
+              See all programs
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* ================================================================
           HOW WE DELIVER — the model, given a section

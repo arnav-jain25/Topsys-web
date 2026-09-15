@@ -38,13 +38,18 @@ function useReveal(threshold = 0.15) {
  */
 export function IndustryCapabilityGrid({
   capabilities,
+  columns = 3,
 }: {
   capabilities: Capability[];
+  columns?: 2 | 3;
 }) {
   const { ref, visible } = useReveal();
 
   return (
-    <div ref={ref} className="grid grid-cols-3 gap-6 mt-10 max-[767px]:grid-cols-1">
+    <div
+      ref={ref}
+      className={`grid ${columns === 2 ? "grid-cols-2" : "grid-cols-3"} gap-6 mt-10 max-[767px]:grid-cols-1`}
+    >
       {capabilities.map(({ title, body, tech }, idx) => {
         const revealStyle: React.CSSProperties = visible
           ? { animation: `topsys-fade-in 500ms cubic-bezier(.2,0,0,1) ${idx * 80}ms both` }

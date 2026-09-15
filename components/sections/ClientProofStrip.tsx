@@ -23,12 +23,12 @@ const CLIENTS = [
 ];
 
 const PLATFORMS = [
+  { src: "/credentials/Adobe_Corporate_Logo.png",  alt: "Adobe",               category: "Creative & content" },
   { src: "/credentials/aws.webp",                  alt: "Amazon Web Services", category: "Cloud & infrastructure" },
   { src: "/credentials/Microsoft-Azure.png",       alt: "Microsoft Azure",     category: "Productivity & AI" },
   { src: "/credentials/databricks_no_bg.png",      alt: "Databricks",          category: "Data & AI platform" },
   { src: "/credentials/salesforce_no_bg.png",      alt: "Salesforce",          category: "CRM & field ops" },
   { src: "/credentials/oracle_no_bg.png",          alt: "Oracle",              category: "ERP & database" },
-  { src: "/credentials/Adobe_Corporate_Logo.png",  alt: "Adobe",               category: "Creative & content" },
   { src: "/credentials/uipath_no_bg.png",          alt: "UiPath",              category: "Automation & RPA" },
 ];
 

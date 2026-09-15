@@ -7,6 +7,7 @@ import { ProblemSection } from "./ProblemSection";
 import { ApproachSteps } from "./ApproachSteps";
 import { ImpactSection } from "./ImpactSection";
 import { TechStack } from "./TechStack";
+import { RelatedWork } from "./RelatedWork";
 
 /* ── Static generation ─────────────────────────────────────────────────── */
 
@@ -120,6 +121,11 @@ export default async function CaseStudyPage({
           TECH FOOTER — paper, tags stagger on scroll
           ================================================================ */}
       <TechStack tech={cs.tech} metric={cs.metric} />
+
+      {/* ================================================================
+          RELATED WORK — surface, only when the case study has a cluster
+          ================================================================ */}
+      {cs.related && <RelatedWork slugs={cs.related} />}
 
     </>
   );

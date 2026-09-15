@@ -1,9 +1,37 @@
 "use client";
 
 import { useId, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 type RouteId = "enterprise" | "public-sector" | "talent" | "careers";
+
+interface TopicContext {
+  heading: string;
+  body: React.ReactNode;
+  defaultCapability?: string;
+}
+
+const TOPIC_CONTEXT: Record<string, TopicContext> = {
+  "aem-contentstack": {
+    heading: "Migrating from Adobe AEM to Contentstack?",
+    body: (
+      <>
+        This goes straight to the team behind our AEM and Contentstack platform work, not a
+        general queue. See the{" "}
+        <Link href="/capabilities/applications-and-modernization#services" className="text-teal border-b border-current pb-0.5">
+          migration approach
+        </Link>{" "}
+        or the{" "}
+        <Link href="/work/cpg-cms-modernization" className="text-teal border-b border-current pb-0.5">
+          CPG case study
+        </Link>{" "}
+        first if useful.
+      </>
+    ),
+    defaultCapability: "Applications & modernization",
+  },
+};
 
 const VALID_ROUTES: RouteId[] = ["enterprise", "public-sector", "talent", "careers"];
 
@@ -193,12 +221,17 @@ export function ContactForm() {
   const searchParams = useSearchParams();
   const requested = searchParams.get("re");
   const initialRoute = VALID_ROUTES.includes(requested as RouteId) ? (requested as RouteId) : "enterprise";
+  const topic = searchParams.get("topic");
+  const topicContext = topic ? TOPIC_CONTEXT[topic] : undefined;
 
   const [routeId, setRouteId] = useState<RouteId>(initialRoute);
-  const [values, setValues] = useState<Record<string, string>>({});
+  const [values, setValues] = useState<Record<string, string>>(() =>
+    topicContext?.defaultCapability ? { capability: topicContext.defaultCapability } : ({} as Record<string, string>)
+  );
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const route = ROUTES.find((r) => r.id === routeId)!;
+  const showTopicBanner = topicContext && routeId === initialRoute;
 
   function handleRouteChange(id: RouteId) {
     setRouteId(id);
@@ -287,6 +320,21 @@ export function ContactForm() {
 
   return (
     <div>
+      {showTopicBanner && (
+        <div className="border border-teal-tint bg-teal-tint rounded-card px-5 py-4 mb-8 flex items-start gap-3 max-w-[640px]">
+          <span className="flex-none text-teal mt-[3px]" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="9" r="7.5" stroke="currentColor" strokeWidth="1.3" />
+              <path d="M9 5.5v4.2M9 12.3v.1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+            </svg>
+          </span>
+          <div>
+            <p className="text-body-sm text-ink font-medium">{topicContext.heading}</p>
+            <p className="text-body-xs text-ink-2 mt-1 max-w-[56ch]">{topicContext.body}</p>
+          </div>
+        </div>
+      )}
+
       <div role="group" aria-label="Reason for contact" className="grid grid-cols-4 gap-3 mb-12 max-[767px]:grid-cols-2">
         {ROUTES.map((r) => (
           <button

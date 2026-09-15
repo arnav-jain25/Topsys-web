@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { StaggerReveal } from "@/components/ui/StaggerReveal";
 import { ServiceIconBadge } from "@/components/ui/ServiceIcons";
+import { MigrationMatrix } from "./MigrationMatrix";
 
 export const metadata: Metadata = {
   title: "Applications & modernization",
@@ -47,6 +48,13 @@ const IconMigration = () => (
     <path d="M5.5 9h7M10.5 6.5L13 9l-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
+const IconContent = () => (
+  <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 2L2 5.5 9 9l7-3.5L9 2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+    <path d="M2 9l7 3.5L16 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M2 12.5L9 16l7-3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const OFFERINGS = [
   {
@@ -79,12 +87,23 @@ const OFFERINGS = [
     ],
     Icon: IconMigration,
   },
+  {
+    title: "Content platforms & DXP migration",
+    body: "Migration between enterprise content platforms — Adobe Experience Manager, Sitecore, Contentstack — re-architected headless rather than lifted and shifted. Content models get redesigned, not copied.",
+    bullets: [
+      "AEM and Sitecore to headless: Contentstack, Content Fragments, GraphQL",
+      "Automated content ETL with schema mapping and taxonomy assignment",
+      "Multi-brand design systems: Storybook, design tokens, Next.js delivery",
+    ],
+    Icon: IconContent,
+  },
 ];
 
 const TECH = [
   "Java", "Spring Boot", ".NET", "Node.js", "React", "TypeScript",
   "GraphQL", "REST APIs", "Kafka", "Event-driven architecture",
   "Microservices", "PostgreSQL", "Redis",
+  "Adobe Experience Manager", "Contentstack", "Next.js", "Storybook", "MuleSoft",
 ];
 
 const HOW_WE_WORK = [
@@ -103,6 +122,14 @@ const HOW_WE_WORK = [
   {
     title: "Team knowledge transfer built in",
     body: "Architecture decision records, runbooks, and documented domain models are deliverables, not documentation sprints at the end. We write code the next engineer can operate without calling us.",
+  },
+  {
+    title: "Content models redesigned, not copied",
+    body: "A lift-and-shift content migration carries the old platform's constraints into the new one. We convert rigid page templates into structured content types and modular blocks, so the model reflects what the business publishes rather than what the previous CMS forced it to build.",
+  },
+  {
+    title: "Editorial autonomy is the deliverable",
+    body: "The measure of a content platform migration is whether marketing can ship a campaign without a developer. We migrate to layout composition within design-system guardrails, so publishing stops depending on the release calendar.",
   },
 ];
 
@@ -257,16 +284,16 @@ export default function ApplicationsAndModernizationPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            Three service lines, one engagement standard
+            Four service lines, one engagement standard
           </h2>
           <StaggerReveal
-            className="grid grid-cols-3 gap-6 mt-10 max-[1023px]:grid-cols-1"
+            className="grid grid-cols-4 gap-6 mt-10 max-[1023px]:grid-cols-2 max-[639px]:grid-cols-1"
             itemDelay={100}
           >
             {OFFERINGS.map(({ title, body, bullets, Icon }, i) => (
               <div
                 key={title}
-                className="group border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
+                className="group flex flex-col h-full border border-hairline rounded-card px-6 py-6 bg-white transition-all duration-base ease-standard hover:-translate-y-[3px] hover:shadow-e2 hover:border-transparent relative overflow-hidden"
               >
                 {/* Gradient top edge on hover — one of the four permitted uses */}
                 <span
@@ -298,6 +325,23 @@ export default function ApplicationsAndModernizationPage() {
               </div>
             ))}
           </StaggerReveal>
+
+          {/* Platform migration matrix — what we've actually delivered */}
+          <div className="mt-16 pt-12 border-t border-hairline">
+            <Eyebrow>Platform migration record</Eyebrow>
+            <h3
+              className="font-display font-medium text-ink mt-4"
+              style={{ fontSize: "clamp(1.375rem, 2.4vw, 1.75rem)", letterSpacing: "-0.02em", maxWidth: "34ch" }}
+            >
+              Every cell below is a system we&rsquo;ve migrated in production.
+            </h3>
+            <p className="text-body-sm text-ink-2 max-w-[58ch] mt-3">
+              Adobe AEM to Contentstack is where our headless content architecture work and our
+              AEM implementation depth meet. It&rsquo;s the current focus of our content-platform
+              practice.
+            </p>
+            <MigrationMatrix />
+          </div>
         </ScrollReveal>
       </section>
 
