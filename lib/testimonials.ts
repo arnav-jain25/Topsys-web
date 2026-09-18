@@ -50,7 +50,7 @@ export const TESTIMONIALS: Testimonial[] = [
     industry: "Retail",
     industrySlug: "retail",
     accentClass: "bg-signal",
-    quote: "We didn't need a systems integrator — we needed a team that could take the existing platform apart and rebuild it while we kept selling. That's a different kind of problem and they solved it.",
+    quote: "We didn't need a systems integrator, we needed a team that could take the existing platform apart and rebuild it while we kept selling. That's a different kind of problem and they solved it.",
     attribution: "VP of Engineering",
     engagement: "Commerce platform re-platform",
   },

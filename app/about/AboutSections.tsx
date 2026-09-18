@@ -335,11 +335,10 @@ export function StandardLine({
               className="text-ink mt-2"
               style={{
                 fontFamily: "var(--font-accent)",
-                fontStyle: "italic",
-                fontWeight: 500,
-                fontSize: "1.5rem",
-                letterSpacing: "-0.006em",
-                lineHeight: 1.22,
+                fontWeight: 700,
+                fontSize: "2.25rem",
+                letterSpacing: "0",
+                lineHeight: 1.1,
               }}
             >
               {outcome}
@@ -531,7 +530,7 @@ export function CredentialLedger({ items }: { items: CredentialItem[] }) {
 
 /* -------------------------------------------------------------------------- */
 /*  Pull quote — a sentence lifted out of the Conviction column, standalone   */
-/*  enough to carry the accent serif rather than plain italic Archivo.        */
+/*  enough to carry the accent script rather than plain italic Archivo.       */
 /* -------------------------------------------------------------------------- */
 export function PullQuote({ children }: { children: React.ReactNode }) {
   return (
@@ -539,11 +538,10 @@ export function PullQuote({ children }: { children: React.ReactNode }) {
       className="text-ink"
       style={{
         fontFamily: "var(--font-accent)",
-        fontStyle: "italic",
-        fontWeight: 500,
-        fontSize: "clamp(1.5rem, 2.7vw, 2rem)",
-        letterSpacing: "-0.006em",
-        lineHeight: 1.25,
+        fontWeight: 700,
+        fontSize: "clamp(2.25rem, 4vw, 3rem)",
+        letterSpacing: "0",
+        lineHeight: 1.05,
       }}
     >
       {children}
@@ -567,7 +565,7 @@ export interface VisionaryQuote {
 function QuotePanel({ data, dark }: { data: VisionaryQuote; dark?: boolean }) {
   return (
     <div
-      className={`relative flex flex-col justify-between gap-10 px-12 py-14 max-[820px]:px-6 max-[820px]:py-10 ${
+      className={`relative flex flex-col justify-between gap-6 px-12 py-8 max-[820px]:px-6 max-[820px]:py-6 ${
         dark ? "on-field" : ""
       }`}
     >
@@ -582,18 +580,17 @@ function QuotePanel({ data, dark }: { data: VisionaryQuote; dark?: boolean }) {
         className={dark ? "text-on-field" : "text-ink"}
         style={{
           fontFamily: "var(--font-accent)",
-          fontStyle: "italic",
-          fontWeight: 500,
-          fontSize: "clamp(1.75rem, 3.4vw, 2.75rem)",
-          letterSpacing: "-0.012em",
-          lineHeight: 1.18,
+          fontWeight: 700,
+          fontSize: "clamp(2.25rem, 4.2vw, 3.25rem)",
+          letterSpacing: "0",
+          lineHeight: 1.08,
         }}
       >
         &ldquo;{data.quote}&rdquo;
       </p>
 
       <div
-        className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-4"
+        className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-3"
         style={{ borderTop: `1px solid ${dark ? "var(--color-field-hairline)" : "var(--color-hairline)"}` }}
       >
         <p className={`font-mono text-mono-sm uppercase tracking-[.08em] ${dark ? "text-on-field" : "text-ink"}`}>

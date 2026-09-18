@@ -1,4 +1,4 @@
-import { Archivo, Public_Sans, Righteous, Fraunces } from "next/font/google";
+import { Archivo, Public_Sans, Righteous, Tangerine } from "next/font/google";
 
 /**
  * The three faces, wired once and consumed through the Tailwind theme as
@@ -12,11 +12,14 @@ import { Archivo, Public_Sans, Righteous, Fraunces } from "next/font/google";
  * 400-600 range CLAUDE.md calls for comes down in one file. Righteous ships a
  * single static weight, so it is listed explicitly.
  *
- * Fraunces is a fourth, deliberately separate face: an accent serif used only
- * for standalone emphasis moments (pull quotes, the visionary quotes, the
- * Standard section's outcome line) — never inline within a sentence, never
- * for headings or body copy. It's a brand-system exception the client should
- * sign off on, not a replacement for the documented three-face system.
+ * Tangerine is a fourth, deliberately separate face: a calligraphic script
+ * accent used only for standalone emphasis moments (pull quotes, the
+ * visionary quotes, the Standard section's outcome line) — never inline
+ * within a sentence, never for headings or body copy. It's a script, not an
+ * italic serif, so it's set larger than a normal display size everywhere it
+ * appears (see AboutSections.tsx) to keep the stroke from threading together
+ * at sentence length. Client sign-off item, not a replacement for the
+ * documented three-face system.
  */
 
 export const archivo = Archivo({
@@ -40,17 +43,16 @@ export const righteous = Righteous({
   weight: "400",
 });
 
-export const fraunces = Fraunces({
-  variable: "--font-fraunces",
+export const tangerine = Tangerine({
+  variable: "--font-tangerine",
   subsets: ["latin"],
   display: "swap",
-  style: ["italic"],
-  axes: ["opsz", "SOFT"],
+  weight: "700",
 });
 
 export const fontVariables = [
   archivo.variable,
   publicSans.variable,
   righteous.variable,
-  fraunces.variable,
+  tangerine.variable,
 ].join(" ");

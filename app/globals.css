@@ -209,10 +209,13 @@
   --font-mono: var(--font-righteous), ui-sans-serif, sans-serif;
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
   --font-eyebrow: var(--font-righteous), ui-sans-serif, sans-serif;
-  /* Accent serif — standalone emphasis only (pull quotes, visionary quotes,
+  /* Accent script — standalone emphasis only (pull quotes, visionary quotes,
      the Standard section's outcome line). Not part of the documented
-     three-face system; never used inline or for headings/body copy. */
-  --font-accent: var(--font-fraunces), Georgia, "Times New Roman", serif;
+     three-face system; never used inline or for headings/body copy. Always
+     set larger than a normal display size — see the per-component sizes in
+     AboutSections.tsx — since a script this fine threads together at
+     ordinary text scale. */
+  --font-accent: var(--font-tangerine), Georgia, "Times New Roman", serif;
 }
 
 /* ============================================================================

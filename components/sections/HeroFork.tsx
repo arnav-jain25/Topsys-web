@@ -46,7 +46,7 @@ export function HeroFork() {
         ))}
       </div>
       <Link href="/approach" className="hero-fork-both hero-fork-both-link">
-        Or both — from one firm, to one standard
+        Or both, from one firm, to one standard
         <span aria-hidden="true"> &rarr;</span>
       </Link>
     </div>

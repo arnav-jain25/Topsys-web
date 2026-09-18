@@ -89,7 +89,7 @@ const OFFERINGS = [
   },
   {
     title: "Content platforms & DXP migration",
-    body: "Migration between enterprise content platforms — Adobe Experience Manager, Sitecore, Contentstack — re-architected headless rather than lifted and shifted. Content models get redesigned, not copied.",
+    body: "Migration between enterprise content platforms (Adobe Experience Manager, Sitecore, Contentstack), re-architected headless rather than lifted and shifted. Content models get redesigned, not copied.",
     bullets: [
       "AEM and Sitecore to headless: Contentstack, Content Fragments, GraphQL",
       "Automated content ETL with schema mapping and taxonomy assignment",

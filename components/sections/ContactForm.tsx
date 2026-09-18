@@ -257,7 +257,7 @@ export function ContactForm() {
 
     const payload = {
       access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "",
-      subject: `TOPSYS IT — ${route.label} inquiry from ${values.name ?? "unknown"}`,
+      subject: `TOPSYS IT: ${route.label} inquiry from ${values.name ?? "unknown"}`,
       from_name: values.name ?? "TOPSYS IT website",
       ...values,
       _route: route.label,

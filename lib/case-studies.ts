@@ -38,11 +38,11 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "cpg-cms-modernization",
     tag: "Consumer goods · CMS modernization",
     title: "Multi-brand web platform migration from Sitecore to Contentstack for a global CPG enterprise",
-    lede: "A Sitecore MVC monolith driving a multi-brand website portfolio, blocking every campaign behind developer deployments. We migrated to Contentstack with a Next.js headless frontend and a shared Storybook design system — cutting campaign launch time from 3 weeks to under 2 days and lifting mobile Lighthouse scores from ~38 to 92+.",
+    lede: "A Sitecore MVC monolith driving a multi-brand website portfolio, blocking every campaign behind developer deployments. We migrated to Contentstack with a Next.js headless frontend and a shared Storybook design system, cutting campaign launch time from 3 weeks to under 2 days and lifting mobile Lighthouse scores from ~38 to 92+.",
     client: "A global consumer packaged goods enterprise managing a multi-brand website portfolio across North America",
     capabilities: ["Applications & modernization", "Cloud & platform engineering"],
     problem: [
-      "A legacy Sitecore Experience Platform (MVC) served as the CMS for a portfolio of brand websites across North America. The monolithic architecture required expensive licensing, developer-managed deployment pipelines for content changes that should have been editorial, and a substantial ongoing infrastructure footprint. Every seasonal campaign, product launch, or landing page update depended on the same deployment cycle as application code changes — delays measured in weeks, not hours.",
+      "A legacy Sitecore Experience Platform (MVC) served as the CMS for a portfolio of brand websites across North America. The monolithic architecture required expensive licensing, developer-managed deployment pipelines for content changes that should have been editorial, and a substantial ongoing infrastructure footprint. Every seasonal campaign, product launch, or landing page update depended on the same deployment cycle as application code changes, with delays measured in weeks, not hours.",
       "Web performance had degraded to the point where mobile Lighthouse scores were averaging around 38, well below competitive benchmarks for organic search. Siloed codebases across brand properties created redundant development work and prevented reuse of UI components or design systems across the portfolio. Adding a new regional brand site required months of work that should have taken days.",
     ],
     approach: [
@@ -52,7 +52,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Multi-brand token-driven UI with Storybook and Next.js",
-        body: "Developed a unified React component library in Storybook mapped 1:1 to Contentstack Modular Blocks. Brand-level CSS variables — colors, typography, border radii — let a single React codebase render distinct visual identities across multiple brand domains automatically, eliminating the siloed per-brand codebases that had accumulated over years.",
+        body: "Developed a unified React component library in Storybook mapped 1:1 to Contentstack Modular Blocks. Brand-level CSS variables (colors, typography, border radii) let a single React codebase render distinct visual identities across multiple brand domains automatically, eliminating the siloed per-brand codebases that had accumulated over years.",
       },
       {
         heading: "Edge delivery with Next.js App Router and ISR",
@@ -60,7 +60,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Node.js BFF layer for enterprise API aggregation",
-        body: "Standardized a lightweight Node.js Backend-for-Frontend layer to aggregate enterprise backend services — .NET APIs, product information, loyalty programs — separately from the content delivery pipeline. This preserved the CMS as a clean content system while composing data from enterprise sources at the service boundary.",
+        body: "Standardized a lightweight Node.js Backend-for-Frontend layer to aggregate enterprise backend services (.NET APIs, product information, loyalty programs) separately from the content delivery pipeline. This preserved the CMS as a clean content system while composing data from enterprise sources at the service boundary.",
       },
     ],
     outcome: "Mobile Lighthouse performance scores from ~38 to 92+, campaign launch cycles from 3 weeks to under 2 days, 42% reduction in operating costs by eliminating Sitecore licensing and legacy hosting overhead, and new regional brand site onboarding from months to days using shared Storybook components and design token swaps",
@@ -98,42 +98,42 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "aem-omnichannel-content",
     tag: "Financial services · Adobe AEM",
     title: "Omnichannel content architecture on Adobe Experience Cloud for a US credit union",
-    lede: "Content locked in a tightly coupled CMS with no headless delivery path. We architected an AEM/AEC foundation — Content Fragments, MuleSoft API mediation, persisted queries, and CDN caching — that serves web, mobile, email, and API consumers from a single governed content source.",
+    lede: "Content locked in a tightly coupled CMS with no headless delivery path. We architected an AEM/AEC foundation (Content Fragments, MuleSoft API mediation, persisted queries, and CDN caching) that serves web, mobile, email, and API consumers from a single governed content source.",
     client: "A US financial services credit union managing a digital member experience across web, mobile, and API channels",
     capabilities: ["Applications & modernization", "Cloud & platform engineering"],
     problem: [
-      "The organization's digital content strategy was constrained by a tightly coupled CMS delivery model. Web, mobile, email, and other API-consuming applications each required the same managed content — rates, disclosures, product information, and member-facing copy — but had distinct presentation and data requirements that a single delivery pattern could not satisfy. Replicating and maintaining content per channel increased cost and the risk of inconsistency across the digital member experience.",
-      "Controlled API access was absent. Consuming applications were constructing unrestricted queries, creating unpredictable request patterns, poor cacheability, and unnecessary processing overhead on the content platform. Dynamic enterprise data — rates and disclosures — was embedded in editorial content structures, coupling its update cycle to managed content workflows rather than the real-time data systems that owned it.",
+      "The organization's digital content strategy was constrained by a tightly coupled CMS delivery model. Web, mobile, email, and other API-consuming applications each required the same managed content (rates, disclosures, product information, and member-facing copy) but had distinct presentation and data requirements that a single delivery pattern could not satisfy. Replicating and maintaining content per channel increased cost and the risk of inconsistency across the digital member experience.",
+      "Controlled API access was absent. Consuming applications were constructing unrestricted queries, creating unpredictable request patterns, poor cacheability, and unnecessary processing overhead on the content platform. Dynamic enterprise data, such as rates and disclosures, was embedded in editorial content structures, coupling its update cycle to managed content workflows rather than the real-time data systems that owned it.",
     ],
     approach: [
       {
         heading: "AEM/AEC as the centralized content foundation",
-        body: "Established Adobe Experience Cloud and AEM as the single managed content source. Content Fragments provided reusable structured content for headless consumers; Experience Fragments extended reuse to broader experience blocks needed across web, email, and campaign channels. Both headless API delivery and conventional AEM-managed web presentation operate from the same content repository — channel requirements no longer dictate content structure.",
+        body: "Established Adobe Experience Cloud and AEM as the single managed content source. Content Fragments provided reusable structured content for headless consumers; Experience Fragments extended reuse to broader experience blocks needed across web, email, and campaign channels. Both headless API delivery and conventional AEM-managed web presentation operate from the same content repository, so channel requirements no longer dictate content structure.",
       },
       {
         heading: "MuleSoft API mediation and persisted queries",
-        body: "Deployed MuleSoft as a controlled service boundary between digital applications and AEC. Persisted queries stored on the AEC server give consuming applications predefined, governed retrieval patterns rather than unrestricted full queries — supporting predictable request behavior and efficient caching. Only the data a consuming application needs is retrieved; the content platform is shielded from unbounded query load.",
+        body: "Deployed MuleSoft as a controlled service boundary between digital applications and AEC. Persisted queries stored on the AEC server give consuming applications predefined, governed retrieval patterns rather than unrestricted full queries, supporting predictable request behavior and efficient caching. Only the data a consuming application needs is retrieved; the content platform is shielded from unbounded query load.",
       },
       {
         heading: "Dynamic data composition at the service layer",
-        body: "Rates, disclosures, and other frequently changing enterprise data are composed at the MuleSoft layer before delivery, combining managed editorial content with live data from enterprise systems. This keeps time-sensitive information outside the CMS content model entirely — its freshness and ownership belong to the systems that produce it, not the content management workflow.",
+        body: "Rates, disclosures, and other frequently changing enterprise data are composed at the MuleSoft layer before delivery, combining managed editorial content with live data from enterprise systems. This keeps time-sensitive information outside the CMS content model entirely: its freshness and ownership belong to the systems that produce it, not the content management workflow.",
       },
       {
         heading: "CDN delivery, caching, and Cloud Manager automation",
-        body: "Applied response caching to transformed content and suitable read-oriented AEC outputs, reducing repeated upstream processing. Adobe Cloud Manager provided automated DevOps, integrated CDN delivery, auto-scaling, and continuous security scanning — giving the organization repeatable deployments and resilient delivery without manual infrastructure management.",
+        body: "Applied response caching to transformed content and suitable read-oriented AEC outputs, reducing repeated upstream processing. Adobe Cloud Manager provided automated DevOps, integrated CDN delivery, auto-scaling, and continuous security scanning, giving the organization repeatable deployments and resilient delivery without manual infrastructure management.",
       },
     ],
-    outcome: "A single governed content foundation serving web, mobile, email, and API channels from one AEM/AEC ecosystem — headless and conventional delivery supported simultaneously, with controlled API access, dynamic data composition, and cloud-oriented operations",
+    outcome: "A single governed content foundation serving web, mobile, email, and API channels from one AEM/AEC ecosystem, with headless and conventional delivery supported simultaneously, controlled API access, dynamic data composition, and cloud-oriented operations",
     impact: {
       headline: "One content source, every channel",
       statements: [
         {
           heading: "Headless and conventional delivery from one platform",
-          body: "AEM/AEC serves both API-driven consumers — mobile applications, single-page applications, email — and conventional web properties from the same managed content repository. Each channel controls its own presentation; AEC controls the content.",
+          body: "AEM/AEC serves both API-driven consumers (mobile applications, single-page applications, email) and conventional web properties from the same managed content repository. Each channel controls its own presentation; AEC controls the content.",
         },
         {
           heading: "Dynamic data composed at the boundary",
-          body: "Rates, disclosures, and other frequently changing enterprise information are injected at the MuleSoft service layer rather than embedded in editorial content — keeping managed content stable and dynamic data current without coupling their update cycles.",
+          body: "Rates, disclosures, and other frequently changing enterprise information are injected at the MuleSoft service layer rather than embedded in editorial content, keeping managed content stable and dynamic data current without coupling their update cycles.",
         },
         {
           heading: "Controlled access, improved cacheability",
@@ -154,8 +154,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: "A US financial services credit union with a marketing and creative team managing assets across campaign, web, email, and media channels",
     capabilities: ["Applications & modernization", "Cloud & platform engineering"],
     problem: [
-      "The existing marketing asset environment was distributed across LAN folders and multiple systems, creating a fragmented content supply chain with an asset footprint of approximately 3.4 TB. Users depended on folder structures and filenames rather than rich metadata, filters, and facets — making asset discovery slow and inconsistent. Important context was embedded in filenames rather than structured metadata fields, limiting organization, search, and reuse.",
-      "Expiration reminders, approvals, and lifecycle governance were not consistently automated. Personas and controlled access were not systematically applied across asset activities. Multiple copies of the same asset could exist across folders and systems, weakening the source of truth. Assets were shared as physical copies rather than governed links or reusable collections — every distribution created another uncontrolled copy with no lifecycle attached to it.",
+      "The existing marketing asset environment was distributed across LAN folders and multiple systems, creating a fragmented content supply chain with an asset footprint of approximately 3.4 TB. Users depended on folder structures and filenames rather than rich metadata, filters, and facets, making asset discovery slow and inconsistent. Important context was embedded in filenames rather than structured metadata fields, limiting organization, search, and reuse.",
+      "Expiration reminders, approvals, and lifecycle governance were not consistently automated. Personas and controlled access were not systematically applied across asset activities. Multiple copies of the same asset could exist across folders and systems, weakening the source of truth. Assets were shared as physical copies rather than governed links or reusable collections, and every distribution created another uncontrolled copy with no lifecycle attached to it.",
     ],
     approach: [
       {
@@ -164,15 +164,15 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "AEM Assets as the governed DAM",
-        body: "Established AEM Assets as the governed repository for approved final marketing assets. Created target folder structures and mapped metadata and taxonomy. Applied role-based personas, version control, lifecycle workflows, and asset expiration controls. Shareable links and governed collections replaced uncontrolled copy distribution — one source of truth, not many copies.",
+        body: "Established AEM Assets as the governed repository for approved final marketing assets. Created target folder structures and mapped metadata and taxonomy. Applied role-based personas, version control, lifecycle workflows, and asset expiration controls. Shareable links and governed collections replaced uncontrolled copy distribution: one source of truth, not many copies.",
       },
       {
         heading: "Workfront integration for campaign orchestration",
-        body: "Connected Workfront for project, task, review, status, and approval orchestration across the marketing workflow. Campaign and job metadata initialized in Workfront; assignments, reviews, and approvals managed there. AEM Assets receives approved final assets from the Workfront workflow rather than manual handoff — project state and asset state are connected.",
+        body: "Connected Workfront for project, task, review, status, and approval orchestration across the marketing workflow. Campaign and job metadata initialized in Workfront; assignments, reviews, and approvals managed there. AEM Assets receives approved final assets from the Workfront workflow rather than manual handoff, so project state and asset state are connected.",
       },
       {
         heading: "Creative Cloud, Frame.io, and Dynamic Media",
-        body: "Validated Creative Cloud and Frame.io connectivity for creative production, collaboration, and review workflows. Assets produced in Creative Cloud are linked to Workfront tasks and land in AEM Assets as governed records. Dynamic Media and CDN delivery distribute optimized renditions downstream to web, email, mobile, and media channels — on-brand assets, consistently delivered.",
+        body: "Validated Creative Cloud and Frame.io connectivity for creative production, collaboration, and review workflows. Assets produced in Creative Cloud are linked to Workfront tasks and land in AEM Assets as governed records. Dynamic Media and CDN delivery distribute optimized renditions downstream to web, email, mobile, and media channels: on-brand assets, consistently delivered.",
       },
     ],
     outcome: "Centralized governance of approximately 3.4 TB of marketing assets in AEM Assets, with standardized metadata and taxonomy, persona-based access, lifecycle workflows, integrated project and approval processes via Workfront, and an extensible foundation for Dynamic Media delivery and future Content Hub capabilities",
@@ -181,7 +181,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       statements: [
         {
           heading: "Discovery through metadata, not folder memory",
-          body: "Standardized metadata, taxonomy, folders, and facets replace dependence on folder structures and embedded filename conventions. Assets are findable by content, campaign, channel, or status — not by who knows where to look.",
+          body: "Standardized metadata, taxonomy, folders, and facets replace dependence on folder structures and embedded filename conventions. Assets are findable by content, campaign, channel, or status, not by who knows where to look.",
         },
         {
           heading: "Marketing work and assets connected",
@@ -204,7 +204,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "gtm-conversational-ai",
     tag: "Conversational AI · Enterprise",
     title: "Conversational access to GTM operations at an AI research company",
-    lede: "GTM data lived in Salesforce, Workday, CPQ, Stripe, and NetSuite — five systems with no unified interface. We deployed Salesforce Agentforce and Claude to give teams natural-language access to pipeline, account, and operational context without building a separate BI layer.",
+    lede: "GTM data lived in Salesforce, Workday, CPQ, Stripe, and NetSuite: five systems with no unified interface. We deployed Salesforce Agentforce and Claude to give teams natural-language access to pipeline, account, and operational context without building a separate BI layer.",
     client: "A high-growth AI research company with a rapidly scaling commercial operation",
     capabilities: ["AI & data", "Applications & modernization"],
     problem: [
@@ -214,7 +214,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     approach: [
       {
         heading: "Unified GTM data foundation on BigQuery",
-        body: "Built a Google BigQuery-based GTM data lake integrating Salesforce, Workday, CPQ, Stripe, and NetSuite. Optimized ETL/ELT pipelines ingested, transformed, reconciled, and normalized data across these platforms into a consistent entity model — one definition of an opportunity, an account, a recognized revenue event.",
+        body: "Built a Google BigQuery-based GTM data lake integrating Salesforce, Workday, CPQ, Stripe, and NetSuite. Optimized ETL/ELT pipelines ingested, transformed, reconciled, and normalized data across these platforms into a consistent entity model: one definition of an opportunity, an account, a recognized revenue event.",
       },
       {
         heading: "Salesforce Agentforce as the conversational interface",
@@ -226,7 +226,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Intelligent automation of repetitive GTM operations",
-        body: "Identified workflow patterns with high manual overhead and automated them through the AI architecture. Repetitive GTM operations — reconciliation, status updates, exception identification — became guided, AI-assisted processes. As the organization grew, operational capacity scaled with automation rather than headcount.",
+        body: "Identified workflow patterns with high manual overhead and automated them through the AI architecture. Repetitive GTM operations (reconciliation, status updates, exception identification) became guided, AI-assisted processes. As the organization grew, operational capacity scaled with automation rather than headcount.",
       },
     ],
     outcome: "Centralized GTM visibility with intelligent conversational access replacing manual system navigation across Salesforce, Workday, CPQ, Stripe, and NetSuite",
@@ -243,7 +243,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
         {
           heading: "Earlier anomaly identification",
-          body: "Revenue, pipeline, and billing anomalies surface in time for investigation rather than appearing in month-end reconciliation — shifting the operating model from reactive to proactive.",
+          body: "Revenue, pipeline, and billing anomalies surface in time for investigation rather than appearing in month-end reconciliation, shifting the operating model from reactive to proactive.",
         },
       ],
     },
@@ -255,12 +255,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "payments-data",
     tag: "Fintech · Payments",
     title: "A single source of truth for multi-processor payment analytics",
-    lede: "Transaction, fee, and settlement data across two acquiring processors — each with its own formats, identifiers, and codes. We designed a canonical payment data model and evidence-based crosswalk that made cross-processor analytics defensible.",
+    lede: "Transaction, fee, and settlement data across two acquiring processors, each with its own formats, identifiers, and codes. We designed a canonical payment data model and evidence-based crosswalk that made cross-processor analytics defensible.",
     client: "A large enterprise merchant operating across multiple acquiring processors",
     capabilities: ["Data & analytics", "Data engineering"],
     problem: [
-      "The client settled transactions through two acquiring processors — a common setup that optimizes cost and redundancy, but creates a significant data challenge. Each processor delivered transaction, fee, and settlement data in its own format, with its own table structures, transaction identifiers, and codes for the same underlying business concepts. Interchange categories weren't normalized. Fee structures were defined differently per processor.",
-      "Finance, operations, and analytics teams were spending significant manual effort reconciling these feeds line by line. Prior integration attempts had quietly assumed relationships between fields that were never confirmed — creating hidden risk in downstream reporting. Confidence in cross-processor analytics was low, and the root cause was the absence of a canonical model.",
+      "The client settled transactions through two acquiring processors, a common setup that optimizes cost and redundancy, but creates a significant data challenge. Each processor delivered transaction, fee, and settlement data in its own format, with its own table structures, transaction identifiers, and codes for the same underlying business concepts. Interchange categories weren't normalized. Fee structures were defined differently per processor.",
+      "Finance, operations, and analytics teams were spending significant manual effort reconciling these feeds line by line. Prior integration attempts had quietly assumed relationships between fields that were never confirmed, creating hidden risk in downstream reporting. Confidence in cross-processor analytics was low, and the root cause was the absence of a canonical model.",
     ],
     approach: [
       {
@@ -269,11 +269,11 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Canonical data model with layered architecture",
-        body: "Designed a translation layer between raw processor feeds and the reporting environment. Raw processor data was preserved untouched for audit purposes, with all harmonization logic applied in a clearly separated transformation layer — maintaining traceability while enabling a clean, business-friendly reporting layer on top.",
+        body: "Designed a translation layer between raw processor feeds and the reporting environment. Raw processor data was preserved untouched for audit purposes, with all harmonization logic applied in a clearly separated transformation layer, maintaining traceability while enabling a clean, business-friendly reporting layer on top.",
       },
       {
         heading: "Decode and lookup library",
-        body: "Built a library of decode and lookup tables translating hundreds of processor-specific codes — interchange, plan, and downgrade codes — into plain-language business terms. A documented, evidence-based crosswalk identified which data elements could and could not be reliably compared across processors, turning previously invisible risk into a managed one.",
+        body: "Built a library of decode and lookup tables translating hundreds of processor-specific codes (interchange, plan, and downgrade codes) into plain-language business terms. A documented, evidence-based crosswalk identified which data elements could and could not be reliably compared across processors, turning previously invisible risk into a managed one.",
       },
       {
         heading: "Semantic layer and decision log",
@@ -286,11 +286,11 @@ export const CASE_STUDIES: CaseStudy[] = [
       statements: [
         {
           heading: "Cross-processor analytics made defensible",
-          body: "A single, auditable canonical model replaces manual, ad hoc reconciliation across two acquiring processors. Finance, operations, and analytics teams work from one source of truth — regardless of which processor handled a given transaction.",
+          body: "A single, auditable canonical model replaces manual, ad hoc reconciliation across two acquiring processors. Finance, operations, and analytics teams work from one source of truth, regardless of which processor handled a given transaction.",
         },
         {
           heading: "Previously invisible risk documented",
-          body: "Unverified field assumptions quietly embedded in prior integration attempts are now confirmed, resolved, or explicitly flagged — turning hidden misreporting risk into a managed, visible one.",
+          body: "Unverified field assumptions quietly embedded in prior integration attempts are now confirmed, resolved, or explicitly flagged, turning hidden misreporting risk into a managed, visible one.",
         },
         {
           heading: "Architecture built to grow",
@@ -306,17 +306,17 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "revenue-intelligence",
     tag: "Technology · AI & ML",
     title: "GTM data modernization and AI/ML enablement for a high-growth AI company",
-    lede: "Revenue, pipeline, and workforce data spread across Salesforce, Workday, CPQ, Stripe, and NetSuite — no systematic early warning, no unified view. We built a BigQuery data lake with ML forecasting, anomaly detection, and Claude-based generative AI.",
+    lede: "Revenue, pipeline, and workforce data spread across Salesforce, Workday, CPQ, Stripe, and NetSuite, with no systematic early warning and no unified view. We built a BigQuery data lake with ML forecasting, anomaly detection, and Claude-based generative AI.",
     client: "A high-growth AI research company with a rapidly scaling commercial operation",
     capabilities: ["Data & analytics", "AI & data"],
     problem: [
-      "Rapid growth created a GTM environment where critical revenue, customer, sales, billing, and workforce data existed across Salesforce, Workday, CPQ, Stripe, NetSuite, and related systems — with no single view of the GTM lifecycle. Manual reporting required reconciling exports from multiple platforms, and the numbers didn't always agree.",
+      "Rapid growth created a GTM environment where critical revenue, customer, sales, billing, and workforce data existed across Salesforce, Workday, CPQ, Stripe, NetSuite, and related systems, with no single view of the GTM lifecycle. Manual reporting required reconciling exports from multiple platforms, and the numbers didn't always agree.",
       "Beyond reconciliation, there was no systematic early warning when revenue was tracking off-plan, no proactive identification of anomalies, and no scalable way to automate the growing volume of repetitive operational workflows. Decision-making lagged behind the data that should have been informing it.",
     ],
     approach: [
       {
         heading: "BigQuery GTM data lake and ETL/ELT pipelines",
-        body: "Built a Google BigQuery-based GTM data platform integrating Salesforce, Workday, CPQ, Stripe, NetSuite, and related systems. Optimized ETL/ELT pipelines ingested, transformed, reconciled, and normalized data across platforms — creating a unified foundation with one consistent definition of a revenue event.",
+        body: "Built a Google BigQuery-based GTM data platform integrating Salesforce, Workday, CPQ, Stripe, NetSuite, and related systems. Optimized ETL/ELT pipelines ingested, transformed, reconciled, and normalized data across platforms, creating a unified foundation with one consistent definition of a revenue event.",
       },
       {
         heading: "Predictive revenue forecasting",
@@ -324,11 +324,11 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Anomaly detection across the GTM lifecycle",
-        body: "Deployed anomaly detection across revenue, transactions, pipeline, billing, and operational data. Unusual patterns — a billing discrepancy, a pipeline concentration risk, a spend anomaly — surface in time for investigation rather than appearing in month-end reconciliation.",
+        body: "Deployed anomaly detection across revenue, transactions, pipeline, billing, and operational data. Unusual patterns (a billing discrepancy, a pipeline concentration risk, a spend anomaly) surface in time for investigation rather than appearing in month-end reconciliation.",
       },
       {
         heading: "Claude-based generative AI and intelligent automation",
-        body: "Incorporated Claude into enterprise GTM workflows to help users interact with complex business information, summarize relevant context, and assist with analysis. Connected the broader AI architecture: BigQuery for centralized data, ML models for prediction, Salesforce for engagement, and Claude for generative AI — each layer complementing the others.",
+        body: "Incorporated Claude into enterprise GTM workflows to help users interact with complex business information, summarize relevant context, and assist with analysis. Connected the broader AI architecture: BigQuery for centralized data, ML models for prediction, Salesforce for engagement, and Claude for generative AI, each layer complementing the others.",
       },
     ],
     outcome: "Centralized GTM visibility across five enterprise systems, predictive revenue forecasting, anomaly detection, and a scalable foundation for enterprise AI adoption connecting traditional analytics, machine learning, and generative AI",
@@ -344,7 +344,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       statements: [
         {
           heading: "Revenue intelligence, not just reporting",
-          body: "ML forecasting models analyze historical and current GTM signals to surface where revenue is likely to land — before the quarter closes, not after it has.",
+          body: "ML forecasting models analyze historical and current GTM signals to surface where revenue is likely to land, before the quarter closes, not after it has.",
         },
         {
           heading: "Anomaly detection across the full lifecycle",
@@ -366,12 +366,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     slug: "realtime-data-platform",
     tag: "Financial services · Wealth management",
     title: "Backend modernization for an enterprise wealth management workflow platform",
-    lede: "A legacy Linux-hosted backend supporting ~1 million workflow tasks per month, ~5,000 users, and 3-second dashboard load times. We rewrote it in Java 17 / Spring Boot 3.5 on Kubernetes — doubling capacity, cutting load time by 67%, and eliminating release dependencies for configuration changes.",
+    lede: "A legacy Linux-hosted backend supporting ~1 million workflow tasks per month, ~5,000 users, and 3-second dashboard load times. We rewrote it in Java 17 / Spring Boot 3.5 on Kubernetes, doubling capacity, cutting load time by 67%, and eliminating release dependencies for configuration changes.",
     client: "A global financial services and wealth management organization",
     capabilities: ["Applications & modernization", "Cloud & platform engineering", "Technology talent"],
     problem: [
-      "A workflow platform supporting approximately 5,000 users across a wealth management operation was hosted on traditional Linux server infrastructure with no path to horizontal scaling. Dashboard page-load times of approximately 3 seconds degraded analyst and advisor experience. Actual workflow volume — around 1 million tasks per month — was growing, and the architecture had no mechanism to handle it.",
-      "Supported configuration changes — tab layouts, role-based view behavior, column configuration — required a two-week release cycle even when no application code changed. The backend needed to be rebuilt around horizontal scalability, distributed coordination, and a configuration-driven deployment model. Patching the existing platform wasn't an option.",
+      "A workflow platform supporting approximately 5,000 users across a wealth management operation was hosted on traditional Linux server infrastructure with no path to horizontal scaling. Dashboard page-load times of approximately 3 seconds degraded analyst and advisor experience. Actual workflow volume (around 1 million tasks per month) was growing, and the architecture had no mechanism to handle it.",
+      "Supported configuration changes (tab layouts, role-based view behavior, column configuration) required a two-week release cycle even when no application code changed. The backend needed to be rebuilt around horizontal scalability, distributed coordination, and a configuration-driven deployment model. Patching the existing platform wasn't an option.",
     ],
     approach: [
       {
@@ -408,7 +408,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         {
           value: "2M",
           label: "tasks per month",
-          detail: "up from ~1M — actual production volume",
+          detail: "up from ~1M, actual production volume",
         },
         {
           value: "3.75×",
@@ -429,7 +429,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: "A major US telecommunications carrier",
     capabilities: ["Cloud & platform engineering", "AI & data", "Technology talent"],
     problem: [
-      "A large-scale, business-critical application environment required reliable cloud infrastructure across 300+ EC2 instances and 20+ Kubernetes clusters supporting 500+ microservices. The environment ran 20+ production deployments per week and ongoing daily non-production deployments — delivery consistency and infrastructure stability had to hold simultaneously.",
+      "A large-scale, business-critical application environment required reliable cloud infrastructure across 300+ EC2 instances and 20+ Kubernetes clusters supporting 500+ microservices. The environment ran 20+ production deployments per week and ongoing daily non-production deployments, and delivery consistency and infrastructure stability had to hold simultaneously.",
       "Traditional self-managed Apache Kafka infrastructure was generating significant operational overhead as message volumes grew to millions of events per day. Vulnerability identification and remediation was a manual process, creating lag between discovery and resolution that an organization operating at this scale couldn't sustain.",
     ],
     approach: [
@@ -443,7 +443,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         heading: "Kafka to AWS MSK migration",
-        body: "Migrated traditional self-managed Apache Kafka workloads to Amazon Managed Streaming for Apache Kafka (MSK). The migration reduced the infrastructure and operational overhead of managing Kafka clusters directly — capacity planning, maintenance, patching, cluster administration — and contributed to a broader cost optimization initiative achieving 40%+ overall cost reduction.",
+        body: "Migrated traditional self-managed Apache Kafka workloads to Amazon Managed Streaming for Apache Kafka (MSK). The migration reduced the infrastructure and operational overhead of managing Kafka clusters directly (capacity planning, maintenance, patching, cluster administration) and contributed to a broader cost optimization initiative achieving 40%+ overall cost reduction.",
       },
       {
         heading: "Claude-based AI-assisted vulnerability remediation",
@@ -452,7 +452,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     outcome: null,
     impact: {
-      headline: "Platform operating at scale — cost and complexity both reduced",
+      headline: "Platform operating at scale: cost and complexity both reduced",
       metrics: [
         {
           value: "40%+",
@@ -511,7 +511,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     outcome: null,
     impact: {
-      headline: "Clinical data unified — analytics and reporting unblocked",
+      headline: "Clinical data unified: analytics and reporting unblocked",
       statements: [
         {
           heading: "One patient record across facilities",
@@ -523,7 +523,7 @@ export const CASE_STUDIES: CaseStudy[] = [
         },
         {
           heading: "HIPAA-aligned by design",
-          body: "PHI access scoped to roles and use cases from the start, with audit logging and encryption at rest and in transit built into the pipeline architecture — not retrofitted after.",
+          body: "PHI access scoped to roles and use cases from the start, with audit logging and encryption at rest and in transit built into the pipeline architecture, not retrofitted after.",
         },
       ],
     },

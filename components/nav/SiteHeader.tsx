@@ -502,7 +502,7 @@ export function SiteHeader() {
                         Case studies
                       </p>
                       <p className="text-caption text-ink-muted leading-snug mt-0.5">
-                        Real engagements, real outcomes — not positioning
+                        Real engagements, real outcomes, not positioning
                       </p>
                     </div>
                     <span className="ml-auto font-mono text-teal opacity-0 group-hover:opacity-100 transition-opacity duration-fast ease-standard flex-none self-center" aria-hidden="true">→</span>
@@ -523,7 +523,7 @@ export function SiteHeader() {
                         Insights
                       </p>
                       <p className="text-caption text-ink-muted leading-snug mt-0.5">
-                        What we're arguing about — AI, architecture, delivery
+                        What we're arguing about: AI, architecture, delivery
                       </p>
                     </div>
                     <span className="ml-auto font-mono text-teal opacity-0 group-hover:opacity-100 transition-opacity duration-fast ease-standard flex-none self-center" aria-hidden="true">→</span>

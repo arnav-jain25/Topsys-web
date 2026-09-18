@@ -234,7 +234,7 @@ export function ClientProofStrip() {
           is decorative, so the readable list is exposed to assistive tech here. */}
       <ul className="sr-only">
         {CLIENTS.map((c) => (
-          <li key={c.alt}>{c.alt} — {c.vertical}</li>
+          <li key={c.alt}>{c.alt}, {c.vertical}</li>
         ))}
       </ul>
 

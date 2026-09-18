@@ -38,7 +38,7 @@ const WHEN = [
   {
     signal: "You can't write the requirements yet",
     detail:
-      "AI systems, novel integrations, greenfield platforms — the design emerges from contact with real data and real constraints. A consultant documents what you tell them. An FDE figures it out in the environment where it has to run.",
+      "AI systems, novel integrations, greenfield platforms: the design emerges from contact with real data and real constraints. A consultant documents what you tell them. An FDE figures it out in the environment where it has to run.",
   },
   {
     signal: "The stakes are too high for ticket-queue accountability",
@@ -48,12 +48,12 @@ const WHEN = [
   {
     signal: "Your team needs to own it when we leave",
     detail:
-      "Every FDE engagement is designed to end. The engineer documents their decisions, pairs with your engineers, and structures the handover from week one. They're not building job security — they're building transfer.",
+      "Every FDE engagement is designed to end. The engineer documents their decisions, pairs with your engineers, and structures the handover from week one. They're not building job security, they're building transfer.",
   },
   {
     signal: "You've had bad experiences with embedded staff",
     detail:
-      "The standard embedded contractor does what they're assigned. An FDE tells you when you're assigning the wrong thing — before you've wasted a sprint on it.",
+      "The standard embedded contractor does what they're assigned. An FDE tells you when you're assigning the wrong thing, before you've wasted a sprint on it.",
   },
 ];
 
@@ -61,23 +61,23 @@ const WHEN = [
 const HOW = [
   {
     ord: "01",
-    phase: "Intake — two days",
+    phase: "Intake: two days",
     body: "The FDE reviews your codebase, your architecture, your failure history. They're not gathering requirements. They're calibrating to the system they're about to work on.",
   },
   {
     ord: "02",
-    phase: "Embed — week one",
+    phase: "Embed: week one",
     body: "Commit access from day one. Attending the standup, the architecture meeting, the on-call rotation if relevant. Not as an observer. As an engineer with authority.",
   },
   {
     ord: "03",
-    phase: "Build — ongoing",
-    body: "Ships code, makes architecture calls, flags risks to engineering leadership directly. Maintains a decision log — every significant call, the options considered, the reasoning.",
+    phase: "Build: ongoing",
+    body: "Ships code, makes architecture calls, flags risks to engineering leadership directly. Maintains a decision log: every significant call, the options considered, the reasoning.",
   },
   {
     ord: "04",
-    phase: "Transfer — designed from the start",
-    body: "Runbooks, architecture documentation, and paired sessions with your engineers. The engagement ends when your team can operate and extend what was built — not when the budget runs out.",
+    phase: "Transfer: designed from the start",
+    body: "Runbooks, architecture documentation, and paired sessions with your engineers. The engagement ends when your team can operate and extend what was built, not when the budget runs out.",
   },
 ];
 
@@ -136,7 +136,7 @@ export default function ForwardDeployedPage() {
             The engineer who owns the outcome.
           </h1>
           <p className="text-lede text-on-field-2 max-w-[58ch] mt-6">
-            Not a consultant who scopes and hands off. Not a contractor who closes tickets. A TOPSYS engineer embedded in your environment, with commit access, architectural authority, and accountability to whether the system works in production — not whether the engagement closed.
+            Not a consultant who scopes and hands off. Not a contractor who closes tickets. A TOPSYS engineer embedded in your environment, with commit access, architectural authority, and accountability to whether the system works in production, not whether the engagement closed.
           </p>
           <div className="flex gap-3 flex-wrap mt-10">
             <Button href="/contact?re=fde">Tell us what you're trying to build</Button>

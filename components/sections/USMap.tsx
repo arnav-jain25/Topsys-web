@@ -156,7 +156,7 @@ export function USMap() {
                     if (isServed) {
                       setTooltip({
                         name,
-                        desc: isHQ ? "US Headquarters — " + SERVED[abbr] : SERVED[abbr],
+                        desc: isHQ ? "US Headquarters, " + SERVED[abbr] : SERVED[abbr],
                         x: lx,
                         y: ly,
                       });

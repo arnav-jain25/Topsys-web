@@ -316,7 +316,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Consumer goods · CMS modernization",
     title: "Multi-brand web platform migration from Sitecore to Contentstack for a global CPG enterprise",
-    body: "A Sitecore MVC monolith driving a multi-brand website portfolio, blocking every campaign behind developer deployments. Migrated to Contentstack with Next.js and a shared Storybook design system — campaign launch from 3 weeks to under 2 days.",
+    body: "A Sitecore MVC monolith driving a multi-brand website portfolio, blocking every campaign behind developer deployments. Migrated to Contentstack with Next.js and a shared Storybook design system, cutting campaign launch from 3 weeks to under 2 days.",
     diagram: <CPGDiagram />,
     tech: ["Contentstack", "Next.js"],
     metric: "68% perf gain · 4× faster",
@@ -334,7 +334,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Financial services · Adobe AEM Assets",
     title: "Marketing asset migration from fragmented LAN storage to enterprise DAM on Adobe Experience Cloud",
-    body: "3.4 TB of marketing assets distributed across LAN folders — no taxonomy, no governed workflows, distribution by manual copy. Migrated into AEM Assets with metadata governance, Workfront integration, and Creative Cloud connectivity.",
+    body: "3.4 TB of marketing assets distributed across LAN folders, with no taxonomy, no governed workflows, and distribution by manual copy. Migrated into AEM Assets with metadata governance, Workfront integration, and Creative Cloud connectivity.",
     diagram: <AEMAssetsDiagram />,
     tech: ["AEM Assets", "Workfront"],
     metric: null,
@@ -344,7 +344,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Conversational AI · Enterprise",
     title: "Conversational access to GTM operations at an AI research company",
-    body: "GTM data across Salesforce, Workday, CPQ, Stripe, and NetSuite — five systems, no unified interface. We deployed Salesforce Agentforce and Claude to give teams natural-language access to pipeline, account, and operational context.",
+    body: "GTM data across Salesforce, Workday, CPQ, Stripe, and NetSuite: five systems, no unified interface. We deployed Salesforce Agentforce and Claude to give teams natural-language access to pipeline, account, and operational context.",
     diagram: <AgentforceDiagram />,
     tech: ["Agentforce", "BigQuery"],
     metric: null,
@@ -354,7 +354,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Fintech · Payments",
     title: "A single source of truth for multi-processor payment analytics",
-    body: "Transaction, fee, and settlement data across two acquiring processors — each with its own formats and codes. We designed a canonical payment data model and evidence-based crosswalk that made cross-processor analytics defensible.",
+    body: "Transaction, fee, and settlement data across two acquiring processors, each with its own formats and codes. We designed a canonical payment data model and evidence-based crosswalk that made cross-processor analytics defensible.",
     diagram: <PaymentsDiagram />,
     tech: ["Data modeling", "SQL"],
     metric: null,
@@ -374,7 +374,7 @@ const CASE_STUDIES: CaseStudy[] = [
   {
     tag: "Financial services · Wealth management",
     title: "Backend modernization for an enterprise wealth management workflow platform",
-    body: "Legacy Linux-hosted backend, ~5,000 users, 3-second dashboard load times. Rewrote in Java 17 / Spring Boot 3.5 on Kubernetes — doubled user capacity, 67% faster load time, and eliminated release dependencies for configuration changes.",
+    body: "Legacy Linux-hosted backend, ~5,000 users, 3-second dashboard load times. Rewrote in Java 17 / Spring Boot 3.5 on Kubernetes, doubling user capacity, cutting load time by 67%, and eliminating release dependencies for configuration changes.",
     diagram: <WealthManagementDiagram />,
     tech: ["Java 17", "Kubernetes"],
     metric: "67% faster · 2× capacity",

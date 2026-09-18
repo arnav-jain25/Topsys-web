@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 const FDE = {
   title: "Deploy forward.",
   eyebrow: "Forward Deployed Engineer",
-  body: "Neither consultant nor contractor. A TOPSYS engineer embedded at your site with commit access, architectural authority, and accountability for whether the system works in production — not whether the engagement closed.",
+  body: "Neither consultant nor contractor. A TOPSYS engineer embedded at your site with commit access, architectural authority, and accountability for whether the system works in production, not whether the engagement closed.",
   items: [
     "Owns architecture decisions in the room where they happen",
     "Accountable to production outcomes, not ticket velocity",

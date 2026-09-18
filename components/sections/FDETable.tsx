@@ -11,7 +11,7 @@ const ROWS = [
     label: "Who sets scope",
     consultant: "The firm's engagement manager",
     contractor: "Your PM with a ticket queue",
-    fde: "The engineer — in your room",
+    fde: "The engineer, in your room",
   },
   {
     label: "Accountable to",
@@ -157,7 +157,7 @@ export function FDETable({ exitHref = "/capabilities/forward-deployed", exitLabe
           className="font-mono text-mono-xs uppercase tracking-[.1em] text-on-field-2 mt-10 pt-8 border-t border-field-hairline"
           style={{ opacity: 0.6 }}
         >
-          The FDE model is available across all five TOPSYS service areas —&nbsp;
+          The FDE model is available across all five TOPSYS service areas:&nbsp;
           <a
             href={exitHref}
             className="text-signal border-b border-signal/40 hover:border-signal transition-colors duration-fast"

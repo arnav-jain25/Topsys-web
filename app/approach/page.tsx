@@ -8,7 +8,7 @@ import { CyclingModelHeading } from "@/components/sections/CyclingModelHeading";
 export const metadata: Metadata = {
   title: "Approach",
   description:
-    "How TOPSYS IT structures delivery: build the solution, build the team, or both — and the engagement principles that hold regardless of which door you take.",
+    "How TOPSYS IT structures delivery: build the solution, build the team, or both, and the engagement principles that hold regardless of which door you take.",
 };
 
 const JUMP_LINKS = [
@@ -46,7 +46,7 @@ export default function ApproachPage() {
             How we structure delivery.
           </h1>
           <p className="text-lede text-ink-2 max-w-[62ch] mt-6">
-            A consultancy scopes and staffs with people you didn&rsquo;t pick. A staffing vendor sends résumés and disappears at onboarding. We do both — and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
+            A consultancy scopes and staffs with people you didn&rsquo;t pick. A staffing vendor sends résumés and disappears at onboarding. We do both, and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
           </p>
 
           {/* Jump nav — this page has two long sections, so wayfinding earns its keep */}
@@ -74,7 +74,7 @@ export default function ApproachPage() {
           <Eyebrow dark>The model</Eyebrow>
           <CyclingModelHeading />
           <p className="text-lede text-on-field-2 font-medium max-w-[64ch] mt-6">
-            Most firms make you choose. A consultancy scopes and staffs with people you didn&rsquo;t pick. A staffing vendor sends résumés and disappears at onboarding. We do both — and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
+            Most firms make you choose. A consultancy scopes and staffs with people you didn&rsquo;t pick. A staffing vendor sends résumés and disappears at onboarding. We do both, and a third thing neither does: deploy an engineer who owns the outcome in your environment, not ours.
           </p>
           <DualModel />
         </div>

@@ -39,7 +39,7 @@ const CAPABILITIES = [
   },
   {
     title: "Digital content & experience platforms",
-    body: "Content architecture for member- and customer-facing digital properties. Adobe Experience Manager and Contentstack implementations that separate governed editorial content from dynamic data — rates, disclosures, account terms — so compliance review and content publishing run on different clocks.",
+    body: "Content architecture for member- and customer-facing digital properties. Adobe Experience Manager and Contentstack implementations that separate governed editorial content from dynamic data (rates, disclosures, account terms) so compliance review and content publishing run on different clocks.",
     tech: ["Adobe AEM", "Contentstack", "MuleSoft", "GraphQL", "Next.js"],
   },
   {

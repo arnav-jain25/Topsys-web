@@ -1,7 +1,7 @@
 import { TESTIMONIALS } from "@/lib/testimonials";
 
 export const metadata = {
-  title: "Client testimonials — TOPSYS IT",
+  title: "Client testimonials | TOPSYS IT",
   description: "What technology leaders say about working with TOPSYS IT.",
 };
 

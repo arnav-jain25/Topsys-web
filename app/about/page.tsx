@@ -93,8 +93,8 @@ const ENGAGEMENT_STEPS: EngagementStep[] = [
     title: "Scope with builders",
     body: (
       <>
-        The engineers who scope the work are the ones who do it &mdash; not a pursuit team that
-        hands off at signature.
+        The engineers who scope the work are the ones who do it, not a pursuit team that hands
+        off at signature.
       </>
     ),
   },
@@ -146,11 +146,11 @@ const CREDENTIALS: CredentialItem[] = [
 
 const VISIONARY_QUOTES: [VisionaryQuote, VisionaryQuote] = [
   {
-    kicker: "On finishing what you start",
-    quote: "Talk is cheap. Show me the code.",
-    name: "Linus Torvalds",
-    role: "creator of Linux and Git",
-    source: "Linux kernel mailing list, 2000",
+    kicker: "On what a services business actually sells",
+    quote: "You sell a capability. You sell knowledge.",
+    name: "Lou Gerstner",
+    role: "Chairman and CEO, IBM",
+    source: "Who Says Elephants Can't Dance?, 2002",
   },
   {
     kicker: "On listening to the field",
@@ -226,9 +226,11 @@ export default function AboutPage() {
             Technology delivery for complex environments.
           </h1>
           <p className="text-lede text-ink-2 max-w-[60ch] mt-5">
-            TOPSYS IT Solutions LLC is a minority-owned technology firm that builds and runs
-            critical systems for enterprise and government clients &mdash; the ones where an
-            outage is <em>somebody&rsquo;s</em> bad day, at scale.
+            TOPSYS IT Solutions LLC is a minority-owned, MBE-certified technology delivery firm.
+            We build and run the systems enterprise and government clients depend on, and we
+            staff the engineers who build them. Some engagements we own start to finish. Others,
+            we embed our own people inside your team. Either way, the people who scope the work
+            are the ones who deliver it.
           </p>
 
           {/* Jump nav — a table of contents for the numbered file below. */}
@@ -349,7 +351,7 @@ export default function AboutPage() {
                   maxWidth: "16ch",
                 }}
               >
-                Where conviction <em>meets execution</em>.
+                Where conviction <span style={{ color: "var(--color-signal)" }}>meets execution</span>.
               </h2>
               <PullQuote>
                 The gap between technology strategy and execution is, in the end, an
@@ -407,17 +409,21 @@ export default function AboutPage() {
       {/* ================================================================
           TWO VIEWS — the last thing on the page before the close. Split
           light/dark, each quote kickered to something this firm does and
-          cited to where it was actually published. The dark panel uses
-          the same field tone as the closing section below so the two run
-          together instead of stepping to a darker navy.
+          cited to where it was actually published. The dark panel is the
+          mid-tone field, one step lighter than the closing section below
+          it — the page gets deliberately darker toward the very end
+          instead of holding one flat navy the whole way down.
           ================================================================ */}
       <VisionaryQuotes quotes={VISIONARY_QUOTES} />
 
       {/* ================================================================
           CLOSING — three doors rather than a headline and floating
-          buttons. Same field tone as the quote panel above it, continuous.
+          buttons. field-deep, same as the global footer immediately below
+          it, per the brand rule ("fieldDeep — footer, closing CTA") — the
+          two now run together instead of the near-miss you get from field
+          stepping to field-deep by one token gap.
           ================================================================ */}
-      <section className="on-field ruled-field" style={{ padding: "4.25rem 0 4.5rem" }}>
+      <section className="on-field-deep ruled-field" style={{ padding: "4.25rem 0 4.5rem" }}>
         <div className="wrap">
           <div className="flex flex-wrap items-baseline justify-between gap-x-10 gap-y-3 mb-9">
             <h2
