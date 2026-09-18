@@ -94,7 +94,8 @@ primary button hover fill. Nowhere else.
 - Body measure capped at 68 characters
 - **Statistics set in mono, never in display, never inside rings or donuts**
 - Eyebrows: 12px mono, `letter-spacing: .1em`, uppercase via `text-transform`
-- No italics anywhere
+- Italics are allowed for emphasis, quotations, and pulled phrases — used deliberately,
+  never for whole paragraphs
 
 ### Geometry and depth
 

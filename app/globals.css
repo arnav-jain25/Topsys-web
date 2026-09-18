@@ -209,6 +209,10 @@
   --font-mono: var(--font-righteous), ui-sans-serif, sans-serif;
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
   --font-eyebrow: var(--font-righteous), ui-sans-serif, sans-serif;
+  /* Accent serif — standalone emphasis only (pull quotes, visionary quotes,
+     the Standard section's outcome line). Not part of the documented
+     three-face system; never used inline or for headings/body copy. */
+  --font-accent: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 /* ============================================================================
@@ -368,6 +372,49 @@
   to   { transform: scaleX(1); }
 }
 
+/* Blueprint ruling — a faint measured grid, used on the About page to give
+   the inverted and method sections a drafting-table ground instead of flat
+   colour. Not the signature gradient; just hairlines. */
+.ruled-field {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 68px 68px;
+}
+
+.ruled-paper {
+  background-image:
+    linear-gradient(to right, rgba(14, 26, 31, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 26, 31, 0.035) 1px, transparent 1px);
+  background-size: 68px 68px;
+}
+
+/* Report columns — long-form prose set in two measured columns with a rule
+   between, the way a printed report sets a page. Collapses on narrow. */
+.report-columns {
+  column-count: 2;
+  column-gap: 3.25rem;
+  column-rule: 1px solid var(--color-hairline);
+}
+
+@media (width < 52rem) {
+  .report-columns {
+    column-count: 1;
+  }
+}
+
+/* Drop cap — opens the About page's Conviction column. */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 4.25rem;
+  line-height: 0.78;
+  float: left;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  color: var(--color-ink);
+}
+
 /* Sibling-dim on dual model hover — CSS-only, no JS hover state needed.
    Only the non-hovered card dims; the hovered card stays at full opacity. */
 .dual-model-grid:has(.dual-card:hover) .dual-card {
@@ -422,9 +469,14 @@
     text-wrap: pretty;
   }
 
-  /* No italics anywhere. */
-  i,
+  /* Italics for deliberate emphasis — quotations, pulled phrases, key
+     words — never whole paragraphs. address/dfn/var stay upright since
+     those tags mark up data, not emphasis. */
   em,
+  i {
+    font-style: italic;
+  }
+
   address,
   cite,
   dfn,
