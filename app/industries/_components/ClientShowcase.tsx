@@ -7,11 +7,8 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 /* ── Enterprise client logos — dual opposing marquee ─────────────────── */
 
 const ROW_A = [
-  { name: "AT&T",              src: "/private-logos/att.png" },
   { name: "Capital One",        src: "/private-logos/capitalone_no_bg.png" },
-  { name: "Wells Fargo",        src: "/private-logos/wells-fargo.png" },
   { name: "Morgan Stanley",     src: "/private-logos/morganstaley.png" },
-  { name: "T-Mobile",           src: "/private-logos/T-Mobile.png" },
   { name: "UnitedHealth Group", src: "/private-logos/UnitedHealth-Group.png" },
 ];
 

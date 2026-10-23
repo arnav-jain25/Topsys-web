@@ -4,12 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const CLIENTS = [
-  { src: "/private-logos/att.png",                   alt: "AT&T",              vertical: "Telecom" },
   { src: "/private-logos/capitalone_no_bg.png",       alt: "Capital One",        vertical: "Financial services" },
   { src: "/private-logos/IBM.jpg",                    alt: "IBM",                vertical: "Enterprise technology" },
-  { src: "/private-logos/T-Mobile.png",               alt: "T-Mobile",           vertical: "Telecom" },
   { src: "/private-logos/UnitedHealth-Group.png",     alt: "UnitedHealth Group",  vertical: "Healthcare" },
-  { src: "/private-logos/wells-fargo.png",            alt: "Wells Fargo",        vertical: "Financial services" },
   { src: "/private-logos/Deloitte-Logo.png",          alt: "Deloitte",           vertical: "Professional services" },
   { src: "/private-logos/morganstaley.png",           alt: "Morgan Stanley",     vertical: "Financial services" },
   { src: "/private-logos/Capgemini_no_bg.png",        alt: "Capgemini",          vertical: "Technology services" },
